@@ -1,10 +1,29 @@
 # Architect change history 
 
 ## Notes:
-* If you have trouble upgrading, try deactivating and reactivating your licence
+* If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
-## 1.10.0 : 22 Sep 2017
-##### Beaver Builder related enhancements:
+## 1.10.2 : 20 Oct 2017
+
+* ADDED: Date filtering. Finally!
+* ADDED: Option to hide empty Blueprints
+* ADDED: Optional message if no content found for a Blueprint
+
+* FIXED: Default classes not being applied to components in custom post types
+* FIXED: Rounding problem that could cause some grid layouts to wrap around
+* FIXED: Content not showing for RSS feed source.
+* FIXED: Error if number of fields is less than number of columns in tabular
+* FIXED: Author filtering not working!
+* FIXED: Date filtering applied to all Blueprints on the same page
+
+* UPGRADED: Slick.js v1.8.0
+
+## 1.10.1 =
+* FIXED: Old Architect widgets could return an error
+* FIXED: WPML overriding CSS for paragraphs affecting layout
+
+## 1.10.0 =
+#### Beaver Builder related enhancements:
 * ADDED: More extensive filtering overrides in the Beaver Architect module
 * ADDED: Extensive styling options to Architect Beaver module
 * ADDED: Blueprint type to dropdown selector in Widget and Beaver module Blueprint selector
@@ -12,7 +31,7 @@
 * FIXED: Comments showing with Architect Beaver module when type is posts or page
 * REMOVED: Removed Architect page builder. Recommend to use Beaver instead!
 
-#####Content related enhancements:
+#### Content related enhancements:
 * ADDED: RSS Feed as a content source. In Blueprints Source tab
 * ADDED: Option to set and use a default Focal Point when no Focal Point set on an image. In Architect > Options
 * ADDED: Option to use 'Specific Text, HTML or Shortcodes' as a custom field source. In Blueprints Custom Fields tab
@@ -20,7 +39,7 @@
 * ADDED: Message field that can be displayed immediately below content. In Blueprints Body/Excerpt tab
 * ADDED: Option to insert a shortcode (or basic HTML) after a specific paragraph in body content. Good for inserting advertising!  In Blueprints Body/Excerpt tab
 
-##### Miscellaneous enhancements:
+#### Miscellaneous enhancements:
 * ADDED: Shortcode [arc_hasmedia] Displays icons if post has media. Can be used in meta or custom fields display. Currently identifies galleries, videos, audio playlists and various document links
 * ADDED: Shortcode [arc_debug] Dumps the $wp_query variable and some Blueprint info
 * ADDED: Simple demo mode that outlines Architect Blueprints. Add /?demo to the page URL.

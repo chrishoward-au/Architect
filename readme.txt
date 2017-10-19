@@ -113,7 +113,7 @@ TODO: Possible Beaver comments showing unexpectedly
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
-= 1.10.2 =
+= 1.10.2 : 20 Oct 2017
 
 * ADDED: Date filtering. Finally!
 * ADDED: Option to hide empty Blueprints
