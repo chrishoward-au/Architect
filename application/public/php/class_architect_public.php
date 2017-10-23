@@ -142,7 +142,9 @@
       global $wp_query;
       $original_query = $wp_query;
 
+      // Overrides
       $this->build->blueprint['additional_overrides'] = arc_process_overrides( $additional_overrides, $this->build->blueprint );
+      $this->build->blueprint['_blueprints_blueprint-title']= isset($overrides['title'])?$overrides['title']:$this->build->blueprint['_blueprints_blueprint-title'];
 
 
       // Shorthand some vars
@@ -321,6 +323,7 @@
        *
        */
       pzdb( 'top blueprint html' );
+
       echo '<!-- Blueprint: ' . $this->build->blueprint['blueprint-title'] . ' -->';
       $demo_mode_hints = isset( $_GET['demo'] ) ? ' data-hint="' . ( $blueprint_type == 'basic' ? 'Grid' : ucwords( $blueprint_type ) ) . ' : ' . $this->build->blueprint['blueprint-title'] . '"' : '';
       echo '<div id="pzarc-blueprint_' . $this->build->blueprint['_blueprints_short-name'] . '" ' . $demo_mode_hints . ' class="' . $this->build->blueprint['uid'] . ' pzarchitect layout-' . $blueprint_type . ' ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint['_blueprints_short-name'] . ' nav-' . $bp_nav_type . ' icomoon ' . ( $bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '' ) . ( is_rtl() ? ' rtl' : ' ltr' ) . ' hint--top">';
