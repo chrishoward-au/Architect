@@ -21,9 +21,8 @@
         'rss-feed-hide-content' => ! empty( $this->build->blueprint[ $prefix . 'rss-feed-hide-content' ] ) ? $this->build->blueprint[ $prefix . 'rss-feed-hide-content' ] : FALSE,
         'rss-feed-date-format'  => ! empty( $this->build->blueprint[ $prefix . 'rss-feed-date-format' ] ) ? $this->build->blueprint[ $prefix . 'rss-feed-date-format' ] : 'j F Y | g:i a',
       );
-
-      // Overrides
       $settings['rss-feed-url'] = isset($overrides['rssurl'])?$overrides['rssurl']:$settings['rss-feed-url'];
+      $settings['rss-feed-exclude-tags'] = isset($overrides['rssexclude'])?$overrides['rssexclude']:$settings['rss-feed-exclude-tags'];
 
       $rss_feed = fetch_feed( wp_specialchars_decode( $settings['rss-feed-url'] ) );
       //   remove_filter( 'wp_feed_cache_transient_lifetime' , 'return_10' );
@@ -36,16 +35,15 @@
       if ( ! is_wp_error( $rss_feed ) ) {
         $maxitems = $rss_feed->get_item_quantity( $settings['rss-feed-count'] );
         // Build an array of all the items, starting with element 0 (first element).
-        $rss_items = $rss_feed->get_items( 0, $maxitems );
-
+//        $rss_items = $rss_feed->get_items( 0, $maxitems );
         $exclude = explode( ',', $settings['rss-feed-exclude-tags'] );
         $inc     = 0;
         $i       = 1;
-        foreach ( $rss_items as $aitem ) {
+        foreach ( $rss_feed->get_items() as $aitem ) {
 
           $ok = TRUE;
           foreach ( $aitem->get_categories() as $ocat ) {
-            if ( in_array( $ocat->term, $exclude ) ) {
+            if ( in_array($ocat->term,$exclude) ) {
               $ok = FALSE;
               break;
             }
