@@ -157,14 +157,18 @@
     }
 
     $pzarc_overrides = array();
-    if ( isset( $atts['ids'] ) ) {
-      $pzarc_overrides['ids'] = $atts['ids'];
-    }
-    if ( isset( $atts['tax'] ) ) {
-      $pzarc_overrides['tax'] = $atts['tax'];
-    }
-    if ( isset( $atts['terms'] ) ) {
-      $pzarc_overrides['terms'] = $atts['terms'];
+//    if ( isset( $atts['ids'] ) ) {
+//      $pzarc_overrides['ids'] = $atts['ids'];
+//    }
+//    if ( isset( $atts['tax'] ) ) {
+//      $pzarc_overrides['tax'] = $atts['tax'];
+//    }
+//    if ( isset( $atts['terms'] ) ) {
+//      $pzarc_overrides['terms'] = $atts['terms'];
+//    }
+
+    foreach ($atts as $key => $value) {
+      $pzarc_overrides[$key] = $atts[$key];
     }
 
     $tablet_bp            = isset( $atts['tablet'] ) ? $atts['tablet'] : NULL;

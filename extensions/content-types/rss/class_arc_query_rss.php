@@ -21,6 +21,10 @@
         'rss-feed-hide-content' => ! empty( $this->build->blueprint[ $prefix . 'rss-feed-hide-content' ] ) ? $this->build->blueprint[ $prefix . 'rss-feed-hide-content' ] : FALSE,
         'rss-feed-date-format'  => ! empty( $this->build->blueprint[ $prefix . 'rss-feed-date-format' ] ) ? $this->build->blueprint[ $prefix . 'rss-feed-date-format' ] : 'j F Y | g:i a',
       );
+
+      // Overrides
+      $settings['rss-feed-url'] = isset($overrides['rssurl'])?$overrides['rssurl']:$settings['rss-feed-url'];
+
       $rss_feed = fetch_feed( wp_specialchars_decode( $settings['rss-feed-url'] ) );
       //   remove_filter( 'wp_feed_cache_transient_lifetime' , 'return_10' );
       $rss_items = array();
