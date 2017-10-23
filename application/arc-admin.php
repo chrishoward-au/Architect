@@ -190,8 +190,8 @@
       }
 
       if ( $screen->id === 'edit-arc-blueprints' ) {
-        wp_enqueue_script( 'jquery-cookie' );
-        require_once( PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/blueprints-listings-pageguide.php' );
+//        wp_enqueue_script( 'jquery-cookie' );
+//        require_once( PZARC_DOCUMENTATION_PATH . PZARC_LANGUAGE . '/blueprints-listings-pageguide.php' );
       }
 
 //      if ($screen post ot page editor)
