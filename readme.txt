@@ -98,20 +98,22 @@ TODO: Add wireframe view?
 TODO: Add Jetpack sitemap support https://developer.jetpack.com/2016/01/28/sitemaps-add-custom-post-type-support/
 TODO: Transition to Codestar framework (less than 1MB footprint in zip!)
 TODO Architect Galleries custom post type
-TODO: Fix small images scaling up
-TODO: Fix stickies possibly showing incorrectly in Tabular
-
-TODO: Verify masonry tags filter
-TODO: Fix filler image not cropping
-TODO: Solve cache clearing on install/update
-TODO Update tutorials
-TODO: Possible Beaver comments showing unexpectedly
 
 
 == Changelog ==
 
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
+
+= 1.10.3 =
+TODO: * CHANGED: Removed pageguides until updated
+TODO: * FIXED: Small images scaling up
+TODO: * FIXED:  stickies possibly showing incorrectly in Tabular
+TODO: Verify masonry tags filter
+TODO: * FIXED:  filler image not cropping
+TODO: * FIXED: Cache not clearing on install/update
+TODO Update tutorials
+TODO: Possible Beaver comments showing unexpectedly
 
 = 1.10.2 : 20 Oct 2017
 
