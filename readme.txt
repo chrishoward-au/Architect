@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
 Tested up to: 4.9
-Stable tag: 1.10.2
+Stable tag: 1.10.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -106,7 +106,13 @@ TODO Architect Galleries custom post type
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
 = 1.10.3 =
-TODO: * CHANGED: Removed pageguides until updated
+
+* ADDED: RSS feed URL override to shortcode. Parameter: rssurl
+* ADDED: Blueprint Title override to shortcode. Parameter: title
+
+* FIXED: RSS exclude tags not working
+
+* CHANGED: Removed pageguides until updated
 TODO: * FIXED: Small images scaling up
 TODO: * FIXED:  stickies possibly showing incorrectly in Tabular
 TODO: Verify masonry tags filter
