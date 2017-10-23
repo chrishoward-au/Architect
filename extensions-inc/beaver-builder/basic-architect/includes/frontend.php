@@ -28,6 +28,14 @@
         'terms'            => $settings->terms,
     ) : NULL;
 
+    if ($settings->custom_overrides) {
+      $custom_overrides = explode("\n", str_replace("\r", "", $settings->custom_overrides));
+      foreach ($custom_overrides as $override) {
+        $exploded = explode('=',$override);
+        $pzarc_overrides[$exploded[0]] = str_replace('"','',$exploded[1]);
+      }
+    }
+
     // pzarchitect($pzarc_blueprint = null, $pzarc_overrides = null, $tablet_bp = null, $phone_bp = null)
 
     pzarchitect($settings->blueprint_default, $pzarc_overrides, $settings->blueprint_tablet, $settings->blueprint_phone, $additional_overrides, 'beaver_module_basic');

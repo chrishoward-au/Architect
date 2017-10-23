@@ -109,6 +109,7 @@ TODO Architect Galleries custom post type
 
 * ADDED: RSS feed URL override to shortcode. Parameter: rssurl
 * ADDED: Blueprint Title override to shortcode. Parameter: title
+* ADDED: Support for custom overrides in Beaver Module. These are entered just like shorcode overrides and will be ignored if not valid.
 
 * FIXED: RSS exclude tags not working
 

@@ -80,6 +80,11 @@
                         'label'   => __('Override Blueprint display title', 'pzarchitect'),
                         'default' => '',
                       ),
+                      'custom_overrides'   => array(
+                        'type'    => 'textarea',
+                        'label'   => __('custom_overrides', 'pzarchitect'),
+                        'default' => '',
+                      ),
                   ),
               ),
           ),
