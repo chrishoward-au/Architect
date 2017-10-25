@@ -82,7 +82,7 @@
                       ),
                       'custom_overrides'   => array(
                         'type'    => 'textarea',
-                        'label'   => __('custom_overrides', 'pzarchitect'),
+                        'label'   => __('Custom overrides', 'pzarchitect'),
                         'default' => '',
                       ),
                   ),

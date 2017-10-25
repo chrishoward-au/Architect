@@ -99,28 +99,30 @@ TODO: Add Jetpack sitemap support https://developer.jetpack.com/2016/01/28/sitem
 TODO: Transition to Codestar framework (less than 1MB footprint in zip!)
 TODO Architect Galleries custom post type
 
+TODO: * FIX: Small images scaling up
+TODO: * FIX: stickies possibly showing incorrectly in Tabular
+TODO: * FIX: filler image not cropping
+TODO: * FIX: Cache not clearing on install/update
+TODO: Verify masonry tags filter
+TODO Update tutorials
+TODO: Possible Beaver comments showing unexpectedly
+
 
 == Changelog ==
 
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
-= 1.10.3 =
+= 1.10.3 : 23 Oct 2017
 
 * ADDED: RSS feed URL override to shortcode. Parameter: rssurl
 * ADDED: Blueprint Title override to shortcode. Parameter: title
 * ADDED: Support for custom overrides in Beaver Module. These are entered just like shorcode overrides and will be ignored if not valid.
 
 * FIXED: RSS exclude tags not working
+* FIXED: RSS hide title not working
 
 * CHANGED: Removed pageguides until updated
-TODO: * FIXED: Small images scaling up
-TODO: * FIXED:  stickies possibly showing incorrectly in Tabular
-TODO: Verify masonry tags filter
-TODO: * FIXED:  filler image not cropping
-TODO: * FIXED: Cache not clearing on install/update
-TODO Update tutorials
-TODO: Possible Beaver comments showing unexpectedly
 
 = 1.10.2 : 20 Oct 2017
 
