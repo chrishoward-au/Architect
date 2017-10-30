@@ -27,11 +27,13 @@
           'parent_item_colon'  => '',
           'menu_name'          => _x('Snippets', 'pzarchitect'),
       );
+
       $args   = array(
           'labels'             => $labels,
           'public'             => true,
           'publicly_queryable' => true,
           'show_ui'            => true,
+          'exclude_from_search' => !empty($architect_options['architect_exclude-snippets-search']),
           //          'show_in_menu'       => 'pzarc',
           'menu_icon'          => 'dashicons-format-aside',
           'query_var'          => true,
