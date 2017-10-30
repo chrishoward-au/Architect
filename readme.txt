@@ -114,9 +114,10 @@ TODO: Investigate filters etc having no effect on Search results
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
-= 10.3.4
-
+= 1.10.4
 * ADDED: Option to exclude Snipptes from search results
+
+*FIXED: Page navigation  not showing on search results page
 
 = 1.10.3 : 23 Oct 2017
 

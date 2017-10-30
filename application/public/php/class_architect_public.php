@@ -184,7 +184,7 @@
             $this->arc_pagination['pagination'] = new $content_class;
             break;
 
-          case is_archive():
+          case is_archive() || is_search():
             $content_class                      = 'arc_Pagination_' . ( ! $this->build->blueprint['_blueprints_pager-archives'] ? 'prevnext' : $this->build->blueprint['_blueprints_pager-archives'] );
             $this->arc_pagination['pagination'] = new $content_class;
             break;
