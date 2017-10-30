@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
 Tested up to: 4.9
-Stable tag: 1.10.3
+Stable tag: 1.10.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -106,12 +106,17 @@ TODO: * FIX: Cache not clearing on install/update
 TODO: Verify masonry tags filter
 TODO Update tutorials
 TODO: Possible Beaver comments showing unexpectedly
+TODO: Investigate filters etc having no effect on Search results
 
 
 == Changelog ==
 
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
+
+= 10.3.4
+
+* ADDED: Option to exclude Snipptes from search results
 
 = 1.10.3 : 23 Oct 2017
 

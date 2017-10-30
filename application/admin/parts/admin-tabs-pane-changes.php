@@ -12,6 +12,17 @@
                     <div class="arc-info-boxes">
                     <div class="arc-info col1">'.
 wpautop('
+<h2>1.10.3</h2>
+
+* ADDED: RSS feed URL override to shortcode. Parameter: rssurl
+* ADDED: Blueprint Title override to shortcode. Parameter: title
+* ADDED: Support for custom overrides in Beaver Module. These are entered just like shorcode overrides and will be ignored if not valid.
+
+* FIXED: RSS exclude tags not working
+* FIXED: RSS hide title not working
+
+* CHANGED: Removed pageguides until updated
+
 <h2>1.10.2</h2>
 * ADDED: Date filtering. Finally!
 * ADDED: Option to hide empty Blueprints
