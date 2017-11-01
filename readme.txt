@@ -115,9 +115,10 @@ TODO: Investigate filters etc having no effect on Search results
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
 = 1.10.4
-* ADDED: Option to exclude Snipptes from search results
+* ADDED: Option to exclude Snippets from search results
 
-*FIXED: Page navigation  not showing on search results page
+* FIXED: Page navigation  not showing on search results page
+* FIXED: Bug in Freemius code that caused error on EDD shops with Freemius Migration plugin installed
 
 = 1.10.3 : 23 Oct 2017
 
