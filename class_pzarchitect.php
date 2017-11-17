@@ -171,6 +171,7 @@
       pzarc_set_defaults(); //Run here in case we've added any new fields or changed their defaults.
       update_option( 'pzarc-run-rebuild', TRUE );
 
+
     }
 
     public function admin_initialize() {
@@ -298,6 +299,7 @@
         '1.5.0.0' => 'updates/architect-1500.php',
         '1.6.0.0' => 'updates/architect-1600.php',
         '1.8.0.0' => 'updates/architect-1800.php',
+        '1.11.0.0'=>'updates/architect-11100.php'
       );
 
       foreach ( $db_updates as $version => $updater ) {

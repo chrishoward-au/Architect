@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
 Tested up to: 4.9
-Stable tag: 1.10.4
+Stable tag: 1.10.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -98,7 +98,6 @@ TODO: Add wireframe view?
 TODO: Add Jetpack sitemap support https://developer.jetpack.com/2016/01/28/sitemaps-add-custom-post-type-support/
 TODO: Transition to Codestar framework (less than 1MB footprint in zip!)
 TODO Architect Galleries custom post type
-
 TODO: * FIX: Small images scaling up
 TODO: * FIX: stickies possibly showing incorrectly in Tabular
 TODO: * FIX: filler image not cropping
@@ -108,17 +107,31 @@ TODO Update tutorials
 TODO: Possible Beaver comments showing unexpectedly
 TODO: Investigate filters etc having no effect on Search results
 
-
 == Changelog ==
 
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
-= 1.10.4
+= 1.11.0 =
+TODO: Add changelog link to plugin page
+TODO: Custom tables field selector
+TODO: Custom fields module
+TODO: Advanced Featured Images module
+TODO: Focal point tute
+TODO: Add Default/Custom button to Content Source
+TODO: Fix read more link not working for pages
+TODO: Add users as content source
+
+= 1.10.5 =
+* ADDED: Shortcode to use in custom field display to show any field from any table. Usage [arccf table="tablename" field="fieldname"]
+* CHANGED: Removed caching of custom field list as was making refreshing it difficult
+
+= 1.10.4 : 2 Nov 2017
 * ADDED: Option to exclude Snippets from search results
 
 * FIXED: Page navigation  not showing on search results page
 * FIXED: Bug in Freemius code that caused error on EDD shops with Freemius Migration plugin installed
+* FIXED: Couple of errors caused by using empty() on a function in PHP < 5.5
 
 = 1.10.3 : 23 Oct 2017
 

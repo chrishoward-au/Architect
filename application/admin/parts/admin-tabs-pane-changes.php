@@ -8,11 +8,22 @@
 
 	echo'
                 <div class="tabs-pane " id="changes">
-                    <h2>' . __('Latest changes. Version ') .PZARC_VERSION. '</h2>
+                    <h2>' . __('Latest changes.'). '</h2>
                     <div class="arc-info-boxes">
                     <div class="arc-info col1">'.
 wpautop('
-<h2>1.10.3</h2>
+<h2>1.10.5</h2>
+* ADDED: Shortcode to use in custom field display to show any field from any table. Usage [arccf table="tablename" field="fieldname"]
+* CHANGED: Removed caching of custom field list as was making refreshing it difficult
+
+<h2>1.10.4 : 2 Nov 2017 </h2>
+* ADDED: Option to exclude Snippets from search results
+
+* FIXED: Page navigation  not showing on search results page
+* FIXED: Bug in Freemius code that caused error on EDD shops with Freemius Migration plugin installed
+* FIXED: Couple of errors caused by using empty() on a function in PHP < 5.5
+
+<h2>1.10.3 : 23 Oct 2017</h2>
 
 * ADDED: RSS feed URL override to shortcode. Parameter: rssurl
 * ADDED: Blueprint Title override to shortcode. Parameter: title
@@ -23,7 +34,7 @@ wpautop('
 
 * CHANGED: Removed pageguides until updated
 
-<h2>1.10.2</h2>
+<h2>1.10.2 : 20 Oct 2017</h2>
 * ADDED: Date filtering. Finally!
 * ADDED: Option to hide empty Blueprints
 * ADDED: Optional message if no content found for a Blueprint
@@ -99,7 +110,7 @@ wpautop('
 
 ').'
                     <h3>Full changelog</h3>
-                    Click to view the full historical <a href="'.PZARC_PLUGIN_URL.'readme.txt" target="_blank">changelog</a>
+                    Click to view the full historical <a href="'.PZARC_PLUGIN_URL.'architect-changelog.html" target="_blank">changelog</a>
 			</div>
 		</div>
 	</div>

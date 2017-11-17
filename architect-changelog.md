@@ -3,6 +3,13 @@
 ## Notes:
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
+## 1.10.4 : 2 Nov 2017
+* ADDED: Option to exclude Snippets from search results
+
+* FIXED: Page navigation  not showing on search results page
+* FIXED: Bug in Freemius code that caused error on EDD shops with Freemius Migration plugin installed
+* FIXED: Couple of errors caused by using empty() on a function in PHP < 5.5
+
 ## 1.10.3 : 23 Oct 2017
 
 * ADDED: RSS feed URL override to shortcode. Parameter: rssurl
