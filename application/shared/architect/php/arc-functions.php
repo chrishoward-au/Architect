@@ -2075,6 +2075,8 @@
       $pzarc_permalink = isset( $pzarc_post['permalink'] ) ? $pzarc_post['permalink'] : NULL;
     } elseif ( is_object( $pzarc_post ) ) {
       $pzarc_permalink = get_permalink( $pzarc_post->ID );
+    } elseif ( is_numeric( $pzarc_post ) ) {
+      $pzarc_permalink = get_permalink( $pzarc_post );
     } else {
       $pzarc_permalink = '';
     }
@@ -2395,12 +2397,14 @@
           $tableset[] = $tableName;
         }
       }
+
       return $tableset;
     }
 
-    static function get_table_fields($table) {
+    static function get_table_fields( $table ) {
       global $wpdb;
-      $fields = $wpdb->get_col("DESC {$table}", 0);
+      $fields = $wpdb->get_col( "DESC {$table}", 0 );
+
       return $fields;
     }
 

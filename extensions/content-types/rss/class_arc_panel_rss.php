@@ -30,7 +30,7 @@
         case 'characters':
           $this->data['excerpt'] = wp_html_excerpt( $post['content'], strlen( $post['content'] ) );
           $cutoff                = min( $this->section["_panels_design_excerpts-word-count"], strlen( $this->data['excerpt'] ) );
-          $this->data['excerpt'] = wp_html_excerpt( $post['content'], $cutoff, pzarc_make_excerpt_more( $this->section ) );
+          $this->data['excerpt'] = wp_html_excerpt( $post['content'], $cutoff, pzarc_make_excerpt_more( $this->section,$post ) );
           break;
 
         case 'paragraphs':
@@ -58,7 +58,7 @@
           $this->data['excerpt'] = implode( ' ', array_slice( explode( ' ', wp_html_excerpt( $post['content'], strlen( $post['content'] ) ) ), 0, $this->section["_panels_design_excerpts-word-count"] ) );
 
           if ( strlen( $this->data['excerpt'] ) < strlen( wp_html_excerpt( $post['content'], strlen( $post['content'] ) ) ) ) {
-            $this->data['excerpt'] .= pzarc_make_excerpt_more( $this->section );
+            $this->data['excerpt'] .= pzarc_make_excerpt_more( $this->section,$post );
           }
 
           break;

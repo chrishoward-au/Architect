@@ -560,10 +560,12 @@
           $this->data['excerpt'] = '';
           break;
 
+          // CHARACTERS
         case !empty($this->section['_panels_design_excerpts-trim-type']) && $this->section['_panels_design_excerpts-trim-type'] === 'characters':
-          $this->data['excerpt'] = apply_filters('the_excerpt', substr(wp_strip_all_tags(get_the_content()), 0, $this->section['_panels_design_excerpts-word-count']) . pzarc_make_excerpt_more($this->section,$post));
+          $this->data['excerpt'] =substr(wp_strip_all_tags(get_the_content()), 0, $this->section['_panels_design_excerpts-word-count']) . pzarc_make_excerpt_more($this->section,$post);
           break;
 
+          // PARAGRAPHS
         case !empty($this->section['_panels_design_excerpts-trim-type']) && $this->section['_panels_design_excerpts-trim-type'] === 'paragraphs':
           $the_lot = wpautop(get_the_content());
           if (empty($this->section['_panels_design_process-excerpts-shortcodes']) || $this->section['_panels_design_process-excerpts-shortcodes'] === 'process') {
@@ -591,14 +593,16 @@
             $this->data['excerpt'] .= '<p>' . $the_paras[$i - 1] . '</p>';
             $i++;
           }
-          $this->data['excerpt'] = apply_filters('the_excerpt', do_shortcode($this->data['excerpt']) . pzarc_make_excerpt_more($this->section,$post));
+          var_dump(595);
+          $this->data['excerpt'] = do_shortcode($this->data['excerpt']) . pzarc_make_excerpt_more($this->section,$post);
 
           break;
 
-        case
-            !empty($this->section['_panels_design_excerpts-trim-type']) && $this->section['_panels_design_excerpts-trim-type'] === 'moretag':
+          // MORETAG
+        case !empty($this->section['_panels_design_excerpts-trim-type']) && $this->section['_panels_design_excerpts-trim-type'] === 'moretag':
           // More tags are automatically executed on the non-single pages. And no way to override. Pain!
           //
+          var_dump(601);
           $the_lot = get_extended(get_the_content());
           if (!empty($the_lot['extended'])) {
             $this->data['excerpt'] = $the_lot['main'];
@@ -607,23 +611,25 @@
             $this->data['excerpt'] = get_the_excerpt();
           }
           if (empty($this->section['_panels_design_process-excerpts-shortcodes']) || $this->section['_panels_design_process-excerpts-shortcodes'] === 'process') {
-            $this->data['excerpt'] = apply_filters('the_excerpt', do_shortcode($this->data['excerpt']));
+            $this->data['excerpt'] =  do_shortcode($this->data['excerpt']);
           }
           else {
-            $this->data['excerpt'] = apply_filters('the_excerpt', strip_shortcodes($this->data['excerpt']));
+            $this->data['excerpt'] = strip_shortcodes($this->data['excerpt']);
           }
           break;
 
+          // WORDS
         default:
           $this->data['excerpt'] = get_the_excerpt();
           if (empty($this->section['_panels_design_process-excerpts-shortcodes']) || $this->section['_panels_design_process-excerpts-shortcodes'] === 'process') {
-            $this->data['excerpt'] = apply_filters('the_excerpt', do_shortcode($this->data['excerpt']));
+            $this->data['excerpt'] =  do_shortcode($this->data['excerpt']);
           }
           else {
-            $this->data['excerpt'] = apply_filters('the_excerpt', strip_shortcodes($this->data['excerpt']));
+            $this->data['excerpt'] =  strip_shortcodes($this->data['excerpt']);
           }
       }
 
+      $this->data['excerpt']=apply_filters('the_excerpt',$this->data['excerpt']);
     }
 
 
