@@ -593,7 +593,6 @@
             $this->data['excerpt'] .= '<p>' . $the_paras[$i - 1] . '</p>';
             $i++;
           }
-          var_dump(595);
           $this->data['excerpt'] = do_shortcode($this->data['excerpt']) . pzarc_make_excerpt_more($this->section,$post);
 
           break;
@@ -602,7 +601,6 @@
         case !empty($this->section['_panels_design_excerpts-trim-type']) && $this->section['_panels_design_excerpts-trim-type'] === 'moretag':
           // More tags are automatically executed on the non-single pages. And no way to override. Pain!
           //
-          var_dump(601);
           $the_lot = get_extended(get_the_content());
           if (!empty($the_lot['extended'])) {
             $this->data['excerpt'] = $the_lot['main'];
