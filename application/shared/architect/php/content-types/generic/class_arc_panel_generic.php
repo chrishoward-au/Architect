@@ -313,7 +313,7 @@
       // TODO: Add image sizes for each device
       /** Get the original image  */
       $this->data['image']['original'] = wp_get_attachment_image_src( $thumb_id, 'full' );
-      $derf = get_the_ID(); // testing purposes
+      $derf                            = get_the_ID(); // testing purposes
       preg_match( "/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data['image']['image'], $results );
       if ( isset( $results[0] ) && ! empty( $this->section['_panels_settings_use-retina-images'] ) && function_exists( 'bfi_thumb' ) ) {
         $params = array(
@@ -548,6 +548,13 @@
      * @param $post
      */
     public function get_excerpt( &$post ) {
+      if ( ( ! empty( $this->section['_panels_design_process-excerpts-shortcodes'] ) || $this->section['_panels_design_process-excerpts-shortcodes'] === 'process' ) ) {
+        $the_content = strip_shortcodes( get_the_content() );
+        $the_excerpt = strip_shortcodes( get_the_excerpt() );
+      } else {
+        $the_content = do_shortcode( get_the_content() );
+        $the_excerpt = do_shortcode( get_the_excerpt() );
+      }
       switch ( TRUE ) {
 
         case ! empty( $this->section['_panels_design_manual-excerpts'] ) && ! has_excerpt():
@@ -556,69 +563,58 @@
 
         // CHARACTERS
         case ! empty( $this->section['_panels_design_excerpts-trim-type'] ) && $this->section['_panels_design_excerpts-trim-type'] === 'characters':
-          $the_content           = (!empty( $this->section['_panels_design_process-excerpts-shortcodes'] ) || $this->section['_panels_design_process-excerpts-shortcodes'] === 'process')
-          ? strip_shortcodes( get_the_content() ):get_the_content();
-//          var_Dump($this->section['_panels_design_process-excerpts-shortcodes'],$the_content);
-
-          $this->data['excerpt'] = substr( wp_strip_all_tags( $the_content ), 0, $this->section['_panels_design_excerpts-word-count'] ) . pzarc_make_excerpt_more( $this->section, $post );
+          if ( ! empty( $the_content ) ) {
+            $this->data['excerpt'] = substr( wp_strip_all_tags( $the_content ), 0, $this->section['_panels_design_excerpts-word-count'] ) . pzarc_make_excerpt_more( $this->section, $post );
+          } else {
+            $this->data['excerpt'] = '';
+          }
           break;
 
         // PARAGRAPHS
         case ! empty( $this->section['_panels_design_excerpts-trim-type'] ) && $this->section['_panels_design_excerpts-trim-type'] === 'paragraphs':
-          $the_lot = wpautop( get_the_content() );
-          if ( empty( $this->section['_panels_design_process-excerpts-shortcodes'] ) || $this->section['_panels_design_process-excerpts-shortcodes'] === 'process' ) {
-            $the_lot = do_shortcode( $the_lot );
-          } else {
-            $the_lot = strip_shortcodes( $the_lot );
-          }
-          $the_lot   = str_replace( '</p>', '{/EOP/}', $the_lot );
-          $the_lot   = str_replace( '<p>', '', $the_lot );
-          $the_lot   = str_replace( '{/EOP/}{/EOP/}', '{/EOP/}', $the_lot );
-          $the_paras = explode( '{/EOP/}', $the_lot );
+          if ( ! empty( $the_content ) ) {
 
-          // get rid of any blank ones
-          $the_new_paras = array();
-          foreach ( $the_paras as $k => $the_para ) {
-            if ( ! empty( $the_para ) ) {
-              $the_new_paras[] = $the_para;
+            $the_lot   = wpautop( $the_content );
+            $the_lot   = str_replace( '</p>', '{/EOP/}', $the_lot );
+            $the_lot   = str_replace( '<p>', '', $the_lot );
+            $the_lot   = str_replace( '{/EOP/}{/EOP/}', '{/EOP/}', $the_lot );
+            $the_paras = explode( '{/EOP/}', $the_lot );
+
+            // get rid of any blank ones
+            $the_new_paras = array();
+            foreach ( $the_paras as $k => $the_para ) {
+              if ( ! empty( $the_para ) ) {
+                $the_new_paras[] = $the_para;
+              }
             }
+            $the_paras             = $the_new_paras;
+            $this->data['excerpt'] = '';
+            $i                     = 1;
+            while ( $i <= (int) $this->section['_panels_design_excerpts-word-count'] && $i <= count( $the_paras ) ) {
+              $this->data['excerpt'] .= '<p>' . $the_paras[ $i - 1 ] . '</p>';
+              $i ++;
+            }
+            $this->data['excerpt'] = $this->data['excerpt'] . pzarc_make_excerpt_more( $this->section, $post );
+          } else {
+            $this->data['excerpt'] = '';
           }
-          $the_paras             = $the_new_paras;
-          $this->data['excerpt'] = '';
-          $i                     = 1;
-          while ( $i <= (int) $this->section['_panels_design_excerpts-word-count'] && $i <= count( $the_paras ) ) {
-            $this->data['excerpt'] .= '<p>' . $the_paras[ $i - 1 ] . '</p>';
-            $i ++;
-          }
-          $this->data['excerpt'] = do_shortcode( $this->data['excerpt'] ) . pzarc_make_excerpt_more( $this->section, $post );
-
           break;
 
         // MORETAG
         case ! empty( $this->section['_panels_design_excerpts-trim-type'] ) && $this->section['_panels_design_excerpts-trim-type'] === 'moretag':
           // More tags are automatically executed on the non-single pages. And no way to override. Pain!
           //
-          $the_lot = get_extended( get_the_content() );
+          $the_lot = get_extended( $the_content );
           if ( ! empty( $the_lot['extended'] ) ) {
             $this->data['excerpt'] = $the_lot['main'];
           } else {
-            $this->data['excerpt'] = get_the_excerpt();
-          }
-          if ( empty( $this->section['_panels_design_process-excerpts-shortcodes'] ) || $this->section['_panels_design_process-excerpts-shortcodes'] === 'process' ) {
-            $this->data['excerpt'] = do_shortcode( $this->data['excerpt'] );
-          } else {
-            $this->data['excerpt'] = strip_shortcodes( $this->data['excerpt'] );
+            $this->data['excerpt'] = $the_excerpt;
           }
           break;
 
         // WORDS
         default:
-          $this->data['excerpt'] = get_the_excerpt();
-          if ( empty( $this->section['_panels_design_process-excerpts-shortcodes'] ) || $this->section['_panels_design_process-excerpts-shortcodes'] === 'process' ) {
-            $this->data['excerpt'] = do_shortcode( $this->data['excerpt'] );
-          } else {
-            $this->data['excerpt'] = strip_shortcodes( $this->data['excerpt'] );
-          }
+          $this->data['excerpt'] = $the_excerpt;
       }
       $this->data['excerpt'] = apply_filters( 'the_excerpt', $this->data['excerpt'] );
     }

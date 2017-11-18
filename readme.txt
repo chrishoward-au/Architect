@@ -125,6 +125,7 @@ TODO: Add users as content source
 * ADDED: Shortcode to use in custom field display to show any field from any table. Usage [arccf table="tablename" field="fieldname"]
 * CHANGED: Removed caching of custom field list as was making refreshing it difficult
 * FIXED:  Read more link not working for pages
+* FIXED: Read more links showing when no content
 
 = 1.10.4 : 2 Nov 2017
 * ADDED: Option to exclude Snippets from search results
