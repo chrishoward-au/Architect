@@ -106,6 +106,7 @@ TODO: Verify masonry tags filter
 TODO Update tutorials
 TODO: Possible Beaver comments showing unexpectedly
 TODO: Investigate filters etc having no effect on Search results
+TODO: Add Default/Custom button to Content Source
 
 == Changelog ==
 
@@ -118,13 +119,12 @@ TODO: Custom tables field selector
 TODO: Custom fields module
 TODO: Advanced Featured Images module
 TODO: Focal point tute
-TODO: Add Default/Custom button to Content Source
-TODO: Fix read more link not working for pages
 TODO: Add users as content source
 
 = 1.10.5 =
 * ADDED: Shortcode to use in custom field display to show any field from any table. Usage [arccf table="tablename" field="fieldname"]
 * CHANGED: Removed caching of custom field list as was making refreshing it difficult
+* FIXED:  Read more link not working for pages
 
 = 1.10.4 : 2 Nov 2017
 * ADDED: Option to exclude Snippets from search results
