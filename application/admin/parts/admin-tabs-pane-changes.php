@@ -12,9 +12,11 @@
                     <div class="arc-info-boxes">
                     <div class="arc-info col1">'.
 wpautop('
-<h2>1.10.5</h2>
+<h2>1.10.5 : 18 Nov 2017</h2>
 * ADDED: Shortcode to use in custom field display to show any field from any table. Usage [arccf table="tablename" field="fieldname"]
 * CHANGED: Removed caching of custom field list as was making refreshing it difficult
+* FIXED: Read more link not working for pages
+* FIXED: Read more links showing when no content
 
 <h2>1.10.4 : 2 Nov 2017 </h2>
 * ADDED: Option to exclude Snippets from search results

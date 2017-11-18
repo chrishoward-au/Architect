@@ -107,13 +107,6 @@ TODO Update tutorials
 TODO: Possible Beaver comments showing unexpectedly
 TODO: Investigate filters etc having no effect on Search results
 TODO: Add Default/Custom button to Content Source
-
-== Changelog ==
-
-= Notes =
-* If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
-
-= 1.11.0 =
 TODO: Add changelog link to plugin page
 TODO: Custom tables field selector
 TODO: Custom fields module
@@ -121,10 +114,15 @@ TODO: Advanced Featured Images module
 TODO: Focal point tute
 TODO: Add users as content source
 
-= 1.10.5 =
+== Changelog ==
+
+= Notes =
+* If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
+
+= 1.10.5 :  18 Nov 2017
 * ADDED: Shortcode to use in custom field display to show any field from any table. Usage [arccf table="tablename" field="fieldname"]
 * CHANGED: Removed caching of custom field list as was making refreshing it difficult
-* FIXED:  Read more link not working for pages
+* FIXED: Read more link not working for pages
 * FIXED: Read more links showing when no content
 
 = 1.10.4 : 2 Nov 2017
