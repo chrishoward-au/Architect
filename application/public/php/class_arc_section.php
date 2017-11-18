@@ -208,7 +208,7 @@
      * @return mixed
      */
     function set_excerpt_length( $excerpt_length ) {
-      return $this->section[ 'section-panel-settings' ][ '_panels_design_excerpts-word-count' ];
+        return $this->section['section-panel-settings']['_panels_design_excerpts-word-count'];
     }
 
     function set_excerpt_more( $excerpt_more ) {

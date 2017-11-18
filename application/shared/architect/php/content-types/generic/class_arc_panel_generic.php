@@ -616,7 +616,7 @@
         default:
           $this->data['excerpt'] = $the_excerpt;
       }
-      $this->data['excerpt'] = apply_filters( 'the_excerpt', $this->data['excerpt'] );
+       $this->data['excerpt'] = apply_filters( 'the_excerpt', $this->data['excerpt'] );
     }
 
 

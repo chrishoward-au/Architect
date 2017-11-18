@@ -4720,6 +4720,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               '=',
               FALSE,
             ),
+            'desc'=>__('If using More Tag, this is the maximum number of words to show','pzarchitect')
           ),
           array(
             'title'    => __( 'Truncation indicator', 'pzarchitect' ),
