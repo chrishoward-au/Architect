@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
 Tested up to: 4.9
-Stable tag: 1.10.5
+Stable tag: 1.10.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -107,7 +107,6 @@ TODO Update tutorials
 TODO: Possible Beaver comments showing unexpectedly
 TODO: Investigate filters etc having no effect on Search results
 TODO: Add Default/Custom button to Content Source
-TODO: Add changelog link to plugin page
 TODO: Custom tables field selector
 TODO: Custom fields module
 TODO: Advanced Featured Images module
@@ -118,6 +117,9 @@ TODO: Add users as content source
 
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
+
+= 1.10.6 : 22 Nov 2017
+* ADDED: Changelog link to plugin listing since Freemius doesn't yet support displaying changelog
 
 = 1.10.5 :  18 Nov 2017
 * ADDED: Shortcode to use in custom field display to show any field from any table. Usage [arccf table="tablename" field="fieldname"]

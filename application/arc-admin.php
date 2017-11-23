@@ -1089,3 +1089,4 @@
     add_action( 'admin_notices', 'pz_hw_to_pizazz_licence' );
 
   }
+

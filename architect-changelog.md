@@ -3,6 +3,9 @@
 ## Notes:
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
+## 1.10.6 : 22 Nov 2017
+* ADDED: Changelog link to plugin listing since Freemius doesn't yet support displaying changelog
+
 ## 1.10.5 :  18 Nov 2017
 * ADDED: Shortcode to use in custom field display to show any field from any table. Usage [arccf table="tablename" field="fieldname"]
 * CHANGED: Removed caching of custom field list as was making refreshing it difficult
