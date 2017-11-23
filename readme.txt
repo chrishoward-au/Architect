@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
 Tested up to: 4.9
-Stable tag: 1.10.6
+Stable tag: 1.10.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -102,6 +102,7 @@ TODO: * FIX: Small images scaling up
 TODO: * FIX: stickies possibly showing incorrectly in Tabular
 TODO: * FIX: filler image not cropping
 TODO: * FIX: Cache not clearing on install/update
+TODO: Implement srcset. See wp_get_attachment_image_srcset
 TODO: Verify masonry tags filter
 TODO Update tutorials
 TODO: Possible Beaver comments showing unexpectedly
@@ -117,6 +118,9 @@ TODO: Add users as content source
 
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
+
+= 1.10.7
+* ADDED: Image Alt tag will automatically use image title if no Alt tag set
 
 = 1.10.6 : 22 Nov 2017
 * ADDED: Changelog link to plugin listing since Freemius doesn't yet support displaying changelog

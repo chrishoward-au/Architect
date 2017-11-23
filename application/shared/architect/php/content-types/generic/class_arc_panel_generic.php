@@ -37,6 +37,7 @@
       $this->data['meta']['tags']            = NULL;
       $this->data['image']['image']          = NULL;
       $this->data['image']['caption']        = NULL;
+      $this->data['image']['srcset']          = NULL;
       $this->data['image']['original']       = NULL;
       $this->data['image']['id']             = NULL;
       $this->data['bgimage']['thumb']        = NULL;
@@ -297,6 +298,7 @@
       $width  = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['width'] );
       $height = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['height'] );
 
+      $image = get_post( $thumb_id );
 
       // TODO: Add all the focal point stuff to all the post types images and bgimages
       // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
@@ -312,8 +314,9 @@
 
       // TODO: Add image sizes for each device
       /** Get the original image  */
+
+
       $this->data['image']['original'] = wp_get_attachment_image_src( $thumb_id, 'full' );
-      $derf                            = get_the_ID(); // testing purposes
       preg_match( "/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data['image']['image'], $results );
       if ( isset( $results[0] ) && ! empty( $this->section['_panels_settings_use-retina-images'] ) && function_exists( 'bfi_thumb' ) ) {
         $params = array(
@@ -324,7 +327,10 @@
         $thumb_2X                     = bfi_thumb( $results[0], $params );
         $this->data['image']['image'] = str_replace( '/>', 'data-at2x="' . $thumb_2X . '" />', $this->data['image']['image'] );
       }
-      $image = get_post( $thumb_id );
+      if (strpos($this->data['image']['image'],'alt=""')) {
+        $this->data['image']['image'] = str_replace('alt=""','alt="'.esc_attr($image->post_title).'"',$this->data['image']['image']);
+      }
+
 
       $this->data['image']['caption'] = is_object( $image ) ? $image->post_excerpt : '';
 
@@ -390,7 +396,6 @@
         );
         $this->data['image']['caption']  = '';
       }
-
     }
 
     /**
@@ -616,7 +621,7 @@
         default:
           $this->data['excerpt'] = $the_excerpt;
       }
-       $this->data['excerpt'] = apply_filters( 'the_excerpt', $this->data['excerpt'] );
+      $this->data['excerpt'] = apply_filters( 'the_excerpt', $this->data['excerpt'] );
     }
 
 
