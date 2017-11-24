@@ -155,6 +155,7 @@
       if ( strpos( ( 'X' . $screen->id ), 'arc-' ) > 0 ) {
         wp_enqueue_style( 'dashicons' );
         wp_enqueue_script( 'jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array( 'jquery' ), PZARC_VERSION, TRUE );
+        wp_enqueue_script('jquery-cookie');
 
         add_filter( 'post_row_actions', 'pzarc_duplicate_post_link', 10, 2 );
         add_filter( 'page_row_actions', 'pzarc_duplicate_post_link', 10, 2 );

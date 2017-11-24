@@ -525,6 +525,7 @@
      */
     public function get_content( &$post ) {
       /** CONTENT */
+     // var_Dump($post);
       $thecontent = get_the_content();
 
       // Insert shortcode if required

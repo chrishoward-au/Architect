@@ -3,6 +3,11 @@
 ## Notes:
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
+## 1.10.7  : 24 Nov 2017
+* ADDED: Image Alt tag will automatically use image title if no Alt tag set
+* FIXED: Error on plugins list page on wpms sites
+* FIXED: Presets selector stopped working.
+
 ## 1.10.6 : 22 Nov 2017
 * ADDED: Changelog link to plugin listing since Freemius doesn't yet support displaying changelog
 

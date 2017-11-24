@@ -12,6 +12,20 @@
                     <div class="arc-info-boxes">
                     <div class="arc-info col1">'.
 wpautop('
+<h2 id="1.10.7:24nov2017">1.10.7 : 24 Nov 2017</h2>
+
+<ul>
+<li>ADDED: Image Alt tag will automatically use image title if no Alt tag set</li>
+<li>FIXED: Error on plugins list page on wpms sites</li>
+<li>FIXED: Presets selector stopped working.</li>
+</ul>
+
+<h2 id="1.10.6:22nov2017">1.10.6 : 22 Nov 2017</h2>
+
+<ul>
+<li>ADDED: Changelog link to plugin listing since Freemius doesn&#8217;t yet support displaying changelog</li>
+</ul>
+
 <h2>1.10.5 : 18 Nov 2017</h2>
 * ADDED: Shortcode to use in custom field display to show any field from any table. Usage [arccf table="tablename" field="fieldname"]
 * CHANGED: Removed caching of custom field list as was making refreshing it difficult
