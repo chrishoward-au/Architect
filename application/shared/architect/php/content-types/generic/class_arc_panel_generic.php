@@ -27,6 +27,8 @@
     }
 
     public function initialise_data() {
+
+      unset($this->data);
       // Null up everything to prevent warnings later on
       $this->data['title']                   = NULL;
       $this->data['title']['title']          = NULL;
@@ -119,9 +121,13 @@
 
 
     public function set_data( &$post, &$toshow, &$section, $panel_number ) {
+
+      $this->initialise_data(); // v1.10.8: Ooops! Why hasn't the absence of this raised its ugly head previously!
+
       $this->section      = $section;
       $this->toshow       = $toshow;
       $this->panel_number = $panel_number;
+
 
 //      if ( $this->toshow[ 'title' ][ 'show' ] ) {
       // We always need the title  for images
@@ -298,43 +304,43 @@
       $width  = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['width'] );
       $height = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['height'] );
 
-      $image = get_post( $thumb_id );
+      if (!empty($this->data['image']['id'])) {
+        $image = get_post( $thumb_id );
+        // TODO: Add all the focal point stuff to all the post types images and bgimages
+        // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
+        // could pass $this->data thru a filter
+        /** Get the image */
+        $this->data['image']['image'] = wp_get_attachment_image( $thumb_id, array(
+          $width,
+          $height,
+          'bfi_thumb' => TRUE,
+          'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'],
 
-      // TODO: Add all the focal point stuff to all the post types images and bgimages
-      // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
-      // could pass $this->data thru a filter
-      /** Get the image */
-      $this->data['image']['image'] = wp_get_attachment_image( $thumb_id, array(
-        $width,
-        $height,
-        'bfi_thumb' => TRUE,
-        'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'],
+        ) );
 
-      ) );
-
-      // TODO: Add image sizes for each device
-      /** Get the original image  */
+        // TODO: Add image sizes for each device
+        /** Get the original image  */
 
 
-      $this->data['image']['original'] = wp_get_attachment_image_src( $thumb_id, 'full' );
-      preg_match( "/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data['image']['image'], $results );
-      if ( isset( $results[0] ) && ! empty( $this->section['_panels_settings_use-retina-images'] ) && function_exists( 'bfi_thumb' ) ) {
-        $params = array(
-          'width'  => ( $width * 2 ),
-          'height' => ( $height * 2 ),
-        );
-        // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still.
-        $thumb_2X                     = bfi_thumb( $results[0], $params );
-        $this->data['image']['image'] = str_replace( '/>', 'data-at2x="' . $thumb_2X . '" />', $this->data['image']['image'] );
+        $this->data['image']['original'] = wp_get_attachment_image_src( $thumb_id, 'full' );
+        preg_match( "/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data['image']['image'], $results );
+
+        if ( isset( $results[0] ) && ! empty( $this->section['_panels_settings_use-retina-images'] ) && function_exists( 'bfi_thumb' ) ) {
+          $params = array(
+            'width'  => ( $width * 2 ),
+            'height' => ( $height * 2 ),
+          );
+          // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still.
+          $thumb_2X                     = bfi_thumb( $results[0], $params );
+          $this->data['image']['image'] = str_replace( '/>', 'data-at2x="' . $thumb_2X . '" />', $this->data['image']['image'] );
+        }
+        if ( !empty($this->data['image']['id']) && strpos( $this->data['image']['image'], 'alt=""' ) ) {
+          $this->data['image']['image'] = str_replace( 'alt=""', 'alt="' . esc_attr( $image->post_title ) . '"', $this->data['image']['image'] );
+        }
+
+
+        $this->data['image']['caption'] = is_object( $image ) ? $image->post_excerpt : '';
       }
-      if (strpos($this->data['image']['image'],'alt=""')) {
-        $this->data['image']['image'] = str_replace('alt=""','alt="'.esc_attr($image->post_title).'"',$this->data['image']['image']);
-      }
-
-
-      $this->data['image']['caption'] = is_object( $image ) ? $image->post_excerpt : '';
-
-
       //Use lorempixel
       // FILLER: Lorempixel
       // TODO: Should this be an action that is themn called by any things like Dummy
@@ -418,7 +424,7 @@
       $showbgimage = ( has_post_thumbnail() && $this->section['_panels_design_feature-location'] === 'fill' && ( $this->section['_panels_design_components-position'] == 'top' || $this->section['_panels_design_components-position'] == 'left' ) ) || ( $this->section['_panels_design_feature-location'] === 'fill' && ( $this->section['_panels_design_components-position'] == 'bottom' || $this->section['_panels_design_components-position'] == 'right' ) );
       // Need to setup for break points.
 
-      //  TODO: data-imagesrcs ="1,2,3", data-breakpoints="1,2,3". Then use js to change src.
+      // TODO: data-imagesrcs ="1,2,3", data-breakpoints="1,2,3". Then use js to change src.
       $width = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['width'] );
       // TODO: Should this just choose the greater? Or could that be too stupid if  someone puts a very large max-height?
       if ( $this->section['_panels_settings_panel-height-type'] === 'height' ) {
@@ -959,7 +965,9 @@
      *
      * @return mixed
      */
+    // NOTE: This will not be called if the image is displayed in the content.
     public function render_image( $component, $content_type, $panel_def, $rsid, $layout_mode = FALSE ) {
+
       if ( 'video' === $this->section['_panels_settings_feature-type'] ) {
         $panel_def[ $component ] = str_replace( '{{image}}', $this->data['video']['source'], $panel_def[ $component ] );
 
