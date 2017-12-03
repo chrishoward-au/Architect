@@ -16,9 +16,9 @@ class FLExampleModule extends FLBuilderModule {
         parent::__construct(array(
           'name'          => __('Example', 'fl-builder'),
           'description'   => __('An example for coding new modules.', 'fl-builder'),
-          'category'		=> __('Advanced Modules', 'fl-builder'),
-          'dir'           => FL_ARCHITECT_BB2_MODULE_DIR . 'example/',
-          'url'           => FL_ARCHITECT_BB2_MODULE_URL . 'example/',
+          'category'		=> __('Example Modules', 'fl-builder'),
+          'dir'           => FL_ARCHITECT_BB2_MODULE_DIR . 'modules/example/',
+          'url'           => FL_ARCHITECT_BB2_MODULE_URL . 'modules/example/',
           'editor_export' => true, // Defaults to true and can be omitted.
           'enabled'       => true, // Defaults to true and can be omitted.
         ));

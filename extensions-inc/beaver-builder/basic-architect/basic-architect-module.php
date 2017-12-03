@@ -6,7 +6,7 @@
    *
    * @class FLBasicExampleModule
    */
-  class FLBasicExampleModule extends FLBuilderModule {
+  class FLBasicArchitectModule extends FLBuilderModule {
 
     /**
      * Constructor function for the module. You must pass the
@@ -50,7 +50,7 @@
   /**
    * Register the module and its form settings.
    */
-  FLBuilder::register_module('FLBasicExampleModule', array(
+  FLBuilder::register_module( 'FLBasicArchitectModule', array(
       'general' => array(
           'title'       => __('Blueprints', 'pzarchitect'),
           'description' => __('Note: If you select a Blueprint that uses sliders, tabbed, masonry, accordion or tabular layouts, this may not render correctly in Builder until the page is saved/published.', 'pzarchitect'),

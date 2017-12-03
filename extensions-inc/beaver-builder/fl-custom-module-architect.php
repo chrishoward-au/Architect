@@ -24,6 +24,7 @@ function fl_load_module_architects() {
 	    require_once 'includes/form-styles-editor.php';
 //	    require_once 'includes/form-styles-blueprints.php'; //no longer used
 	   // require_once 'architect/architect-module.php'; //This will be the full version - somehow!
+	   // require_once 'example/example.php'; // Custom fields
 	}
 }
 add_action( 'init', 'fl_load_module_architects' );
