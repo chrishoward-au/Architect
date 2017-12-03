@@ -28,7 +28,7 @@
 
     public function initialise_data() {
 
-      unset($this->data);
+      unset( $this->data );
       // Null up everything to prevent warnings later on
       $this->data['title']                   = NULL;
       $this->data['title']['title']          = NULL;
@@ -39,7 +39,7 @@
       $this->data['meta']['tags']            = NULL;
       $this->data['image']['image']          = NULL;
       $this->data['image']['caption']        = NULL;
-      $this->data['image']['srcset']          = NULL;
+      $this->data['image']['srcset']         = NULL;
       $this->data['image']['original']       = NULL;
       $this->data['image']['id']             = NULL;
       $this->data['bgimage']['thumb']        = NULL;
@@ -304,7 +304,7 @@
       $width  = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['width'] );
       $height = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['height'] );
 
-      if (!empty($this->data['image']['id'])) {
+      if ( ! empty( $this->data['image']['id'] ) ) {
         $image = get_post( $thumb_id );
         // TODO: Add all the focal point stuff to all the post types images and bgimages
         // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
@@ -334,7 +334,7 @@
           $thumb_2X                     = bfi_thumb( $results[0], $params );
           $this->data['image']['image'] = str_replace( '/>', 'data-at2x="' . $thumb_2X . '" />', $this->data['image']['image'] );
         }
-        if ( !empty($this->data['image']['id']) && strpos( $this->data['image']['image'], 'alt=""' ) ) {
+        if ( ! empty( $this->data['image']['id'] ) && strpos( $this->data['image']['image'], 'alt=""' ) ) {
           $this->data['image']['image'] = str_replace( 'alt=""', 'alt="' . esc_attr( $image->post_title ) . '"', $this->data['image']['image'] );
         }
 
@@ -531,7 +531,7 @@
      */
     public function get_content( &$post ) {
       /** CONTENT */
-     // var_Dump($post);
+      // var_Dump($post);
       $thecontent = get_the_content();
 
       // Insert shortcode if required
@@ -663,15 +663,22 @@
 
           // The content itself comes from post meta or post title
 
-          if ( $this->section[ '_panels_design_cfield-' . $i . '-name' ] === 'post_title' ) {
-            $this->data['cfield'][ $i ]['value'] = $post->post_title;
-
-          } elseif ( $this->section[ '_panels_design_cfield-' . $i . '-name' ] === 'use_empty' ) {
-            $this->data['cfield'][ $i ]['value'] = '{{empty}}';
-          } elseif ( $this->section[ '_panels_design_cfield-' . $i . '-name' ] === 'specific_code' ) {
-            $this->data['cfield'][ $i ]['value'] = strip_tags( $this->section[ '_panels_design_cfield-' . $i . '-code' ], '<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6><img>' );
-          } else {
-            $this->data['cfield'][ $i ]['value'] = ( ! empty( $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ] ) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][0] : NULL );
+          switch ( $this->section[ '_panels_design_cfield-' . $i . '-name' ] ) {
+            case'post_title':
+              $this->data['cfield'][ $i ]['value'] = $post->post_title;
+              break;
+            case'use_empty':
+              $this->data['cfield'][ $i ]['value'] = '{{empty}}';
+              break;
+            case'specific_code':
+              $this->data['cfield'][ $i ]['value'] = strip_tags( $this->section[ '_panels_design_cfield-' . $i . '-code' ], '<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6><img>' );
+              break;
+            case'tablefield':
+              $tablefield = explode('/',$this->section[ '_panels_design_cfield-' . $i . '-name-table-field' ]);
+              $this->data['cfield'][ $i ]['value'] =do_shortcode('[arccf table="'. $tablefield[0] .'" field="'. $tablefield[1].'"]' );
+              break;
+            default:
+              $this->data['cfield'][ $i ]['value'] = ( ! empty( $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ] ) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][0] : NULL );
           }
 
           // Process field groups

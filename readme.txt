@@ -120,8 +120,9 @@ TODO: Add users as content source
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
 = 1.10.8 
-* FIXED: Using an img tag even when no image.
+* FIXED: Was using an img tag even when no image.
 * FIXED: Was carrying forward image data in the loop
+* ADDED: Selector for any field from any table
 
 = 1.10.7  : 24 Nov 2017
 * ADDED: Image Alt tag will automatically use image title if no Alt tag set

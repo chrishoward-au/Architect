@@ -2393,8 +2393,8 @@
       $results  = $wpdb->get_results( "SHOW TABLES LIKE '%'" );
       $tableset = array();
       foreach ( $results as $index => $value ) {
-        foreach ( $value as $tableName ) {
-          $tableset[] = $tableName;
+        foreach ( $value as $tablename ) {
+          $tableset[$tablename] = $tablename;
         }
       }
 
@@ -2403,9 +2403,13 @@
 
     static function get_table_fields( $table ) {
       global $wpdb;
-      $fields = $wpdb->get_col( "DESC {$table}", 0 );
-
-      return $fields;
+      $fields   = $wpdb->get_col( "DESC {$table}", 0 );
+      $fieldskv = array();
+      foreach ( $fields as $v ) {
+        $fieldskv[ $table . '/' . $v ] = $v;
+      }
+      unset($fields);
+      return $fieldskv;
     }
 
   }
