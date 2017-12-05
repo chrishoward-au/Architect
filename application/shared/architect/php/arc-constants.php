@@ -36,6 +36,8 @@
   define( 'PZARC_PRESETS_PATH', PZARC_UPLOADS_BASEPATH . '/pizazzwp/architect/presets/' );
   define( 'PZARC_PRESETS_URL', PZARC_UPLOADS_BASEURL . '/pizazzwp/architect/presets/' );
 
+  // Need to add support for WP Offload S3
+  
   define( 'PZARC_CACHE_URL', PZARC_UPLOADS_BASEURL . '/cache/pizazzwp/arc/' );
   define( 'PZARC_CACHE_PATH', PZARC_UPLOADS_BASEPATH . '/cache/pizazzwp/arc/' );
 
