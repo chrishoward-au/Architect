@@ -68,7 +68,6 @@
           }
         }
         $this->tableset = ArcFun::get_tables();
-        $this->tablesfields['none'] = __('Select a field','pzarchitect');
         foreach ($this->tableset as $table){
           $this->tablesfields[$table] = ArcFun::get_table_fields($table);
         }
@@ -5109,20 +5108,21 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'use_empty'     => 'No field. Use prefix and suffix only',
             'post_title'    => 'Post Title',
             'specific_code' => 'Specific Text, HTML or Shortcodes',
-            'tablefield'=>__('Any field from any database table','pzarchitect')
-          ), apply_filters( 'arc_custom_field_list', $this->custom_fields, $this->source ) );
+          ), apply_filters( 'arc_custom_field_list', array('custom fields'=>$this->custom_fields), $this->source ) );
 
           for ( $i = 1; $i <= $cfcount; $i ++ ) {
-            if (! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]) && $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]==='tablefield') {
-              $cfname     = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] : '' );
-            } else {
+//            if (! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]) && $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]==='tablefield') {
+//              $cfname     = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] : '' );
+//            } else {
               $cfname     = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] : '' );
-            }
+//            }
 
 //            $cftable = ( ! empty( $this->postmeta['_panels_design_cfield-'.$i.'-name-table'][0] ) ? $this->postmeta['_panels_design_cfield-'.$i.'-name-table'][0] : 'none' );
 //            $cftablefields = $cftable=='none' ? array('none'=>__('Select a table','pzarchitect')):$this->tablesfields[$cftable];
 
-            $sections[] = array(
+            $link_fields  = array_merge( array('Custom fields'=>$this->custom_fields), $this->tablesfields );
+            $all_fields = array_merge($pzarc_custom_fields, $this->tablesfields );
+            $sections[]   = array(
               'title'      => 'Settings '.$cfname ,
               'icon_class' => 'icon-large',
               'icon'       => 'el-icon-adjust-alt',
@@ -5146,7 +5146,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'default'  => '',
                   //                lightbox     => 'callback',
                   //                'args'     => array( 'pzarc_get_custom_fields' ),
-                  'options'  => $pzarc_custom_fields,
+                  'options'  => $all_fields,
                   'subtitle' => __( 'If a custom field is not shown in the dropdown, it is either because it has no data yet or the custom field list cache needs clearing. Go to Architect > Tools and clear the caches.', 'pzarchitect' ),
 
                 ),
@@ -5163,19 +5163,19 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 //                  ),
 //
 //                ),
-                array(
-                  'title'    => __( 'Choose field from table', 'pzarchitect' ),
-                  'id'       => $prefix . 'cfield-' . $i . '-name-table-field',
-                  'type'     => 'select',
-                  'default'  => 'none',
-                  'options'  => $this->tablesfields,
-                  'required' => array(
-                    $prefix . 'cfield-' . $i . '-name',
-                    '=',
-                    'tablefield',
-                  ),
-
-                ),
+//                array(
+//                  'title'    => __( 'Choose field from table', 'pzarchitect' ),
+//                  'id'       => $prefix . 'cfield-' . $i . '-name-table-field',
+//                  'type'     => 'select',
+//                  'default'  => 'none',
+//                  'options'  => $table_fields,
+//                  'required' => array(
+//                    $prefix . 'cfield-' . $i . '-name',
+//                    '=',
+//                    'tablefield',
+//                  ),
+//
+//                ),
                 array(
                   'title'   => __( 'Field type', 'pzarchitect' ),
                   'id'      => $prefix . 'cfield-' . $i . '-field-type',
@@ -5304,7 +5304,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'default'  => '',
                   //                'data'     => 'callback',
                   //                'args'     => array( 'pzarc_get_custom_fields' ),
-                  'options'  => $this->custom_fields,
+                  'options'  => $link_fields,
                   'subtitle' => 'Select a custom field that contains URLs you want to use as the link',
                 ),
                 array(
@@ -5388,11 +5388,11 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         if ( ! empty( $_GET['post'] ) ) {
           $cfcount = ( ! empty( $this->postmeta['_panels_design_custom-fields-count'][0] ) ? $this->postmeta['_panels_design_custom-fields-count'][0] : 0 );
           for ( $i = 1; $i <= $cfcount; $i ++ ) {
-            if (! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]) && $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]==='tablefield') {
-              $cfname     = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] : '' );
-            } else {
+//            if (! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]) && $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]==='tablefield') {
+//              $cfname     = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] : '' );
+//            } else {
               $cfname     = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] : '' );
-            }
+//            }
             $sections[] = array(
               'title'      => 'Styling '.$cfname ,
               'show_title' => FALSE,

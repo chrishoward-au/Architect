@@ -646,7 +646,7 @@
           $this->data['cfield'][ $i ]['date-format']    = $this->section[ '_panels_design_cfield-' . $i . '-date-format' ];
           $this->data['cfield'][ $i ]['wrapper-tag']    = $this->section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
           $this->data['cfield'][ $i ]['class-name']     = isset( $this->section[ '_panels_design_cfield-' . $i . '-class-name' ] ) ? $this->section[ '_panels_design_cfield-' . $i . '-class-name' ] : '';
-          $this->data['cfield'][ $i ]['link-field']     = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ];
+          $this->data['cfield'][ $i ]['link-field']     = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ]; // This will be populated with thea ctual value later
           $this->data['cfield'][ $i ]['link-behaviour'] = isset( $this->section[ '_panels_design_cfield-' . $i . '-link-behaviour' ] ) ? $this->section[ '_panels_design_cfield-' . $i . '-link-behaviour' ] : '_self';
           $this->data['cfield'][ $i ]['decimals']       = $this->section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
           $this->data['cfield'][ $i ]['decimal-char']   = $this->section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
@@ -673,12 +673,18 @@
             case'specific_code':
               $this->data['cfield'][ $i ]['value'] = strip_tags( $this->section[ '_panels_design_cfield-' . $i . '-code' ], '<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6><img>' );
               break;
-            case'tablefield':
-              $tablefield = explode('/',$this->section[ '_panels_design_cfield-' . $i . '-name-table-field' ]);
-              $this->data['cfield'][ $i ]['value'] =do_shortcode('[arccf table="'. $tablefield[0] .'" field="'. $tablefield[1].'"]' );
-              break;
+//           case'tablefield':
+//              $tablefield                          = explode( '/', $this->section[ '_panels_design_cfield-' . $i . '-name-table-field' ] );
+//              $this->data['cfield'][ $i ]['value'] = do_shortcode( '[arccf table="' . $tablefield[0] . '" field="' . $tablefield[1] . '"]' );
+//              break;
             default:
-              $this->data['cfield'][ $i ]['value'] = ( ! empty( $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ] ) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][0] : NULL );
+              $custom_field = explode( '/', $this->section[ '_panels_design_cfield-' . $i . '-name' ] );
+              if ( count( $custom_field ) == 1 ) {
+                $this->data['cfield'][ $i ]['value'] = ( ! empty( $postmeta[ $custom_field[0] ] ) ? $postmeta[ $custom_field[0] ][0] : NULL );
+              } elseif ( count( $custom_field ) == 2 ) {
+                $this->data['cfield'][ $i ]['value'] = do_shortcode( '[arccf table="' . $custom_field[0] . '" field="' . $custom_field[1] . '"]' );
+              }
+//              $this->data['cfield'][ $i ]['value'] = ( ! empty( $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ] ) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][0] : NULL );
           }
 
           // Process field groups
@@ -712,7 +718,12 @@
 
           // TODO:Bet this doesn't work!
           if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ) ) {
-            $this->data['cfield'][ $i ]['link-field'] = ( ! empty( $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ] ) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ][0] : NULL );
+            $link_field = explode( '/', $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] );
+            if ( count( $link_field ) == 1 ) {
+              $this->data['cfield'][ $i ]['link-field'] = ( ! empty( $postmeta[ $link_field[0] ] ) ? $postmeta[ $link_field[0] ][0] : NULL );
+            } elseif ( count( $link_field ) == 2 ) {
+              $this->data['cfield'][ $i ]['link-field'] = do_shortcode( '[arccf table="' . $link_field[0] . '" field="' . $link_field[1] . '"]' );
+            }
           }
 
           if ( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] === 'date' ) {
@@ -1167,7 +1178,6 @@
 
 
             $content = $prefix_image . $v['prefix-text'] . $content . $v['suffix-text'] . $suffix_image;
-
             if ( ! empty( $v['link-field'] ) ) {
               $content = '<a href="' . $v['link-field'] . '" target="' . $v['link-behaviour'] . '">' . $content . '</a>';
             }
