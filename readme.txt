@@ -122,7 +122,8 @@ TODO: Add users as content source
 = 1.10.8 
 * FIXED: Was using an img tag even when no image.
 * FIXED: Was carrying forward image data in the loop
-* ADDED: Selector for any field from any table
+* ADDED: Any field from any table to list of custom fields
+* ADDED: Any field form any table to list of link fields
 
 = 1.10.7  : 24 Nov 2017
 * ADDED: Image Alt tag will automatically use image title if no Alt tag set

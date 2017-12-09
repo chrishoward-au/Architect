@@ -5148,7 +5148,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   //                'args'     => array( 'pzarc_get_custom_fields' ),
                   'options'  => $all_fields,
                   'subtitle' => __( 'If a custom field is not shown in the dropdown, it is either because it has no data yet or the custom field list cache needs clearing. Go to Architect > Tools and clear the caches.', 'pzarchitect' ),
-
+                  'desc'=>__('Type to search names. List includes custom fields and <strong>any field from any table</strong>','pzarchitect')
                 ),
 //                array(
 //                  'title'    => __( 'Select a table', 'pzarchitect' ),

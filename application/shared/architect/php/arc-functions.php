@@ -2390,7 +2390,8 @@
 
     static function get_tables( $limit = NULL ) {
       global $wpdb;
-      $results  = $wpdb->get_results( "SHOW TABLES LIKE '%'" );
+      // Get all tables for current site
+      $results  = $wpdb->get_results( "SHOW TABLES LIKE '{$wpdb->prefix}%'" );
       $tableset = array();
       foreach ( $results as $index => $value ) {
         foreach ( $value as $tablename ) {
