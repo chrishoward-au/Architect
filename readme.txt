@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
 Tested up to: 4.9
-Stable tag: 1.10.7
+Stable tag: 1.10.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -77,53 +77,29 @@ No. We don't delete any of your data. In the future a method will be provided fo
 
 For support, please send an email to support@pizazzwp.com
 
-
-== Screenshots ==
-
-1. Architect Blueprint - Layout design
-2. Slider example
-
-== Possible Todos ==
-TODO: Add a default single post/page Blueprint;  Add codex links;
-TODO: Add option for custom content within Blueprints
-TODO: Replace curl with wp_remote_get
-TODO: Remove shortcode Defaults blocking message.
-TODO: Add min specs for max input vars
-TODO: Add description option to archive pages
-TODO: Fix images cropping on iPhone?
-TODO: Add Unsplash as a source for dummy photos
-TODO: Add a full backup option for Blueprints
-TODO: Add a backup and restore option for all settings
-TODO: Add wireframe view?
-TODO: Add Jetpack sitemap support https://developer.jetpack.com/2016/01/28/sitemaps-add-custom-post-type-support/
-TODO: Transition to Codestar framework (less than 1MB footprint in zip!)
-TODO Architect Galleries custom post type
-TODO: * FIX: Small images scaling up
-TODO: * FIX: stickies possibly showing incorrectly in Tabular
-TODO: * FIX: filler image not cropping
-TODO: * FIX: Cache not clearing on install/update
-TODO: Implement srcset. See wp_get_attachment_image_srcset
-TODO: Verify masonry tags filter
-TODO Update tutorials
-TODO: Possible Beaver comments showing unexpectedly
-TODO: Investigate filters etc having no effect on Search results
-TODO: Add Default/Custom button to Content Source
-TODO: Custom tables field selector
-TODO: Custom fields module
-TODO: Advanced Featured Images module
-TODO: Focal point tute
-TODO: Add users as content source
-
 == Changelog ==
 
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
 = 1.10.8 
+* ADDED: Any field from any table to list of custom fields
+* ADDED: Any field from any table to list of link fields
+* ADDED: Option to not use font family in Typography in Blueprints editor. (If you want to mange all font families from CSS)
+* ADDED: Option to not use Google fonts in Typography in Blueprints editor. This can improve loading time of Blueprint editor.
+* ADDED: Option to use caption as image alt text (default is alt text or title if no alt text)
+* ADDED: Custom version of Beaver Sidebar module can display different widget areas on different devices, or none at all
+* ADDED: Custom version of Maps module that processes shortcodes in the Address field. Useful with Architect's any field shortcode (arccf).
+* ADDED: Option to remove shortcodes from Body text
+* ADDED: Affiliates menu item
+
+* CHANGED: Account info now shows affiliate info.
+
+* UPDATED: Freemius SDK to 1.2.3
+
 * FIXED: Was using an img tag even when no image.
 * FIXED: Was carrying forward image data in the loop
-* ADDED: Any field from any table to list of custom fields
-* ADDED: Any field form any table to list of link fields
+* FIXED: Showing broken images when no featured image
 
 = 1.10.7  : 24 Nov 2017
 * ADDED: Image Alt tag will automatically use image title if no Alt tag set
@@ -823,3 +799,34 @@ Miscellaneous enhancements:
 
 == Upgrade Notice ==
 Various fixes and enhancements. See changelog
+
+== Possible Todos ==
+TODO: Add a default single post/page Blueprint;  Add codex links;
+TODO: Add option for custom content within Blueprints
+TODO: Replace curl with wp_remote_get
+TODO: Remove shortcode Defaults blocking message.
+TODO: Add min specs for max input vars
+TODO: Add description option to archive pages
+TODO: Fix images cropping on iPhone?
+TODO: Add Unsplash as a source for dummy photos
+TODO: Add a full backup option for Blueprints
+TODO: Add a backup and restore option for all settings
+TODO: Add wireframe view?
+TODO: Add Jetpack sitemap support https://developer.jetpack.com/2016/01/28/sitemaps-add-custom-post-type-support/
+TODO: Transition to Codestar framework (less than 1MB footprint in zip!)
+TODO Architect Galleries custom post type
+TODO: * FIX: Small images scaling up
+TODO: * FIX: stickies possibly showing incorrectly in Tabular
+TODO: * FIX: filler image not cropping
+TODO: * FIX: Cache not clearing on install/update
+TODO: Implement srcset. See wp_get_attachment_image_srcset
+TODO: Verify masonry tags filter
+TODO Update tutorials
+TODO: Investigate filters etc having no effect on Search results
+TODO: Add Default/Custom button to Content Source
+TODO: Any fields module
+TODO: Advanced Featured Images module
+TODO: Focal point tute
+TODO: Add users as content source
+TODO: Add any fields to custom field filtering
+
