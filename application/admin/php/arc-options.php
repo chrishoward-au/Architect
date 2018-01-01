@@ -297,6 +297,18 @@ if (!class_exists("Redux_Framework_Architect_Options")) {
                                                                      'default' => true
                                                                      // Re-set to true v1.5.17 as better to tell ppl to turn it off than have them with unstyled presets.
                                                                ),
+                                                               array('title' => __('Disable font family in typography sections', 'pzarchitect'),
+                                                                     'id' => 'architect_disable_fonts',
+                                                                     'type' => 'switch',
+                                                                     'subtitle' => __('Turn this off if you want to manage font selection from your own CSS stylesheets.', 'pzarchitect'),
+                                                                     'default' => false
+                                                               ),
+                                                               array('title' => __('Disable Google fonts in typography sections', 'pzarchitect'),
+                                                                     'id' => 'architect_disable_google_fonts',
+                                                                     'type' => 'switch',
+                                                                     'subtitle' => __('Turn this off if you do not want to use Google fonts in the typography fonts dropdown. This will speedup loading the Blueprint editor..', 'pzarchitect'),
+                                                                     'default' => false
+                                                               ),
                                                                array('title' => __('Typography units', 'pzarchitect'),
                                                                      'id' => 'architect_typography_units',
                                                                      'type' => 'button_set',

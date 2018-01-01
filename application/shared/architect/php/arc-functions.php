@@ -103,6 +103,8 @@
     global $_architect_options;
     $units       = isset( $_architect_options['architect_typography_units'] ) ? $_architect_options['architect_typography_units'] : 'px';
     $extra_fonts = file_exists( content_url( 'extra-fonts.css' ) ) ? content_url( 'extra-fonts.css' ) : NULL;
+    $disable_font_family = isset( $_architect_options['architect_disable_fonts'] ) ? $_architect_options['architect_disable_fonts'] : false;
+    $disable_google_fonts = isset( $_architect_options['architect_disable_google_fonts'] ) ? $_architect_options['architect_disable_google_fonts'] : false;
 
     $return_array = array(
       'title'           => __( 'Typography', 'pzarchitect' ),
@@ -114,12 +116,12 @@
       'text-decoration' => TRUE,
       'font-variant'    => TRUE,
       'text-transform'  => TRUE,
-      'font-family'     => TRUE,
+      'font-family'     => !$disable_font_family,
       'font-size'       => TRUE,
       'font-weight'     => TRUE,
       'font-style'      => TRUE,
-      'font-backup'     => TRUE,
-      'google'          => TRUE,
+      'font-backup'     => !$disable_font_family,
+      'google'          => !$disable_font_family&&!$disable_google_fonts ,
       'subsets'         => FALSE,
       'custom_fonts'    => FALSE,
       'text-align'      => TRUE,
