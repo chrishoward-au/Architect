@@ -334,12 +334,15 @@
           $thumb_2X                     = bfi_thumb( $results[0], $params );
           $this->data['image']['image'] = str_replace( '/>', 'data-at2x="' . $thumb_2X . '" />', $this->data['image']['image'] );
         }
-        if ( ! empty( $this->data['image']['id'] ) && strpos( $this->data['image']['image'], 'alt=""' ) ) {
+        $this->data['image']['caption'] = is_object( $image ) ? $image->post_excerpt : '';
+
+        if ( !empty($this->section['_panels_design_caption-alt-text'])){
+          $result = preg_replace('/alt="(.)*"/uiUsm', 'alt="'.$this->data['image']['caption'].'"', $this->data['image']['image']);
+          $this->data['image']['image'] = $result;
+        } elseif ( ! empty( $this->data['image']['id'] ) && strpos( $this->data['image']['image'], 'alt=""' ) ) {
           $this->data['image']['image'] = str_replace( 'alt=""', 'alt="' . esc_attr( $image->post_title ) . '"', $this->data['image']['image'] );
         }
 
-
-        $this->data['image']['caption'] = is_object( $image ) ? $image->post_excerpt : '';
       }
       //Use lorempixel
       // FILLER: Lorempixel
@@ -393,7 +396,7 @@
         } else {
           $imageURL = $this->section['_panels_design_use-filler-image-source-specific']['url'];
         }
-        $this->data['image']['image']    = '<img src="' . $imageURL . '" >';
+        $this->data['image']['image']    = !empty($imageURL)?'<img src="' . $imageURL . '" >':'';
         $this->data['image']['original'] = array(
           $imageURL,
           $width,
@@ -402,6 +405,7 @@
         );
         $this->data['image']['caption']  = '';
       }
+      $this->data['image']['image']    = !empty($this->data['image']['original'])?$this->data['image']['image'] :'';
     }
 
     /**
@@ -532,7 +536,12 @@
     public function get_content( &$post ) {
       /** CONTENT */
       // var_Dump($post);
-      $thecontent = get_the_content();
+      if ( ( empty( $this->section['_panels_design_process-body-shortcodes'] ) || $this->section['_panels_design_process-body-shortcodes'] === 'process' ) ) {
+        $thecontent = do_shortcode( get_the_content() );
+      } else {
+        $thecontent = strip_shortcodes( get_the_content() );
+      }
+
 
       // Insert shortcode if required
       if ( ! empty( $this->section['_panels_design_insert-content-shortcode'] ) ) {
@@ -1639,7 +1648,6 @@
           }
           break;
       }
-
       return $link;
     }
 

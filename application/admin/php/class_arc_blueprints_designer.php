@@ -526,6 +526,21 @@
         );
       }
 
+//      $sections['_general_bp']['fields'][] = array(
+//        'title'    => __( 'Disable Blueprint styles', 'pzarchitect' ),
+//        'id'       => '_blueprint_styles',
+//        'type'     => 'button_set',
+//        'default'  => '',
+//        'options'  => array(
+//          'on' => __( 'Yes', 'pzarchitect' ),
+//          ''  => __( 'No', 'pzarchitect' ),
+//        ),
+//        'hint'     => array(
+//          'title'   => __( 'Disable Blueprint styles', 'pzarchitect' ),
+//          'content' => __( 'If you don\'t want to use the Blueprint styling. Only ap[plies to this Blueprint', 'pzarchitect' ),
+//        ),
+//      );
+
       $sections['_general_bp']['fields'][] = array(
         'title'    => __( 'Intended Device', 'pzarchitect' ),
         'id'       => '_blueprint_device',
@@ -4450,6 +4465,21 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             ),
           ),
           array(
+            'title'    => __( 'Use caption for image alt text', 'pzarchitect' ),
+            'id'       => $prefix . 'caption-alt-text',
+            'type'     => 'switch',
+            'on'       => __( 'Yes', 'pzarchitect' ),
+            'off'      => __( 'No', 'pzarchitect' ),
+            'default'  => FALSE,
+            'required' => array(//array('show_advanced', 'equals', true),
+                                array(
+                                  '_panels_settings_feature-type',
+                                  '=',
+                                  'image',
+                                ),
+            ),
+          ),
+          array(
             'title'    => __( 'Centre feature', 'pzarchitect' ),
             'id'       => $prefix . 'centre-image',
             'type'     => 'switch',
@@ -4663,6 +4693,17 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'min'     => '0',
             'max'     => '999',
           ),
+          array(
+            'title'    => __( 'Shortcodes in body', 'pzarchitect' ),
+            'id'       => $prefix . 'process-body-shortcodes',
+            'type'     => 'button_set',
+            'options'  => array(
+              'process' => __( 'Process', 'pzarchitect' ),
+              'remove'  => __( 'Remove', 'pzarchitect' ),
+            ),
+            'default'  => 'process',
+          ),
+
 
           array(
             'id'     => $prefix . 'excerpt-heading',
