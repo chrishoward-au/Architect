@@ -1,19 +1,5 @@
 <?php
 
-  $redux_opt_name = '_architect';
-  function pzarc_removeReduxDemoModeLink() { // Be sure to rename this function to something  unique
-    if ( class_exists( 'ReduxFrameworkPlugin' ) ) {
-      remove_filter( 'plugin_row_meta', array( ReduxFrameworkPlugin::get_instance(), 'plugin_metalinks' ), NULL, 2 );
-    }
-    if ( class_exists( 'ReduxFrameworkPlugin' ) ) {
-      remove_action( 'admin_notices', array( ReduxFrameworkPlugin::get_instance(), 'admin_notices' ) );
-    }
-  }
-
-  add_action( 'init', 'pzarc_removeReduxDemoModeLink' );
-  add_action( 'admin_print_styles', array( $this, 'register_admin_styles' ) );
-  add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
-
 
   /*********************************************
    * Class ArchitectAdmin

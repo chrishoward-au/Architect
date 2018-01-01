@@ -35,7 +35,24 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-functions.php';
 
       // Register admin styles and scripts
+      if (is_admin()) {
+        $redux_opt_name = '_architect';
+        function pzarc_removeReduxDemoModeLink() { // Be sure to rename this function to something  unique
+          if ( class_exists( 'ReduxFrameworkPlugin' ) ) {
+            remove_filter( 'plugin_row_meta', array( ReduxFrameworkPlugin::get_instance(), 'plugin_metalinks' ), NULL, 2 );
+          }
+          if ( class_exists( 'ReduxFrameworkPlugin' ) ) {
+            remove_action( 'admin_notices', array( ReduxFrameworkPlugin::get_instance(), 'admin_notices' ) );
+          }
+        }
 
+        add_action( 'init', 'pzarc_removeReduxDemoModeLink' );
+        add_action( 'admin_print_styles', array( $this, 'register_admin_styles' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
+
+      }
+
+      // Load admin/public class
       if ( is_admin() ) {
         require_once PZARC_PLUGIN_APP_PATH . '/arc-admin.php';
         pzdb( 'after admin load' );
