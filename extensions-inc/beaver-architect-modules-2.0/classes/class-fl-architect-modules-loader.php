@@ -36,7 +36,9 @@ class FL_Architect_Modules_Loader {
 	 */
 	static public function load_modules() {
 		require_once FL_ARCHITECT_BB2_MODULE_DIR . 'modules/architect-any-fields/architect-any-fields.php';
-		require_once FL_ARCHITECT_BB2_MODULE_DIR . 'modules/example/example.php';
+	//	require_once FL_ARCHITECT_BB2_MODULE_DIR . 'modules/example/example.php';
+		require_once FL_ARCHITECT_BB2_MODULE_DIR . 'modules/arc-map/arc-map.php';
+		require_once FL_ARCHITECT_BB2_MODULE_DIR . 'modules/arc-sidebar/arc-sidebar.php';
 	}
 	
 	/**

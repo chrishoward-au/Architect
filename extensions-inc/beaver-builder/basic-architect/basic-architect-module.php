@@ -24,7 +24,9 @@
           'url'             => FL_MODULE_ARCHITECT_URL . 'basic-architect/',
           'editor_export'   => TRUE, // Defaults to true and can be omitted.
           'enabled'         => TRUE, // Defaults to true and can be omitted.
-          'partial_refresh' => TRUE// Set this to true to enable partial refresh.
+          'partial_refresh' => TRUE, // Set this to true to enable partial refresh.
+          			'icon'				=> 'layout.svg',
+
       ));
 
 // this is the sort of thing needed... but it needs to be done conditionally depending on blueprint.

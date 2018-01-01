@@ -24,6 +24,8 @@ class FLArchitectAnyFieldsModule extends FLBuilderModule {
           'url'           => FL_ARCHITECT_BB2_MODULE_URL . 'modules/architect-any-fields/',
           'editor_export' => true, // Defaults to true and can be omitted.
           'enabled'       => true, // Defaults to true and can be omitted.
+          'icon'				=> 'editor-table.svg',
+
         ));
     }
 }
