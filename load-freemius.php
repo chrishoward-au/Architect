@@ -16,13 +16,14 @@
 
       $arc_fs = fs_dynamic_init( array(
         'id'                  => '1417',
-        'slug'                => 'pzarchitect',
+        'slug'                => 'architect',
         'type'                => 'plugin',
         'public_key'          => 'pk_68de4ec8e507df992b179ccb796a9',
         'is_premium'          => true,
         'has_addons'          => false,
         'has_paid_plans'      => true,
         'is_org_compliant'    => false,
+        'has_affiliation'     => 'all',
         'menu'                => array(
           'slug'           => 'pzarc',
           'first-path'     => 'admin.php?page=pzarc_support',
