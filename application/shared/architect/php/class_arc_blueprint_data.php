@@ -32,13 +32,13 @@
               'options'  => array(
                 'date'       => 'Date',
                 'title'      => 'Title',
-                'menu_order' => 'Page order (pages only)',
+                'menu_order' => 'Page order',
                 'post__in'   => 'Specified',
                 'rand'       => 'Random',
                 'none'       => 'None',
                 'custom'     => 'Custom field',
               ),
-              'desc'     => __( 'Specified only works when the if the source is using the specific posts/page/etc option.', 'pzarchitect' ),
+              'desc'     => __( 'Specified only works when the source is using the specific posts/page/etc option. Page order works only for page types - these will have a page order option', 'pzarchitect' ),
               'subtitle' => 'Some hosts disable random as it slows things down significantly on large sites. WPEngine does this. Look in WPE Dashboard, Advanced Configuration.',
             ),
             array(
