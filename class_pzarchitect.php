@@ -85,7 +85,8 @@
 
       // Load custom custom types
       if ( is_admin() ) {
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-panels.php';
+        /// Why is this still here? // 1.10.8
+  //      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-panels.php';
 
         self::update();
 
