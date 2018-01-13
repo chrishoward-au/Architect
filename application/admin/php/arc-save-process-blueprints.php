@@ -133,9 +133,9 @@
    *   */
   function pzarc_process_bp_sections(&$pzarc_blueprints, $i, $nl, &$_architect_options) {
 
-    $specificity_class = '#pzarc-blueprint_' . $pzarc_blueprints['_blueprints_short-name'];
+    $specificity_class = '#pzarc-blueprint_' . $pzarc_blueprints['_blueprints_short-name']; /// Dang! This doesn't work with blueprints in blueprints. 1.10.8
     $sections_class    = $specificity_class . '  .pzarc-sections  .pzarc-section_' . ($i + 1); // Removed > coz breaks new masonry features v1.9.3
-    $panels_class      = $sections_class . ' .pzarc-panel';
+    $panels_class      = $sections_class . ' .pzarc-panel.pzarc-panel_'.$pzarc_blueprints['_blueprints_short-name']; // More specific 1.10.8
     $pzarc_mediaq_css  = '';
 
     if (!empty($pzarc_blueprints['_blueprints_section-0-panels-fixed-width'])) {
@@ -284,7 +284,11 @@
     $nl = "\n";
 //var_dump($pzarc_panels);
     // Step thru each field looking for ones to format
-    $class_prefix = '#pzarc-blueprint_' . $pzarc_panels['_blueprints_short-name'] . ' .pzarc-panel_' . $pzarc_panels['_blueprints_short-name'];
+//    $specificity_class = '#pzarc-blueprint_' . $pzarc_panels['_blueprints_short-name']; /// Dang! This doesn't work with blueprints in blueprints. 1.10.8
+//    $sections_class    = $specificity_class . '  .pzarc-sections  .pzarc-section_' . ($i + 1); // Removed > coz breaks new masonry features v1.9.3
+//    $panels_class      = $sections_class . ' .pzarc-panel.pzarc-panel_'.$pzarc_blueprints['_blueprints_short-name']; // More specific 1.10.8
+
+    $class_prefix = '#pzarc-blueprint_' . $pzarc_panels['_blueprints_short-name'] . ' .pzarc-panel.pzarc-panel_' . $pzarc_panels['_blueprints_short-name'];
 
     // DANGER WILL ROBINSON!
     // json_decode on different enviroments converts UTF-8 data in different ways. I end up getting on of values '240.00' locally and '240' on production - massive dissaster. Morover if conversion fails string get's returned as NULL
