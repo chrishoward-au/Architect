@@ -33,6 +33,7 @@
           'public'             => true,
           'publicly_queryable' => true,
           'show_ui'            => true,
+          'show_in_rest'=> false,  // Prevents using Gutenberg editor
           'exclude_from_search' => !empty($architect_options['architect_exclude-snippets-search']),
           //          'show_in_menu'       => 'pzarc',
           'menu_icon'          => 'dashicons-format-aside',

@@ -33,6 +33,7 @@
           'public'             => true,
           'publicly_queryable' => true,
           'show_ui'            => true,
+          'show_in_rest'=> false,  // Prevents using Gutenberg editor
           //          'show_in_menu'       => 'pzarc',
           'menu_icon'          => 'dashicons-format-chat',
           'query_var'          => true,

@@ -31,6 +31,7 @@
         'public'             => TRUE,
         'publicly_queryable' => TRUE,
         'show_ui'            => TRUE,
+        'show_in_rest'=> false,  // Prevents using Gutenberg editor
         //          'show_in_menu'       => 'pzarc',
         'menu_icon'          => 'dashicons-format-gallery',
         'query_var'          => TRUE,
