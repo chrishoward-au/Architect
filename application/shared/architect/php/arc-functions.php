@@ -2404,12 +2404,12 @@
       return $tableset;
     }
 
-    static function get_table_fields( $table ) {
+    static function get_table_fields( $table,$inc_table_in_value = false) {
       global $wpdb;
       $fields   = $wpdb->get_col( "DESC {$table}", 0 );
       $fieldskv = array();
       foreach ( $fields as $v ) {
-        $fieldskv[ $table . '/' . $v ] = $v;
+        $fieldskv[ $table . '/' . $v ] = ($inc_table_in_value?$table.'/':'').$v;
       }
       unset($fields);
       return $fieldskv;
