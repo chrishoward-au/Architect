@@ -314,7 +314,7 @@
       $this->register_block_element(array(
                                         'id'         => 'pzarc-panel-figure-caption',
                                         'name'       => 'Featured image caption',
-                                        'selector'   => '.use-hw-css .pzarc-panel figure.entry-thumbnail caption',
+                                        'selector'   => '.use-hw-css .pzarc-panel figure.entry-thumbnail .caption',
                                         'properties' => array(
                                             'background',
                                             'borders',
