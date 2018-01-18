@@ -52,6 +52,7 @@
 <?php _e( 'PHP Version:', 'pzarchitect' ); ?>            <?php echo PHP_VERSION . "\n"; ?>
 <?php _e( 'MySQL Version:', 'pzarchitect' ); ?>          <?php echo $wpdb->db_version() . "\n"; ?>
 <?php _e( 'DB name:', 'pzarchitect' ); ?>                <?php echo $wpdb->dbname . "\n"; ?>
+<?php _e( 'Table prefix:', 'pzarchitect' ); ?>           <?php echo $wpdb->prefix . "\n"; ?>
 <?php _e( 'Web Server:', 'pzarchitect' ); ?>             <?php echo $_SERVER[ 'SERVER_SOFTWARE' ] . "\n"; ?>
 <?php _e( 'Server info:', 'pzarchitect' ); ?>            <?php echo php_uname() . "\n"; ?>
 
