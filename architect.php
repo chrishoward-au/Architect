@@ -4,7 +4,7 @@
 	  Plugin Name: Architect content display framework
 	  Plugin URI: http://architect4wp.com
 	  Description: Build the content layouts that your theme or page builder can't.
-	  Version: 1.10.8
+	  Version: 1.11.0
 	  Author: Chris Howard
 	  Author URI: http://pizazzwp.com
 	  License: GNU GPL v2
@@ -21,7 +21,7 @@
 	/**
 	 * REMEMBER TO UPDATE VERSION IN arc-admin.scss
 	 */
-	define( 'PZARC_VERSION', '1.10.8' );
+	define( 'PZARC_VERSION', '1.11.0' );
   if ( ! function_exists( 'arc_fs' ) ) {
 
 

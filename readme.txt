@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
 Tested up to: 4.9
-Stable tag: 1.10.8
+Stable tag: 1.11.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -82,7 +82,7 @@ For support, please send an email to support@pizazzwp.com
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
-= 1.10.8 
+= 1.11.0
 * ADDED: Any field from any table to list of custom fields
 * ADDED: Any field from any table to list of link fields
 * ADDED: Option to not use font family in Typography in Blueprints editor. (If you want to mange all font families from CSS)
@@ -92,14 +92,20 @@ For support, please send an email to support@pizazzwp.com
 * ADDED: Custom version of Maps module that processes shortcodes in the Address field. Useful with Architect's any field shortcode (arccf).
 * ADDED: Option to remove shortcodes from Body text
 * ADDED: Affiliates menu item
+* ADDED: Table prefix to Tools > Sysinfo
 
 * CHANGED: Account info now shows affiliate info.
 
 * UPDATED: Freemius SDK to 1.2.3
+* UPDATED: Freemius SDK to 1.2.4
 
 * FIXED: Was using an img tag even when no image.
 * FIXED: Was carrying forward image data in the loop
 * FIXED: Showing broken images when no featured image
+* FIXED: Set show_in_rest to false in custom post types (Snippets, Testimonials, Showcases, Blueprints) to ensure they don't use Gutenberg editor
+* FIXED: Blueprints in Blueprints using parent Blueprint CSS
+* FIXED: Gutenberg content not displaying in Blueprints in Blueprints
+* FIXED: Gutenberg html comments skewing paragraph counting when forming excerpts by paragraphs
 
 = 1.10.7  : 24 Nov 2017
 * ADDED: Image Alt tag will automatically use image title if no Alt tag set
