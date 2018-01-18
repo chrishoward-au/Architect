@@ -101,6 +101,10 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/dummy/class_arc_content_dummy.php';
 
 
+      // Load generic shortcodes
+      require_once PZARC_PLUGIN_APP_PATH .'/public/php/arc-generic-shortcodes.php';
+
+      // Load Beaver modules
       require_once PZARC_PLUGIN_PATH . '/extensions-inc/beaver-builder/fl-custom-module-architect.php';
       require_once PZARC_PLUGIN_PATH . '/extensions-inc/beaver-architect-modules-2.0/fl-architect-modules-bb2.php';
 
