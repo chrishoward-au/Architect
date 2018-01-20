@@ -2,7 +2,7 @@
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
-Tested up to: 4.9
+Tested up to: 5.0
 Stable tag: 1.11.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -93,6 +93,8 @@ For support, please send an email to support@pizazzwp.com
 * ADDED: Option to remove shortcodes from Body text
 * ADDED: Affiliates menu item
 * ADDED: Table prefix to Tools > Sysinfo
+* ADDED: Option to set image quality (compression)
+* ADDED: Option to disable saving and copying of images.
 
 * CHANGED: Account info now shows affiliate info.
 
@@ -106,6 +108,7 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: Blueprints in Blueprints using parent Blueprint CSS
 * FIXED: Gutenberg content not displaying in Blueprints in Blueprints
 * FIXED: Gutenberg html comments skewing paragraph counting when forming excerpts by paragraphs
+* FIXED: Default content in BB editor could reload the BB page and break the editor. Displays dummy text instead.
 
 = 1.10.7  : 24 Nov 2017
 * ADDED: Image Alt tag will automatically use image title if no Alt tag set

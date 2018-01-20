@@ -6,6 +6,13 @@
     padding: $base-gap;
   }
 
+  .message-notify {
+    background: $notifybg;
+    color: $notifyfg;
+    border: solid $base-border-width $notifyfg;
+    padding: $base-gap;
+  }
+
   .message-error {
     font-size: $base-font-size*1.6;
     font-family: sans-serif;

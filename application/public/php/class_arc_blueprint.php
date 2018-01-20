@@ -120,6 +120,12 @@
 
 			}
 
+//			if (ArcFun::is_bb_active()) {
+//        $this->blueprint = array( 'err_msg' => '<p class="message-notify">Architect Blueprint <em><strong>' . $this->name . '</strong></em> cannot be displayed in the Beaver Builder editor.</p>' );
+//
+//        return $this->blueprint;
+//
+//      }
 			$this->blueprint['blueprint-id']    = $blueprint_query->posts[0]->ID;
 			$this->blueprint['blueprint-title'] = $blueprint_query->posts[0]->post_title;
 			global $arc_blueprint_id;

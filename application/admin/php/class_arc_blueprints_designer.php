@@ -4230,6 +4230,35 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             ),
           ),
           array(
+            'id'            => $prefix . 'image-quality',
+            'title'         => __('Image quality', 'pzarchitect'),
+            'type'          => 'slider',
+            'display_value' => 'label',
+            'default'       => 82,
+            'min'           => 1,
+            'max'           => 100,
+            'step'          => 1,
+            'units'         => '%',
+            'hint'          => array('content' => 'Quality to use when processing images'),
+            'required'      => array('_panels_settings_feature-type', '=', 'image'),
+
+          ),
+          array(
+            'title'    => __( 'Disable image saving', 'pzarchitect' ),
+            'id'       => '_panels_settings_disable-image-saving',
+            'type'     => 'switch',
+            'on'       => __( 'Yes', 'pzarchitect' ),
+            'off'      => __( 'No', 'pzarchitect' ),
+            'default'  => FALSE,
+            'required' => array(//array('show_advanced', 'equals', true),
+                                array(
+                                  '_panels_settings_feature-type',
+                                  '=',
+                                  'image',
+                                ),
+            ),
+          ),
+          array(
             'title'    => __( 'Use embedded images', 'pzarchitect' ),
             'id'       => '_panels_settings_use-embedded-images',
             'type'     => 'switch',
@@ -4507,20 +4536,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           //                    array('_panels_settings_feature-type', '=', 'image'),
           //                  ),
           //                  'subtitle' => __('Randomly rotates images up to 5 degrees.', 'pzarchitect')
-          //              ),
-          //              array(
-          //                  'id'            => $prefix . 'image-quality',
-          //                  'title'         => __('Image quality', 'pzarchitect'),
-          //                  'type'          => 'slider',
-          //                  'display_value' => 'label',
-          //                  'default'       => 75,
-          //                  'min'           => 20,
-          //                  'max'           => 100,
-          //                  'step'          => 1,
-          //                  'units'         => '%',
-          //                  'hint'          => array('content' => 'Quality to use when processing images'),
-          //                  'required'      => array('_panels_settings_feature-type', '=', 'image'),
-          //
           //              ),
         ),
       );
@@ -5149,7 +5164,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'use_empty'     => 'No field. Use prefix and suffix only',
             'post_title'    => 'Post Title',
             'specific_code' => 'Specific Text, HTML or Shortcodes',
-          ), apply_filters( 'arc_custom_field_list', array('custom fields'=>$this->custom_fields), $this->source ) );
+          ), apply_filters( 'arc_custom_field_list', $this->custom_fields, $this->source ) );
 
           for ( $i = 1; $i <= $cfcount; $i ++ ) {
 //            if (! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]) && $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]==='tablefield') {
@@ -5189,7 +5204,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   //                'args'     => array( 'pzarc_get_custom_fields' ),
                   'options'  => $all_fields,
                   'subtitle' => __( 'If a custom field is not shown in the dropdown, it is either because it has no data yet or the custom field list cache needs clearing. Go to Architect > Tools and clear the caches.', 'pzarchitect' ),
-                  'desc'=>__('Type to search names. List includes custom fields and <strong>any field from any table</strong>','pzarchitect')
+                  'desc'=>__('Type to search names. List includes custom fields and <strong>any field from any table</strong><br>Note: Fields must be available to the viewed post type to show content.','pzarchitect')
                 ),
 //                array(
 //                  'title'    => __( 'Select a table', 'pzarchitect' ),

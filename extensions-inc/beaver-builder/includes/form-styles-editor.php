@@ -21,7 +21,7 @@
                               'label'   => __('Enable styling', 'pzarchitect'),
                               'default' => 'off',
                               'options' => array(
-                                  'off' => __('', 'pzarchitect'),
+                                  'off' => __('Disabled', 'pzarchitect'),
                                   'on'  => __('Enabled', 'pzarchitect'),
                               ),
                               'toggle'  => array(

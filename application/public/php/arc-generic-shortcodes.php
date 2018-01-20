@@ -6,12 +6,16 @@
    * Time: 7:17 PM
    */
 
-  add_shortcode( 'arcdummytext',  'dummy_text'  ); // A test shortcode
-  add_shortcode( 'arc_hasmedia', 'has_media'  );
-  add_shortcode( 'arccf',  'custom_table_field_display'  );
+  add_shortcode( 'arcdummytext', 'dummy_text' ); // A test shortcode
+  add_shortcode( 'arc_hasmedia', 'has_media' );
+  add_shortcode( 'arccf', 'arc_get_table_field_value' );
 
   function dummy_text() {
-    return 'At processus velit quis placerat fiant. Ullamcorper consuetudium ex volutpat delenit processus. Demonstraverunt me demonstraverunt sit in dignissim. Qui per sequitur sit et quam. Quarta vel illum et mirum lius. Dolor lius suscipit esse consequat facilisis. Velit nunc praesent usus in ';
+    $dummy_text = '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id interdum velit laoreet id donec ultrices tincidunt arcu. Facilisis magna etiam tempor orci eu. Ullamcorper sit amet risus nullam eget felis eget nunc. Id nibh tortor id aliquet lectus proin nibh nisl. Urna condimentum mattis pellentesque id nibh tortor id aliquet lectus. Convallis posuere morbi leo urna molestie at elementum eu facilisis. Augue interdum velit euismod in pellentesque massa placerat duis ultricies. Eleifend donec pretium vulputate sapien nec sagittis. Adipiscing commodo elit at imperdiet dui accumsan sit amet nulla. Volutpat sed cras ornare arcu. Et magnis dis parturient montes. Nibh ipsum consequat nisl vel pretium lectus. Nulla porttitor massa id neque aliquam vestibulum morbi. Nulla aliquet enim tortor at. Interdum posuere lorem ipsum dolor sit. Sem et tortor consequat id. Ullamcorper sit amet risus nullam eget felis eget. Interdum velit laoreet id donec ultrices. Diam phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet.</p>';
+
+    $dummy_text .= '<p>Sed faucibus turpis in eu mi. In nibh mauris cursus mattis molestie. Laoreet suspendisse interdum consectetur libero id faucibus nisl tincidunt eget. Auctor urna nunc id cursus metus aliquam eleifend mi. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa eget egestas. Diam maecenas ultricies mi eget mauris pharetra et. Vel orci porta non pulvinar neque laoreet suspendisse interdum consectetur. Quis risus sed vulputate odio ut enim blandit. Ut pharetra sit amet aliquam. Placerat duis ultricies lacus sed. Non pulvinar neque laoreet suspendisse interdum consectetur libero id. Morbi tincidunt augue interdum velit euismod in pellentesque massa placerat.</p>';
+
+    return $dummy_text;
   }
 
 
@@ -52,30 +56,38 @@
     return ! empty( $return_val ) ? '<div class="arc-media-icons">' . $return_val . '</div>' : $return_val;
   }
 
-  function custom_table_field_display( $atts = NULL, $contents = NULL ) {
-    switch  (true) {
-      case empty($atts) :
+  function arc_get_table_field_value( $atts = NULL, $contents = NULL ) {
+    switch ( TRUE ) {
+      case empty( $atts ) :
         return 'Missing table and field data';
         break;
-      case !isset($atts['table']):
-        return  'Missing table name';
+      case ! isset( $atts['table'] ):
+        return 'Missing table name';
         break;
-      case !isset($atts['field']):
+      case ! isset( $atts['field'] ):
         return 'Missing field name';
         break;
     }
 
     // Sanitise
-    $table = esc_html(esc_sql($atts['table']));
-    $field = esc_html(esc_sql($atts['field']));
+    $table = esc_html( esc_sql( $atts['table'] ) );
+    $field = esc_html( esc_sql( $atts['field'] ) );
+    global $wpdb, $post;
 
-    global $wpdb,$post;
+    // Get key field for linking. This will not work if multiple key fields...
+    $pkey = $wpdb->get_results( "SHOW KEYS FROM {$table} WHERE Key_name = 'PRIMARY'" );
+    if ( ! isset( $pkey[0] ) ) {
+      return "No primary key found for table {$table}. Check table name is valid.";
+    } else {
+      $id_field = $pkey[0]->Column_name;
+    }
 
-    unset($results);
-    $results = $wpdb->get_results( "SELECT * FROM $table WHERE post_id = $post->ID", OBJECT );
-    if (!empty($results[0]) && isset($results[0]->$field)) {
+    unset( $results );
+    $results = $wpdb->get_results( "SELECT * FROM {$table} WHERE {$id_field} = {$post->ID}", OBJECT );
+
+    if ( ! empty( $results[0] ) && isset( $results[0]->$field ) ) {
       return $results[0]->$field;
     } else {
-      return null;
+      return NULL;
     }
   }

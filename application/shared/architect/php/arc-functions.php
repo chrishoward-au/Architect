@@ -101,10 +101,10 @@
     // TODO: Change font size to a range and use flowtype.js
 //'architect_typography_units'
     global $_architect_options;
-    $units       = isset( $_architect_options['architect_typography_units'] ) ? $_architect_options['architect_typography_units'] : 'px';
-    $extra_fonts = file_exists( content_url( 'extra-fonts.css' ) ) ? content_url( 'extra-fonts.css' ) : NULL;
-    $disable_font_family = isset( $_architect_options['architect_disable_fonts'] ) ? $_architect_options['architect_disable_fonts'] : false;
-    $disable_google_fonts = isset( $_architect_options['architect_disable_google_fonts'] ) ? $_architect_options['architect_disable_google_fonts'] : false;
+    $units                = isset( $_architect_options['architect_typography_units'] ) ? $_architect_options['architect_typography_units'] : 'px';
+    $extra_fonts          = file_exists( content_url( 'extra-fonts.css' ) ) ? content_url( 'extra-fonts.css' ) : NULL;
+    $disable_font_family  = isset( $_architect_options['architect_disable_fonts'] ) ? $_architect_options['architect_disable_fonts'] : FALSE;
+    $disable_google_fonts = isset( $_architect_options['architect_disable_google_fonts'] ) ? $_architect_options['architect_disable_google_fonts'] : FALSE;
 
     $return_array = array(
       'title'           => __( 'Typography', 'pzarchitect' ),
@@ -116,12 +116,12 @@
       'text-decoration' => TRUE,
       'font-variant'    => TRUE,
       'text-transform'  => TRUE,
-      'font-family'     => !$disable_font_family,
+      'font-family'     => ! $disable_font_family,
       'font-size'       => TRUE,
       'font-weight'     => TRUE,
       'font-style'      => TRUE,
-      'font-backup'     => !$disable_font_family,
-      'google'          => !$disable_font_family&&!$disable_google_fonts ,
+      'font-backup'     => ! $disable_font_family,
+      'google'          => ! $disable_font_family && ! $disable_google_fonts,
       'subsets'         => FALSE,
       'custom_fonts'    => FALSE,
       'text-align'      => TRUE,
@@ -515,7 +515,7 @@
     $arg_list = func_get_args();
     $returna  = array();
     foreach ( $arg_list as $k => $v ) {
-      if ( isset( $v[0] ) ) {
+      if ( isset( $settings[0] ) ) {
         foreach ( $v as $k2 => $v2 ) {
           $returna[] = $v2;
         }
@@ -2368,9 +2368,6 @@
   }
 
 
-
-
-
   // What was the point of this? Trying to do cropping without bfi?
   //	if (!function_exists('bfi_thumb')) {
   //		function bfi_thumb($arc_image_url=null,$arc_image_dimensions=array()){
@@ -2400,22 +2397,152 @@
       $tableset = array();
       foreach ( $results as $index => $value ) {
         foreach ( $value as $tablename ) {
-          $tableset[$tablename] = $tablename;
+          $tableset[ $tablename ] = $tablename;
         }
       }
 
       return $tableset;
     }
 
-    static function get_table_fields( $table,$inc_table_in_value = false) {
+    /**
+     * @param      $table
+     * @param bool $inc_table_in_value
+     *
+     * @return array
+     */
+    static function get_table_fields( $table, $inc_table_in_value = FALSE ) {
       global $wpdb;
       $fields   = $wpdb->get_col( "DESC {$table}", 0 );
       $fieldskv = array();
       foreach ( $fields as $v ) {
-        $fieldskv[ $table . '/' . $v ] = ($inc_table_in_value?$table.'/':'').$v;
+        $fieldskv[ $table . '/' . $v ] = ( $inc_table_in_value ? $table . '/' : '' ) . $v;
       }
-      unset($fields);
+      unset( $fields );
+
       return $fieldskv;
     }
 
+    /**
+     * @return array
+     */
+    static function get_all_table_fields() {
+      $tableset     = ArcFun::get_tables();
+      $tablesfields = array();
+      foreach ( $tableset as $table ) {
+        $tablesfields = array_merge( $tablesfields, ArcFun::get_table_fields( $table, TRUE ) );
+      }
+
+      return $tablesfields;
+    }
+
+    /**
+     * @param $settings
+     *
+     * @return mixed
+     */
+    static function render_any_field( $settings ) {
+      $panel_def_cfield = '<{{cfieldwrapper}} class="arcaf-anyfield arcaf-anyfield-{{cfieldname}} {{cfieldname}}">{{cfieldcontent}}</{{cfieldwrapper}}>';
+      $content          = '';
+      $field_val        = do_shortcode( $settings['field'] );
+      switch ( $settings['field-type'] ) {
+
+        case 'image':
+          if ( function_exists( 'bfi_thumb' ) ) {
+
+            $content = '<img src="' . bfi_thumb( $field_val ) . '">';
+          } else {
+            $content = '<img src="' . $field_val . '">';
+          }
+          break;
+
+        case 'embed':
+//          var_dump($field_val);
+          $dimensions = array();
+          if ( ! empty( $settings['embed-width'] ) ) {
+            $dimensions['width'] = $settings['embed-width'];
+          }
+          if ( ! empty( $settings['embed-height'] ) ) {
+            $dimensions['height'] = $settings['embed-height'];
+          }
+
+          $content = wp_oembed_get( $field_val, $dimensions );
+          break;
+
+        case 'date':
+          if ( is_numeric( $field_val ) ) {
+            $content = date( $settings['date-format'], $field_val );
+          } else {
+            $content = $field_val;
+          }
+          $content = '<time datetime="' . $content . '">' . $content . '</time>';
+          break;
+
+        case 'number':
+          $content = @number_format( $field_val, $settings['number-decimals'], $settings['number-decimal-char'], $settings['number-thousands-sep'] );
+          break;
+
+        case 'group': // Multi select? Multi check? Or a group of fields?
+          if ( is_array( maybe_unserialize( $field_val ) ) ) {
+            switch ( TRUE ) {
+              case empty( $settings['group-joiner'] ):
+              case $settings['group-joiner'] === 'linebreak';
+                $content = '<p>' . implode( '</p><p>', $field_val ) . '</p>';
+                break;
+              case $settings['group-joiner'] === 'comma':
+                $content = '<span>' . implode( '</span>, <span>', $field_val ) . '</span>';
+                break;
+            }
+          } else {
+            $content = $field_val;
+          }
+          break;
+
+        case 'acf_repeater':
+          $content = $field_val;
+
+          break;
+
+        case 'text':
+        default:
+          $content = ( ! empty( $settings['text-paras'] ) && $settings['text-paras'] === 'yes' ) ? wpautop( $field_val ) : $field_val;
+          if ( empty( $settings['process-shortcodes'] ) || $settings['process-shortcodes'] === 'process' ) {
+            $content = do_shortcode( $content );
+          } else {
+            $content = strip_shortcodes( $content );
+          }
+
+          break;
+
+
+      }
+
+      $prefix_image = '';
+      $suffix_image = '';
+      if ( ! empty( $settings['prefix-image'] ) ) {
+        $prefix_image = '<img src="' . $settings['prefix-image_src'] . '" class="arcaf-presuff-image prefix-image" width=' . $settings['ps-images-width'] . ' height=' . $settings['ps-images-height'] . ' >';
+      }
+      if ( ! empty( $settings['suffix-image'] ) ) {
+        $suffix_image = '<img src="' . $settings['suffix-image_src'] . '" class="arcaf-presuff-image suffix-image" width=' . $settings['ps-images-width'] . ' height=' . $settings['ps-images-height'] . ' >';
+      }
+
+
+      $prefix_text = ! empty( $settings['prefix-text'] ) ? '<span class="arcaf-prefix-text">' . $settings['prefix-text'] . '</span>' : '';
+      $suffix_text = ! empty( $settings['suffix-text'] ) ? '<span class="arcaf-suffix-text">' . $settings['suffix-text'] . '</span>' : '';
+      $content     = $prefix_image . $prefix_text . $content . $suffix_text . $suffix_image;
+      if ( ! empty( $settings['link-field'] ) ) {
+        $content = '<a href="' . do_shortcode( $settings['link-field'] ) . '" target="' . $settings['link-behaviour'] . '">' . $content . '</a>';
+      }
+
+
+      // TODO: Should apply filters here?
+      $panel_def_cfield = str_replace( '{{cfieldwrapper}}', $settings['html-tag'], $panel_def_cfield );
+      $panel_def_cfield = str_replace( '{{cfieldcontent}}', $content, $panel_def_cfield );
+      $panel_def_cfield = str_replace( '{{cfieldname}}', sanitize_title_with_dashes( $settings['name'] ), $panel_def_cfield );
+
+      return $panel_def_cfield;
+    }
+
+    static function is_bb_active() {
+      return ( class_exists( 'FLBuilderModel' ) && ( FLBuilderModel::is_builder_active() || isset( $_GET['fl_builder'] ) ) );
+    }
   }

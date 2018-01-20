@@ -468,7 +468,7 @@
 
       // Set posts to show
       $is_limited        = (int) $this->build->blueprint['_blueprints_section-0-panels-limited'];
-      $is_builder_active = ( class_exists( 'FLBuilderModel' ) && ( FLBuilderModel::is_builder_active() || isset( $_GET['fl_builder'] ) ) );
+      $is_builder_active = ArcFun::is_bb_active();
       if ( ! $is_limited && ! $is_builder_active ) {
 //      if (!$is_limited) {
 

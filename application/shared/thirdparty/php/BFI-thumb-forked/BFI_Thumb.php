@@ -432,11 +432,13 @@
        *          'grayscale' bool
        *          'crop' bool
        *          'negate' bool
+       *          'quality' int 0-100
        * @param $single boolean, if false then an array of data will be returned
        * @return string|array
        */
       public static function thumb($url, $params = array(), $single = true)
       {
+//        var_Dump($params);
         extract($params);
         //validate inputs
         if (!$url) {
@@ -605,6 +607,10 @@
             if (method_exists(get_class($editor), 'progressivejpeg')) {
               $editor->progressivejpeg();
             }
+          }
+
+          if (isset($quality)) {
+            $editor->set_quality( $quality );
           }
           $resized_file = $editor->save($destfilename, $mime_type);
         }

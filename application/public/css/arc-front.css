@@ -7,6 +7,12 @@
   border: solid 1px #aa0;
   padding: 10px; }
 
+.pzarchitect .message-notify {
+  background: #afa;
+  color: #0a0;
+  border: solid 1px #0a0;
+  padding: 10px; }
+
 .pzarchitect .message-error {
   font-size: 16px;
   font-family: sans-serif;
@@ -172,6 +178,15 @@
   -webkit-box-direction: reverse;
       -ms-flex-direction: row-reverse;
           flex-direction: row-reverse; }
+
+.pzarchitect .disable-save img {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none; }
 
 .pzarchitect .pzarc-panel {
   /* Remember to remove space between divs to stop inline-block space issue */
