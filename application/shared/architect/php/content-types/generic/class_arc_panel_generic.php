@@ -24,6 +24,9 @@
         $this->_architect = $_architect;
       }
 
+      if (!empty($this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_settings_disable-image-saving'])) {
+        wp_enqueue_script( 'js-disableimagesaving' );
+      }
     }
 
     public function initialise_data() {
@@ -74,7 +77,7 @@
      */
     public function panel_def() {
       //TODO: Need to get a way to always wrap components in pzarc-compenents div.Problem is...dev has to create definition correctly.
-      $panel_def['components-open']  = '<article id="post-{{postid}}" class="{{extensionclass}} {{mimic-block-type}} post-{{postid}} {{posttype}} type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}}" {{extensiondata}}>';
+      $panel_def['components-open']  = '<article id="post-{{postid}}" class="{{extensionclass}} {{mimic-block-type}} post-{{postid}} {{posttype}} type-{{posttype}} status-{{poststatus}} format-{{postformat}} hentry {{categories}} {{tags}} {{pzclasses}} {{disable-save}}" {{extensiondata}}>';
       $panel_def['components-close'] = '</article>';
       $panel_def['postlink']         = '<a href="{{permalink}}" title="{{title}}">';
       //     $panel_def[ 'header' ]           = '<header class="entry-header">{{headerinnards}}</header>';
@@ -89,8 +92,8 @@
       $panel_def['author']     = '<span class="byline"><span class="author vcard"><a class="url fn n" href="{{authorlink}}" title="View all posts by {{authorname}}" rel="author">{{avatarb}}{{authorname}}{{avatara}}</a></span></span>';
       $panel_def['email']      = '<span class="byline email"><span class="author vcard"><a class="url fn n" href="mailto:{{authoremail}}" title="Email {{authorname}}" rel="author">{{authoremail}}</a></span></span>';
       //     $panel_def[ 'image' ]       = '<figure class="entry-thumbnail {{incontent}}">{{postlink}}<img width="{{width}}" src="{{imgsrc}}" class="attachment-post-thumbnail wp-post-image" alt="{{alttext}}">{{closepostlink}}{{captioncode}}</figure>';
-      $panel_def['image']   = '{{figopen}} class="{{extensionclass}} {{incontent}} {{centred}} {{nofloat}} {{location}}" {{extensiondata}} {{extrastyling}}>{{postlink}}{{image}}{{closelink}}{{captioncode}}{{figclose}}';
-      $panel_def['bgimage'] = '<figure class="{{extensionclass}} entry-bgimage pzarc-bg-image {{trim-scale}}" {{extensiondata}}>{{postlink}}{{bgimage}}{{closelink}}</figure>';
+      $panel_def['image']   = '{{figopen}} class="{{extensionclass}} {{incontent}} {{centred}} {{nofloat}} {{location}} {{disable-save}}" {{extensiondata}} {{extrastyling}}>{{postlink}}{{image}}{{closelink}}{{captioncode}}{{figclose}}';
+      $panel_def['bgimage'] = '<figure class="{{extensionclass}} entry-bgimage pzarc-bg-image {{trim-scale}} {{disable-save}}" {{extensiondata}}>{{postlink}}{{bgimage}}{{closelink}}</figure>';
       $panel_def['caption'] = '<figcaption class="caption">{{caption}}</figcaption>';
       $panel_def['content'] = '<{{div}} class="{{extensionclass}} {{nothumb}}" {{extensiondata}}>{{image-in-content}}{{content}}</{{div}}>';
       $panel_def['custom1'] = '<{{div}} class="{{extensionclass}} entry-customfieldgroup entry-customfieldgroup-1" {{extensiondata}}>{{custom1innards}}</{{div}}>';
@@ -206,6 +209,7 @@
             $this->section['_panels_design_title-thumb-width'],
             'bfi_thumb' => TRUE,
             'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1],
+            'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
           ) );
           $this->data['title']['thumb'] = '<span class="pzarc-title-thumb">' . $thumb_prefix . '</span> ';
         } else {
@@ -315,6 +319,7 @@
           $height,
           'bfi_thumb' => TRUE,
           'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'],
+          'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
 
         ) );
 
@@ -329,6 +334,7 @@
           $params = array(
             'width'  => ( $width * 2 ),
             'height' => ( $height * 2 ),
+            'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
           );
           // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still.
           $thumb_2X                     = bfi_thumb( $results[0], $params );
@@ -336,8 +342,8 @@
         }
         $this->data['image']['caption'] = is_object( $image ) ? $image->post_excerpt : '';
 
-        if ( !empty($this->section['_panels_design_caption-alt-text'])){
-          $result = preg_replace('/alt="(.)*"/uiUsm', 'alt="'.$this->data['image']['caption'].'"', $this->data['image']['image']);
+        if ( ! empty( $this->section['_panels_design_caption-alt-text'] ) ) {
+          $result                       = preg_replace( '/alt="(.)*"/uiUsm', 'alt="' . $this->data['image']['caption'] . '"', $this->data['image']['image'] );
           $this->data['image']['image'] = $result;
         } elseif ( ! empty( $this->data['image']['id'] ) && strpos( $this->data['image']['image'], 'alt=""' ) ) {
           $this->data['image']['image'] = str_replace( 'alt=""', 'alt="' . esc_attr( $image->post_title ) . '"', $this->data['image']['image'] );
@@ -392,11 +398,12 @@
           $imageURL = bfi_thumb( $this->section['_panels_design_use-filler-image-source-specific']['url'], array(
             'width'  => $width,
             'height' => $height,
+            'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
           ) );
         } else {
           $imageURL = $this->section['_panels_design_use-filler-image-source-specific']['url'];
         }
-        $this->data['image']['image']    = !empty($imageURL)?'<img src="' . $imageURL . '" >':'';
+        $this->data['image']['image']    = ! empty( $imageURL ) ? '<img src="' . $imageURL . '" >' : '';
         $this->data['image']['original'] = array(
           $imageURL,
           $width,
@@ -405,7 +412,7 @@
         );
         $this->data['image']['caption']  = '';
       }
-      $this->data['image']['image']    = !empty($this->data['image']['original'])?$this->data['image']['image'] :'';
+      $this->data['image']['image'] = ! empty( $this->data['image']['original'] ) ? $this->data['image']['image'] : '';
     }
 
     /**
@@ -445,6 +452,8 @@
         $height,
         'bfi_thumb' => TRUE,
         'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'],
+        'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
+
       ) );
       pzdb( 'post get image bg' );
       $this->data['image']['original'] = wp_get_attachment_image_src( $thumb_id, 'full' );
@@ -454,6 +463,7 @@
         $params = array(
           'width'  => ( $width * 2 ),
           'height' => ( $height * 2 ),
+          'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
         );
         // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still. In fact, we have no choice, since the double sized image could be bigger than the original.
         $thumb_2X                       = bfi_thumb( $results[0], $params );
@@ -506,6 +516,7 @@
           $imageURL = bfi_thumb( $this->section['_panels_design_use-filler-image-source-specific']['url'], array(
             'width'  => $width,
             'height' => $height,
+            'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
           ) );
         } else {
           $imageURL = $this->section['_panels_design_use-filler-image-source-specific']['url'];
@@ -535,33 +546,38 @@
      */
     public function get_content( &$post ) {
       /** CONTENT */
-      // var_Dump($post);
-      if ( ( empty( $this->section['_panels_design_process-body-shortcodes'] ) || $this->section['_panels_design_process-body-shortcodes'] === 'process' ) ) {
-        $thecontent = do_shortcode( get_the_content() );
+
+      if (ArcFun::is_bb_active() && $this->build->blueprint['_blueprints_content-source'] === 'defaults') {
+        $thecontent = '<p>Body content for Architect Blueprint <em><strong>' . $this->build->blueprint['_blueprints_short-name'] . '</strong></em> cannot be displayed in the Beaver Builder editor. Using dummy text instead.</p><p></p>'.dummy_text();
       } else {
-        $thecontent = strip_shortcodes( get_the_content() );
-      }
+
+        // var_Dump($post);
+        if ( ( empty( $this->section['_panels_design_process-body-shortcodes'] ) || $this->section['_panels_design_process-body-shortcodes'] === 'process' ) ) {
+          $thecontent = do_shortcode( get_the_content() );
+        } else {
+          $thecontent = strip_shortcodes( get_the_content() );
+        }
 
 
-      // Insert shortcode if required
-      if ( ! empty( $this->section['_panels_design_insert-content-shortcode'] ) ) {
-        $thecontent      = wpautop( $thecontent ); // Add paragraph html
-        $pattern         = "/<p(.)*>.*?<\/p>/uiUm";
-        $paragraph_count = preg_match_all( $pattern, $thecontent, $matches );
-        if ( count( $matches[0] ) > 0 && ! empty( $this->section['_panels_design_insert-after-paragraph'] ) && $this->section['_panels_design_insert-after-paragraph'] > 0 ) {
-          $insert_after   = min( $this->section['_panels_design_insert-after-paragraph'], $paragraph_count );
-          $insert_content = strip_tags( $this->section['_panels_design_insert-content-shortcode'], '<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6><img>' );
-          array_splice( $matches[0], $insert_after, 0, '<p class="arc-inserted-content">' . $insert_content . '</p>' );
-          $thecontent = implode( '', $matches[0] );
+        // Insert shortcode if required
+        if ( ! empty( $this->section['_panels_design_insert-content-shortcode'] ) ) {
+          $thecontent      = wpautop( $thecontent ); // Add paragraph html
+          $pattern         = "/<p(.)*>.*?<\/p>/uiUm";
+          $paragraph_count = preg_match_all( $pattern, $thecontent, $matches );
+          if ( count( $matches[0] ) > 0 && ! empty( $this->section['_panels_design_insert-after-paragraph'] ) && $this->section['_panels_design_insert-after-paragraph'] > 0 ) {
+            $insert_after   = min( $this->section['_panels_design_insert-after-paragraph'], $paragraph_count );
+            $insert_content = strip_tags( $this->section['_panels_design_insert-content-shortcode'], '<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6><img>' );
+            array_splice( $matches[0], $insert_after, 0, '<p class="arc-inserted-content">' . $insert_content . '</p>' );
+            $thecontent = implode( '', $matches[0] );
+          }
+        }
+
+        // Append additional message
+        if ( ! empty( $this->section['_panels_design_additional-message'] ) ) {
+          $additional_message = strip_tags( $this->section['_panels_design_additional-message'], '<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6><img>' );
+          $thecontent         .= '<p class="pzarc-additional-message" >' . $additional_message . '</p>';
         }
       }
-
-      // Append additional message
-      if ( ! empty( $this->section['_panels_design_additional-message'] ) ) {
-        $additional_message = strip_tags( $this->section['_panels_design_additional-message'], '<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6><img>' );
-        $thecontent         .= '<p class="pzarc-additional-message" >' . $additional_message . '</p>';
-      }
-
       $this->data['content'] = apply_filters( 'the_content', $thecontent );
     }
 
@@ -579,7 +595,7 @@
       switch ( TRUE ) {
 
         case ! empty( $this->section['_panels_design_manual-excerpts'] ) && ! has_excerpt():
-          $this->data['excerpt'] = '';
+          $this->data['excerpt'] = '<!-- #1 no content found -->';
           break;
 
         // CHARACTERS
@@ -587,7 +603,7 @@
           if ( ! empty( $the_content ) ) {
             $this->data['excerpt'] = substr( wp_strip_all_tags( $the_content ), 0, $this->section['_panels_design_excerpts-word-count'] ) . pzarc_make_excerpt_more( $this->section, $post );
           } else {
-            $this->data['excerpt'] = '';
+            $this->data['excerpt'] = '<!-- #2 no content found -->';
           }
           break;
 
@@ -600,24 +616,25 @@
             $the_lot   = str_replace( '<p>', '', $the_lot );
             $the_lot   = str_replace( '{/EOP/}{/EOP/}', '{/EOP/}', $the_lot );
             $the_paras = explode( '{/EOP/}', $the_lot );
-
             // get rid of any blank ones
             $the_new_paras = array();
             foreach ( $the_paras as $k => $the_para ) {
-              if ( ! empty( $the_para ) ) {
+
+              $stripped = trim( strip_tags( $the_para ) ); // Covers Gutenberg comments. 1.10.8
+
+              if ( ! empty( $stripped ) ) {
                 $the_new_paras[] = $the_para;
               }
             }
-            $the_paras             = $the_new_paras;
-            $this->data['excerpt'] = '';
+            $this->data['excerpt'] = '<!-- #3 no content found -->';
             $i                     = 1;
-            while ( $i <= (int) $this->section['_panels_design_excerpts-word-count'] && $i <= count( $the_paras ) ) {
-              $this->data['excerpt'] .= '<p>' . $the_paras[ $i - 1 ] . '</p>';
-              $i ++;
+            while ( $i <= (int) $this->section['_panels_design_excerpts-word-count'] && $i <= count( $the_new_paras ) ) {
+              $this->data['excerpt'] .= '<p>' . $the_new_paras[ $i - 1 ] . '</p>';
+              $i++;
             }
             $this->data['excerpt'] = $this->data['excerpt'] . pzarc_make_excerpt_more( $this->section, $post );
           } else {
-            $this->data['excerpt'] = '';
+            $this->data['excerpt'] = '<!-- #4 no content found -->';
           }
           break;
 
@@ -663,6 +680,7 @@
           $params                                       = array(
             'width'  => str_replace( $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ]['units'], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ]['width'] ),
             'height' => str_replace( $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ]['units'], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ]['height'] ),
+            'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
           );
 
           $this->data['cfield'][ $i ]['prefix-text']  = '<span class="pzarc-prefix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>';
@@ -683,7 +701,7 @@
               $this->data['cfield'][ $i ]['value'] = strip_tags( $this->section[ '_panels_design_cfield-' . $i . '-code' ], '<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6><img>' );
               break;
 //           case'tablefield':
-//              $tablefield                          = explode( '/', $this->section[ '_panels_design_cfield-' . $i . '-name-table-field' ] );
+//              $tablefield                          = explode( '___', $this->section[ '_panels_design_cfield-' . $i . '-name-table-field' ] );
 //              $this->data['cfield'][ $i ]['value'] = do_shortcode( '[arccf table="' . $tablefield[0] . '" field="' . $tablefield[1] . '"]' );
 //              break;
             default:
@@ -1109,19 +1127,25 @@
 
 
     public function render_custom( $component, $content_type, $panel_def, $rsid, $layout_mode = FALSE ) {
+
+
       // Show each custom field in this group
       if ( ! empty( $this->data['cfield'] ) ) {
         $panel_def_cfield = $panel_def['cfield'];
         $build_field      = '';
         $i                = 1;
         foreach ( $this->data['cfield'] as $k => $v ) {
+//          $panel_def[$component] = ArcFun::render_custom_field();
+
           if ( $v['group'] === $component && ( ! empty( $v['value'] ) || $v['name'] === 'use_empty' ) ) {
             switch ( $v['field-type'] ) {
 
               case 'image':
                 if ( function_exists( 'bfi_thumb' ) ) {
 
-                  $content = '<img src="' . bfi_thumb( $v['value'] ) . '">';
+                  $content = '<img src="' . bfi_thumb( $v['value'], array(
+                      'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
+                    ) ) . '">';
                 } else {
                   $content = '<img src="' . $v['value'] . '">';
                 }
@@ -1215,6 +1239,7 @@
           $panel_def_cfield = $panel_def['cfield'];
         }
         $panel_def[ $component ] = str_replace( '{{' . $component . 'innards}}', $build_field, $panel_def[ $component ] );
+
       } else {
         $panel_def[ $component ] = '';
       }
@@ -1269,6 +1294,11 @@
         $line      = str_replace( '{{figopen}}', '<figure ', $line );
         $line      = str_replace( '{{figclose}}', '</figure>', $line );
 
+      }
+      if (! empty( $this->section['_panels_settings_disable-image-saving'] )){
+        $line      = str_replace( '{{disable-save}}', 'disable-save', $line );
+      } else {
+        $line      = str_replace( '{{disable-save}}', 'd', $line );
       }
 
       return $line;
@@ -1393,6 +1423,7 @@
                 self::get_thumbsize( 'h' ),
                 'bfi_thumb' => TRUE,
                 'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1],
+                'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
               ) );
 
             } else {
@@ -1402,6 +1433,7 @@
                 self::get_thumbsize( 'h' ),
                 'bfi_thumb' => TRUE,
                 'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1],
+                'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
               ) );
 
             }
@@ -1410,6 +1442,7 @@
                 $imageURL = bfi_thumb( $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_use-filler-image-source-specific']['url'], array(
                   'width'  => self::get_thumbsize( 'w' ),
                   'height' => self::get_thumbsize( 'h' ),
+                  'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
                 ) );
               } else {
                 $imageURL = $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_use-filler-image-source-specific']['url'];
@@ -1648,6 +1681,7 @@
           }
           break;
       }
+
       return $link;
     }
 

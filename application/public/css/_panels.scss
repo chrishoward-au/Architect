@@ -1,6 +1,16 @@
 // Make sure there's no formatting in this
 .pzarchitect {
 
+  .disable-save img{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-touch-callout: none;
+  }
+
   .pzarc-panel {
     //  min-width: 0;
     //  min-height: 0;
@@ -59,6 +69,8 @@
         }
       }
     }
+
+
 
     img.entry-image {
     }

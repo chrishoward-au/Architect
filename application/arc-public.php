@@ -65,6 +65,9 @@
     // Using hacked version which only supports data-at2x attribute
     wp_register_script( 'js-retinajs', PZARC_PLUGIN_APP_URL . '/public/js/retinajs/retina.js' );
 
+    // Disable saving images
+    wp_register_script( 'js-disableimagesaving', PZARC_PLUGIN_APP_URL . '/public/js/arc-disable-image-saving.js' );
+
 
     // Waypoints
     // Infinite scroll requires a method to load next set, so would would best leveraging off pagination -maybe... And that is a lot harder!
