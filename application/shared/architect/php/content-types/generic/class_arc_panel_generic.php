@@ -184,39 +184,43 @@
      */
     public function get_title( &$post ) {
       /** TITLE */
-      $is_hw      = class_exists( 'HeadwayLayoutOption' );
-      $is_blox    = class_exists( 'BloxLayoutOption' );
-      $alt_title  = '';
-      $hw_title   = $is_hw ? ( TRUE == ( $alt_title = HeadwayLayoutOption::get( $post->ID, 'alternate-title', FALSE, TRUE ) ) ) : FALSE;
-      $blox_title = $is_blox ? ( TRUE == ( $alt_title = BloxLayoutOption::get( $post->ID, 'alternate-title', FALSE, TRUE ) ) ) : FALSE;
-
-      if ( ( $is_hw || $is_blox ) && ! empty( $this->section['_panels_design_alternate-titles'] ) && ( $hw_title || $blox_title ) ) {
-        $this->data['title']['title'] = $alt_title;
+      if (ArcFun::is_bb_active() && $post->post_type==='fl-theme-layout') {
+        $this->data['title']['title'] = "Beaver Builder editor - no preview";
       } else {
-        $this->data['title']['title'] = get_the_title();
-      }
 
-      if ( 'thumb' === $this->section['_panels_design_title-prefix'] ) {
-        $thumb_id    = get_post_thumbnail_id();
-        $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', TRUE );
-        if ( empty( $focal_point ) ) {
-          $focal_point = get_post_meta( get_the_ID(), 'pzgp_focal_point', TRUE );
-        }
-        $focal_point = ( empty( $focal_point ) ? explode( ',', pzarc_get_option( 'architect_focal_point_default', '50,10' ) ) : explode( ',', $focal_point ) );
-        if ( ! empty( $thumb_id ) ) {
-          $thumb_prefix                 = wp_get_attachment_image( $thumb_id, array(
-            $this->section['_panels_design_title-thumb-width'],
-            $this->section['_panels_design_title-thumb-width'],
-            'bfi_thumb' => TRUE,
-            'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1],
-            'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
-          ) );
-          $this->data['title']['thumb'] = '<span class="pzarc-title-thumb">' . $thumb_prefix . '</span> ';
+        $is_hw      = class_exists( 'HeadwayLayoutOption' );
+        $is_blox    = class_exists( 'BloxLayoutOption' );
+        $alt_title  = '';
+        $hw_title   = $is_hw ? ( TRUE == ( $alt_title = HeadwayLayoutOption::get( $post->ID, 'alternate-title', FALSE, TRUE ) ) ) : FALSE;
+        $blox_title = $is_blox ? ( TRUE == ( $alt_title = BloxLayoutOption::get( $post->ID, 'alternate-title', FALSE, TRUE ) ) ) : FALSE;
+
+        if ( ( $is_hw || $is_blox ) && ! empty( $this->section['_panels_design_alternate-titles'] ) && ( $hw_title || $blox_title ) ) {
+          $this->data['title']['title'] = $alt_title;
         } else {
-          $this->data['title']['thumb'] = '<span class="pzarc-title-thumb" style="width:' . $this->section['_panels_design_title-thumb-width'] . 'px;height:' . $this->section['_panels_design_title-thumb-width'] . 'px;"></span> ';
+          $this->data['title']['title'] = get_the_title();
+        }
+
+        if ( 'thumb' === $this->section['_panels_design_title-prefix'] ) {
+          $thumb_id    = get_post_thumbnail_id();
+          $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', TRUE );
+          if ( empty( $focal_point ) ) {
+            $focal_point = get_post_meta( get_the_ID(), 'pzgp_focal_point', TRUE );
+          }
+          $focal_point = ( empty( $focal_point ) ? explode( ',', pzarc_get_option( 'architect_focal_point_default', '50,10' ) ) : explode( ',', $focal_point ) );
+          if ( ! empty( $thumb_id ) ) {
+            $thumb_prefix                 = wp_get_attachment_image( $thumb_id, array(
+              $this->section['_panels_design_title-thumb-width'],
+              $this->section['_panels_design_title-thumb-width'],
+              'bfi_thumb' => TRUE,
+              'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1],
+              'quality'   => ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 )
+            ) );
+            $this->data['title']['thumb'] = '<span class="pzarc-title-thumb">' . $thumb_prefix . '</span> ';
+          } else {
+            $this->data['title']['thumb'] = '<span class="pzarc-title-thumb" style="width:' . $this->section['_panels_design_title-thumb-width'] . 'px;height:' . $this->section['_panels_design_title-thumb-width'] . 'px;"></span> ';
+          }
         }
       }
-
 
     }
 
@@ -547,8 +551,8 @@
     public function get_content( &$post ) {
       /** CONTENT */
 
-      if (ArcFun::is_bb_active() && $this->build->blueprint['_blueprints_content-source'] === 'defaults') {
-        $thecontent = '<p>Body content for Architect Blueprint <em><strong>' . $this->build->blueprint['_blueprints_short-name'] . '</strong></em> cannot be displayed in the Beaver Builder editor. Using dummy text instead.</p><p></p>'.dummy_text();
+      if (ArcFun::is_bb_active() && $post->post_type==='fl-theme-layout') {
+        $thecontent = dummy_text();
       } else {
 
         // var_Dump($post);

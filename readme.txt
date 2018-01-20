@@ -108,7 +108,7 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: Blueprints in Blueprints using parent Blueprint CSS
 * FIXED: Gutenberg content not displaying in Blueprints in Blueprints
 * FIXED: Gutenberg html comments skewing paragraph counting when forming excerpts by paragraphs
-* FIXED: Default content in BB editor could reload the BB page and break the editor. Displays dummy text instead.
+* FIXED: Default content in BB editor would break if no preview. Displays dummy text instead.
 
 = 1.10.7  : 24 Nov 2017
 * ADDED: Image Alt tag will automatically use image title if no Alt tag set
