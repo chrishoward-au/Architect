@@ -71,7 +71,7 @@
 
 <?php _e( 'PHP cURL Support:', 'pzarchitect' ); ?>       <?php echo ( function_exists( 'curl_init' ) ) ? _e( 'Yes', 'pzarchitect' ) . "\n" : _e( 'No', 'pzarchitect' ) . "\n"; ?>
 <?php _e( 'PHP GD Support:', 'pzarchitect' ); ?>         <?php echo ( function_exists( 'gd_info' ) ) ? _e( 'Yes', 'pzarchitect' ) . "\n" : _e( 'No', 'pzarchitect' ) . "\n"; ?>
-<?php _e( 'PHP ImgMagick Support:', 'pzarchitect' ); ?>  <?php echo ( class_exists( 'Gmagick' ) ) ? _e( 'Yes', 'pzarchitect' ) . "\n" : _e( 'No', 'pzarchitect' ) . "\n"; ?>
+<?php _e( 'PHP Imagick Support:', 'pzarchitect' ); ?>    <?php echo ( class_exists( 'Imagick' ) ) ? _e( 'Yes', 'pzarchitect' ) . "\n" : _e( 'No', 'pzarchitect' ) . "\n"; ?>
 <?php _e( 'PHP Memory Limit:', 'pzarchitect' ); ?>       <?php echo $memory_limit . "\n"; ?>
 <?php _e( 'PHP Memory Usage:', 'pzarchitect' ); ?>       <?php echo $memory_usage . "M (" . round( $memory_usage / $memory_limit * 100, 0 ) . "%)\n"; ?>
 <?php _e( 'PHP Post Max Size:', 'pzarchitect' ); ?>      <?php echo ini_get( 'post_max_size' ) . "\n"; ?>

@@ -98,8 +98,8 @@
     {
       // Make sure that we use the latest versions
       return array(
+        BFI_Class_Factory::getNewestVersion('BFI_Image_Editor_Imagick'),
           BFI_Class_Factory::getNewestVersion('BFI_Image_Editor_GD'),
-          BFI_Class_Factory::getNewestVersion('BFI_Image_Editor_Imagick'),
       );
     }
   }
