@@ -315,15 +315,16 @@
       $width  = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['width'] );
       $height = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['height'] );
 
-      $copyright_size   = !empty($this->section['_panels_settings_image-copyright-text-size'])?$this->section['_panels_settings_image-copyright-text-size']:20;
-      $copyright_colour = !empty($this->section['_panels_settings_image-copyright-text-colour'])?str_replace('#','',$this->section['_panels_settings_image-copyright-text-colour']):'ffffff';
-      $copyright_font = PZARC_PLUGIN_APP_PATH . 'shared/assets/fonts/Open_Sans/OpenSans-Bold.ttf';
-      $copyright_text = html_entity_decode(!empty($this->section['_panels_settings_image-copyright-text'])?$this->section['_panels_settings_image-copyright-text']:'&copy; Copyright ' . date( 'Y', time() ));
-      $copyright_position = !empty( $this->section['_panels_settings_image-copyright-text-position'])? $this->section['_panels_settings_image-copyright-text-position']:'middle';
-      $copyright_array='';
+      $copyright=array();
+      $copyright['size']= !empty($this->section['_panels_settings_image-copyright-text-size'])?$this->section['_panels_settings_image-copyright-text-size']:20;
+      $copyright['colour']= !empty($this->section['_panels_settings_image-copyright-text-colour'])?str_replace('#','',$this->section['_panels_settings_image-copyright-text-colour']):'ffffff';
+      $copyright['font']= PZARC_PLUGIN_APP_PATH . 'shared/assets/fonts/Open_Sans/OpenSans-Bold.ttf';
+      $copyright['text']= html_entity_decode(!empty($this->section['_panels_settings_image-copyright-text'])?$this->section['_panels_settings_image-copyright-text']:'&copy; Copyright ' . date( 'Y', time() ));
+      $copyright['position']= !empty( $this->section['_panels_settings_image-copyright-text-position'])? $this->section['_panels_settings_image-copyright-text-position']:'middle';
+      $copyright['array']='';
 
       if (!empty($this->section['_panels_settings_image-copyright-add']) ) {
-        $copyright_array = maybe_serialize(array( 'size' => $copyright_size, 'colour' => $copyright_colour, 'font' => $copyright_font, 'text' => $copyright_text, 'position'=>$copyright_position ) );
+        $copyright['array']= maybe_serialize(array( 'size' => $copyright['size'], 'colour' => $copyright['colour'], 'font' => $copyright['font'], 'text' => $copyright['text'], 'position'=>$copyright['position']) );
       }
 
       $quality = ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 );
@@ -342,7 +343,7 @@
           'bfi_thumb' => TRUE,
           'crop'      => $crop,
           'quality'   => $quality,
-          'text'      => ($copyright_array && in_array('featured',$this->section['_panels_settings_image-copyright-add'])?$copyright_array:'') ,
+          'text'      => ($copyright['array']&& in_array('featured',$this->section['_panels_settings_image-copyright-add'])?$copyright['array']:'') ,
         ) );
 //var_Dump($image_src);
         $this->data['image']['image'] = '<img width="' . $width . '" height="' . $height . '" src="' . $image_src[0] . '" class="attachment-' . $width . 'x' . $height . 'x1x' . (int) $focal_point[0] . 'x' . (int) $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'] . '" alt="">';
@@ -351,7 +352,7 @@
         /** Get the original image  */
 
 
-        if ($copyright_array && in_array('lightbox',$this->section['_panels_settings_image-copyright-add'])) {
+        if ($copyright['array']&& in_array('lightbox',$this->section['_panels_settings_image-copyright-add'])) {
           $original_size                   = getimagesize( wp_get_attachment_image_url( $thumb_id, 'full' ) );
           $this->data['image']['original'] = wp_get_attachment_image_src( $thumb_id, array(
               $original_size[0],
@@ -359,7 +360,7 @@
               'bfi_thumb' => TRUE,
               'crop'      => FALSE,
               'quality'   => 82,
-              'text'      => $copyright_array,
+              'text'      => $copyright['array'],
             ) );
         } else {
           $this->data['image']['original'] = wp_get_attachment_image_src( $thumb_id, 'full');
@@ -452,6 +453,10 @@
 
     /**
      * BACKGROUND IMAGE
+     *
+     * This is virtually the same as get_image so needs to be rationalise
+     * Beware tho, do need both bgimage and image sometimes
+     * so will need to know
      */
     public function get_bgimage( &$post ) {
 
@@ -479,19 +484,53 @@
         $height = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['height'] );
       }
 
+      $copyright=array();
+      $copyright['size']= !empty($this->section['_panels_settings_image-copyright-text-size'])?$this->section['_panels_settings_image-copyright-text-size']:20;
+      $copyright['colour']= !empty($this->section['_panels_settings_image-copyright-text-colour'])?str_replace('#','',$this->section['_panels_settings_image-copyright-text-colour']):'ffffff';
+      $copyright['font']= PZARC_PLUGIN_APP_PATH . 'shared/assets/fonts/Open_Sans/OpenSans-Bold.ttf';
+      $copyright['text']= html_entity_decode(!empty($this->section['_panels_settings_image-copyright-text'])?$this->section['_panels_settings_image-copyright-text']:'&copy; Copyright ' . date( 'Y', time() ));
+      $copyright['position']= !empty( $this->section['_panels_settings_image-copyright-text-position'])? $this->section['_panels_settings_image-copyright-text-position']:'middle';
+      $copyright['array']='';
+
+      if (!empty($this->section['_panels_settings_image-copyright-add']) ) {
+        $copyright['array']= maybe_serialize(array( 'size' => $copyright['size'], 'colour' => $copyright['colour'], 'font' => $copyright['font'], 'text' => $copyright['text'], 'position'=>$copyright['position']) );
+      }
+
+      $quality = ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 );
+
+      $crop =  (int) $focal_point[0] . 'x' . (int) $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'];
+
       pzdb( 'pre get image bg' );
 
       // Need to grab image again because it uses different dimensions for the bgimge
-      $this->data['bgimage']['thumb'] = wp_get_attachment_image( $thumb_id, array(
+      $image_src = wp_get_attachment_image_src( $thumb_id, array(
         $width,
         $height,
         'bfi_thumb' => TRUE,
-        'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'],
-        'quality'   => ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 ),
-
+        'crop'      => $crop,
+        'quality'   => $quality,
+        'text'      => ($copyright['array']&& in_array('featured',$this->section['_panels_settings_image-copyright-add'])?$copyright['array']:'') ,
       ) );
-      pzdb( 'post get image bg' );
-      $this->data['image']['original'] = wp_get_attachment_image_src( $thumb_id, 'full' );
+//var_Dump($image_src,$copyright);
+      $this->data['bgimage']['thumb'] = '<img width="' . $width . '" height="' . $height . '" src="' . $image_src[0] . '" class="attachment-' . $width . 'x' . $height . 'x1x' . (int) $focal_point[0] . 'x' . (int) $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'] . '" alt="">';
+
+      // TODO: Add image sizes for each device
+      /** Get the original image  */
+
+
+      if ($copyright['array'] && in_array('lightbox',$this->section['_panels_settings_image-copyright-add'])) {
+        $original_size                   = getimagesize( wp_get_attachment_image_url( $thumb_id, 'full' ) );
+        $this->data['image']['original'] = wp_get_attachment_image_src( $thumb_id, array(
+          $original_size[0],
+          $original_size[1],
+          'bfi_thumb' => TRUE,
+          'crop'      => FALSE,
+          'quality'   => 82,
+          'text'      => $copyright['array'],
+        ) );
+      } else {
+        $this->data['image']['original'] = wp_get_attachment_image_src( $thumb_id, 'full');
+      }
       pzdb( 'post get original bg' );
       preg_match( "/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data['bgimage']['thumb'], $results );
       if ( isset( $results[0] ) && ! empty( $this->section['_panels_settings_use-retina-images'] ) && function_exists( 'bfi_thumb' ) ) {

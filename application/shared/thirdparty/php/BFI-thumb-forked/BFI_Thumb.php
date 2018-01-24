@@ -594,6 +594,7 @@
             }
           }
 
+
           if ( !empty( $text ) ) {
             if ( is_wp_error( $editor->addtext( maybe_unserialize($text) ) ) ) {
               return FALSE;
