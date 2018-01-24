@@ -68,8 +68,8 @@
           }
         }
         $this->tableset = ArcFun::get_tables();
-        foreach ($this->tableset as $table){
-          $this->tablesfields[$table] = ArcFun::get_table_fields($table);
+        foreach ( $this->tableset as $table ) {
+          $this->tablesfields[ $table ] = ArcFun::get_table_fields( $table );
         }
 
       }
@@ -276,7 +276,7 @@
             foreach ( $bp_uses as $k => $v ) {
               if ( ! empty( $post_meta['_blueprints_short-name'][0] ) && $v['bp'] === $post_meta['_blueprints_short-name'][0] ) {
                 $uo_post = get_post( $v['id'] );
-                if ( !in_array($uo_post->post_type, array( 'arc-blueprints','revision','attachment')) ) {
+                if ( ! in_array( $uo_post->post_type, array( 'arc-blueprints', 'revision', 'attachment' ) ) ) {
                   $odd_even = $i % 2 == 0 ? 'even' : 'odd';
                   echo '<p class="rows ' . $odd_even . '">' . ucwords( $uo_post->post_type ) . ' : ' . $uo_post->post_title . '</p>';
                   $i ++;
@@ -1042,7 +1042,7 @@
               'default' => 'center',
             ),
             array(
-              'title'    => __('Page title','pzarchitect'),
+              'title'    => __( 'Page title', 'pzarchitect' ),
               'id'       => $prefix . 'page-title',
               'type'     => 'switch',
               'subtitle' => __( 'Show page title on single and archive pages', 'pzarchitect' ),
@@ -1051,7 +1051,7 @@
               'default'  => FALSE,
             ),
             array(
-              'title'    => __('Hide archive title prefix','pzarchitect'),
+              'title'    => __( 'Hide archive title prefix', 'pzarchitect' ),
               'id'       => $prefix . 'hide-archive-title-prefix',
               'type'     => 'switch',
               'subtitle' => __( 'When on an Archive page, hide the archive prefix from Architect > Options > Language', 'pzarchitect' ),
@@ -1065,7 +1065,7 @@
               ),
             ),
             array(
-              'title'    => __('Show archive description','pzarchitect'),
+              'title'    => __( 'Show archive description', 'pzarchitect' ),
               'id'       => $prefix . 'show-archive-description',
               'type'     => 'switch',
               'subtitle' => __( 'When on an Archive page, choose to show or not archive description', 'pzarchitect' ),
@@ -1074,30 +1074,30 @@
               'default'  => FALSE,
             ),
             array(
-              'title'    => __('Blueprint display title','pzarchitect'),
+              'title'    => __( 'Blueprint display title', 'pzarchitect' ),
               'id'       => $prefix . 'blueprint-title',
               'type'     => 'text',
               'subtitle' => __( 'Enter a title to display above the Blueprint', 'pzarchitect' ),
             ),
             array(
-              'title'    => __('Blueprint footer text','pzarchitect'),
+              'title'    => __( 'Blueprint footer text', 'pzarchitect' ),
               'id'       => $prefix . 'footer-text-link',
               'type'     => 'text',
               'subtitle' => __( 'Enter text to show at the foot of the Blueprint. You can also enter a shortcode here.', 'pzarchitect' ),
             ),
             array(
-              'title'    => __('Message if no content','pzarchitect'),
-              'id'       => $prefix . 'no-content-message',
-              'type'     => 'text',
-              'default'=>''
+              'title'   => __( 'Message if no content', 'pzarchitect' ),
+              'id'      => $prefix . 'no-content-message',
+              'type'    => 'text',
+              'default' => '',
             ),
             array(
-              'title'    => __('Hide Blueprint if no content','pzarchitect'),
-              'id'       => $prefix . 'hide-blueprint',
-              'type'     => 'switch',
-              'on'       => 'Yes',
-              'off'      => 'No',
-              'default'  => FALSE,
+              'title'   => __( 'Hide Blueprint if no content', 'pzarchitect' ),
+              'id'      => $prefix . 'hide-blueprint',
+              'type'    => 'switch',
+              'on'      => 'Yes',
+              'off'     => 'No',
+              'default' => FALSE,
             ),
           ),
 
@@ -4231,7 +4231,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           ),
           array(
             'id'            => $prefix . 'image-quality',
-            'title'         => __('Image quality', 'pzarchitect'),
+            'title'         => __( 'Image quality', 'pzarchitect' ),
             'type'          => 'slider',
             'display_value' => 'label',
             'default'       => 82,
@@ -4239,8 +4239,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'max'           => 100,
             'step'          => 1,
             'units'         => '%',
-            'hint'          => array('content' => 'Quality to use when processing images'),
-            'required'      => array('_panels_settings_feature-type', '=', 'image'),
+            'hint'          => array( 'content' => 'Quality to use when processing images' ),
+            'required'      => array( '_panels_settings_feature-type', '=', 'image' ),
 
           ),
           array(
@@ -4250,6 +4250,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'on'       => __( 'Yes', 'pzarchitect' ),
             'off'      => __( 'No', 'pzarchitect' ),
             'default'  => FALSE,
+            'subtitle' => __( 'Disable right clicking to save images', 'pzarchitect' ),
             'required' => array(//array('show_advanced', 'equals', true),
                                 array(
                                   '_panels_settings_feature-type',
@@ -4524,6 +4525,81 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             ),
             'subtitle' => __( 'Centres the image horizontally. It is best to display it on its own row, and the other components to be 100% wide.', 'pzarchitect' ),
           ),
+          array(
+            'title'    => __( 'Add copyright to images', 'pzarchitect' ),
+            'id'       => '_panels_settings_image-copyright-add',
+            'type'     => 'button_set',
+            'options'=>array(
+              'featured'=>'Featured',
+              'lightbox'=>'Lightbox'
+            ),
+            'multi'=>true,
+            'required' => array(//array('show_advanced', 'equals', true),
+                                array(
+                                  '_panels_settings_feature-type',
+                                  '=',
+                                  'image',
+                                ),
+            ),
+          ),
+          array(
+            'title'    => __( 'Copyright message', 'pzarchitect' ),
+            'id'       => '_panels_settings_image-copyright-text',
+            'type'     => 'text',
+            'default'  => '&copy; Copyright ' . date( 'Y', time() ),
+//            'required' => array(//array('show_advanced', 'equals', true),
+//                                array(
+//                                  '_panels_settings_add-copyright',
+//                                  '!=',
+//                                  '',
+//                                ),
+//            ),
+          ),
+          array(
+            'title'       => __( 'Copyright text colour', 'pzarchitect' ),
+            'id'          => '_panels_settings_image-copyright-text-colour',
+            'type'        => 'color',
+            'default'     => '#ffffff',
+            'transparent' => FALSE,
+//            'required'    => array(//array('show_advanced', 'equals', true),
+//                                   array(
+//                                     '_panels_settings_add-copyright',
+//                                     '!=',
+//                                     '',
+//                                   ),
+//            ),
+          ),
+          array(
+            'title'    => __( 'Copyright text size', 'pzarchitect' ),
+            'id'       => '_panels_settings_image-copyright-text-size',
+            'type'     => 'text',
+            'default'  => 20,
+//            'required' => array(//array('show_advanced', 'equals', true),
+//                                array(
+//                                  '_panels_settings_add-copyright',
+//                                  '!=',
+//                                  '',
+//                                ),
+//            ),
+          ),
+          array(
+            'title'    => __( 'Copyright text position', 'pzarchitect' ),
+            'id'       => '_panels_settings_image-copyright-text-position',
+            'type'     => 'button_set',
+            'options'  => array(
+              'top'    => __( 'Top', 'pzarchitect' ),
+              'middle' => __( 'Middle', 'pzarchitect' ),
+              'bottom' => __( 'Bottom', 'pzarchitect' ),
+            ),
+            'default'  => 'middle',
+//            'required' => array(//array('show_advanced', 'equals', true),
+//                                array(
+//                                  '_panels_settings_add-copyright',
+//                                  '!=',
+//                                  '',
+//                                ),
+//            ),
+          ),
           //              array(
           //                  'title'    => __('Rotate feature', 'pzarchitect'),
           //                  'id'       => $prefix . 'rotate-image',
@@ -4690,7 +4766,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'title'    => __( 'Additional message after Body content', 'pzarchitect' ),
             'subtitle' => __( 'Shortcodes and limited HTML only', 'pzarchitect' ),
             'id'       => $prefix . 'additional-message',
-            'type'     => 'text',
+            'type'     => 'textarea',
             'default'  => __( '', 'pzarchitect' ),
           ),
           array(
@@ -4709,14 +4785,14 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'max'     => '999',
           ),
           array(
-            'title'    => __( 'Shortcodes in body', 'pzarchitect' ),
-            'id'       => $prefix . 'process-body-shortcodes',
-            'type'     => 'button_set',
-            'options'  => array(
+            'title'   => __( 'Shortcodes in body', 'pzarchitect' ),
+            'id'      => $prefix . 'process-body-shortcodes',
+            'type'    => 'button_set',
+            'options' => array(
               'process' => __( 'Process', 'pzarchitect' ),
               'remove'  => __( 'Remove', 'pzarchitect' ),
             ),
-            'default'  => 'process',
+            'default' => 'process',
           ),
 
 
@@ -4783,7 +4859,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               '=',
               FALSE,
             ),
-            'desc'=>__('If using More Tag, this is the maximum number of words to show','pzarchitect')
+            'desc'     => __( 'If using More Tag, this is the maximum number of words to show', 'pzarchitect' ),
           ),
           array(
             'title'    => __( 'Truncation indicator', 'pzarchitect' ),
@@ -5170,16 +5246,16 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 //            if (! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]) && $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]==='tablefield') {
 //              $cfname     = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] : '' );
 //            } else {
-              $cfname     = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] : '' );
+            $cfname = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] : '' );
 //            }
 
 //            $cftable = ( ! empty( $this->postmeta['_panels_design_cfield-'.$i.'-name-table'][0] ) ? $this->postmeta['_panels_design_cfield-'.$i.'-name-table'][0] : 'none' );
 //            $cftablefields = $cftable=='none' ? array('none'=>__('Select a table','pzarchitect')):$this->tablesfields[$cftable];
 
-            $link_fields  = array_merge( array('Custom fields'=>$this->custom_fields), $this->tablesfields );
-            $all_fields = array_merge($pzarc_custom_fields, $this->tablesfields );
-            $sections[]   = array(
-              'title'      => 'Settings '.$cfname ,
+            $link_fields = array_merge( array( 'Custom fields' => $this->custom_fields ), $this->tablesfields );
+            $all_fields  = array_merge( $pzarc_custom_fields, $this->tablesfields );
+            $sections[]  = array(
+              'title'      => 'Settings ' . $cfname,
               'icon_class' => 'icon-large',
               'icon'       => 'el-icon-adjust-alt',
               'desc'       => __( 'Note: Only fields with content will show on the Blueprint.', 'pzarchitect' ),
@@ -5204,34 +5280,34 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   //                'args'     => array( 'pzarc_get_custom_fields' ),
                   'options'  => $all_fields,
                   'subtitle' => __( 'If a custom field is not shown in the dropdown, it is either because it has no data yet or the custom field list cache needs clearing. Go to Architect > Tools and clear the caches.', 'pzarchitect' ),
-                  'desc'=>__('Type to search names. List includes custom fields and <strong>any field from any table</strong><br>Note: Fields must be available to the viewed post type to show content.','pzarchitect')
+                  'desc'     => __( 'Type to search names. List includes custom fields and <strong>any field from any table</strong><br>Note: Fields must be available to the viewed post type to show content.', 'pzarchitect' ),
                 ),
-//                array(
-//                  'title'    => __( 'Select a table', 'pzarchitect' ),
-//                  'id'       => $prefix . 'cfield-' . $i . '-name-table',
-//                  'type'     => 'select',
-//                  'default'  => 'none',
-//                  'options'  => $this->tableset,
-//                  'required' => array(
-//                    $prefix . 'cfield-' . $i . '-name',
-//                    '=',
-//                    'tablefield',
-//                  ),
-//
-//                ),
-//                array(
-//                  'title'    => __( 'Choose field from table', 'pzarchitect' ),
-//                  'id'       => $prefix . 'cfield-' . $i . '-name-table-field',
-//                  'type'     => 'select',
-//                  'default'  => 'none',
-//                  'options'  => $table_fields,
-//                  'required' => array(
-//                    $prefix . 'cfield-' . $i . '-name',
-//                    '=',
-//                    'tablefield',
-//                  ),
-//
-//                ),
+                //                array(
+                //                  'title'    => __( 'Select a table', 'pzarchitect' ),
+                //                  'id'       => $prefix . 'cfield-' . $i . '-name-table',
+                //                  'type'     => 'select',
+                //                  'default'  => 'none',
+                //                  'options'  => $this->tableset,
+                //                  'required' => array(
+                //                    $prefix . 'cfield-' . $i . '-name',
+                //                    '=',
+                //                    'tablefield',
+                //                  ),
+                //
+                //                ),
+                //                array(
+                //                  'title'    => __( 'Choose field from table', 'pzarchitect' ),
+                //                  'id'       => $prefix . 'cfield-' . $i . '-name-table-field',
+                //                  'type'     => 'select',
+                //                  'default'  => 'none',
+                //                  'options'  => $table_fields,
+                //                  'required' => array(
+                //                    $prefix . 'cfield-' . $i . '-name',
+                //                    '=',
+                //                    'tablefield',
+                //                  ),
+                //
+                //                ),
                 array(
                   'title'   => __( 'Field type', 'pzarchitect' ),
                   'id'      => $prefix . 'cfield-' . $i . '-field-type',
@@ -5447,10 +5523,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 //            if (! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]) && $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]==='tablefield') {
 //              $cfname     = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] : '' );
 //            } else {
-              $cfname     = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] : '' );
+            $cfname = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] : '' );
 //            }
             $sections[] = array(
-              'title'      => 'Styling '.$cfname ,
+              'title'      => 'Styling ' . $cfname,
               'show_title' => FALSE,
               'icon_class' => 'icon-large',
               'icon'       => 'el-icon-brush',
@@ -5480,7 +5556,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
       /**
        * NOT USED ANYMORE
        */
-      return null;
+      return NULL;
 
 
       pzdb( __FUNCTION__ );

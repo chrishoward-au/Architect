@@ -95,8 +95,10 @@ For support, please send an email to support@pizazzwp.com
 * ADDED: Table prefix to Tools > Sysinfo
 * ADDED: Option to set image quality (compression)
 * ADDED: Option to disable saving and copying of images.
+* ADDED: Option to add copyright to images
 
 * CHANGED: Account info now shows affiliate info.
+* CHANGED: Image creation now uses Imagick by default if installed, which means it keeps Exif information (unless you use another plugin that has already stripped it out).
 
 * UPDATED: Freemius SDK to 1.2.3
 * UPDATED: Freemius SDK to 1.2.4
@@ -109,6 +111,7 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: Gutenberg content not displaying in Blueprints in Blueprints
 * FIXED: Gutenberg html comments skewing paragraph counting when forming excerpts by paragraphs
 * FIXED: Default content in BB editor would break if no preview. Displays dummy text instead.
+* FIXED: Tools > Sysinfo always showing Imagick disabled
 
 = 1.10.7  : 24 Nov 2017
 * ADDED: Image Alt tag will automatically use image title if no Alt tag set

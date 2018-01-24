@@ -24,7 +24,7 @@
         $this->_architect = $_architect;
       }
 
-      if (!empty($this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_settings_disable-image-saving'])) {
+      if ( ! empty( $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_settings_disable-image-saving'] ) ) {
         wp_enqueue_script( 'js-disableimagesaving' );
       }
     }
@@ -184,7 +184,7 @@
      */
     public function get_title( &$post ) {
       /** TITLE */
-      if (ArcFun::is_bb_active() && $post->post_type==='fl-theme-layout') {
+      if ( ArcFun::is_bb_active() && $post->post_type === 'fl-theme-layout' ) {
         $this->data['title']['title'] = "Beaver Builder editor - no preview";
       } else {
 
@@ -213,7 +213,7 @@
               $this->section['_panels_design_title-thumb-width'],
               'bfi_thumb' => TRUE,
               'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1],
-              'quality'   => ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 )
+              'quality'   => ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 ),
             ) );
             $this->data['title']['thumb'] = '<span class="pzarc-title-thumb">' . $thumb_prefix . '</span> ';
           } else {
@@ -288,6 +288,9 @@
     }
 
 
+    /**
+     * @param $post
+     */
     public function get_image( &$post ) {
 
       /** FEATURED IMAGE */
@@ -312,33 +315,61 @@
       $width  = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['width'] );
       $height = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['height'] );
 
+      $copyright_size   = !empty($this->section['_panels_settings_image-copyright-text-size'])?$this->section['_panels_settings_image-copyright-text-size']:20;
+      $copyright_colour = !empty($this->section['_panels_settings_image-copyright-text-colour'])?str_replace('#','',$this->section['_panels_settings_image-copyright-text-colour']):'ffffff';
+      $copyright_font = PZARC_PLUGIN_APP_PATH . 'shared/assets/fonts/Open_Sans/OpenSans-Bold.ttf';
+      $copyright_text = html_entity_decode(!empty($this->section['_panels_settings_image-copyright-text'])?$this->section['_panels_settings_image-copyright-text']:'&copy; Copyright ' . date( 'Y', time() ));
+      $copyright_position = !empty( $this->section['_panels_settings_image-copyright-text-position'])? $this->section['_panels_settings_image-copyright-text-position']:'middle';
+      $copyright_array='';
+
+      if (!empty($this->section['_panels_settings_image-copyright-add']) ) {
+        $copyright_array = maybe_serialize(array( 'size' => $copyright_size, 'colour' => $copyright_colour, 'font' => $copyright_font, 'text' => $copyright_text, 'position'=>$copyright_position ) );
+      }
+
+      $quality = ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 );
+
+      $crop =  (int) $focal_point[0] . 'x' . (int) $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'];
+
       if ( ! empty( $this->data['image']['id'] ) ) {
         $image = get_post( $thumb_id );
         // TODO: Add all the focal point stuff to all the post types images and bgimages
         // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
         // could pass $this->data thru a filter
         /** Get the image */
-        $this->data['image']['image'] = wp_get_attachment_image( $thumb_id, array(
+        $image_src = wp_get_attachment_image_src( $thumb_id, array(
           $width,
           $height,
           'bfi_thumb' => TRUE,
-          'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'],
-          'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
-
+          'crop'      => $crop,
+          'quality'   => $quality,
+          'text'      => ($copyright_array && in_array('featured',$this->section['_panels_settings_image-copyright-add'])?$copyright_array:'') ,
         ) );
+//var_Dump($image_src);
+        $this->data['image']['image'] = '<img width="' . $width . '" height="' . $height . '" src="' . $image_src[0] . '" class="attachment-' . $width . 'x' . $height . 'x1x' . (int) $focal_point[0] . 'x' . (int) $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'] . '" alt="">';
 
         // TODO: Add image sizes for each device
         /** Get the original image  */
 
 
-        $this->data['image']['original'] = wp_get_attachment_image_src( $thumb_id, 'full' );
+        if ($copyright_array && in_array('lightbox',$this->section['_panels_settings_image-copyright-add'])) {
+          $original_size                   = getimagesize( wp_get_attachment_image_url( $thumb_id, 'full' ) );
+          $this->data['image']['original'] = wp_get_attachment_image_src( $thumb_id, array(
+              $original_size[0],
+              $original_size[1],
+              'bfi_thumb' => TRUE,
+              'crop'      => FALSE,
+              'quality'   => 82,
+              'text'      => $copyright_array,
+            ) );
+        } else {
+          $this->data['image']['original'] = wp_get_attachment_image_src( $thumb_id, 'full');
+        }
         preg_match( "/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data['image']['image'], $results );
-
         if ( isset( $results[0] ) && ! empty( $this->section['_panels_settings_use-retina-images'] ) && function_exists( 'bfi_thumb' ) ) {
           $params = array(
-            'width'  => ( $width * 2 ),
-            'height' => ( $height * 2 ),
-            'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
+            'width'   => ( $width * 2 ),
+            'height'  => ( $height * 2 ),
+            'quality' => $quality,
           );
           // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still.
           $thumb_2X                     = bfi_thumb( $results[0], $params );
@@ -400,9 +431,9 @@
       if ( ( ! $thumb_id || empty( $this->data['image']['image'] ) ) && 'specific' === $this->section['_panels_design_use-filler-image-source'] && ! empty( $this->section['_panels_design_use-filler-image-source-specific']['url'] ) ) {
         if ( function_exists( 'bfi_thumb' ) ) {
           $imageURL = bfi_thumb( $this->section['_panels_design_use-filler-image-source-specific']['url'], array(
-            'width'  => $width,
-            'height' => $height,
-            'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
+            'width'   => $width,
+            'height'  => $height,
+            'quality' => $quality,
           ) );
         } else {
           $imageURL = $this->section['_panels_design_use-filler-image-source-specific']['url'];
@@ -456,7 +487,7 @@
         $height,
         'bfi_thumb' => TRUE,
         'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'],
-        'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
+        'quality'   => ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 ),
 
       ) );
       pzdb( 'post get image bg' );
@@ -465,9 +496,9 @@
       preg_match( "/(?<=src\\=\")(.)*(?=\" )/uiUs", $this->data['bgimage']['thumb'], $results );
       if ( isset( $results[0] ) && ! empty( $this->section['_panels_settings_use-retina-images'] ) && function_exists( 'bfi_thumb' ) ) {
         $params = array(
-          'width'  => ( $width * 2 ),
-          'height' => ( $height * 2 ),
-          'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
+          'width'   => ( $width * 2 ),
+          'height'  => ( $height * 2 ),
+          'quality' => ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 ),
         );
         // We need the crop to be identical. :/ So how about we just double the size of the image! I'm sure I Saw somewhere that works still. In fact, we have no choice, since the double sized image could be bigger than the original.
         $thumb_2X                       = bfi_thumb( $results[0], $params );
@@ -518,9 +549,9 @@
       if ( empty( $this->data['bgimage']['thumb'] ) && 'specific' === $this->section['_panels_design_use-filler-image-source'] && ! empty( $this->section['_panels_design_use-filler-image-source-specific']['url'] ) ) {
         if ( function_exists( 'bfi_thumb' ) ) {
           $imageURL = bfi_thumb( $this->section['_panels_design_use-filler-image-source-specific']['url'], array(
-            'width'  => $width,
-            'height' => $height,
-            'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
+            'width'   => $width,
+            'height'  => $height,
+            'quality' => ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 ),
           ) );
         } else {
           $imageURL = $this->section['_panels_design_use-filler-image-source-specific']['url'];
@@ -551,7 +582,7 @@
     public function get_content( &$post ) {
       /** CONTENT */
 
-      if (ArcFun::is_bb_active() && $post->post_type==='fl-theme-layout') {
+      if ( ArcFun::is_bb_active() && $post->post_type === 'fl-theme-layout' ) {
         $thecontent = dummy_text();
       } else {
 
@@ -634,7 +665,7 @@
             $i                     = 1;
             while ( $i <= (int) $this->section['_panels_design_excerpts-word-count'] && $i <= count( $the_new_paras ) ) {
               $this->data['excerpt'] .= '<p>' . $the_new_paras[ $i - 1 ] . '</p>';
-              $i++;
+              $i ++;
             }
             $this->data['excerpt'] = $this->data['excerpt'] . pzarc_make_excerpt_more( $this->section, $post );
           } else {
@@ -682,9 +713,9 @@
           $this->data['cfield'][ $i ]['decimal-char']   = $this->section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
           $this->data['cfield'][ $i ]['thousands-sep']  = $this->section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
           $params                                       = array(
-            'width'  => str_replace( $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ]['units'], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ]['width'] ),
-            'height' => str_replace( $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ]['units'], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ]['height'] ),
-            'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
+            'width'   => str_replace( $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ]['units'], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ]['width'] ),
+            'height'  => str_replace( $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ]['units'], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ]['height'] ),
+            'quality' => ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 ),
           );
 
           $this->data['cfield'][ $i ]['prefix-text']  = '<span class="pzarc-prefix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>';
@@ -1148,7 +1179,7 @@
                 if ( function_exists( 'bfi_thumb' ) ) {
 
                   $content = '<img src="' . bfi_thumb( $v['value'], array(
-                      'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
+                      'quality' => ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 ),
                     ) ) . '">';
                 } else {
                   $content = '<img src="' . $v['value'] . '">';
@@ -1299,10 +1330,10 @@
         $line      = str_replace( '{{figclose}}', '</figure>', $line );
 
       }
-      if (! empty( $this->section['_panels_settings_disable-image-saving'] )){
-        $line      = str_replace( '{{disable-save}}', 'disable-save', $line );
+      if ( ! empty( $this->section['_panels_settings_disable-image-saving'] ) ) {
+        $line = str_replace( '{{disable-save}}', 'disable-save', $line );
       } else {
-        $line      = str_replace( '{{disable-save}}', 'd', $line );
+        $line = str_replace( '{{disable-save}}', 'd', $line );
       }
 
       return $line;
@@ -1427,7 +1458,7 @@
                 self::get_thumbsize( 'h' ),
                 'bfi_thumb' => TRUE,
                 'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1],
-                'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
+                'quality'   => ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 ),
               ) );
 
             } else {
@@ -1437,16 +1468,16 @@
                 self::get_thumbsize( 'h' ),
                 'bfi_thumb' => TRUE,
                 'crop'      => (int) $focal_point[0] . 'x' . (int) $focal_point[1],
-                'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
+                'quality'   => ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 ),
               ) );
 
             }
             if ( empty( $thumb ) && 'specific' === $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_use-filler-image-source'] && ! empty( $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_use-filler-image-source-specific']['url'] ) ) {
               if ( function_exists( 'bfi_thumb' ) ) {
                 $imageURL = bfi_thumb( $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_use-filler-image-source-specific']['url'], array(
-                  'width'  => self::get_thumbsize( 'w' ),
-                  'height' => self::get_thumbsize( 'h' ),
-                  'quality'=>(!empty($this->section['_panels_design_image-quality'])?$this->section['_panels_design_image-quality']:82)
+                  'width'   => self::get_thumbsize( 'w' ),
+                  'height'  => self::get_thumbsize( 'h' ),
+                  'quality' => ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 ),
                 ) );
               } else {
                 $imageURL = $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_use-filler-image-source-specific']['url'];
