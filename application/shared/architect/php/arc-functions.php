@@ -771,7 +771,7 @@
   /**
    * @return array
    */
-  function pzarc_get_custom_fields( $pzarc_custom_fields = array() ) {
+  function pzarc_get_custom_fields( $pzarc_custom_fields = array(), $inc_custom_prefix = FALSE ) {
     global $wpdb;
 
     global $_architect_options;
@@ -879,7 +879,7 @@
     foreach ( $pzarc_cf_list as $pzarc_cf ) {
       if ( in_array( $pzarc_cf->meta_key, $exclude_fields ) === FALSE && ! pzarc_starts_with( $exclude_prefixes, $pzarc_cf->meta_key ) ) {
 
-        $pzarc_custom_fields[ $pzarc_cf->meta_key ] = $pzarc_cf->meta_key;
+        $pzarc_custom_fields[ ( $inc_custom_prefix ? 'customfield/' : '' ) . $pzarc_cf->meta_key ] = ( $inc_custom_prefix ? 'customfield/' : '' ) . $pzarc_cf->meta_key;
       }
     }
 
@@ -2425,14 +2425,27 @@
     /**
      * @return array
      */
-    static function get_all_table_fields() {
+    static function get_all_table_fields_flat( $in_customfields = TRUE ) {
       $tableset     = ArcFun::get_tables();
-      $tablesfields = array();
+      $tablesfields = array( '' => '' );
       foreach ( $tableset as $table ) {
         $tablesfields = array_merge( $tablesfields, ArcFun::get_table_fields( $table, TRUE ) );
       }
 
+      if ( $in_customfields ) {
+        $tablesfields = array_merge( $tablesfields, pzarc_get_custom_fields( NULL, TRUE ) );
+      }
+
       return $tablesfields;
+    }
+
+    static function extract_table_field( $tablefield ) {
+      $array = explode( '/', $tablefield );
+      if ( isset( $array[1] ) ) {
+        return array( 'table' => $array[0], 'field' => $array[1] );
+      } else {
+        return array();
+      }
     }
 
     /**
@@ -2443,86 +2456,118 @@
     static function render_any_field( $settings ) {
       $panel_def_cfield = '<{{cfieldwrapper}} class="arcaf-anyfield arcaf-anyfield-{{cfieldname}} {{cfieldname}}">{{cfieldcontent}}</{{cfieldwrapper}}>';
       $content          = '';
-      $field_val        = do_shortcode( $settings['field'] );
-      switch ( $settings['field-type'] ) {
+//      $field_val        = is_array( $settings['field'] ) ? $settings['field'] : ( $settings['field'] );
+//      $field_val        = $settings['field'];
+      if ( empty( $settings['fieldset'][0]->arc_fieldname ) ) {
+        return NULL;
+      }
+      foreach ( $settings['fieldset'] as $field_info ) {
+        $content   .= ( isset( $field_info->arc_fieldbefore ) ? ArcFun::strip_tags($field_info->arc_fieldbefore,'<br><p><strong><em><ul><ol><li><h1><h2><h3><h4><h5><h6>') : '' );
+        $field_val = arc_get_table_field_value( ArcFun::extract_table_field( $field_info->arc_fieldname ) );
+        switch ( $field_info->field_type ) {
 
-        case 'image':
-          if ( function_exists( 'bfi_thumb' ) ) {
+          // TODO: Add escaping?
+          case 'image':
+            if ( function_exists( 'bfi_thumb' ) ) {
 
-            $content = '<img src="' . bfi_thumb( $field_val ) . '">';
-          } else {
-            $content = '<img src="' . $field_val . '">';
-          }
-          break;
-
-        case 'embed':
-//          var_dump($field_val);
-          $dimensions = array();
-          if ( ! empty( $settings['embed-width'] ) ) {
-            $dimensions['width'] = $settings['embed-width'];
-          }
-          if ( ! empty( $settings['embed-height'] ) ) {
-            $dimensions['height'] = $settings['embed-height'];
-          }
-
-          $content = wp_oembed_get( $field_val, $dimensions );
-          break;
-
-        case 'date':
-          if ( is_numeric( $field_val ) ) {
-            $content = date( $settings['date-format'], $field_val );
-          } else {
-            $content = $field_val;
-          }
-          $content = '<time datetime="' . $content . '">' . $content . '</time>';
-          break;
-
-        case 'number':
-          $content = @number_format( $field_val, $settings['number-decimals'], $settings['number-decimal-char'], $settings['number-thousands-sep'] );
-          break;
-
-        case 'group': // Multi select? Multi check? Or a group of fields?
-          if ( is_array( maybe_unserialize( $field_val ) ) ) {
-            switch ( TRUE ) {
-              case empty( $settings['group-joiner'] ):
-              case $settings['group-joiner'] === 'linebreak';
-                $content = '<p>' . implode( '</p><p>', $field_val ) . '</p>';
-                break;
-              case $settings['group-joiner'] === 'comma':
-                $content = '<span>' . implode( '</span>, <span>', $field_val ) . '</span>';
-                break;
+              $content .= '<img src="' . esc_url(bfi_thumb( $field_val )) . '">';
+            } else {
+              $content .= '<img src="' .esc_url($field_val) . '">';
             }
-          } else {
-            $content = $field_val;
-          }
-          break;
+            break;
 
-        case 'acf_repeater':
-          $content = $field_val;
+          case 'embed':
+//          var_dump($field_val);
+            $dimensions = array();
+            if ( ! empty( $field_info->embed_width ) ) {
+              $dimensions['width'] = $field_info->embed_width;
+            }
+            if ( ! empty( $field_info->embed_height ) ) {
+              $dimensions['height'] = $field_info->embed_height;
+            }
 
-          break;
+            $content .= wp_oembed_get( esc_url($field_val), $dimensions );
+            break;
 
-        case 'text':
-        default:
-          $content = ( ! empty( $settings['text-paras'] ) && $settings['text-paras'] === 'yes' ) ? wpautop( $field_val ) : $field_val;
-          if ( empty( $settings['process-shortcodes'] ) || $settings['process-shortcodes'] === 'process' ) {
-            $content = do_shortcode( $content );
-          } else {
-            $content = strip_shortcodes( $content );
-          }
+          case 'date':
+            if ( is_numeric( $field_val ) ) {
+              $contentn = date( $field_info->date_format, $field_val );
+            } else {
+              $contentn = $field_val;
+            }
+            $content .= '<time datetime="' . $contentn . '">' . $contentn . '</time>';
+            break;
 
-          break;
+          case 'number':
+            $content .= @number_format( $field_val, $field_info->number_decimals, $field_info->number_decimal_char, $field_info->number_thousands_sep );
+            break;
 
+          case 'group': // Multi select? Multi check? Or a group of fields?
+            if ( is_array( maybe_unserialize( $field_val ) ) ) {
+
+              switch ( $field_info->field_creator ) {
+                case 'toolsettypes' :
+                  $ts_vals = array();
+                  foreach ( $field_val as $k => $v ) {
+                    $ts_vals[] = $v[0];
+                  }
+                  $field_val = $ts_vals;
+                  break;
+                case 'acf':
+                  break;
+                case 'unknown':
+                  break;
+
+              }
+              switch ( TRUE ) {
+                case empty( $field_info->group_joiner ):
+                case $field_info->group_joiner === 'linebreak';
+                  $content .= '<p>' . implode( '</p><p>', $field_val ) . '</p>';
+                  break;
+                case $field_info->group_joiner === 'comma':
+                  $content .= '<span>' . implode( '</span>, <span>', $field_val ) . '</span>';
+                  break;
+                case $field_info->group_joiner === 'ulist':
+
+                  $content .= '<ul><li>' . implode( '</li><li>', $field_val ) . '</li></ul>';
+                  break;
+              }
+            } else {
+              $content .= $field_val;
+            }
+            break;
+
+          case
+          'acf_repeater':
+            $content .= $field_val;
+
+            break;
+
+          case 'text':
+          default:
+            $contentt = ( ! empty( $field_info->text_paras ) && $field_info->text_paras === 'yes' ) ? wpautop( $field_val ) : $field_val;
+            if ( empty( $field_info->process_shortcodes ) || $field_info->process_shortcodes === 'process' ) {
+              $content .= do_shortcode( $contentt );
+            } else {
+              $content .= strip_shortcodes( $contentt );
+            }
+
+            break;
+
+
+        }
+        $content .= ( isset( $field_info->arc_fieldafter ) ? ArcFun::strip_tags($field_info->arc_fieldafter,'<br><p><strong><em><ul><ol><li><h1><h2><h3><h4><h5><h6>') : '' );
 
       }
 
       $prefix_image = '';
       $suffix_image = '';
       if ( ! empty( $settings['prefix-image'] ) ) {
-        $prefix_image = '<img src="' . $settings['prefix-image_src'] . '" class="arcaf-presuff-image prefix-image" width=' . $settings['ps-images-width'] . ' height=' . $settings['ps-images-height'] . ' >';
+        $prefix_image = '<img src="' . esc_url($settings['prefix-image_src']) . '" class="arcaf-presuff-image prefix-image" width=' . esc_attr($settings['ps-images-width']) . ' height=' . esc_attr($settings['ps-images-height']) . ' >';
       }
+
       if ( ! empty( $settings['suffix-image'] ) ) {
-        $suffix_image = '<img src="' . $settings['suffix-image_src'] . '" class="arcaf-presuff-image suffix-image" width=' . $settings['ps-images-width'] . ' height=' . $settings['ps-images-height'] . ' >';
+        $suffix_image = '<img src="' . esc_url($settings['suffix-image_src']) . '" class="arcaf-presuff-image suffix-image" width=' . esc_attr($settings['ps-images-width']) . ' height=' . esc_attr($settings['ps-images-height']) . ' >';
       }
 
 
@@ -2530,7 +2575,7 @@
       $suffix_text = ! empty( $settings['suffix-text'] ) ? '<span class="arcaf-suffix-text">' . $settings['suffix-text'] . '</span>' : '';
       $content     = $prefix_image . $prefix_text . $content . $suffix_text . $suffix_image;
       if ( ! empty( $settings['link-field'] ) ) {
-        $content = '<a href="' . do_shortcode( $settings['link-field'] ) . '" target="' . $settings['link-behaviour'] . '">' . $content . '</a>';
+        $content = '<a href="'.($settings['link-behaviour']==='email'?'mailto:':'') . esc_url(arc_get_table_field_value( ArcFun::extract_table_field($settings['link-field'])) ) . '" target="' . esc_attr($settings['link-behaviour']==='email'?'_self':$settings['link-behaviour']) . '">' . $content . '</a>';
       }
 
 
@@ -2542,7 +2587,21 @@
       return $panel_def_cfield;
     }
 
+    /**
+     * @return bool
+     */
     static function is_bb_active() {
       return ( class_exists( 'FLBuilderModel' ) && ( FLBuilderModel::is_builder_active() || isset( $_GET['fl_builder'] ) ) );
     }
+
+    /**
+     * @param        $string
+     * @param string $tags
+     *
+     * @return string
+     */
+    static function strip_tags($string,$tags='<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6>'){
+      return strip_tags($string,$tags);
+    }
+
   }

@@ -33,14 +33,15 @@
           'title'  => '',
           'fields' => array(
             'address' => array(
-              'type'        => 'textarea',
-              'rows'        => '3',
-              'label'       => __( 'Address', 'pzarchitect' ),
-              'placeholder' => __( '1 Parliament Dr, Canberra ACT 2600', 'pzarchitect' ),
+              'type'        => 'select',
+              'multiple'=>true,
+              'label'       => __( 'Address fields', 'pzarchitect' ),
+              'placeholder' => __( 'Select fields for address', 'pzarchitect' ),
               'preview'     => array(
                 'type' => 'refresh',
               ),
-              'connections' => array( 'custom_field' ),
+              'options'=>'ArcFun::get_all_table_fields_flat'
+//              'connections' => array( 'custom_field' ),
             ),
             'height'  => array(
               'type'        => 'text',

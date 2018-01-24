@@ -46,48 +46,30 @@
             'title'  => 'General',
             'fields' => array(
               // Section Fields
-              'field'      => array(
-                'type'        => 'textarea',
-                'rows'        => '3',
-                'label'       => __( 'Field', 'pzarchitect' ),
-                'placeholder' => __( 'Select a field or fields', 'pzarchitect' ),
-                'preview'     => array(
+              'fieldset' => array(
+                //                 this is easier but doesn't allow for multiple movable selections. :/
+                'type'         => 'form',
+                'label'        => __( 'Field', 'pzarchitect' ),
+                'placeholder'  => __( 'Select fields to show', 'pzarchitect' ),
+                'multiple'     => TRUE,
+                'form'         => 'arc_fieldset',
+                'preview_text' => 'arc_fieldname',
+                'preview'      => array(
                   'type' => 'refresh',
                 ),
-                'connections' => array( 'custom_field' ),
               ),
-              'field-type' => array(
-                'label'   => __( 'Field type', 'pzarchitect' ),
-                'type'    => 'select',
-                'default' => 'text',
-                'options' => array(
-                  'text'            => __( 'Text', 'pzarchitect' ),
-                  'image'           => __( 'Image', 'pzarchitect' ),
-                  'date'            => __( 'Date', 'pzarchitect' ),
-                  'number'          => __( 'Number', 'pzarchitect' ),
-                  'embed'           => __( 'Embed URL', 'pzarchitect' ),
-                  'group'           => __( 'Multi select/checkboxes', 'pzarchitect' ), // WTF is a group??
-                  //'acf-repeater' => _('ACF Repeater'pzarchitect),
-                ),
-                'toggle'  => array(
-                  'date'   => array(
-                    'sections' => array( 'dates' ),
-                  ),
-                  'number' => array(
-                    'sections' => array( 'numbers' ),
-                  ),
-                  'embed'  => array(
-                    'sections' => array( 'embeds' ),
-                  ),
-                  'group'  => array(
-                    'sections' => array( 'groups' ),
-                  ),
-                  'text'  => array(
-                    'sections' => array( 'texts' ),
-                  ),
-                ),
-              ),
-              'name'       => array(
+
+              //                              'field'      => array(
+              //                'type'        => 'textarea',
+              //                'rows'        => '3',
+              //                'label'       => __( 'Field', 'pzarchitect' ),
+              //                'placeholder' => __( 'Select a field or fields', 'pzarchitect' ),
+              //                'preview'     => array(
+              //                  'type' => 'refresh',
+              //                ),
+              //                'connections' => array( 'custom_field' ),
+              //              ),
+              'name'     => array(
                 'label'       => __( 'Name', 'pzarchitect' ),
                 'type'        => 'text',
                 'default'     => '',
@@ -123,93 +105,6 @@
 
             ),
           ),
-          'dates'    => array(
-            // Section
-            'title'  => 'Dates',
-            'fields' => array(
-
-              'date-format' => array(
-                'label'       => __( 'Date format', 'pzarchitect' ),
-                'type'        => 'text',
-                'size'        => 10,
-                'default'     => 'l, F j, Y g:i a',
-                'description' => __( '<br><a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>Visit here for information on formatting date and time</a>', 'pzarchitect' ),
-              ),
-            ),
-          ),
-          'groups'   => array(
-            // Section
-            'title'  => 'Multi',
-            'fields' => array(
-
-              'group-joiner' => array(
-                'label'   => __( 'Joiner', 'pzarchitect' ),
-                'type'    => 'select',
-                'default' => 'linebreak',
-                'options' => array(
-                  'linebreak' => __('Line break','pzarchitect'),
-                  'comma' => __('Comma','pzarchitect')
-                ),
-              ),
-            ),
-          ),
-          'texts'   => array(
-            // Section
-            'title'  => 'Text',
-            'fields' => array(
-
-              'text-paras' => array(
-                'label'   => __( 'Add paragraph breaks', 'pzarchitect' ),
-                'type'    => 'select',
-                'default' => 'no',
-                'options' => array(
-                  'no' => __('No','pzarchitect'),
-                  'yes' => __('Yes','pzarchitect')
-                ),
-              ),
-            ),
-          ),
-          'embeds'   => array(
-            // Section
-            'title'  => 'Embed URLs',
-            'fields' => array(
-
-              'embed-width'  => array(
-                'label'       => __( 'Width', 'pzarchitect' ),
-                'type'        => 'unit',
-                'default'     => '',
-                'description' => 'px',
-              ),
-              'embed-height' => array(
-                'label'       => __( 'Height', 'pzarchitect' ),
-                'type'        => 'unit',
-                'default'     => '',
-                'description' => 'px',
-              ),
-            ),
-          ),
-          'numbers'  => array(
-            // Section
-            'title'  => 'Numbers',
-            'fields' => array(
-              'number-decimals'            => array(
-                'label' => __( 'Decimals places', 'pzarchitect' ),
-                'type'  => 'unit',
-              ),
-              'number-decimal-char'        => array(
-                'label'   => __( 'Decimal point character', 'pzarchitect' ),
-                'type'    => 'text',
-                'size'    => 1,
-                'default' => '.',
-              ),
-              'number-thousands-separator' => array(
-                'label'   => __( 'Thousands separator', 'pzarchitect' ),
-                'type'    => 'text',
-                'size'    => 1,
-                'default' => ',',
-              ),
-            ),
-          ),
           'links'    => array(
             // Section
             'title'  => 'Links',
@@ -217,19 +112,21 @@
 
               'link-field'     => array(
                 'label'       => __( 'Link field', 'pzarchitect' ),
-                'type'        => 'textarea',
+                'type'        => 'select',
                 'rows'        => 3,
                 'default'     => '',
-                'connections' => array( 'custom_field' ),
-                'placeholder' => 'Select a field that contains URLs you want to use as the link',
+                'options'     => 'ArcFun::get_all_table_fields_flat',
+                //                'connections' => array( 'custom_field' ),
+                'placeholder' => 'Select a field that contains URL or email address you want to use as the link',
               ),
               'link-behaviour' => array(
                 'label'   => __( 'Open link in', 'pzarchitect' ),
                 'type'    => 'select',
-                'default' => '_self',
+                'default' => '_blank',
                 'options' => array(
                   '_self'  => __( 'Same tab', 'pzarchitect' ),
                   '_blank' => __( 'New tab', 'pzarchitect' ),
+                  'email' => __( 'Email', 'pzarchitect' ),
                 ),
               ),
             ),
@@ -339,3 +236,168 @@
     )
 
   );
+
+  FLBuilder::register_settings_form( 'arc_fieldset', array(
+    'title' => __( 'Fields', 'fl-builder' ),
+    'tabs'  => array(
+      'general' => array(
+        'title'    => __( 'Fields', 'fl-builder' ),
+        'sections' => array(
+          'general' => array(
+            'title'  => '',
+            'fields' => array(
+
+              'arc_fieldbefore' => array(
+                'type'        => 'text',
+                'label'       => __( 'Before', 'fl-builder' ),
+                'placeholder' => __( 'Text to show before this field', 'pzarchitect' ),
+                'description'=>__('Allowed HTML tags: '.esc_html('<br><p><strong><em><ul><ol><li><h1><h2><h3><h4><h5><h6>'),'pzarchitect')
+              ),
+              'arc_fieldname'   => array(
+                'type'    => 'select',
+                'label'   => __( 'Field', 'fl-builder' ),
+                'options' => 'ArcFun::get_all_table_fields_flat',
+              ),
+              'arc_fieldafter'  => array(
+                'type'        => 'text',
+                'label'       => __( 'After', 'fl-builder' ),
+                'placeholder' => __( 'Text to show after this field', 'pzarchitect' ),
+                'description'=>__('Allowed HTML tags: '.esc_html('<br><p><strong><em><ul><ol><li><h1><h2><h3><h4><h5><h6>'),'pzarchitect')
+              ),
+              'field_type'      => array(
+                'label'   => __( 'Field type', 'pzarchitect' ),
+                'type'    => 'select',
+                'default' => 'text',
+                'options' => array(
+                  'text'   => __( 'Text', 'pzarchitect' ),
+                  'image'  => __( 'Image', 'pzarchitect' ),
+                  'date'   => __( 'Date', 'pzarchitect' ),
+                  'number' => __( 'Number', 'pzarchitect' ),
+                  'embed'  => __( 'Embed URL', 'pzarchitect' ),
+                  'group'  => __( 'Multi select/checkboxes', 'pzarchitect' ), // WTF is a group??
+                  //'acf-repeater' => _('ACF Repeater'pzarchitect),
+                ),
+                'toggle'  => array(
+                  'date'   => array(
+                    'sections' => array( 'dates' ),
+                  ),
+                  'number' => array(
+                    'sections' => array( 'numbers' ),
+                  ),
+                  'embed'  => array(
+                    'sections' => array( 'embeds' ),
+                  ),
+                  'group'  => array(
+                    'sections' => array( 'groups' ),
+                  ),
+                  'text'   => array(
+                    'sections' => array( 'texts' ),
+                  ),
+                ),
+              ),
+              'field_creator'   => array(
+                'label'       => __( 'Field creator', 'pzarchitect' ),
+                'description' => __( 'If this is a custom field, please indicate how it was created', 'pzarchitect' ),
+                'type'        => 'select',
+                'default'     => '',
+                'options'     => array(
+                  ''             => __( '', 'pzarchitect' ),
+                  'acf'          => __( 'Advanced Custom Fields', 'pzarchitect' ),
+                  'toolsettypes' => __( 'Toolset Types', 'pzarchitect' ),
+                  'unknown'      => __( 'Unknown', 'pzarchitect' ),
+                ),
+              ),
+            ),
+          ),
+          'dates'   => array(
+            // Section
+            'title'  => 'Dates',
+            'fields' => array(
+
+              'date_format' => array(
+                'label'       => __( 'Date format', 'pzarchitect' ),
+                'type'        => 'text',
+                'size'        => 10,
+                'default'     => 'l, F j, Y g:i a',
+                'description' => __( '<br><a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>Visit here for information on formatting date and time</a>', 'pzarchitect' ),
+              ),
+            ),
+          ),
+          'groups'  => array(
+            // Section
+            'title'  => 'Multi',
+            'fields' => array(
+
+              'group_joiner' => array(
+                'label'   => __( 'Joiner', 'pzarchitect' ),
+                'type'    => 'select',
+                'default' => 'linebreak',
+                'options' => array(
+                  'linebreak' => __( 'Line break', 'pzarchitect' ),
+                  'comma'     => __( 'Comma', 'pzarchitect' ),
+                  'ulist'     => __( 'List', 'pzarchitect' ),
+                ),
+              ),
+            ),
+          ),
+          'texts'   => array(
+            // Section
+            'title'  => 'Text',
+            'fields' => array(
+
+              'text_paras' => array(
+                'label'   => __( 'Add paragraph breaks', 'pzarchitect' ),
+                'type'    => 'select',
+                'default' => 'no',
+                'options' => array(
+                  'no'  => __( 'No', 'pzarchitect' ),
+                  'yes' => __( 'Yes', 'pzarchitect' ),
+                ),
+              ),
+            ),
+          ),
+          'embeds'  => array(
+            // Section
+            'title'  => 'Embed URLs',
+            'fields' => array(
+
+              'embed_width'  => array(
+                'label'       => __( 'Width', 'pzarchitect' ),
+                'type'        => 'unit',
+                'default'     => '',
+                'description' => 'px',
+              ),
+              'embed_height' => array(
+                'label'       => __( 'Height', 'pzarchitect' ),
+                'type'        => 'unit',
+                'default'     => '',
+                'description' => 'px',
+              ),
+            ),
+          ),
+          'numbers' => array(
+            // Section
+            'title'  => 'Numbers',
+            'fields' => array(
+              'number_decimals'            => array(
+                'label' => __( 'Decimals places', 'pzarchitect' ),
+                'type'  => 'unit',
+              ),
+              'number_decimal_char'        => array(
+                'label'   => __( 'Decimal point character', 'pzarchitect' ),
+                'type'    => 'text',
+                'size'    => 1,
+                'default' => '.',
+              ),
+              'number_thousands_separator' => array(
+                'label'   => __( 'Thousands separator', 'pzarchitect' ),
+                'type'    => 'text',
+                'size'    => 1,
+                'default' => ',',
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  ) );

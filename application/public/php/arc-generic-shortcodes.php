@@ -9,6 +9,7 @@
   add_shortcode( 'arcdummytext', 'dummy_text' ); // A test shortcode
   add_shortcode( 'arc_hasmedia', 'has_media' );
   add_shortcode( 'arccf', 'arc_get_table_field_value' );
+  add_shortcode( 'arc_post_title', 'pzarc_post_title' );
 
   function dummy_text() {
     $dummy_text = '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id interdum velit laoreet id donec ultrices tincidunt arcu. Facilisis magna etiam tempor orci eu. Ullamcorper sit amet risus nullam eget felis eget nunc. Id nibh tortor id aliquet lectus proin nibh nisl. Urna condimentum mattis pellentesque id nibh tortor id aliquet lectus. Convallis posuere morbi leo urna molestie at elementum eu facilisis. Augue interdum velit euismod in pellentesque massa placerat duis ultricies. Eleifend donec pretium vulputate sapien nec sagittis. Adipiscing commodo elit at imperdiet dui accumsan sit amet nulla. Volutpat sed cras ornare arcu. Et magnis dis parturient montes. Nibh ipsum consequat nisl vel pretium lectus. Nulla porttitor massa id neque aliquam vestibulum morbi. Nulla aliquet enim tortor at. Interdum posuere lorem ipsum dolor sit. Sem et tortor consequat id. Ullamcorper sit amet risus nullam eget felis eget. Interdum velit laoreet id donec ultrices. Diam phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet.</p>';
@@ -74,20 +75,28 @@
     $field = esc_html( esc_sql( $atts['field'] ) );
     global $wpdb, $post;
 
-    // Get key field for linking. This will not work if multiple key fields...
-    $pkey = $wpdb->get_results( "SHOW KEYS FROM {$table} WHERE Key_name = 'PRIMARY'" );
-    if ( ! isset( $pkey[0] ) ) {
-      return "No primary key found for table {$table}. Check table name is valid.";
-    } else {
-      $id_field = $pkey[0]->Column_name;
-    }
+    if ($table === 'customfield') {
+      return get_post_meta($post->ID,$field,true);
+    }  else {
+      // Get key field for linking. This will not work if multiple key fields...
+      $pkey = $wpdb->get_results( "SHOW KEYS FROM {$table} WHERE Key_name = 'PRIMARY'" );
+      if ( ! isset( $pkey[0] ) ) {
+        return "No primary key found for table {$table}. Check table name is valid.";
+      } else {
+        $id_field = $pkey[0]->Column_name;
+      }
 
-    unset( $results );
-    $results = $wpdb->get_results( "SELECT * FROM {$table} WHERE {$id_field} = {$post->ID}", OBJECT );
+      unset( $results );
+      $results = $wpdb->get_results( "SELECT * FROM {$table} WHERE {$id_field} = {$post->ID}", OBJECT );
 
-    if ( ! empty( $results[0] ) && isset( $results[0]->$field ) ) {
-      return $results[0]->$field;
-    } else {
-      return NULL;
+      if ( ! empty( $results[0] ) && isset( $results[0]->$field ) ) {
+        return $results[0]->$field;
+      } else {
+        return NULL;
+      }
     }
+  }
+
+  function pzarc_post_title($atts=array(),$content=null){
+    return sanitize_title_with_dashes(get_the_title());
   }
