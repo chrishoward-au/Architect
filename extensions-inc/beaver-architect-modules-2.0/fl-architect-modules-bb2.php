@@ -51,38 +51,38 @@ require_once FL_ARCHITECT_BB2_MODULE_DIR . 'classes/class-fl-architect-modules-l
    * HOOKS
    */
 
-  add_action( 'fl_page_data_add_properties', function () {
-
-    FLPageData::add_post_property( 'arc_any_field', array(
-      'label'  => 'Any table field',
-      'group'  => 'general',
-      'type'   => 'custom_field',
-      'getter' => 'arc_any_field_connection_getter',
-    ) );
-
-    FLPageData::add_post_property_settings_fields( 'arc_any_field', array(
-      'arc_field' => array(
-        'type'    => 'select',
-        'label'   => 'Choose field',
-        'options' => 'arc_get_any_fields',
-      ),
-    ) );
-  } );
-
-  add_action( 'fl_page_data_add_properties', function () {
-
-    FLPageData::add_post_property( 'arc_any_cfield', array(
-      'label'  => 'Any custom field',
-      'group'  => 'general',
-      'type'   => 'custom_field',
-      'getter' => 'arc_any_cfield_connection_getter',
-    ) );
-
-    FLPageData::add_post_property_settings_fields( 'arc_any_cfield', array(
-      'arc_cfield' => array(
-        'type'    => 'select',
-        'label'   => 'Choose field',
-        'options' => 'arc_get_any_cfields',
-      ),
-    ) );
-  } );
+//  add_action( 'fl_page_data_add_properties', function () {
+//
+//    FLPageData::add_post_property( 'arc_any_field', array(
+//      'label'  => 'Any table field',
+//      'group'  => 'general',
+//      'type'   => 'custom_field',
+//      'getter' => 'arc_any_field_connection_getter',
+//    ) );
+//
+//    FLPageData::add_post_property_settings_fields( 'arc_any_field', array(
+//      'arc_field' => array(
+//        'type'    => 'select',
+//        'label'   => 'Choose field',
+//        'options' => 'arc_get_any_fields',
+//      ),
+//    ) );
+//  } );
+//
+//  add_action( 'fl_page_data_add_properties', function () {
+//
+//    FLPageData::add_post_property( 'arc_any_cfield', array(
+//      'label'  => 'Any custom field',
+//      'group'  => 'general',
+//      'type'   => 'custom_field',
+//      'getter' => 'arc_any_cfield_connection_getter',
+//    ) );
+//
+//    FLPageData::add_post_property_settings_fields( 'arc_any_cfield', array(
+//      'arc_cfield' => array(
+//        'type'    => 'select',
+//        'label'   => 'Choose field',
+//        'options' => 'arc_get_any_cfields',
+//      ),
+//    ) );
+//  } );

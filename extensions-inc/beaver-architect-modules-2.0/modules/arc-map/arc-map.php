@@ -27,21 +27,30 @@
   FLBuilder::register_module( 'ArcMapModule', array(
     'general' => array(
       'title'       => __( 'General', 'pzarchitect' ),
-      'description' => __( 'Maps Extended is a clone of the BB Maps module that supports processing of any shortcode in the Address field.' ),
+      'description' => __( 'Maps Extended is a clone of the BB Maps module that adds the option to use fields from any table.' ),
       'sections'    => array(
         'general' => array(
           'title'  => '',
           'fields' => array(
-            'address' => array(
+            'address'       => array(
+              'type'          => 'textarea',
+              'rows'			=> '3',
+              'label'         => __( 'Address', 'fl-builder' ),
+              'placeholder'   => __( '1865 Winchester Blvd #202 Campbell, CA 95008', 'fl-builder' ),
+              'preview'       => array(
+                'type'            => 'refresh',
+              ),
+              'connections'	=> array( 'custom_field' ),
+            ),
+            'other_address' => array(
               'type'        => 'select',
               'multiple'=>true,
-              'label'       => __( 'Address fields', 'pzarchitect' ),
-              'placeholder' => __( 'Select fields for address', 'pzarchitect' ),
+              'label'       => __( 'Other address field', 'pzarchitect' ),
+              'description' => '<br>'.__( 'Select other fields for address that are not selectable in the main field', 'pzarchitect' ),
               'preview'     => array(
                 'type' => 'refresh',
               ),
               'options'=>'ArcFun::get_all_table_fields_flat'
-//              'connections' => array( 'custom_field' ),
             ),
             'height'  => array(
               'type'        => 'text',
