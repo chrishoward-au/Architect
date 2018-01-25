@@ -83,13 +83,16 @@ For support, please send an email to support@pizazzwp.com
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
 = 1.11.0
-* ADDED: Any field from any table to list of custom fields
-* ADDED: Any field from any table to list of link fields
-* ADDED: Option to not use font family in Typography in Blueprints editor. (If you want to mange all font families from CSS)
+Beaver
+* ADDED: Beaver module Any Fields to display any field from any table
+* ADDED: Custom version of Beaver Sidebar module can display different widget areas on different devices, or none at all
+* ADDED: Custom version of Beaver Maps module that allows you to use any fields
+
+Other
+* ADDED: Any field from any table to list of custom fields and link fields
+* ADDED: Option to not use font family in Typography in Blueprints editor. (If you want to manage all font families from CSS)
 * ADDED: Option to not use Google fonts in Typography in Blueprints editor. This can improve loading time of Blueprint editor.
 * ADDED: Option to use caption as image alt text (default is alt text or title if no alt text)
-* ADDED: Custom version of Beaver Sidebar module can display different widget areas on different devices, or none at all
-* ADDED: Custom version of Maps module that processes shortcodes in the Address field. Useful with Architect's any field shortcode (arccf).
 * ADDED: Option to remove shortcodes from Body text
 * ADDED: Affiliates menu item
 * ADDED: Table prefix to Tools > Sysinfo
@@ -100,7 +103,6 @@ For support, please send an email to support@pizazzwp.com
 * CHANGED: Account info now shows affiliate info.
 * CHANGED: Image creation now uses Imagick by default if installed, which means it keeps Exif information (unless you use another plugin that has already stripped it out).
 
-* UPDATED: Freemius SDK to 1.2.3
 * UPDATED: Freemius SDK to 1.2.4
 
 * FIXED: Was using an img tag even when no image.
