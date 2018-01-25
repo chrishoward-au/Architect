@@ -3,6 +3,39 @@
 ## Notes:
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
+## 1.11.0 - 27 Jan 2018
+### Beaver Builder related enhancements
+* ADDED: Beaver module Any Fields to display any field from any table
+* ADDED: Custom version of Beaver Sidebar module can display different widget areas on different devices, or none at all
+* ADDED: Custom version of Beaver Maps module that allows you to use any fields
+* FIXED: Default content in BB editor would break if no preview. Displays dummy text instead.
+
+### Other
+* ADDED: Any field from any table to list of custom fields and link fields
+* ADDED: Option to not use font family in Typography in Blueprints editor. (If you want to manage all font families from CSS)
+* ADDED: Option to not use Google fonts in Typography in Blueprints editor. This can improve loading time of Blueprint editor.
+* ADDED: Option to use caption as image alt text (default is alt text or title if no alt text)
+* ADDED: Option to remove shortcodes from Body text
+* ADDED: Affiliates menu item
+* ADDED: Table prefix to Tools > Sysinfo
+* ADDED: Option to set image quality (compression)
+* ADDED: Option to disable saving and copying of images.
+* ADDED: Option to add copyright to images
+
+* CHANGED: Account info now shows affiliate info.
+* CHANGED: Image creation now uses Imagick by default if installed, which means it keeps Exif information (unless you use another plugin that has already stripped it out).
+
+* UPDATED: Freemius SDK to 1.2.4
+
+* FIXED: Was using an img tag even when no image.
+* FIXED: Was carrying forward image data in the loop
+* FIXED: Showing broken images when no featured image
+* FIXED: Set show_in_rest to false in custom post types (Snippets, Testimonials, Showcases, Blueprints) to ensure they don't use Gutenberg editor
+* FIXED: Blueprints in Blueprints using parent Blueprint CSS
+* FIXED: Gutenberg content not displaying in Blueprints in Blueprints
+* FIXED: Gutenberg html comments skewing paragraph counting when forming excerpts by paragraphs
+* FIXED: Tools > Sysinfo always showing Imagick disabled
+
 ## 1.10.7  : 24 Nov 2017
 * ADDED: Image Alt tag will automatically use image title if no Alt tag set
 * FIXED: Error on plugins list page on wpms sites

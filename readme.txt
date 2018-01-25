@@ -82,11 +82,12 @@ For support, please send an email to support@pizazzwp.com
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
-= 1.11.0
-Beaver
+= 1.11.0 - 27 Jan 2018
+Beaver Builder related enhancements
 * ADDED: Beaver module Any Fields to display any field from any table
 * ADDED: Custom version of Beaver Sidebar module can display different widget areas on different devices, or none at all
 * ADDED: Custom version of Beaver Maps module that allows you to use any fields
+* FIXED: Default content in BB editor would break if no preview. Displays dummy text instead.
 
 Other
 * ADDED: Any field from any table to list of custom fields and link fields
@@ -112,7 +113,6 @@ Other
 * FIXED: Blueprints in Blueprints using parent Blueprint CSS
 * FIXED: Gutenberg content not displaying in Blueprints in Blueprints
 * FIXED: Gutenberg html comments skewing paragraph counting when forming excerpts by paragraphs
-* FIXED: Default content in BB editor would break if no preview. Displays dummy text instead.
 * FIXED: Tools > Sysinfo always showing Imagick disabled
 
 = 1.10.7  : 24 Nov 2017
