@@ -171,8 +171,11 @@
 //      $pzarc_overrides['terms'] = $atts['terms'];
 //    }
 
-    foreach ($atts as $key => $value) {
-      $pzarc_overrides[$key] = $atts[$key];
+
+    if (is_array($atts) && !empty($atts)) {
+      foreach ( $atts as $key => $value ) {
+        $pzarc_overrides[ $key ] = $atts[ $key ];
+      }
     }
 
     $tablet_bp            = isset( $atts['tablet'] ) ? $atts['tablet'] : NULL;
@@ -328,7 +331,7 @@
     if ( empty( $blueprint ) && ( $is_shortcode && ( empty( $_architect_options['architect_default_shortcode_blueprint'] ) ) && empty( $_architect_options['architect_replace_wpgalleries'] ) ) ) {
 
       // TODO: Should we make this use a set of defaults. prob an excerpt grid
-      echo '<p class="message-warning">Shortcode has no Blueprint specified.</p>';
+      echo '<p class="message-warning">Architect shortcode has no Blueprint specified.</p>';
 
     } else {
 
