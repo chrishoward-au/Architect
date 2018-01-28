@@ -265,7 +265,8 @@
          * Filter term click
          */
         jQuery('{$blueprint_id} .filter-button-group').on( 'click', 'button', function(e) {
-          setSelected(this,false)
+          setSelected(this,false);
+          return false;
         });
   
      
@@ -296,9 +297,9 @@
           defaultsSet = filterValue.split('.');
      //     for (let taxterm of defaultsSet) {
 //          for each (var taxterm in defaultsSet ) {
-          console.log(defaultsSet);
+//          console.log(defaultsSet);
           defaultsSet.each(function() {
-            console.log(this);
+//            console.log(this);
             var taxterm = this;
             jQuery( '{$blueprint_id} .filter-button-group [data-filter=\".' + taxterm + '\"]').addClass('selected') ;
           }
@@ -309,6 +310,7 @@
           * setSelected
           */
         function setSelected(t) {
+ //         console.log(t);
           if (jQuery(t).hasClass('selected')) {
             jQuery(t).removeClass('selected');
           } else {
@@ -331,6 +333,7 @@
           } else {
             var selectedTerms = jQuery('{$blueprint_id} .filter-button-group .selected');
             var filterValue = concatValues(selectedTerms);
+  //          console.log(selectedTerms,filterValue);
             setGutterGridOn();
             container.isotope({ filter: filterValue });
          }
