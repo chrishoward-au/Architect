@@ -331,7 +331,7 @@
     if ( empty( $blueprint ) && ( $is_shortcode && ( empty( $_architect_options['architect_default_shortcode_blueprint'] ) ) && empty( $_architect_options['architect_replace_wpgalleries'] ) ) ) {
 
       // TODO: Should we make this use a set of defaults. prob an excerpt grid
-      echo '<p class="message-warning">Architect shortcode has no Blueprint specified.</p>';
+      echo '<p class="message-warning">Architect shortcode has no Blueprint specified. Usage [architect blueprint="blueprint short name"]</p>';
 
     } else {
 
