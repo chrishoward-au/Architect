@@ -28,10 +28,13 @@
      *
      */
     function init() {
-      // @TODO: verify this blocks non admins!
-      if ( ! is_admin() || ! current_user_can( 'install_plugins' ) ) {
+      if ( ! is_admin()  ) { // 1.11.0 Block only not admin
         return;
       }
+
+      // 1.11.0: Moved so all users can use it!
+      require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php' );
+
 
       if ( ! class_exists( 'SysInfo' ) ) {
         require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/WordPress-SysInfo/sysinfo.php' );
@@ -42,42 +45,44 @@
 
         // TODO: Add an alternativeArchitect Admin screen.
         add_action( 'admin_menu', array( $this, 'admin_menu_no_redux' ) );
-        require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php' );
 
         return;
 
       } else {
 
-        add_action( 'admin_head', array( $this, 'admin_head' ) );
-        add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+        if ( current_user_can( 'manage_options' ) ) { // 1.11.0 So featured vid shows in post editor for all users
 
-        add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue' ) );
-        add_filter( 'admin_body_class', array( &$this, 'add_admin_body_class' ) );
+          add_action( 'admin_head', array( $this, 'admin_head' ) );
+          add_action( 'admin_menu', array( $this, 'admin_menu' ) );
+
+          add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue' ) );
+          add_filter( 'admin_body_class', array( &$this, 'add_admin_body_class' ) );
 
 
-        // TODO: Make up some easily editable panel defs - prob have to be a custom content type
-        //       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-def-editor.php';
+          // TODO: Make up some easily editable panel defs - prob have to be a custom content type
+          //       require_once PZARC_PLUGIN_PATH . '/admin/php/arc-options-def-editor.php';
 
-        require_once PZARC_PLUGIN_APP_PATH . 'admin/php/class_arc_blueprints_designer.php';
-        require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-save-process.php';
+          require_once PZARC_PLUGIN_APP_PATH . 'admin/php/class_arc_blueprints_designer.php';
+          require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-save-process.php';
+
+        }
 
         //TODO:     require_once PZARC_PLUGIN_PATH . '/admin/arc-widget.php';
-
         // This one is really only needed on posts, pages and snippets, so could conditionalise its load
         require_once PZARC_PLUGIN_APP_PATH . 'admin/php/class_arc_misc_metaboxes.php';
         require_once PZARC_PLUGIN_APP_PATH . 'shared/thirdparty/php/redux-custom-fields/loader.php';
         require_once PZARC_PLUGIN_APP_PATH . 'shared/thirdparty/php/redux-extensions/loader.php';
 
-        $misc_metaboxes    = new arc_Misc_metaboxes();
-        $content_blueprint = new arc_Blueprints_Designer();
+        $misc_metaboxes = new arc_Misc_metaboxes();
+        if ( current_user_can( 'manage_options' ) ) { // 1.11.0 So featured vid shows in post editor for all users
+          $content_blueprint = new arc_Blueprints_Designer();
 
-        require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-options.php';
-        require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-options-styling.php';
-
-        if ( ( function_exists( 'arc_fs' ) && arc_fs()->is__premium_only() ) || defined( 'PZARC_PRO' ) ) {
-          require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-options-actions.php';
+          if ( ( function_exists( 'arc_fs' ) && arc_fs()->is__premium_only() ) || defined( 'PZARC_PRO' ) ) {
+            require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-options-actions.php';
+          }
         }
-        require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/pzwp-focal-point/pzwp-focal-point.php' );
+        require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-options-styling.php';
+        require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-options.php';
       }
     }
 
@@ -141,7 +146,7 @@
       if ( strpos( ( 'X' . $screen->id ), 'arc-' ) > 0 ) {
         wp_enqueue_style( 'dashicons' );
         wp_enqueue_script( 'jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array( 'jquery' ), PZARC_VERSION, TRUE );
-        wp_enqueue_script('jquery-cookie');
+        wp_enqueue_script( 'jquery-cookie' );
 
         add_filter( 'post_row_actions', 'pzarc_duplicate_post_link', 10, 2 );
         add_filter( 'page_row_actions', 'pzarc_duplicate_post_link', 10, 2 );
@@ -206,8 +211,8 @@
 
         add_submenu_page( 'pzarc', __( 'Tools', 'pzarchitect' ), '<span class="dashicons dashicons-hammer size-small"></span>' . __( 'Tools', 'pzarchitect' ), 'edit_others_pages', 'pzarc_tools', array( $this, 'pzarc_tools', ) );
         add_submenu_page( 'pzarc', __( 'Help & Support', 'pzarchitect' ), '<span class="dashicons dashicons-editor-help size-small"></span>' . __( 'Help & Support', 'pzarchitect' ), 'edit_others_pages', 'pzarc_support', array(
-          $this,
-          'pzarc_support',
+            $this,
+            'pzarc_support',
         ) );
 
         // Shift Help to the top
@@ -225,8 +230,8 @@
         }
         if ( $missing_support ) {
           add_submenu_page( 'pzarc', __( 'Help & Support', 'pzarchitect' ), '<span class="dashicons dashicons-editor-help size-small"></span>' . __( 'Help & Support', 'pzarchitect' ), 'edit_others_pages', 'pzarc_support', array(
-            $this,
-            'pzarc_support',
+              $this,
+              'pzarc_support',
           ) );
         }
       }
@@ -238,16 +243,16 @@
      */
     function admin_menu_no_redux() {
       global $pzarc_menu, $pizazzwp_updates;
-      if (!$pzarc_menu) {
-      $pzarc_menu = add_menu_page( 'About Architect', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
-        add_submenu_page(
-            'pzarc', 'Help & Support', '<span class="dashicons dashicons-editor-help size-small"></span>Help & Support', 'manage_options', 'pzarc_support', array($this,
-                                                                                                                                                                  'pzarc_support')
-        );
+      if ( ! $pzarc_menu ) {
+        $pzarc_menu = add_menu_page( 'About Architect', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
+        add_submenu_page( 'pzarc', 'Help & Support', '<span class="dashicons dashicons-editor-help size-small"></span>Help & Support', 'manage_options', 'pzarc_support', array(
+                $this,
+                'pzarc_support',
+            ) );
 
         global $submenu;
         // Shift those last  to the top
-        array_unshift($submenu[ 'pzarc' ], array_pop($submenu[ 'pzarc' ]));
+        array_unshift( $submenu['pzarc'], array_pop( $submenu['pzarc'] ) );
       }
 
     }
@@ -400,7 +405,7 @@
         <div class="icon32" id="icon-users">
             
         </div>
-        <h1 style="font-size:2.8rem;margin-bottom: 20px;font-weight:300"><img src="' . PZARC_PLUGIN_APP_URL . 'admin/assets/images/architect-logo.png" width="96" height="96" style="vertical-align:middle;">Architect content display framework</h1>
+        <h1 style="font-size:2.8rem;margin-bottom: 20px;font-weight:300"><img src="' . PZARC_PLUGIN_APP_URL . 'admin/assets/images/architect-logo.png" width="96" height="96" style="vertical-align:middle;">Architect content block builder</h1>
         ';
 
       if ( class_exists( 'HeadwayLayoutOptions' ) ) {
@@ -464,7 +469,7 @@
                 <button class="tabby-features" data-tab="#features">' . __( 'Features', 'pzarchitect' ) . '</button>
                 <button class="tabby-help" data-tab="#help">' . __( 'Support', 'pzarchitect' ) . '</button>
             </div>';
-
+echo '	<div class="tabby tabs-content">';
       include_once( 'admin/parts/admin-tabs-pane-about.php' );
       include_once( 'admin/parts/admin-tabs-pane-usage.php' );
       include_once( 'admin/parts/admin-tabs-pane-news.php' );
@@ -528,8 +533,8 @@
       // Get the next slug name
       $post_exists = array();
       $args        = array(
-        'post_status' => array( 'publish', 'draft' ),
-        'post_type'   => $post->post_type,
+          'post_status' => array( 'publish', 'draft' ),
+          'post_type'   => $post->post_type,
       );
       $i           = 1;
       do {
@@ -543,19 +548,19 @@
        * new post data array
        */
       $args = array(
-        'comment_status' => $post->comment_status,
-        'ping_status'    => $post->ping_status,
-        'post_author'    => $new_post_author,
-        'post_content'   => $post->post_content,
-        'post_excerpt'   => $post->post_excerpt,
-        'post_name'      => $new_slug,
-        'post_parent'    => $post->post_parent,
-        'post_password'  => $post->post_password,
-        'post_status'    => 'draft',
-        'post_title'     => __( '(DUPLICATE) ', 'pzarchitect' ) . $post->post_title,
-        'post_type'      => $post->post_type,
-        'to_ping'        => $post->to_ping,
-        'menu_order'     => $post->menu_order,
+          'comment_status' => $post->comment_status,
+          'ping_status'    => $post->ping_status,
+          'post_author'    => $new_post_author,
+          'post_content'   => $post->post_content,
+          'post_excerpt'   => $post->post_excerpt,
+          'post_name'      => $new_slug,
+          'post_parent'    => $post->post_parent,
+          'post_password'  => $post->post_password,
+          'post_status'    => 'draft',
+          'post_title'     => __( '(DUPLICATE) ', 'pzarchitect' ) . $post->post_title,
+          'post_type'      => $post->post_type,
+          'to_ping'        => $post->to_ping,
+          'menu_order'     => $post->menu_order,
       );
 
       /*
@@ -734,7 +739,7 @@
 			<!--Display Plugin Icon, Header, and Description-->
 			<div class = "icon32" id = "icon-users"><br></div>
         <div class="pzarc-about-box" >
-      <h1>Architect content display framework</h1>
+      <h1>Architect content block builder</h1>
 			
 			<h3>Architect successfully installed and activated.</h3>
 			</div></div>';
@@ -824,11 +829,11 @@
     if ( class_exists( 'HeadwayUpdaterAPI' ) && ! ( $pzarc_status !== FALSE && $pzarc_status == 'valid' ) ) {
 
       $updater = new HeadwayUpdaterAPI( array(
-        'slug'            => 'architect',
-        'path'            => plugin_basename( __FILE__ ),
-        'name'            => 'Architect',
-        'type'            => 'block',
-        'current_version' => PZARC_VERSION,
+          'slug'            => 'architect',
+          'path'            => plugin_basename( __FILE__ ),
+          'name'            => 'Architect',
+          'type'            => 'block',
+          'current_version' => PZARC_VERSION,
       ) );
     }
 
@@ -850,29 +855,29 @@
     $singular = $obj->labels->singular_name;
 
     $messages[ $post_type ] = array(
-      0  => '', // Unused. Messages start at index 1.
-      1  => ( ! in_array( $post_type, array(
-        'arc-blueprints',
-        'pz_testimonials',
-        'pz_snippets',
-      ) ) ? sprintf( __( $singular . ' updated. <a href="%s">View ' . strtolower( $singular ) . '</a>', 'pzarchitect' ), esc_url( get_permalink( $post_ID ) ) ) : __( $singular . ' updated', 'pzarchitect' ) ),
-      2  => __( 'Custom field updated.' ),
-      3  => __( 'Custom field deleted.' ),
-      4  => __( $singular . ' updated.' ),
-      5  => isset( $_GET['revision'] ) ? sprintf( __( $singular . ' restored to revision from %s' ), wp_post_revision_title( (int) $_GET['revision'], FALSE ) ) : FALSE,
-      6  => ( ! in_array( $post_type, array(
-        'arc-blueprints',
-        'pz_testimonials',
-        'pz_snippets',
-      ) ) ? sprintf( __( $singular . ' published. <a href="%s">View ' . strtolower( $singular ) . '</a>' ), esc_url( get_permalink( $post_ID ) ) ) : __( $singular . ' published', 'pzarchitect' ) ),
-      7  => __( 'Page saved.' ),
-      8  => sprintf( __( $singular . ' submitted. <a target="_blank" href="%s">Preview ' . strtolower( $singular ) . '</a>' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
-      9  => sprintf( __( $singular . ' scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview ' . strtolower( $singular ) . '</a>' ), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink( $post_ID ) ) ),
-      10 => ( ! in_array( $post_type, array(
-        'arc-blueprints',
-        'pz_testimonials',
-        'pz_snippets',
-      ) ) ? sprintf( __( $singular . ' draft updated. <a target="_blank" href="%s">Preview ' . strtolower( $singular ) . '</a>' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ) : __( $singular . ' draft updated', 'pzarchitect' ) ),
+        0  => '', // Unused. Messages start at index 1.
+        1  => ( ! in_array( $post_type, array(
+            'arc-blueprints',
+            'pz_testimonials',
+            'pz_snippets',
+        ) ) ? sprintf( __( $singular . ' updated. <a href="%s">View ' . strtolower( $singular ) . '</a>', 'pzarchitect' ), esc_url( get_permalink( $post_ID ) ) ) : __( $singular . ' updated', 'pzarchitect' ) ),
+        2  => __( 'Custom field updated.' ),
+        3  => __( 'Custom field deleted.' ),
+        4  => __( $singular . ' updated.' ),
+        5  => isset( $_GET['revision'] ) ? sprintf( __( $singular . ' restored to revision from %s' ), wp_post_revision_title( (int) $_GET['revision'], FALSE ) ) : FALSE,
+        6  => ( ! in_array( $post_type, array(
+            'arc-blueprints',
+            'pz_testimonials',
+            'pz_snippets',
+        ) ) ? sprintf( __( $singular . ' published. <a href="%s">View ' . strtolower( $singular ) . '</a>' ), esc_url( get_permalink( $post_ID ) ) ) : __( $singular . ' published', 'pzarchitect' ) ),
+        7  => __( 'Page saved.' ),
+        8  => sprintf( __( $singular . ' submitted. <a target="_blank" href="%s">Preview ' . strtolower( $singular ) . '</a>' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
+        9  => sprintf( __( $singular . ' scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview ' . strtolower( $singular ) . '</a>' ), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink( $post_ID ) ) ),
+        10 => ( ! in_array( $post_type, array(
+            'arc-blueprints',
+            'pz_testimonials',
+            'pz_snippets',
+        ) ) ? sprintf( __( $singular . ' draft updated. <a target="_blank" href="%s">Preview ' . strtolower( $singular ) . '</a>' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ) : __( $singular . ' draft updated', 'pzarchitect' ) ),
     );
 
     return $messages;
@@ -896,7 +901,7 @@
     }
 
     shortcode_ui_register_for_shortcode( 'architectsc', array(
-      'label' => 'Architect',
+        'label' => 'Architect',
     ) );
 
 
@@ -920,42 +925,42 @@
       // Supported field types: text, checkbox, textarea, radio, select, email, url, number, and date.
       'attrs'         => array(
 
-        array(
-          'label'   => __( 'Blueprint - any device', 'pzarchitect' ),
-          'attr'    => 'blueprint',
-          'type'    => 'select',
-          'options' => $pzarc_blueprints,
-        ),
-        array(
-          'label'   => __( 'Blueprint - tablet (optional)', 'pzarchitect' ),
-          'attr'    => 'tablet',
-          'type'    => 'select',
-          'options' => $pzarc_blueprints,
-        ),
-        array(
-          'label'   => __( 'Blueprint - phone (optional)', 'pzarchitect' ),
-          'attr'    => 'phone',
-          'type'    => 'select',
-          'options' => $pzarc_blueprints,
-        ),
-        array(
-          'label'       => __( 'Specific IDs (optional)', 'pzarchitect' ),
-          'attr'        => 'ids',
-          'type'        => 'text',
-          'description' => __( 'Comma separated post, page, snippets, etc ids', 'pzarchitect' ),
-        ),
-        array(
-          'label'   => __( 'Taxonomy (optional)', 'pzarchitect' ),
-          'attr'    => 'tax',
-          'type'    => 'select',
-          'options' => pzarc_get_taxonomies( TRUE ),
-        ),
-        array(
-          'label'       => __( 'Term IDs (optional)', 'pzarchitect' ),
-          'attr'        => 'terms',
-          'type'        => 'text',
-          'description' => __( 'Comma separated term ids from the chosen taxonomy', 'pzarchitect' ),
-        ),
+          array(
+              'label'   => __( 'Blueprint - any device', 'pzarchitect' ),
+              'attr'    => 'blueprint',
+              'type'    => 'select',
+              'options' => $pzarc_blueprints,
+          ),
+          array(
+              'label'   => __( 'Blueprint - tablet (optional)', 'pzarchitect' ),
+              'attr'    => 'tablet',
+              'type'    => 'select',
+              'options' => $pzarc_blueprints,
+          ),
+          array(
+              'label'   => __( 'Blueprint - phone (optional)', 'pzarchitect' ),
+              'attr'    => 'phone',
+              'type'    => 'select',
+              'options' => $pzarc_blueprints,
+          ),
+          array(
+              'label'       => __( 'Specific IDs (optional)', 'pzarchitect' ),
+              'attr'        => 'ids',
+              'type'        => 'text',
+              'description' => __( 'Comma separated post, page, snippets, etc ids', 'pzarchitect' ),
+          ),
+          array(
+              'label'   => __( 'Taxonomy (optional)', 'pzarchitect' ),
+              'attr'    => 'tax',
+              'type'    => 'select',
+              'options' => pzarc_get_taxonomies( TRUE ),
+          ),
+          array(
+              'label'       => __( 'Term IDs (optional)', 'pzarchitect' ),
+              'attr'        => 'terms',
+              'type'        => 'text',
+              'description' => __( 'Comma separated term ids from the chosen taxonomy', 'pzarchitect' ),
+          ),
       ),
 
     ) );
