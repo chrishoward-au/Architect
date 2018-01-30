@@ -1,4 +1,4 @@
-=== Architect content display framework ===
+=== Architect content block builder ===
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
@@ -8,9 +8,11 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
 
-Go beyond the limitations of the layouts in the theme or page builder you use to easily build any content layouts for it. E.g. grids, sliders, lists, galleries, tables etc.
+Themes, page builders, and now Gutenberg provide blocks or modules for displaying content. Architect lets your create custom content blocks that you can then display with any theme, page builder or Gutenberg.
 
 == Description ==
+Go beyond the limitations of the layouts in the theme or page builder you use to easily build any content layouts for it. E.g. grids, sliders, lists, galleries, tables etc.
+
 Most themes give you great looking layouts for your content, but are usually limited to what that theme provides. Frameworks give you control, but often require getting your hands dirty.
 
 Architect breaks down both those barriers.
@@ -82,8 +84,8 @@ For support, please send an email to support@pizazzwp.com
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
-= 1.11.0 - 27 Jan 2018
-Beaver Builder related enhancements
+= 1.11.0 - 1 Feb 2018
+Beaver Builder specific enhancements
 * ADDED: Beaver module Any Fields to display any field from any table
 * ADDED: Custom version of Beaver Sidebar module can display different widget areas on different devices, or none at all
 * ADDED: Custom version of Beaver Maps module that allows you to use any fields
@@ -98,7 +100,7 @@ Other
 * ADDED: Affiliates menu item
 * ADDED: Table prefix to Tools > Sysinfo
 * ADDED: Option to set image quality (compression)
-* ADDED: Option to disable saving and copying of images.
+* ADDED: Option to disable right-click saving and copying of images.
 * ADDED: Option to add copyright to images
 
 * CHANGED: Account info now shows affiliate info.
@@ -114,6 +116,9 @@ Other
 * FIXED: Gutenberg content not displaying in Blueprints in Blueprints
 * FIXED: Gutenberg html comments skewing paragraph counting when forming excerpts by paragraphs
 * FIXED: Tools > Sysinfo always showing Imagick disabled
+* FIXED: Filtering not working on second taxonomy in Masonry
+* FIXED: Focal point not working for non admin users
+* FIXED: Featured video metabox not showing for non admin users
 
 = 1.10.7  : 24 Nov 2017
 * ADDED: Image Alt tag will automatically use image title if no Alt tag set
@@ -834,13 +839,10 @@ TODO: * FIX: stickies possibly showing incorrectly in Tabular
 TODO: * FIX: filler image not cropping
 TODO: * FIX: Cache not clearing on install/update
 TODO: Implement srcset. See wp_get_attachment_image_srcset
-TODO: Verify masonry tags filter
 TODO Update tutorials
 TODO: Investigate filters etc having no effect on Search results
 TODO: Add Default/Custom button to Content Source
-TODO: Any fields module
-TODO: Advanced Featured Images module
+TODO:? Advanced Featured Images module
 TODO: Focal point tute
 TODO: Add users as content source
-TODO: Add any fields to custom field filtering
-
+TODO:? Add any fields to custom field filtering

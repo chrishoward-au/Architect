@@ -12,6 +12,46 @@
                     <div class="arc-info-boxes">
                     <div class="arc-info col1">'.
 wpautop('
+<h2 id="1.11.0-1feb2018">1.11.0 - 1 Feb 2018</h2>
+
+<h3 id="beaverbuilderspecificenhancements">Beaver Builder specific enhancements</h3>
+
+<ul>
+<li>ADDED: Beaver module Any Fields to display any field from any table</li>
+<li>ADDED: Custom version of Beaver Sidebar module can display different widget areas on different devices, or none at all</li>
+<li>ADDED: Custom version of Beaver Maps module that allows you to use any fields</li>
+<li>FIXED: Default content in BB editor would break if no preview. Displays dummy text instead.</li>
+</ul>
+
+<h3 id="other">Other</h3>
+
+<ul>
+<li>ADDED: Any field from any table to list of custom fields and link fields</li>
+<li>ADDED: Option to not use font family in Typography in Blueprints editor. (If you want to manage all font families from CSS)</li>
+<li>ADDED: Option to not use Google fonts in Typography in Blueprints editor. This can improve loading time of Blueprint editor.</li>
+<li>ADDED: Option to use caption as image alt text (default is alt text or title if no alt text)</li>
+<li>ADDED: Option to remove shortcodes from Body text</li>
+<li>ADDED: Affiliates menu item</li>
+<li>ADDED: Table prefix to Tools &gt; Sysinfo</li>
+<li>ADDED: Option to set image quality (compression)</li>
+<li>ADDED: Option to disable right-click saving and copying of images.</li>
+<li>ADDED: Option to add copyright to images</li>
+<li>CHANGED: Account info now shows affiliate info.</li>
+<li>CHANGED: Image creation now uses Imagick by default if installed, which means it keeps Exif information (unless you use another plugin that has already stripped it out).</li>
+<li>UPDATED: Freemius SDK to 1.2.4</li>
+<li>FIXED: Was using an img tag even when no image.</li>
+<li>FIXED: Was carrying forward image data in the loop</li>
+<li>FIXED: Showing broken images when no featured image</li>
+<li>FIXED: Set show_in_rest to false in custom post types (Snippets, Testimonials, Showcases, Blueprints) to ensure they don&#8217;t use Gutenberg editor</li>
+<li>FIXED: Blueprints in Blueprints using parent Blueprint CSS</li>
+<li>FIXED: Gutenberg content not displaying in Blueprints in Blueprints</li>
+<li>FIXED: Gutenberg html comments skewing paragraph counting when forming excerpts by paragraphs</li>
+<li>FIXED: Tools &gt; Sysinfo always showing Imagick disabled</li>
+<li>FIXED: Filtering not working on second taxonomy in Masonry</li>
+<li>FIXED: Focal point not working for non admin users</li>
+<li>FIXED: Featured video metabox not showing for non admin users</li>
+</ul>
+
 <h2 id="1.10.7:24nov2017">1.10.7 : 24 Nov 2017</h2>
 
 <ul>

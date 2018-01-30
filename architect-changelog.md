@@ -3,8 +3,8 @@
 ## Notes:
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
-## 1.11.0 - 27 Jan 2018
-### Beaver Builder related enhancements
+## 1.11.0 - 1 Feb 2018
+### Beaver Builder specific enhancements
 * ADDED: Beaver module Any Fields to display any field from any table
 * ADDED: Custom version of Beaver Sidebar module can display different widget areas on different devices, or none at all
 * ADDED: Custom version of Beaver Maps module that allows you to use any fields
@@ -19,7 +19,7 @@
 * ADDED: Affiliates menu item
 * ADDED: Table prefix to Tools > Sysinfo
 * ADDED: Option to set image quality (compression)
-* ADDED: Option to disable saving and copying of images.
+* ADDED: Option to disable right-click saving and copying of images.
 * ADDED: Option to add copyright to images
 
 * CHANGED: Account info now shows affiliate info.
@@ -35,6 +35,9 @@
 * FIXED: Gutenberg content not displaying in Blueprints in Blueprints
 * FIXED: Gutenberg html comments skewing paragraph counting when forming excerpts by paragraphs
 * FIXED: Tools > Sysinfo always showing Imagick disabled
+* FIXED: Filtering not working on second taxonomy in Masonry
+* FIXED: Focal point not working for non admin users
+* FIXED: Featured video metabox not showing for non admin users
 
 ## 1.10.7  : 24 Nov 2017
 * ADDED: Image Alt tag will automatically use image title if no Alt tag set

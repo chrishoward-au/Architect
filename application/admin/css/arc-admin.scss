@@ -995,6 +995,7 @@ body.arc-bgimage {
   margin-right: 5px;
   font-size: 14px;
   color: #63bdcf;
+
 }
 
 a:hover span.dashicons,
@@ -2354,11 +2355,20 @@ body.arc-beginner {
   }
 }
 
-.fs-submenu-item.pzarchitect.account::before,
-.fs-submenu-item.pzarchitect.contact::before,
-.fs-submenu-item.pzarchitect.pricing::before ,
-.fs-submenu-item.pzarchitect.upgrade::before {
-  content: " ";
-  padding-left:25px;
+.fs-submenu-item.architect.affiliation::before,
+.fs-submenu-item.architect.account::before,
+.fs-submenu-item.architect.contact::before,
+.fs-submenu-item.architect.pricing::before ,
+.fs-submenu-item.architect.upgrade::before {
+  content: "• ";
+  padding-left:8px;
   display:inline-block;
+  color:#63bdcf;
+  margin-right:10px;
+}
+
+.architect_page_pzarc_support {
+  .tabs-content {
+//    font-size:14px;
+  }
 }

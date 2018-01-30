@@ -42,6 +42,7 @@
       if ($_architect_options[ 'architect_mod-video-fields' ][ 'pz_snippets' ] == 1) {
         $pzarc_vids_on[ ] = 'pz_snippets';
       }
+
       $boxSections    = array();
       $boxSections[ ] = array(
         //'title'         => __('General Settings', 'pzarchitect'),

@@ -1,9 +1,9 @@
 <?php
 
 	/*
-	  Plugin Name: Architect content display framework
+	  Plugin Name: Architect - a DIY content block builder
 	  Plugin URI: http://architect4wp.com
-	  Description: Build the content layouts that your theme or page builder can't.
+	  Description: Build the content layouts that your theme or page builder can't. Themes, page builders, and now Gutenberg provide blocks or modules for displaying content. Architect lets your create custom content blocks that you can then display with any theme, page builder or Gutenberg.
 	  Version: 1.11.0
 	  Author: Chris Howard
 	  Author URI: http://pizazzwp.com
