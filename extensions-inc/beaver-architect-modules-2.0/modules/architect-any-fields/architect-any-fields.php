@@ -38,6 +38,7 @@
       'settings' => array(
         // Tab
         'title'    => __( 'Settings', 'fl-builder' ),
+        'description'=>__('Due to the many ways to create custom fields, and many field types, Any Fields may not actually be able to display *any* field without enhancements. Therefore, please contact me if you encounter a field you cannot display.'),
         // Tab title
         'sections' => array(
           // Tab Sections
