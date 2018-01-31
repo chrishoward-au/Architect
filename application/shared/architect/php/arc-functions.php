@@ -2575,7 +2575,7 @@
       $suffix_text = ! empty( $settings['suffix-text'] ) ? '<span class="arcaf-suffix-text">' . $settings['suffix-text'] . '</span>' : '';
       $content     = $prefix_image . $prefix_text . $content . $suffix_text . $suffix_image;
       if ( ! empty( $settings['link-field'] ) ) {
-        $content = '<a href="'.($settings['link-behaviour']==='email'?'mailto:':'') . esc_url(arc_get_table_field_value( ArcFun::extract_table_field($settings['link-field'])) ) . '" target="' . esc_attr($settings['link-behaviour']==='email'?'_self':$settings['link-behaviour']) . '">' . $content . '</a>';
+        $content = '<a href="'.($settings['link-behaviour']==='email'?'mailto:':'') . esc_url(arc_get_table_field_value( ArcFun::extract_table_field($settings['link-field'])) ) . '" target="' . esc_attr($settings['link-behaviour']==='email'?'_self':$settings['link-behaviour']) . '" rel="noopener">' . $content . '</a>';
       }
 
 

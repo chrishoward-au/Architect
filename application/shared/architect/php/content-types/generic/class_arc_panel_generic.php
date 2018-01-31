@@ -1286,7 +1286,7 @@
 
             $content = $prefix_image . $v['prefix-text'] . $content . $v['suffix-text'] . $suffix_image;
             if ( ! empty( $v['link-field'] ) ) {
-              $content = '<a href="' . $v['link-field'] . '" target="' . $v['link-behaviour'] . '">' . $content . '</a>';
+              $content = '<a href="' . $v['link-field'] . '" target="' . $v['link-behaviour'] . '" rel="noopener">' . $content . '</a>';
             }
 
             // Not sure why this limitation was set. Removed in 1.10.0
@@ -1741,7 +1741,7 @@
         case 'destination-url':
           $destination_url    = get_post_meta( $this->data['image']['id'], '_gallery_link_url', TRUE );
           $destination_target = get_post_meta( $this->data['image']['id'], '_gallery_link_target', TRUE );
-          $link               = ! empty( $destination_url ) ? '<a href="' . $destination_url . '" title="' . $this->section['_panels_design_link-image-url-tooltip'] . '" ' . ( ! empty( $destination_target ) ? 'target=' . $destination_target : '' ) . '>' : '';
+          $link               = ! empty( $destination_url ) ? '<a href="' . $destination_url . '" title="' . $this->section['_panels_design_link-image-url-tooltip'] . '" ' . ( ! empty( $destination_target ) ? 'target="' . $destination_target.'" rel="noopener"' : '' ) . '>' : '';
           break;
         case 'original':
           if ( empty( $this->section['_panels_design_alternate-lightbox'] ) ) {
