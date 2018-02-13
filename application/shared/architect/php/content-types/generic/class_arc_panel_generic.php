@@ -659,17 +659,28 @@
      * @param $post
      */
     public function get_excerpt( &$post ) {
-      if ( ( ! empty( $this->section['_panels_design_process-excerpts-shortcodes'] ) || $this->section['_panels_design_process-excerpts-shortcodes'] === 'process' ) ) {
-        $the_content = strip_shortcodes( get_the_content() );
-        $the_excerpt = strip_shortcodes( get_the_excerpt() );
+
+      if ( ( empty( $this->section['_panels_design_process-excerpts-shortcodes'] ) || $this->section['_panels_design_process-excerpts-shortcodes'] !== 'process' ) ) {
+        $the_content = strip_shortcodes( $post->post_content );
+        $the_excerpt = strip_shortcodes( $post->post_excerpt );
       } else {
-        $the_content = do_shortcode( get_the_content() );
-        $the_excerpt = do_shortcode( get_the_excerpt() );
+//        global $wp_the_query;
+//        var_dump(get_the_title(),preg_match('/\\[architect(.)*?\\]/ui', $post->post_content));
+//        if ($post->ID == $wp_the_query->queried_object_id) {
+          $the_content = preg_replace('/\\[architect(.)*?\\]/ui', '<!-- Architect Blueprint was here --><br>', $post->post_content);
+          $the_content = do_shortcode( $the_content );
+          $the_excerpt = preg_replace('/\\[architect(.)*?\\]/ui', '<!-- Architect Blueprint was here --><br>', $post->post_excerpt);
+          $the_excerpt = do_shortcode( $the_excerpt );
+//        } else {
+//          $the_content = do_shortcode( $post->post_content );
+//          $the_excerpt = do_shortcode( $post->post_excerpt );
+//        }
       }
+
       switch ( TRUE ) {
 
         case ! empty( $this->section['_panels_design_manual-excerpts'] ) && ! has_excerpt():
-          $this->data['excerpt'] = '<!-- #1 no content found -->';
+          $this->data['excerpt'] = '<!-- #1 arc no content found -->';
           break;
 
         // CHARACTERS
@@ -677,7 +688,7 @@
           if ( ! empty( $the_content ) ) {
             $this->data['excerpt'] = substr( wp_strip_all_tags( $the_content ), 0, $this->section['_panels_design_excerpts-word-count'] ) . pzarc_make_excerpt_more( $this->section, $post );
           } else {
-            $this->data['excerpt'] = '<!-- #2 no content found -->';
+            $this->data['excerpt'] = '<!-- #2 arc no content found -->';
           }
           break;
 
@@ -700,7 +711,7 @@
                 $the_new_paras[] = $the_para;
               }
             }
-            $this->data['excerpt'] = '<!-- #3 no content found -->';
+            $this->data['excerpt'] = '<!-- #3 arc no content found -->';
             $i                     = 1;
             while ( $i <= (int) $this->section['_panels_design_excerpts-word-count'] && $i <= count( $the_new_paras ) ) {
               $this->data['excerpt'] .= '<p>' . $the_new_paras[ $i - 1 ] . '</p>';
@@ -708,7 +719,7 @@
             }
             $this->data['excerpt'] = $this->data['excerpt'] . pzarc_make_excerpt_more( $this->section, $post );
           } else {
-            $this->data['excerpt'] = '<!-- #4 no content found -->';
+            $this->data['excerpt'] = '<!-- #4 arc no content found -->';
           }
           break;
 
