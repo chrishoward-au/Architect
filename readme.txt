@@ -3,7 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
 Tested up to: 5.0
-Stable tag: 1.11.0
+Stable tag: 1.11.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -83,6 +83,15 @@ For support, please send an email to support@pizazzwp.com
 
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
+
+= 1.11.1
+* FIXED: Removed Features tab as it's not populated
+* FIXED: Changed misleading message saying "This theme requires Redux" to "This plugin requires Redux"
+* FIXED: Removing shortcodes not working correctly
+TODO: FIX panels custom CSS loading before other CSS
+TODO: Gutenberg block
+TODO: Detect post in post and don't process architect
+TODO: Update shortcode help!
 
 = 1.11.0 - 1 Feb 2018
 Beaver Builder specific enhancements

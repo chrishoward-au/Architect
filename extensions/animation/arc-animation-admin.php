@@ -37,7 +37,7 @@
     }
 
     function options( $sections ) {
-      $sections[ '_animation' ] = array(
+      $sections[  ] = array(
         'title'      => 'Animation',
         'show_title' => true,
         'fields'     => array(
@@ -91,7 +91,7 @@
       }
       $prefix                  = '_animation_';
       $sections                = array();
-      $sections[ '_settings' ] = array(
+      $sections[  ] = array(
         'title'      => __( 'Settings ', 'pzarchitect' ),
         'show_title' => false,
         'icon_class' => 'icon-large',
@@ -174,7 +174,7 @@
 
         )
       );
-      $sections[ '_panels' ]   = array(
+      $sections[  ]   = array(
         'title'      => __( 'Panels ', 'pzarchitect' ),
         'show_title' => false,
         'icon_class' => 'icon-large',
@@ -274,14 +274,14 @@
 
       );
 
-      $sections[ '_titles' ]  = array(
+      $sections[  ]  = array(
         'title'      => __( 'Titles ', 'pzarchitect' ),
         'show_title' => false,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-font',
         'fields'     => self::animation_fields( $prefix . 'title', $animation_options, 'Titles', 'title' )
       );
-      $sections[ '_meta' ]    = array(
+      $sections[ ]    = array(
         'title'      => __( 'Meta groups', 'pzarchitect' ),
         'show_title' => false,
         'icon_class' => 'icon-large',
@@ -289,21 +289,21 @@
         'fields'     => pzarc_fields( self::animation_fields( $prefix . 'meta1', $animation_options, 'Meta 1', 'meta1' ), self::animation_fields( $prefix . 'meta2', $animation_options, 'Meta 2', 'meta2' ), self::animation_fields( $prefix . 'meta3', $animation_options, 'Meta 3', 'meta3' ) )
 
       );
-      $sections[ '_content' ] = array(
+      $sections[ ] = array(
         'title'      => __( 'Body/Excerpt', 'pzarchitect' ),
         'show_title' => false,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-align-left',
         'fields'     => self::animation_fields( $prefix . 'content', $animation_options, 'Body/Excerpt', 'content' )
       );
-      $sections[ '_feature' ] = array(
+      $sections[ ] = array(
         'title'      => __( 'Featured image', 'pzarchitect' ),
         'show_title' => false,
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-picture',
         'fields'     => self::animation_fields( $prefix . 'feature', $animation_options, 'Feature', 'feature' )
       );
-      $sections[ '_custom' ]  = array(
+      $sections[  ]  = array(
         'title'      => __( 'Custom field groups ', 'pzarchitect' ),
         'show_title' => false,
         'icon_class' => 'icon-large',

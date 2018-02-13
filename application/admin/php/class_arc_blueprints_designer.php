@@ -4835,6 +4835,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
             'title'    => __( 'Shortcodes in excerpts', 'pzarchitect' ),
             'id'       => $prefix . 'process-excerpts-shortcodes',
             'type'     => 'button_set',
+            'subtitle'=>__('Architect shortcodes are always removed to avoiding infinite loops','pzarchitect'),
             'options'  => array(
               'process' => __( 'Process', 'pzarchitect' ),
               'remove'  => __( 'Remove', 'pzarchitect' ),

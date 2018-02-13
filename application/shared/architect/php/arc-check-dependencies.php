@@ -96,13 +96,13 @@
             'updating'                        => __( 'Updating Plugin: %s', 'pzarchitect' ),
             'oops'                            => __( 'Something went wrong with the plugin API.', 'pzarchitect' ),
             'notice_can_install_required'     => _n_noop(
-              'This theme requires the following plugin: %1$s.',
-              'This theme requires the following plugins: %1$s.',
+              'this plugin requires the following plugin: %1$s.',
+              'this plugin requires the following plugins: %1$s.',
               'pzarchitect'
             ),
             'notice_can_install_recommended'  => _n_noop(
-              'This theme recommends the following plugin: %1$s.',
-              'This theme recommends the following plugins: %1$s.',
+              'this plugin recommends the following plugin: %1$s.',
+              'this plugin recommends the following plugins: %1$s.',
               'pzarchitect'
             ),
             'notice_ask_to_update'            => _n_noop(

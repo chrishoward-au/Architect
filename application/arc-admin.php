@@ -466,7 +466,7 @@
                 <button class="tabby-latest" data-tab="#latest">' . __( 'Latest news', 'pzarchitect' ) . '</button>
                 <button class="tabby-changes" data-tab="#changes">' . __( 'Changelog', 'pzarchitect' ) . '</button>
                 <button class="tabby-shout" data-tab="#shout">' . __( 'Shoutouts', 'pzarchitect' ) . '</button>
-                <button class="tabby-features" data-tab="#features">' . __( 'Features', 'pzarchitect' ) . '</button>
+ <!--               <button class="tabby-features" data-tab="#features">' . __( 'Features', 'pzarchitect' ) . '</button> -->
                 <button class="tabby-help" data-tab="#help">' . __( 'Support', 'pzarchitect' ) . '</button>
             </div>';
 echo '	<div class="tabby tabs-content">';
@@ -475,7 +475,7 @@ echo '	<div class="tabby tabs-content">';
       include_once( 'admin/parts/admin-tabs-pane-news.php' );
       include_once( 'admin/parts/admin-tabs-pane-changes.php' );
       include_once( 'admin/parts/admin-tabs-pane-shoutout.php' );
-      include_once( 'admin/parts/admin-tabs-pane-features.php' );
+//      include_once( 'admin/parts/admin-tabs-pane-features.php' );
       include_once( 'admin/parts/admin-tabs-pane-support.php' );
 
       echo '
@@ -906,7 +906,7 @@ echo '	<div class="tabby tabs-content">';
 
 
     /**
-     * Register a UI for the Shortcode.
+     * Register a UI for the Shortcode Shortcake.
      * Pass the shortcode tag (string)
      * and an array or args.
      */
