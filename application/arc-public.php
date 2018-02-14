@@ -8,7 +8,7 @@
 
   // Front end includes, Register site styles and scripts
   
-  add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ) );
+  add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ),(time()%10000) ); // v.1.11.1 Forcing late loading of Blueprint CSS
   add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_scripts' ) );
 
   add_action( 'wp_head', 'pzarc_display_init' );
