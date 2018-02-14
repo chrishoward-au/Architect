@@ -88,6 +88,9 @@ For support, please send an email to support@pizazzwp.com
 * FIXED: Removed Features tab as it's not populated
 * FIXED: Changed misleading message saying "This theme requires Redux" to "This plugin requires Redux"
 * FIXED: Removing shortcodes not working correctly
+* CHANGED: Now using class rather than ID when creating Blueprint CSS since Blueprints can be re-used on the same page.
+* CHANGED: Blueprint CSS to load as late as possible in head.
+
 TODO: FIX panels custom CSS loading before other CSS
 TODO: Gutenberg block
 TODO: Detect post in post and don't process architect
