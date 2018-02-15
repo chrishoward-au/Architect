@@ -6,10 +6,12 @@
    * Time: 8:56 PM
    */
 
+  define('_amb_general',2700);
+
   class arc_mbGeneral  extends arc_Blueprints_Designer {
 
     function __construct( $defaults = FALSE ) {
-      parent::__construct( $defaults );
+      parent::__construct( $this->defaults );
       add_action( "redux/metaboxes/$this->redux_opt_name/boxes", array( $this, 'mb_general', ), 10, 1 );
     }
 
@@ -29,7 +31,7 @@
       if ( is_admin() && ! empty( $_GET['post'] ) ) {
         $cfcount = ( ! empty( $this->postmeta['_panels_design_custom-fields-count'][0] ) ? $this->postmeta['_panels_design_custom-fields-count'][0] : 0 );
       }
-      $sections['_general_bp'] = array(
+      $sections[_amb_general] = array(
           'fields' => array(
               array(
                   'id'       => $prefix . 'short-name',
@@ -90,7 +92,7 @@
 //        ),
 //      );
 
-      $sections['_general_bp']['fields'][] = array(
+      $sections[_amb_general]['fields'][] = array(
           'title'    => __( 'Intended Device', 'pzarchitect' ),
           'id'       => '_blueprint_device',
           'type'     => 'button_set',
@@ -106,7 +108,7 @@
               'content' => __( 'Choose the device you intend to display this Blueprint on. This is currently for information purposes only. That is, co anyone else working with this Blueprint is aware.', 'pzarchitect' ),
           ),
       );
-      $sections['_general_bp']['fields'][] = array(
+      $sections[_amb_general]['fields'][] = array(
           'title'   => 'Getting help',
           'id'      => $prefix . 'help-info',
           'type'    => 'raw',

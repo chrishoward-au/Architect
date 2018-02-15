@@ -6,6 +6,8 @@
    * Time: 8:55 PM
    */
 
+  define('_amb_tabs',3200);
+
   /**
    * @param      $metaboxes
    * @param bool $defaults_only
@@ -85,7 +87,7 @@
 
       $fields = apply_filters( 'arc_editor_tabs', $fields );
 
-      $sections['settings-chooser'] = array(//          'title'      => __('General Settings', 'pzarchitect'),
+      $sections[_amb_tabs] = array(//          'title'      => __('General Settings', 'pzarchitect'),
                                             'show_title' => TRUE,
                                             'icon_class' => 'icon-large',
                                             'icon'       => 'el-icon-home',

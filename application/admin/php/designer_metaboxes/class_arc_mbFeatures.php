@@ -6,6 +6,10 @@
    * Time: 9:03 PM
    */
 
+  define('_amb_features',2600);
+  define('_amb_features_help',2699);
+  define('_amb_styling_features',2650);
+
 class arc_mbFeatures extends arc_Blueprints_Designer {
   function __construct( $defaults = FALSE ) {
     parent::__construct( $defaults );
@@ -27,7 +31,7 @@ class arc_mbFeatures extends arc_Blueprints_Designer {
     $sections = array();
     $prefix   = '_panels_design_';
     // Settings
-    $sections[] = array(
+    $sections[_amb_features] = array(
         'title'      => 'Feature settings',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-adjust-alt',
@@ -479,7 +483,7 @@ class arc_mbFeatures extends arc_Blueprints_Designer {
       $stylingSections = array();
       $optprefix       = 'architect_config_';
 
-      $sections[] = array(
+      $sections[_amb_styling_features] = array(
           'title'      => __( 'Feature styling', 'pzarchitect' ),
           'show_title' => FALSE,
           'icon_class' => 'icon-large',
@@ -544,6 +548,22 @@ class arc_mbFeatures extends arc_Blueprints_Designer {
           ), pzarc_redux_font( $prefix . 'entry-image-caption' . $font, array( 'figure.entry-thumbnail .caption' ), $defaults[ $optprefix . 'entry-image-caption' . $font ] ), pzarc_redux_bg( $prefix . 'entry-image-caption' . $font . $background, array( 'figure.entry-thumbnail .caption' ), $defaults[ $optprefix . 'entry-image-caption' . $font . $background ] ), pzarc_redux_padding( $prefix . 'entry-image-caption' . $font . $padding, array( 'figure.entry-thumbnail .caption' ), $defaults[ $optprefix . 'entry-image-caption' . $font . $padding ] ) ),
       );
     }
+    $sections[_amb_features_help] = array(
+        'title'      => 'Help',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-question-sign',
+        'fields'     => array(
+            array(
+                'title'    => __( 'Online documentation', 'pzarchitect' ),
+                'id'       => $prefix . 'help-content-online-docs',
+                'type'     => 'raw',
+                'markdown' => FALSE,
+                'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __( 'Architect Online Documentation', 'pzarchitect' ) . '</a><br>' . __( 'This is a growing resource. Please check back regularly.', 'pzarchitect' ),
+
+            ),
+        )
+    );
+
     $metaboxes[] = array(
         'id'         => 'features-settings',
         'title'      => __( 'Featured images/videos settings and stylings.', 'pzarchitect' ),

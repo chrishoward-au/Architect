@@ -6,6 +6,10 @@
    * Time: 8:59 PM
    */
 
+  define('_amb_titles',2100);
+  define('_amb_titles_help',2199);
+  define('_amb_styling_titles',2150);
+  define('_amb_titles_responsive',2100);
 
   /**
    * TITLES
@@ -33,7 +37,7 @@
     }
     $prefix     = '_panels_design_';
     $sections   = array();
-    $sections[] = array(
+    $sections[_amb_titles] = array(
         'title'      => 'Titles settings',
         'show_title' => FALSE,
         'icon_class' => 'icon-large',
@@ -184,7 +188,7 @@
             ),
         ),
     );
-    $sections[] = array(
+    $sections[_amb_titles_responsive] = array(
         'title'      => __( 'Responsive overrides', 'pzarchitect' ),
         'show_title' => FALSE,
         'icon_class' => 'icon-large',
@@ -376,7 +380,7 @@
       $stylingSections = array();
       $optprefix       = 'architect_config_';
 
-      $sections[] = array(
+      $sections[_amb_styling_titles] = array(
           'title'      => __( 'Titles styling', 'pzarchitect' ),
           'show_title' => FALSE,
           'icon_class' => 'icon-large',
@@ -385,6 +389,22 @@
           'fields'     => pzarc_fields( pzarc_redux_font( $prefix . 'entry-title' . $font, array( '.entry-title' ), $defaults[ $optprefix . 'entry-title' . $font ] ), pzarc_redux_bg( $prefix . 'entry-title' . $font . $background, array( '.entry-title' ), $defaults[ $optprefix . 'entry-title' . $font . $background ] ), pzarc_redux_padding( $prefix . 'entry-title' . $font . $padding, array( '.entry-title' ), $defaults[ $optprefix . 'entry-title' . $font . $padding ] ), pzarc_redux_margin( $prefix . 'entry-title' . $font . $margin, array( '.entry-title' ), $defaults[ $optprefix . 'entry-title' . $font . $margin ], 'tb' ), pzarc_redux_borders( $prefix . 'entry-title' . $border, array( '.entry-title' ), $defaults[ $optprefix . 'entry-title' . $border ] ), pzarc_redux_links( $prefix . 'entry-title' . $font . $link, array( '.entry-title a' ), $defaults[ $optprefix . 'entry-title' . $font . $link ] ) ),
       );
     }
+    $sections[_amb_titles_help] = array(
+        'title'      => 'Help',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-question-sign',
+        'fields'     => array(
+            array(
+                'title'    => __( 'Online documentation', 'pzarchitect' ),
+                'id'       => $prefix . 'help-content-online-docs',
+                'type'     => 'raw',
+                'markdown' => FALSE,
+                'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __( 'Architect Online Documentation', 'pzarchitect' ) . '</a><br>' . __( 'This is a growing resource. Please check back regularly.', 'pzarchitect' ),
+
+            ),
+        )
+    );
+
     $metaboxes[] = array(
         'id'         => 'titles-settings',
         'title'      => __( 'Titles settings and styling.', 'pzarchitect' ),

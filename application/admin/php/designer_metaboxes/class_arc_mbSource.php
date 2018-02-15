@@ -6,6 +6,12 @@
    * Time: 8:57 PM
    */
 
+  define('_amb_sources',3100);
+  define('_amb_sources_settings',3110);
+  define('_amb_sources_filters',3120);
+  define('_amb_sources_custom_sorting',3130);
+  define('_amb_sources_help',3199);
+
   /**
    *
    * CONTENT
@@ -41,7 +47,7 @@
 
     // If you add/remove a content type, you have to add/remove it's side tab too
     $prefix               = '_content_general_'; // declare prefix
-    $sections['_general'] = array(
+    $sections[_amb_sources] = array(
         'title'      => 'Source',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-file',
@@ -82,15 +88,15 @@ array(
               'equals',
               $value['blueprint-content']['type'],
           );
-          $sections['_general']['fields'][] = $v;
+          $sections[_amb_sources]['fields'][] = $v;
         }
       }
     }
     /** FILTERS */
-    $sections['_settings'] = $blueprint_content_common[0]['settings']['sections'];
-    $sections['_filters']  = $blueprint_content_common[0]['filters']['sections'];
+    $sections[_amb_sources_settings] = $blueprint_content_common[0]['settings']['sections'];
+    $sections[_amb_sources_filters]  = $blueprint_content_common[0]['filters']['sections'];
 
-    $sections['_settings']['fields'][] = array(
+    $sections[_amb_sources_settings]['fields'][] = array(
         'title'    => __( 'Custom field sort', 'pzarchitect' ),
         'id'       => $prefix . 'sort-section',
         'type'     => 'section',
@@ -101,14 +107,14 @@ array(
             'custom',
         ),
     );
-    $sections['_settings']['fields'][] = array(
+    $sections[_amb_sources_settings]['fields'][] = array(
         'type'    => 'select',
         'title'   => 'Custom sort field',
         'default' => '',
         'options' => $this->custom_fields,
         'id'      => $prefix . 'custom-sort-key',
     );
-    $sections['_settings']['fields'][] = array(
+    $sections[_amb_sources_settings]['fields'][] = array(
         'type'    => 'select',
         'title'   => 'Custom field type',
         'default' => 'CHAR',
@@ -129,7 +135,7 @@ array(
     $prefix = '_content_customfields_'; // declare prefix
 
 
-    $sections['_content_customfields'] = array(
+    $sections[_amb_sources_custom_sorting] = array(
         'title'      => 'Custom field filtering',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-wrench',
@@ -154,13 +160,13 @@ array(
         ),
     );
     for ( $cfi = 1; $cfi <= 3; $cfi ++ ) {
-      $sections['_content_customfields']['fields'][] = array(
+      $sections[_amb_sources_custom_sorting]['fields'][] = array(
           'title'  => __( 'Filter field ' . $cfi, 'pzarchitect' ),
           'id'     => '_blueprints_content-fields-filter-section' . $cfi,
           'type'   => 'section',
           'indent' => TRUE,
       );
-      $sections['_content_customfields']['fields'][] = array(
+      $sections[_amb_sources_custom_sorting]['fields'][] = array(
           'type'     => 'select',
           'title'    => 'Field',
           'subtitle' => __( 'For some plugins, like WooCommerce, the field you need to use is the one beginning with an underscore.', 'pzarchitect' ),
@@ -169,7 +175,7 @@ array(
           'options'  => $this->custom_fields,
           'id'       => '_blueprints_content-fields-filter-key' . $cfi,
       );
-      $sections['_content_customfields']['fields'][] =
+      $sections[_amb_sources_custom_sorting]['fields'][] =
 
           array(
               'type'     => 'select',
@@ -194,7 +200,7 @@ array(
               ),
               'id'       => '_blueprints_content-fields-filter-type' . $cfi,
           );
-      $sections['_content_customfields']['fields'][] =
+      $sections[_amb_sources_custom_sorting]['fields'][] =
 
           array(
               'type'     => 'text',
@@ -207,7 +213,7 @@ array(
                   '',
               ),
           );
-      $sections['_content_customfields']['fields'][] =
+      $sections[_amb_sources_custom_sorting]['fields'][] =
 
           array(
               'type'     => 'select',
@@ -230,7 +236,7 @@ array(
               ),
               'id'       => '_blueprints_content-fields-filter-value-type' . $cfi,
           );
-      $sections['_content_customfields']['fields'][] =
+      $sections[_amb_sources_custom_sorting]['fields'][] =
 
           array(
               'type'     => 'select',
@@ -259,7 +265,7 @@ array(
               ),
               'id'       => '_blueprints_content-fields-filter-compare' . $cfi,
           );
-      $sections['_content_customfields']['fields'][] =
+      $sections[_amb_sources_custom_sorting]['fields'][] =
 
           array(
               'id'     => '_blueprints_content-fields-filter-section-end' . $cfi,
@@ -270,7 +276,7 @@ array(
 
     // Help
     $prefix                    = '_content_help_'; // declare prefix
-    $sections['_content_help'] = array(
+    $sections[_amb_sources_help] = array(
         'title'      => 'Help',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-question-sign',

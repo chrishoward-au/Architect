@@ -53,23 +53,26 @@
 
         }
 
-        // 1.8.1 Attempting to reduce calls to get custom fields. Generally this should work, but may occasionally miss some fields.
-        $this->custom_fields = get_option( 'architect_custom_fields' );
-        if ( empty( $this->custom_fields ) || ( ( isset( $_GET['post_type'] ) && $_GET['post_type'] === 'arc-blueprints' ) ) ) {
-          $this->custom_fields = pzarc_get_custom_fields();
-          update_option( 'architect_custom_fields', $this->custom_fields );
+        if ( ! $this->defaults ) {
+
+          // 1.8.1 Attempting to reduce calls to get custom fields. Generally this should work, but may occasionally miss some fields.
+          $this->custom_fields = get_option( 'architect_custom_fields' );
+          if ( empty( $this->custom_fields ) || ( ( isset( $_GET['post_type'] ) && $_GET['post_type'] === 'arc-blueprints' ) ) ) {
+            $this->custom_fields = pzarc_get_custom_fields();
+            update_option( 'architect_custom_fields', $this->custom_fields );
 //          var_dump('Custom fields updated');
-        }
-//        $this->custom_fields = apply_filters('arc_custom_field_list',$this->custom_fields, $this->source);
-        if ( ! empty( $_GET['post'] ) ) {
-          $this->postmeta = get_post_meta( $_GET['post'] );
-          if ( isset( $this->postmeta['_blueprints_content-source'] ) ) {
-            $this->source = $this->postmeta['_blueprints_content-source'][0];
           }
-        }
-        $this->tableset = ArcFun::get_tables();
-        foreach ( $this->tableset as $table ) {
-          $this->tablesfields[ $table ] = ArcFun::get_table_fields( $table );
+//        $this->custom_fields = apply_filters('arc_custom_field_list',$this->custom_fields, $this->source);
+          if ( ! empty( $_GET['post'] ) ) {
+            $this->postmeta = get_post_meta( $_GET['post'] );
+            if ( isset( $this->postmeta['_blueprints_content-source'] ) ) {
+              $this->source = $this->postmeta['_blueprints_content-source'][0];
+            }
+          }
+          $this->tableset = ArcFun::get_tables();
+          foreach ( $this->tableset as $table ) {
+            $this->tablesfields[ $table ] = ArcFun::get_table_fields( $table );
+          }
         }
 
       }
@@ -220,11 +223,11 @@
       $pzarc_front       = array_slice( $columns, 1, 1 );
       $pzarc_back        = array_slice( $columns, 2 );
       $pzarc_insert      = array(
-        '_blueprints_short-name'     => __( 'Shortname', 'pzarchitect' ),
-        '_blueprints_content-source' => __( 'Content source', 'pzarchitect' ),
-        '_blueprints_description'    => __( 'Description', 'pzarchitect' ),
-        'used-on'                    => __( 'Used on ', 'pzarchitect' ) . '<span style="color:#fff;font-size:0.8em;background:#999;border-radius:50px;padding:0 5px;cursor:help;" title="Note: Resets when Architect cache is cleared and rebuilt as pages are displayed.">?</span>',
-        //          'id'                         => __('ID', 'pzarchitect'),
+          '_blueprints_short-name'     => __( 'Shortname', 'pzarchitect' ),
+          '_blueprints_content-source' => __( 'Content source', 'pzarchitect' ),
+          '_blueprints_description'    => __( 'Description', 'pzarchitect' ),
+          'used-on'                    => __( 'Used on ', 'pzarchitect' ) . '<span style="color:#fff;font-size:0.8em;background:#999;border-radius:50px;padding:0 5px;cursor:help;" title="Note: Resets when Architect cache is cleared and rebuilt as pages are displayed.">?</span>',
+          //          'id'                         => __('ID', 'pzarchitect'),
       );
       $pzarc_layout_type = array( 'layout-type' => __( 'Type', 'pzarchitect' ), );
 
@@ -294,12 +297,12 @@
           break;
         case 'layout-type':
           $layout_imgs = array(
-            'basic'     => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-grid.svg' ),
-            'slider'    => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-slider.svg' ),
-            'tabbed'    => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabbed.svg' ),
-            'masonry'   => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-masonry.svg' ),
-            'table'     => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabular.svg' ),
-            'accordion' => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.svg' ),
+              'basic'     => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-grid.svg' ),
+              'slider'    => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-slider.svg' ),
+              'tabbed'    => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabbed.svg' ),
+              'masonry'   => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-masonry.svg' ),
+              'table'     => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabular.svg' ),
+              'accordion' => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.svg' ),
           );
 
           if ( ! empty( $post_meta['_blueprints_section-0-layout-mode'][0] ) ) {
@@ -312,8 +315,6 @@
           break;
       }
     }
-
-
 
 
     private static function arc_has_export_data() {

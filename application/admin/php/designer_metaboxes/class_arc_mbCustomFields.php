@@ -6,6 +6,14 @@
    * Time: 8:58 PM
    */
 
+  define('_amb_customfields',2500);
+  define('_amb_customfields_help',2599);
+  define('_amb_styling_customfields',2550);
+  for ( $i = 1; $i <= 40; $i ++ ) {
+    define('_amb_customfields'.$i,2500+$i);
+    define('_amb_styling_customfields'.$i,2550+$i);
+  }
+
 class arc_mbCustomFields extends arc_Blueprints_Designer {
   function __construct( $defaults = FALSE ) {
     parent::__construct( $defaults );
@@ -31,7 +39,7 @@ class arc_mbCustomFields extends arc_Blueprints_Designer {
      * CUSTOM FIELDS
      * Why are these here even though they are somewhat content related. They're not choosing the content itself. Yes they do limit the usablity of the panel. Partly this came about because of the way WPdoesn't bind custom fields to specific content types.
      */
-    $sections[] = array(
+    $sections[_amb_customfields] = array(
         'title'      => __( 'Custom fields general settings', 'pzarchitect' ),
         'show_title' => FALSE,
         'icon_class' => 'icon-large',
@@ -86,7 +94,7 @@ class arc_mbCustomFields extends arc_Blueprints_Designer {
 
           $link_fields = array_merge( array( 'Custom fields' => $this->custom_fields ), $this->tablesfields );
           $all_fields  = array_merge( $pzarc_custom_fields, $this->tablesfields );
-          $sections[]  = array(
+          $sections[_amb_customfields.$i]  = array(
               'title'      => 'Settings ' . $cfname,
               'icon_class' => 'icon-large',
               'icon'       => 'el-icon-adjust-alt',
@@ -357,7 +365,7 @@ class arc_mbCustomFields extends arc_Blueprints_Designer {
 //            } else {
           $cfname = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] : '' );
 //            }
-          $sections[] = array(
+          $sections[_amb_styling_customfields.$i] = array(
               'title'      => 'Styling ' . $cfname,
               'show_title' => FALSE,
               'icon_class' => 'icon-large',
@@ -368,6 +376,22 @@ class arc_mbCustomFields extends arc_Blueprints_Designer {
         }
       }
     }
+    $sections[_amb_customfields_help] = array(
+        'title'      => 'Help',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-question-sign',
+        'fields'     => array(
+            array(
+                'title'    => __( 'Online documentation', 'pzarchitect' ),
+                'id'       => $prefix . 'help-content-online-docs',
+                'type'     => 'raw',
+                'markdown' => FALSE,
+                'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __( 'Architect Online Documentation', 'pzarchitect' ) . '</a><br>' . __( 'This is a growing resource. Please check back regularly.', 'pzarchitect' ),
+
+            ),
+        )
+    );
+
     $metaboxes[] = array(
         'id'         => 'customfields-settings',
         'title'      => __( 'Custom fields settings and stylings.', 'pzarchitect' ),

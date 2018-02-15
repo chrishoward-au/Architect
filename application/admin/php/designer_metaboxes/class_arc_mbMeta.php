@@ -6,6 +6,10 @@
    * Time: 8:58 PM
    */
 
+  define('_amb_meta',2800);
+  define('_amb_meta_help',2899);
+  define('_amb_styling_meta',2850);
+
 class arc_mbMeta extends arc_Blueprints_Designer {
   function __construct( $defaults = FALSE ) {
     parent::__construct( $defaults );
@@ -27,7 +31,7 @@ class arc_mbMeta extends arc_Blueprints_Designer {
     $sections = array();
     $prefix   = '_panels_design_';
     // Settings
-    $sections[] = array(
+    $sections[_amb_meta] = array(
         'title'      => __( 'Meta settings', 'pzarchitect' ),
         'show_title' => FALSE,
         'icon_class' => 'icon-large',
@@ -158,7 +162,7 @@ class arc_mbMeta extends arc_Blueprints_Designer {
       $stylingSections = array();
       $optprefix       = 'architect_config_';
 
-      $sections[] = array(
+      $sections[_amb_styling_meta] = array(
           'title'      => __( 'Meta styling', 'pzarchitect' ),
           'show_title' => FALSE,
           'icon_class' => 'icon-large',
@@ -174,6 +178,22 @@ class arc_mbMeta extends arc_Blueprints_Designer {
           ), pzarc_redux_margin( $prefix . 'author-avatar' . $margin, array( '.author img.avatar' ), $defaults[ $optprefix . 'author-avatar' . $margin ] ) ),
       );
     }
+    $sections[_amb_meta_help] = array(
+        'title'      => 'Help',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-question-sign',
+        'fields'     => array(
+            array(
+                'title'    => __( 'Online documentation', 'pzarchitect' ),
+                'id'       => $prefix . 'help-content-online-docs',
+                'type'     => 'raw',
+                'markdown' => FALSE,
+                'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __( 'Architect Online Documentation', 'pzarchitect' ) . '</a><br>' . __( 'This is a growing resource. Please check back regularly.', 'pzarchitect' ),
+
+            ),
+        )
+    );
+
     $metaboxes[] = array(
         'id'         => 'meta-settings',
         'title'      => __( 'Meta settings and styling.', 'pzarchitect' ),

@@ -6,6 +6,11 @@
    * Time: 8:59 PM
    */
 
+  define('_amb_panels',2900);
+  define('_amb_styling_panels',2950);
+  define('_amb_panels_help',2999);
+  define('_amb_panels_css',3000);
+
 class arc_mbPanels extends arc_Blueprints_Designer {
   function __construct( $defaults = FALSE ) {
     parent::__construct( $defaults );
@@ -26,7 +31,7 @@ class arc_mbPanels extends arc_Blueprints_Designer {
 
     $prefix     = '_panels_design_'; // declare prefix
     $sections   = array();
-    $sections[] = array(
+    $sections[_amb_panels] = array(
         'title'      => __( 'Content Panels Layout ', 'pzarchitect' ),
         'show_title' => FALSE,
         'icon_class' => 'icon-large',
@@ -401,7 +406,7 @@ class arc_mbPanels extends arc_Blueprints_Designer {
       $stylingSections = array();
       $optprefix       = 'architect_config_';
 
-      $sections[] = array(
+      $sections[_amb_styling_panels] = array(
           'title'      => __( 'Content Panels Styling', 'pzarchitect' ),
           'show_title' => FALSE,
           'icon_class' => 'icon-large',
@@ -445,7 +450,7 @@ class arc_mbPanels extends arc_Blueprints_Designer {
               pzarc_redux_bg( $prefix . 'hentry' . $background, ! $this->defaults ? $_architect['architect_config_hentry-selectors'] : '', $defaults[ $optprefix . 'hentry' . $background ] ), pzarc_redux_padding( $prefix . 'hentry' . $padding, ! $this->defaults ? $_architect['architect_config_hentry-selectors'] : '', $defaults[ $optprefix . 'hentry' . $padding ] ), pzarc_redux_margin( $prefix . 'hentry' . $margin, ! $this->defaults ? $_architect['architect_config_hentry-selectors'] : '', $defaults[ $optprefix . 'hentry' . $margin ] ), pzarc_redux_borders( $prefix . 'hentry' . $border, ! $this->defaults ? $_architect['architect_config_hentry-selectors'] : '', $defaults[ $optprefix . 'hentry' . $border ] ) ),
       );
 
-      $sections[] = array(
+      $sections[_amb_panels_css] = array(
           'id'         => 'custom-css',
           'title'      => __( 'Custom CSS', 'pzarchitect' ),
           'icon_class' => 'icon-large',
@@ -463,7 +468,21 @@ class arc_mbPanels extends arc_Blueprints_Designer {
           ),
       );
     }
+    $sections[_amb_panels_help] = array(
+        'title'      => 'Help',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-question-sign',
+        'fields'     => array(
+            array(
+                'title'    => __( 'Online documentation', 'pzarchitect' ),
+                'id'       => $prefix . 'help-content-online-docs',
+                'type'     => 'raw',
+                'markdown' => FALSE,
+                'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __( 'Architect Online Documentation', 'pzarchitect' ) . '</a><br>' . __( 'This is a growing resource. Please check back regularly.', 'pzarchitect' ),
 
+            ),
+        )
+    );
 
     // Create the metaboxes
 

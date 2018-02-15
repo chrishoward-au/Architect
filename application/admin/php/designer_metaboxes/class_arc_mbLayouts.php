@@ -6,6 +6,16 @@
    * Time: 9:06 PM
    */
 
+define('_amb_layouts_help',999);
+define('_amb_tabular',1000);
+define('_amb_styling_tabular',1050);
+define('_amb_accordion',1100);
+define('_amb_styling_accordion',1150);
+define('_amb_slidertabbed',1200);
+define('_amb_styling_slidertabbed',1250);
+define('_amb_masonry',1300);
+define('_amb_styling_masonry',1350);
+define('_amb_pagination',1400);
 
   class arc_mbLayouts  extends arc_Blueprints_Designer {
     function __construct( $defaults = FALSE ) {
@@ -27,7 +37,7 @@
 
       $prefix                 = '_blueprints_'; // declare prefix
       $sections               = array();
-      $sections['_tabular']   = array(
+      $sections[_amb_tabular]   = array(
           'title'      => __( 'Tabular settings', 'pzarchitect' ),
           'show_title' => TRUE,
           'icon_class' => 'icon-large',
@@ -44,7 +54,7 @@
               ),
           ),
       );
-      $sections['_accordion'] = array(
+      $sections[_amb_accordion] = array(
           'title'      => __( 'Accordion settings', 'pzarchitect' ),
           'show_title' => TRUE,
           'icon_class' => 'icon-large',
@@ -111,7 +121,7 @@
           ),
       );
 
-      $sections['_slidertabbed'] = array(
+      $sections[_amb_slidertabbed] = array(
           'title'      => __( 'Sliders & Tabbed settings', 'pzarchitect' ),
           'show_title' => TRUE,
           'icon_class' => 'icon-large',
@@ -805,7 +815,7 @@
           ),
       );
 
-      $sections['_slidertabbed'] = apply_filters( 'arc-extend-slider-settings', $sections['_slidertabbed'] );
+      $sections[_amb_slidertabbed] = apply_filters( 'arc-extend-slider-settings', $sections[_amb_slidertabbed] );
 
       /**
        * MASONRY
@@ -825,7 +835,7 @@
       } else {
         $pzarc_masonry_filter_taxes = array();
       }
-      $sections['_masonry'] = array(
+      $sections[_amb_masonry] = array(
           'title'      => __( 'Masonry settings', 'pzarchitect' ),
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-adjust-alt',
@@ -1036,7 +1046,7 @@
 
       foreach ( $pzarc_masonry_filter_taxes as $pzarc_tax ) {
 
-        $sections['_masonry']['fields'][] = array(
+        $sections[_amb_masonry]['fields'][] = array(
             'title'    => __( 'Filter on ', 'pzarchitect' ) . ucwords( str_replace( array(
                     '_',
                     '-',
@@ -1052,7 +1062,7 @@
         );
         // This extra field is necessary because changing the value of $pzarc_tax (as the loop does)
         // prevents the select field from being changed to no value. Seriously!!
-        $sections['_masonry']['fields'][] = array(
+        $sections[_amb_masonry]['fields'][] = array(
             'title'    => __( 'Set default terms ', 'pzarchitect' ),
             'id'       => '_blueprints_masonry-filtering-set-defaults-' . $pzarc_tax,
             'type'     => 'button_set',
@@ -1068,7 +1078,7 @@
             ),
             'subtitle' => __( 'Control what terms are shown.', 'pzarchitect' ),
         );
-        $sections['_masonry']['fields'][] = array(
+        $sections[_amb_masonry]['fields'][] = array(
             'title'    => __( 'Default selected terms', 'pzarchitect' ),
             'id'       => '_blueprints_masonry-filtering-default-terms-' . $pzarc_tax,
             'type'     => 'select',
@@ -1088,7 +1098,7 @@
             'subtitle' => __( 'Select which terms to show by default.', 'pzarchitect' ),
         );
 
-        $sections['_masonry']['fields'][] = array(
+        $sections[_amb_masonry]['fields'][] = array(
             'title'    => __( 'Limit ', 'pzarchitect' ),
             'id'       => '_blueprints_masonry-filtering-limit-' . $pzarc_tax,
             'type'     => 'button_set',
@@ -1105,7 +1115,7 @@
             ),
             'subtitle' => __( 'Control what terms are shown.', 'pzarchitect' ),
         );
-        $sections['_masonry']['fields'][] = array(
+        $sections_amb[_amb_masonry]['fields'][] = array(
             'title'    => __( 'Inclusions/Exclusions', 'pzarchitect' ),
             'id'       => '_blueprints_masonry-filtering-incexc-' . $pzarc_tax,
             'type'     => 'select',
@@ -1122,13 +1132,13 @@
                 'hide_empty' => FALSE,
             ),
         );
-        $sections['_masonry']['fields'][] = array(
+        $sections[_amb_masonry]['fields'][] = array(
             'id'     => '_blueprints_masonry-filtering-section-close-' . $pzarc_tax,
             'type'   => 'section',
             'indent' => FALSE,
         );
       }
-//      $sections[ '_masonry' ][ 'fields' ][] = array(
+//      $sections[ _masonry ][ 'fields' ][] = array(
 //        'id'     => $prefix . 'masonry-filtering-section-close',
 //        'type'   => 'section',
 //        'indent' => false,
@@ -1137,10 +1147,10 @@
 //      var_Dump($sections['_masonry']['fields']);
 //die();
 
-      $sections['_masonry'] = apply_filters( 'arc-extend-masonry-settings', $sections['_masonry'] );
+      $sections[_amb_masonry] = apply_filters( 'arc-extend-masonry-settings', $sections[_amb_masonry] );
 
       /** PAGINATION  */
-      $sections['_pagination'] = array(
+      $sections[_amb_pagination] = array(
           'title'      => 'Pagination',
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-chevron-right',
@@ -1269,7 +1279,7 @@
         $optprefix                         = 'architect_config_';
         $thisSection                       = 'blueprint';
         $thisSection                       = 'navigator';
-        $sections['_styling_slidertabbed'] = array(
+        $sections[_amb_styling_slidertabbed] = array(
             'title'      => 'Sliders & Tabbed styling',
             'show_title' => FALSE,
             'icon_class' => 'icon-large',
@@ -1352,7 +1362,7 @@
         );
 
         $thisSection                  = 'masonry';
-        $sections['_styling_masonry'] = array(
+        $sections[_amb_styling_masonry] = array(
             'id'         => 'masonry-css',
             'title'      => 'Masonry styling',
             'icon_class' => 'icon-large',
@@ -1418,7 +1428,7 @@
         );
 
         $thisSection                    = 'accordion-titles';
-        $sections['_styling_accordion'] = array(
+        $sections[_amb_styling_accordion] = array(
             'id'         => 'accordion-css',
             'title'      => 'Accordion styling',
             'icon_class' => 'icon-large',
@@ -1472,7 +1482,7 @@
             ),
         );
         $thisSection                    = 'tabular';
-        $sections['_styling_tabular']   = array(
+        $sections[_amb_styling_tabular]   = array(
             'id'         => 'tabular-css',
             'title'      => 'Tabular styling',
             'icon_class' => 'icon-large',
@@ -1516,6 +1526,22 @@
             ),
         );
       }
+      $sections[_amb_layouts_help] = array(
+          'title'      => 'Help',
+          'icon_class' => 'icon-large',
+          'icon'       => 'el-icon-question-sign',
+          'fields'     => array(
+              array(
+                  'title'    => __( 'Online documentation', 'pzarchitect' ),
+                  'id'       => $prefix . 'help-content-online-docs',
+                  'type'     => 'raw',
+                  'markdown' => FALSE,
+                  'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __( 'Architect Online Documentation', 'pzarchitect' ) . '</a><br>' . __( 'This is a growing resource. Please check back regularly.', 'pzarchitect' ),
+
+              ),
+          )
+      );
+
       $metaboxes[] = array(
           'id'         => 'type-settings',
           'title'      => 'Additional settings for chosen Blueprint layout',

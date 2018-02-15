@@ -7,6 +7,14 @@
    */
 
 
+  define('_amb_section',1500);
+  define('_amb_bp_custom_css',1600); // 0s are mains
+  define('_amb_blueprint_help',1799); // 99s are help
+  define('_amb_styling_sections_wrapper',1850); // 50s are styling
+  define('_amb_styling_page',1950);
+  define('_amb_styling_general',2050);
+
+
   /**
    * LAYOUT
    */
@@ -110,7 +118,7 @@
     $desc[0]   = 'Grid/Single, Slider, Tabbed, Masonry, Tabular, Accordion';
     $desc[1]   = 'Grid/Single, Masonry, Tabular, Accordion';
     for ( $i = 0; $i < 1; $i ++ ) {
-      $sections[ '_section' . ( $i + 1 ) ] = array(
+      $sections[ _amb_section . ( $i + 1 ) ] = array(
           'title'      => __( 'Design', 'pzarchitect' ),
           'show_title' => TRUE,
           'desc'       => '<p class="arc-important-admin-message">' . __( 'Each post in WordPress is - in a coding context - displayed in its own box. In Architect we call that box a <strong>Panel</strong>. So when you see the term Panel, it means an individual post layout.
@@ -543,7 +551,7 @@
 
       $thisSection = 'blueprint';
 
-      $sections['_styling_general'] = array(
+      $sections[_amb_styling_general] = array(
           'title'      => 'Blueprint styling',
           'show_title' => FALSE,
           'icon_class' => 'icon-large',
@@ -594,7 +602,7 @@
       );
 
       $thisSection               = 'page';
-      $sections['_styling_page'] = array(
+      $sections[_amb_styling_page] = array(
           'title'      => 'Page styling',
           'show_title' => FALSE,
           'icon_class' => 'icon-large',
@@ -615,7 +623,7 @@
 
 
       $thisSection                           = 'sections';
-      $sections['_styling_sections_wrapper'] = array(
+      $sections[_amb_styling_sections_wrapper] = array(
           'title'      => 'Panels wrapper styling',
           'show_title' => FALSE,
           'icon_class' => 'icon-large',
@@ -631,7 +639,7 @@
       /**
        * CUSTOM CSS
        */
-      $sections['_bp_custom_css'] = array(
+      $sections[_amb_bp_custom_css] = array(
           'id'         => 'bp-custom-css',
           'title'      => __( 'Custom CSS', 'pzarchitect' ),
           'icon_class' => 'icon-large',
@@ -656,7 +664,7 @@
       $file_contents = curl_exec( $ch );
       curl_close( $ch );
     }
-    $sections['_help'] = array(
+    $sections[_amb_blueprint_help] = array(
         'title'      => 'Help',
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-question-sign',

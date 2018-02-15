@@ -7,6 +7,11 @@ if (!(class_exists('ReduxFramework') || class_exists('ReduxFrameworkPlugin'))) {
 }
 
 if (!class_exists("Redux_Framework_Architect_Options")) {
+
+  define('_amb_options_general',500);
+  define('_amb_options_responsive',600);
+  define('_amb_options_rewrites',700);
+  define('_amb_options_language',800);
   class Redux_Framework_Architect_Options
   {
 
@@ -282,7 +287,7 @@ if (!class_exists("Redux_Framework_Architect_Options")) {
       $is_hw         = (($current_theme->get('Name') == 'Headway' || $current_theme->get('Name') == 'Headway Base' || $current_theme->get('Template') == 'headway'));
       $is_blox = (($current_theme->get('Name') === 'Blox Theme' || $current_theme->get('Template') == 'bloxtheme'));
 
-      $this->sections['_general']    = array('title' => __('General ', 'pzarchitect'),
+      $this->sections[_amb_options_general]    = array('title' => __('General ', 'pzarchitect'),
                                              'show_title' => true,
                                              'icon' => 'el-icon-wrench',
                                              'fields' => array(array('title' => __('Styling', 'pzarchitect'),
@@ -515,7 +520,7 @@ if (!class_exists("Redux_Framework_Architect_Options")) {
                                                                array('id' => 'architect_other_section_end',
                                                                      'type' => 'section',
                                                                      'indent' => false),));
-      $this->sections['_responsive'] = array('title' => 'Responsive ',
+      $this->sections[_amb_options_responsive] = array('title' => 'Responsive ',
                                              'show_title' => true,
                                              'icon' => 'el-icon-laptop',
                                              'desc' => __('Architect lets you set some arbitrary breakpoints for responsive design. Responsive design, however, is a lot more complicated than a handful of breakpoints! It is affected by devices, content, containers and so on. To provide support for all of that would severely overwhelm Architect\'s settings. For example, for every font styling, it would need to be set for every scenario. The breakpoints are therefore used on a limited range of options. If you want to get serious with responsive design, you will have to write a lot of custom css', 'pzarchitect'),
@@ -611,7 +616,7 @@ if (!class_exists("Redux_Framework_Architect_Options")) {
                                                                array('id' => 'architect_responsive-images_end-section',
                                                                      'type' => 'section',
                                                                      'indent' => false,),));
-      $this->sections['_rewrites']   = array('title' => __('Rewrites', 'pzarchitect'),
+      $this->sections[_amb_options_rewrites]   = array('title' => __('Rewrites', 'pzarchitect'),
                                              'show_title' => true,
                                              'icon' => 'el-icon-pencil',
                                              'fields' => array(array('title' => __('Snippets', 'pzarchitect'),
@@ -638,7 +643,7 @@ if (!class_exists("Redux_Framework_Architect_Options")) {
                                                                      'validate' => 'no_special_chars',
                                                                      'default' => 'pz_showcases',
                                                                      'subtitle' => __('Set what name appears in the URL for Showcases', 'pzarchitect'),),));
-      $this->sections['_language']   = array('title' => 'Language ',
+      $this->sections[_amb_options_language]   = array('title' => 'Language ',
                                              'show_title' => true,
                                              'icon' => 'el-icon-globe',
                                              'fields' => array(array('title' => __('Categories archive pages title', 'pzarchitect'),

@@ -6,6 +6,12 @@
    * Time: 8:58 PM
    */
 
+  define('_amb_body_excerpt',2200);
+  define('_amb_body_excerpt_help',2299);
+  define('_amb_styling_body',2250);
+  define('_amb_styling_excerpt',2350);
+  define('_amb_body_excerpt_responsive',2400);
+
 class arc_mbBodyExcerpt extends arc_Blueprints_Designer {
   function __construct( $defaults = FALSE ) {
     parent::__construct( $defaults );
@@ -28,7 +34,7 @@ class arc_mbBodyExcerpt extends arc_Blueprints_Designer {
     $prefix   = '_panels_design_';
 
     // Settings
-    $sections[] = array(
+    $sections[_amb_body_excerpt] = array(
         'title'      => __( 'Body/excerpt settings', 'pzarchitect' ),
         'icon_class' => 'icon-large',
         'icon'       => 'el-icon-adjust-alt',
@@ -203,7 +209,7 @@ class arc_mbBodyExcerpt extends arc_Blueprints_Designer {
 
         ),
     );
-    $sections[] = array(
+    $sections[_amb_body_excerpt_responsive] = array(
         'title'      => __( 'Responsive overrides', 'pzarchitect' ),
         'show_title' => FALSE,
         'icon_class' => 'icon-large',
@@ -417,7 +423,7 @@ class arc_mbBodyExcerpt extends arc_Blueprints_Designer {
       $optprefix       = 'architect_config_';
 
 
-      $sections[] = array(
+      $sections[_amb_styling_body] = array(
           'title'      => __( 'Body content styling', 'pzarchitect' ),
           'show_title' => FALSE,
           'icon_class' => 'icon-large',
@@ -438,7 +444,7 @@ class arc_mbBodyExcerpt extends arc_Blueprints_Designer {
               'class'  => 'heading',
           ), pzarc_redux_font( $prefix . 'entry-contentp' . $font, array( '.entry-content' ), $defaults[ $optprefix . 'entry-content' . $font ] ), pzarc_redux_padding( $prefix . 'entry-contentp' . $font . $padding, array( '.entry-content p' ), $defaults[ $optprefix . 'entry-contentp' . $font . $padding ] ), pzarc_redux_margin( $prefix . 'entry-contentp' . $font . $margin, array( '.entry-content p' ), $defaults[ $optprefix . 'entry-contentp' . $font . $margin ] ) ),
       );
-      $sections[] = array(
+      $sections[_amb_styling_excerpt] = array(
           'title'      => __( 'Excerpts styling', 'pzarchitect' ),
           'show_title' => FALSE,
           'icon_class' => 'icon-large',
@@ -467,6 +473,22 @@ class arc_mbBodyExcerpt extends arc_Blueprints_Designer {
           ), pzarc_redux_font( $prefix . 'entry-readmore' . $font, array( '.readmore' ), $defaults[ $optprefix . 'entry-readmore' . $font ] ), pzarc_redux_bg( $prefix . 'entry-readmore' . $font . $background, array( '.readmore' ), $defaults[ $optprefix . 'entry-readmore' . $font . $background ] ), pzarc_redux_padding( $prefix . 'entry-readmore' . $font . $padding, array( '.readmore' ), $defaults[ $optprefix . 'entry-readmore' . $font . $padding ] ), pzarc_redux_links( $prefix . 'entry-readmore' . $font . $link, array( 'a.readmore' ), $defaults[ $optprefix . 'entry-readmore' . $font . $link ] ) ),
       );
     }
+    $sections[_amb_body_excerpt_help] = array(
+        'title'      => 'Help',
+        'icon_class' => 'icon-large',
+        'icon'       => 'el-icon-question-sign',
+        'fields'     => array(
+            array(
+                'title'    => __( 'Online documentation', 'pzarchitect' ),
+                'id'       => $prefix . 'help-content-online-docs',
+                'type'     => 'raw',
+                'markdown' => FALSE,
+                'content'  => '<a href="http://architect4wp.com/codex-listings/" target=_blank>' . __( 'Architect Online Documentation', 'pzarchitect' ) . '</a><br>' . __( 'This is a growing resource. Please check back regularly.', 'pzarchitect' ),
+
+            ),
+        )
+    );
+
     $metaboxes[] = array(
         'id'         => 'body-settings',
         'title'      => __( 'Body/Excerpt settings and stylings.', 'pzarchitect' ),
