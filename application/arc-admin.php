@@ -455,7 +455,14 @@
         echo ' <div class="arc-info-boxes">
                     <div class="arc-info col1 arc-is-lite">';
         echo '<h3 style="color:#0074A2">Architect Lite</h3>
-        <p class="arc-important" style="font-weight:bold;">You are running Architect without activating a licence, therefore it is in Lite mode. Cool features you are missing out on are: Animations and access to all content types, including Galleries, Snippets, NextGen, Testimonials and custom post types</p>
+        <p class="arc-important" style="font-weight:bold;">You are running Architect without activating a licence, therefore it is in Lite mode. Cool features you are missing out on are: </p>
+          <ul>          
+          <li>Custom fields</li>
+          <li>Custom fields filtering</li>
+          <li>Content animation</li>
+          <li>Access to all content types, including Galleries, Snippets, NextGen, Testimonials and custom post types</li>
+          <li>Lite is also limited to 15 posts per page</li>
+          </ul>
         <p style="font-weight:bold;">To get all the extra goodness of Architect, you can purchase it from the <a href="http://shop.pizazzwp.com/downloads/architect/" target="_blank">PizazzWP Shop</a> or just click the <a href="./admin.php?page=pzarc-pricing">Upgrade link</a> in the Architect menu</p>
         </div>
         </div>';
