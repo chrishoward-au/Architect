@@ -8688,8 +8688,11 @@
 				) {
 					$http_error = strtolower( $response->errors['http_request_failed'][0] );
 
-					if ( false !== strpos( $http_error, 'ssl' ) ) {
-						// Failed due to old version of cURL or Open SSL (SSLv3 is not supported by CloudFlare).
+//					if ( false !== strpos( $http_error, 'ssl' ) ) {
+          if ( false !== strpos( $http_error, 'ssl' ) ||
+               false !== strpos( $http_error, 'curl error 35' )
+          ) {
+            // Failed due to old version of cURL or Open SSL (SSLv3 is not supported by CloudFlare).
 						$url = 'http://' . substr( $url, 8 );
 
 						$response = wp_remote_post( $url, array(

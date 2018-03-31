@@ -3,6 +3,7 @@ Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
 Tested up to: 5.0
+Requires PHP: 5.6
 Stable tag: 1.11.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -84,18 +85,21 @@ For support, please send an email to support@pizazzwp.com
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
+TODO: Gutenberg block
+TODO: Update shortcode help!
+
+
 = 1.11.1
+* ADDED: Error msg if Presets selector can't read presets files.
 * FIXED: Removed Features tab as it's not populated
 * FIXED: Changed misleading message saying "This theme requires Redux" to "This plugin requires Redux"
-* FIXED: Removing shortcodes not working correctly
-* CHANGED: Now using class rather than ID when creating Blueprint CSS since Blueprints can be re-used on the same page.
-* CHANGED: Blueprint CSS to load as late as possible in head.
+* FIXED: Strip architect shortcodes in excerpts to prevent loops
 * FIXED: Replaced sections array keys with numeric constants due to PHP 7.1.12 notices
-
-TODO: FIX panels custom CSS loading before other CSS
-TODO: Gutenberg block
-TODO: Detect post in post and don't process architect
-TODO: Update shortcode help!
+* FIXED: Prevent a Blueprint from calling itself when nesting Blueprints
+* FIXED: Patch for Freemius where sometimes giving cURL error when activating licence
+* CHANGED: Now using class rather than ID when creating Blueprint CSS since Blueprints can be re-used on the same page. You will need to change any custom CSS that was using the ID.
+* CHANGED: Blueprint CSS to load as late as possible in head.
+* CHANGED: Remove custom fields support from free version
 
 = 1.11.0 - 1 Feb 2018
 Beaver Builder specific enhancements

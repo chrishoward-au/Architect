@@ -27,7 +27,7 @@ jQuery(document).ready(function () {
   const _amb_titles = 2100;
   const _amb_titles_help = 2199;
   const _amb_styling_titles = 2150;
-  const _amb_titles_responsive = 2100;
+  const _amb_titles_responsive = 2130;
   const _amb_body_excerpt = 2200;
   const _amb_body_excerpt_help = 2299;
   const _amb_styling_body = 2250;

@@ -77,6 +77,12 @@
                           'default' => '',
                           'options' => $blueprint_list,
                       ),
+                      'panels_per_view'   => array(
+                        'type'    => 'text',
+                        'label'   => __('Override number of posts to show', 'pzarchitect'),
+                        'default' => '',
+                        'description'=>__('Note: If the selection contains sticky posts, these will affect this limit.','pzarchitect')
+                      ),
                       'blueprint_title'   => array(
                         'type'    => 'text',
                         'label'   => __('Override Blueprint display title', 'pzarchitect'),
@@ -86,6 +92,7 @@
                         'type'    => 'textarea',
                         'label'   => __('Custom overrides', 'pzarchitect'),
                         'default' => '',
+                        'description'=>__('Enter shortcode parameter style. e.g rssurl="http://myurl.com/feed" count="5"','pzarchitect')
                       ),
                   ),
               ),

@@ -43,5 +43,16 @@
 				</select>
 			</td>
 		</tr>
+    <tr id="fl-field-sidebar" class="fl-field" data-type="select" data-preview='{"type":"refresh"}'>
+      <th>
+        <label for="default_sidebar"><?php _e( 'Orientation', 'fl-builder' ); ?></label>
+      </th>
+      <td>
+        <select name="orientation">
+            <option value="vertical"<?php if ( isset( $settings->orientation ) && $settings->orientation == "vertical" ) { echo ' selected="selected"';} ?>>Vertical</option>
+            <option value="horizontal"<?php if ( isset( $settings->orientation ) && $settings->orientation == "horizontal" ) { echo ' selected="selected"';} ?>>Horizontal</option>
+        </select>
+      </td>
+    </tr>
 	</table>
 </div>

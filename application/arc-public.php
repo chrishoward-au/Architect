@@ -257,6 +257,19 @@
    */
   function pzarc( $blueprint = NULL, $overrides = NULL, $caller = NULL, $tag = NULL, $additional_overrides = NULL, $tablet_bp = NULL, $phone_bp = NULL ) {
     pzdb( 'start pzarc' );
+//var_dump(get_the_ID(),get_the_title(),$blueprint);
+//global $wp_the_query, $wp_query;
+//var_dump($wp_the_query->queried_object_id,$wp_query->queried_object_id);
+global $arc_blueprint_stack;
+//    var_dump($arc_blueprint);
+
+  // v.1.11.1: Protect against blueprints calling themselves
+  if(is_array($arc_blueprint_stack)&&in_array($blueprint,$arc_blueprint_stack)) {
+    return;
+  }
+
+$arc_blueprint_stack[]=$blueprint;
+
 
     //  var_dump(func_get_args());
 
@@ -398,6 +411,8 @@
     remove_filter( 'image_downsize', 'bfi_image_downsize' );
 
     $in_arc = 'no';
+    // v.1.11.1: Remove the last blueprint in the stack else we can't use same Blueprint multiple times on a page.
+    array_pop($arc_blueprint_stack);
   }
 
 

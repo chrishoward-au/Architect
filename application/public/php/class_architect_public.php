@@ -96,31 +96,31 @@
       /** Add navigation.*/
       $nav_pos = ( 'thumbs' === $this->build->blueprint['_blueprints_navigator'] && 'top' === $this->build->blueprint['_blueprints_navigator-thumbs-position'] ) ? 'tl' : '';
       $nav_pos = ( ! in_array( $this->build->blueprint['_blueprints_navigator'], array(
-          'thumbs',
-          'none',
-        ) ) && ( 'top' === $this->build->blueprint['_blueprints_navigator-position'] || 'left' === $this->build->blueprint['_blueprints_navigator-position'] ) ) ? 'tl' : $nav_pos;
+              'thumbs',
+              'none',
+          ) ) && ( 'top' === $this->build->blueprint['_blueprints_navigator-position'] || 'left' === $this->build->blueprint['_blueprints_navigator-position'] ) ) ? 'tl' : $nav_pos;
 
       //  Putting it in an action allows devs to write their own
       if ( ( $this->build->blueprint['_blueprints_section-0-layout-mode'] === 'tabbed' || $this->build->blueprint['_blueprints_section-0-layout-mode'] === 'slider' ) && $nav_pos === 'tl' ) {
 
         add_action( 'arc_top_left_navigation_' . $this->build->blueprint['_blueprints_short-name'], array(
-          &$this,
-          'add_navigation',
+            &$this,
+            'add_navigation',
         ), 10, 1 );
       }
 
       $nav_pos = ( 'thumbs' === $this->build->blueprint['_blueprints_navigator'] && 'bottom' === $this->build->blueprint['_blueprints_navigator-thumbs-position'] ) ? 'br' : '';
       $nav_pos = ( ! in_array( $this->build->blueprint['_blueprints_navigator'], array(
-          'thumbs',
-          'none',
-        ) ) && ( 'bottom' === $this->build->blueprint['_blueprints_navigator-position'] || 'right' === $this->build->blueprint['_blueprints_navigator-position'] ) ) ? 'br' : $nav_pos;
+              'thumbs',
+              'none',
+          ) ) && ( 'bottom' === $this->build->blueprint['_blueprints_navigator-position'] || 'right' === $this->build->blueprint['_blueprints_navigator-position'] ) ) ? 'br' : $nav_pos;
 
       // Do the 'none' here to ensure we still load the js even tho no nav bar
       if ( ( $this->build->blueprint['_blueprints_section-0-layout-mode'] === 'tabbed' || $this->build->blueprint['_blueprints_section-0-layout-mode'] === 'slider' ) && $nav_pos === 'br' || $this->build->blueprint['_blueprints_navigator'] === 'none' ) {
 
         add_action( 'arc_bottom_right_navigation_' . $this->build->blueprint['_blueprints_short-name'], array(
-          &$this,
-          'add_navigation',
+            &$this,
+            'add_navigation',
         ), 10, 1 );
       }
 
@@ -143,8 +143,9 @@
       $original_query = $wp_query;
 
       // Overrides
-      $this->build->blueprint['additional_overrides'] = arc_process_overrides( $additional_overrides, $this->build->blueprint );
-      $this->build->blueprint['_blueprints_blueprint-title']= isset($overrides['title'])?$overrides['title']:$this->build->blueprint['_blueprints_blueprint-title'];
+      $this->build->blueprint['additional_overrides']        = arc_process_overrides( $additional_overrides, $this->build->blueprint );
+      $this->build->blueprint['_blueprints_blueprint-title'] = isset( $overrides['title'] ) ? $overrides['title'] : $this->build->blueprint['_blueprints_blueprint-title'];
+      $this->build->blueprint['_blueprints_section-0-panels-per-view'] = isset( $overrides['panels_per_view'] ) ? $overrides['panels_per_view'] : $this->build->blueprint['_blueprints_section-0-panels-per-view'];
 
 
       // Shorthand some vars
@@ -239,47 +240,47 @@
 
       }
 
-      /** at this point we have the necessary info to populate the navigator. So let's do it! */
-      $content_class = self::get_blueprint_content_class();
-      if ( class_exists( $content_class ) ) {
-        $panel_class = new $content_class( $this->build ); // This gets the settings for the panels of this content type.
-        if ( $bp_nav_type === 'navigator' ) {
-          $this->nav_items = $panel_class->get_nav_items( $this->build->blueprint['_blueprints_navigator'], $this->arc_query, $this->build->blueprint['_blueprints_navigator-labels'], $this->build->blueprint['_blueprints_navtabs-maxlen'] );
+        /** at this point we have the necessary info to populate the navigator. So let's do it! */
+        $content_class = self::get_blueprint_content_class();
+        if ( class_exists( $content_class ) ) {
+          $panel_class = new $content_class( $this->build ); // This gets the settings for the panels of this content type.
+          if ( $bp_nav_type === 'navigator' ) {
+            $this->nav_items = $panel_class->get_nav_items( $this->build->blueprint['_blueprints_navigator'], $this->arc_query, $this->build->blueprint['_blueprints_navigator-labels'], $this->build->blueprint['_blueprints_navtabs-maxlen'] );
+          }
+
+          /** RENDER THE BLUEPRINT */
+          pzdb( 'pre render' );
+
+          $post_count = is_object( $this->arc_query ) ? $this->arc_query->post_count : count( $this->arc_query );
+
+          switch ( TRUE ) {
+            case ( $post_count > 0 || ( $post_count == 0 && empty( $this->build->blueprint['_blueprints_hide-blueprint'] ) ) ):
+              self::render_this_architect_blueprint( $bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $bp_type, $post_count );
+              break;
+            case $post_count == 0 && ! empty( $this->build->blueprint['_blueprints_hide-blueprint'] ):
+              // do nothing
+              break;
+          }
+          remove_all_filters( 'posts_where', 17 );
+          pzdb( 'post render' );
         }
 
-        /** RENDER THE BLUEPRINT */
-        pzdb( 'pre render' );
+        if ( ( isset( $_GET['debug'] ) && is_user_logged_in() ) ) {
+          d( $this->build );
+          d( $wp_query->query_vars );
+          d( $wp_query );
 
-        $post_count = is_object( $this->arc_query ) ? $this->arc_query->post_count : count( $this->arc_query );
 
-        switch ( TRUE ) {
-          case ( $post_count > 0 || ( $post_count == 0 && empty( $this->build->blueprint['_blueprints_hide-blueprint'] ) ) ):
-            self::render_this_architect_blueprint( $bp_nav_type, $bp_nav_pos, $bp_shortname, $caller, $bp_transtype, $panel_class, $content_class, $bp_type, $post_count );
-            break;
-          case $post_count == 0 && ! empty( $this->build->blueprint['_blueprints_hide-blueprint'] ):
-            // do nothing
-            break;
+          // Hide table names
+          $result = preg_replace( "/(\\w)*\\./uiUs", "****$1.", $wp_query->request );
+          $result = str_replace( "****s", 'xxx', $result );
+          $result = str_replace( "****a", 'yyy', $result );
+          $result = preg_replace( "/FROM(.)*INNER/uiUs", "FROM xxx INNER", $result );
+          $result = preg_replace( "/JOIN(.)*ON/uiUs", "JOIN yyy ON", $result );
+
+          d( $result );
         }
-        remove_all_filters( 'posts_where', 17 );
-        pzdb( 'post render' );
-      }
-
-      if ( ( isset( $_GET['debug'] ) && is_user_logged_in() ) ) {
-        d( $this->build );
-        d( $wp_query->query_vars );
-        d( $wp_query );
-
-
-        // Hide table names
-        $result = preg_replace( "/(\\w)*\\./uiUs", "****$1.", $wp_query->request );
-        $result = str_replace( "****s", 'xxx', $result );
-        $result = str_replace( "****a", 'yyy', $result );
-        $result = preg_replace( "/FROM(.)*INNER/uiUs", "FROM xxx INNER", $result );
-        $result = preg_replace( "/JOIN(.)*ON/uiUs", "JOIN yyy ON", $result );
-
-        d( $result );
-      }
-
+  //    }
       /** Set our original query back. */
 //      wp_reset_postdata(); // Pretty sure this goes here... Not after the query reassignment
       $wp_query = NULL;
@@ -372,8 +373,8 @@
       if ( ! empty( $arc_fs_location ) ) {
         echo '<div class="arc-fs-loc-' . $arc_fs_location . '">';
         $arc_fs_style = empty( $this->build->blueprint['_blueprints_masonry-filtering-controls-width'] ) && ! in_array( $arc_fs_location, array(
-          'left',
-          'right',
+            'left',
+            'right',
         ) ) ? '' : ' style="flex-basis:' . $this->build->blueprint['_blueprints_masonry-filtering-controls-width'] . '%"';
         echo '<div class="arc-filtering-and-sorting" ' . $arc_fs_style . '>';
         do_action( "arc_masonry_controls_{$bp_shortname}" );

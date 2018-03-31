@@ -200,7 +200,7 @@
           $this->data['title']['title'] = get_the_title();
         }
 
-        if ( 'thumb' === $this->section['_panels_design_title-prefix'] ) {
+        if ( !empty($this->section['_panels_design_title-prefix']) && 'thumb' === $this->section['_panels_design_title-prefix'] ) {
           $thumb_id    = get_post_thumbnail_id();
           $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', TRUE );
           if ( empty( $focal_point ) ) {
@@ -224,6 +224,9 @@
 
     }
 
+    /**
+     * @param $post
+     */
     public function get_meta( &$post ) {
       $meta_string = $this->toshow['meta1']['show'] ? $this->section['_panels_design_meta1-config'] : '';
       $meta_string .= $this->toshow['meta2']['show'] ? $this->section['_panels_design_meta2-config'] : '';
@@ -624,14 +627,14 @@
       if ( ArcFun::is_bb_active() && $post->post_type === 'fl-theme-layout' ) {
         $thecontent = dummy_text();
       } else {
-
-        // var_Dump($post);
         if ( ( empty( $this->section['_panels_design_process-body-shortcodes'] ) || $this->section['_panels_design_process-body-shortcodes'] === 'process' ) ) {
-          $thecontent = do_shortcode( get_the_content() );
+            // v1.11.1 Strip out Blueprint if it's already the one being displayed to stop infinite loops
+//            $thecontent = preg_replace( '/\\[architect(.)*?'.$this->build->name.'(.)*?\\]/ui', '<!-- Architect Blueprint '.$this->build->name.' removed to prevent infinite loop -->', $post->post_content );
+//            $thecontent = do_shortcode( $thecontent );
+            $thecontent = do_shortcode( $post->post_content );
         } else {
-          $thecontent = strip_shortcodes( get_the_content() );
+          $thecontent = strip_shortcodes( $post->post_content );
         }
-
 
         // Insert shortcode if required
         if ( ! empty( $this->section['_panels_design_insert-content-shortcode'] ) ) {
@@ -659,22 +662,17 @@
      * @param $post
      */
     public function get_excerpt( &$post ) {
-
       if ( ( empty( $this->section['_panels_design_process-excerpts-shortcodes'] ) || $this->section['_panels_design_process-excerpts-shortcodes'] !== 'process' ) ) {
         $the_content = strip_shortcodes( $post->post_content );
-        $the_excerpt = strip_shortcodes( $post->post_excerpt );
+        $the_excerpt = strip_shortcodes( (empty($post->post_excerpt)?$post->post_content:$post->post_excerpt) );
       } else {
-//        global $wp_the_query;
-//        var_dump(get_the_title(),preg_match('/\\[architect(.)*?\\]/ui', $post->post_content));
-//        if ($post->ID == $wp_the_query->queried_object_id) {
-          $the_content = preg_replace('/\\[architect(.)*?\\]/ui', '<!-- Architect Blueprint was here --><br>', $post->post_content);
+        // v1.11.1 Strip out Blueprint if it's already the one being displayed to stop infinite loops
+        $the_content = $post->post_content;
+        $the_excerpt = (empty($post->post_excerpt)?$post->post_content:$post->post_excerpt);
+//          $the_content = preg_replace( '/\\[architect(.)*?'.$this->build->name.'(.)*?\\]/ui', '<!-- Architect Blueprint '.$this->build->name.' removed to prevent infinite loop -->', $post->post_content );
           $the_content = do_shortcode( $the_content );
-          $the_excerpt = preg_replace('/\\[architect(.)*?\\]/ui', '<!-- Architect Blueprint was here --><br>', $post->post_excerpt);
+//          $the_excerpt = preg_replace('/\\[architect(.)*?'.$this->build->name.'(.)*?\\]/ui', '<!-- Architect Blueprint '.$this->build->name.' removed to prevent infinite loop -->', (empty($post->post_excerpt)?$post->post_content:$post->post_excerpt));
           $the_excerpt = do_shortcode( $the_excerpt );
-//        } else {
-//          $the_content = do_shortcode( $post->post_content );
-//          $the_excerpt = do_shortcode( $post->post_excerpt );
-//        }
       }
 
       switch ( TRUE ) {
@@ -736,13 +734,24 @@
           break;
 
         // WORDS
+        case ! empty( $this->section['_panels_design_excerpts-trim-type'] ) && $this->section['_panels_design_excerpts-trim-type'] === 'words':
         default:
-          $this->data['excerpt'] = $the_excerpt;
+          $truncation_link = pzarc_make_excerpt_more(
+              array(
+                  '_panels_design_readmore-text'=>$this->section['_panels_design_readmore-text'],
+                  '_panels_design_readmore-truncation-indicator'=>$this->section['_panels_design_readmore-truncation-indicator']
+              ),
+              $post
+          );
+          $this->data['excerpt'] = wp_trim_words($the_excerpt,$this->section['_panels_design_excerpts-word-count'],$truncation_link);
       }
       $this->data['excerpt'] = apply_filters( 'the_excerpt', $this->data['excerpt'] );
     }
 
 
+    /**
+     * @param $post
+     */
     public function get_custom( &$post ) {
       /** CUSTOM FIELDS **/
 //      d($post);
@@ -878,13 +887,13 @@
 
     public function render_title( $component, $content_type, $panel_def, $rsid, $layout_mode = FALSE ) {
 
-      if ( 'thumb' === $this->section['_panels_design_title-prefix'] ) {
+      if ( !empty($this->section['_panels_design_title-prefix']) && 'thumb' === $this->section['_panels_design_title-prefix'] ) {
         $panel_def[ $component ] = str_replace( '{{title}}', $this->data['title']['thumb'] . '<span class="pzarc-title-wrap">' . $this->data['title']['title'] . '</span>', $panel_def[ $component ] );
       } else {
         $panel_def[ $component ] = str_replace( '{{title}}', $this->data['title']['title'], $panel_def[ $component ] );
       }
 
-      if ( $this->section['_panels_design_link-titles'] ) {
+      if ( !empty($this->section['_panels_design_link-titles']) && $this->section['_panels_design_link-titles'] ) {
         $panel_def[ $component ] = str_replace( '{{postlink}}', $panel_def['postlink'], $panel_def[ $component ] );
         $panel_def[ $component ] = str_replace( '{{closepostlink}}', '</a>', $panel_def[ $component ] );
       }
@@ -1418,14 +1427,15 @@
       }
 // RESUME: Was doing something here!
 //      d($this->arc_query);
-
       while ( $this->arc_query->have_posts() && $loopcount ++ < $loopmax ) {
         //  var_dump("You is here");
         $this->arc_query->the_post();
         pzdb( 'top_of_loop Post:' . get_the_id() );
         $section[ $section_no ]->render_panel( $panel_def, $i, $class, $panel_class, $this->arc_query );
 
-        if ( $i ++ >= $this->build->blueprint[ '_blueprints_section-' . ( $section_no - 1 ) . '-panels-per-view' ] && ! empty( $this->build->blueprint[ '_blueprints_section-' . ( $section_no - 1 ) . '-panels-limited' ] ) ) {
+        $panels_per_view = $this->build->blueprint[ '_blueprints_section-' . ( $section_no - 1 ) . '-panels-per-view' ];
+        $panels_unlimited = empty( $this->build->blueprint[ '_blueprints_section-' . ( $section_no - 1 ) . '-panels-limited' ] );
+        if ( $i ++ >= $panels_per_view && ! $panels_unlimited ) {
           if ( $i !== count( $this->arc_query->posts ) ) {
             break;
           } else {

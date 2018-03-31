@@ -6,7 +6,9 @@
   }
 
   $detect = new Mobile_Detect;
+  $settings->orienatation = empty($settings->orientation)?'vertical':$settings->orientation;
 
+?><div class="arc-adaptive-sidebar orientation-<?php echo $settings->orientation; ?>"><?php
   // Switch Sidebar depending on device
   switch ( TRUE ) {
     case ( $detect->isMobile() && ! $detect->isTablet() ):
@@ -33,4 +35,5 @@
       }
       break;
   }
+  ?></div><?php
 

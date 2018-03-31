@@ -309,6 +309,7 @@
         $pzarc_css_success = TRUE;
         save_arc_layouts( 'all', NULL, TRUE );
         pzarc_set_defaults();
+        update_option('arc_blueprints',pzarc_get_blueprints(false));
         bfi_flush_image_cache();
         delete_option( 'architect_custom_fields' );
         // Clear the registry of Blueprint usages

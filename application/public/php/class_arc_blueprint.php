@@ -126,11 +126,13 @@
 //        return $this->blueprint;
 //
 //      }
-			$this->blueprint['blueprint-id']    = $blueprint_query->posts[0]->ID;
-			$this->blueprint['blueprint-title'] = $blueprint_query->posts[0]->post_title;
+
+			$this->blueprint['blueprint-id']    = ArcFun::get_blueprint_id($blueprint_query->posts[0]);
+			$this->blueprint['blueprint-title'] = ArcFun::get_blueprint_title($blueprint_query->posts[0]);
+
 			global $arc_blueprint_id;
 			$arc_blueprint_id = $this->blueprint['blueprint-id'];
-			$blueprint_info   = get_post_meta( $blueprint_query->posts[0]->ID );
+			$blueprint_info   = get_post_meta( $arc_blueprint_id );
 			foreach ( $blueprint_info as $key => $value ) {
 
 				if ( '_edit_lock' !== $key && '_edit_last' !== $key && strpos( $key, '_blueprints_styling_' ) !== 0 ) {

@@ -19,6 +19,9 @@
       $this->criteria = $criteria;
     }
 
+    /**
+     * @param $overrides
+     */
     public function build_custom_query_options( $overrides ) {
       // Make sure we're using the original post type for the page
 //      var_dump($this->build->blueprint[ '_blueprints_content-source' ],$this->build->blueprint[ '_content_defaults_defaults-override' ],get_the_ID());
@@ -344,34 +347,40 @@
           break;
       }
 
-      // Specific IDs
+      /** Limit */
+      // Note: This may be overriden by Specific IDs
+      if ( ! empty( $overrides['panels_per_view'] ) ) {
+        $this->query_options['posts_per_page'] = $overrides['panels_per_view'];
+      }
+
+      /** Specific IDs */
       if ( ! empty( $overrides['post__in'] ) ) {
 
         $this->query_options['post__in']       = explode( ',', $overrides['post__in'] );
         $this->query_options['posts_per_page'] = count( $this->query_options['post__in'] );
       }
 
-      // Include categories
+      /** Include categories */
       if ( ! empty( $overrides['category__in'] ) ) {
         $this->query_options['category__in'] = ! is_array( $overrides['category__in'] ) ? explode( ',', $overrides['category__in'] ) : $overrides['category__in'];
       }
 
-      // Exclude categories
+      /** Exclude categories */
       if ( ! empty( $overrides['category__not_in'] ) ) {
         $this->query_options['category__not_in'] = ! is_array( $overrides['category__not_in'] ) ? explode( ',', $overrides['category__not_in'] ) : $overrides['category__not_in'];
       }
 
-      // Must be in all categories
+      /** Must be in all categories */
       if ( ! empty( $overrides['category__and'] ) ) {
         $this->query_options['category__and'] = ! is_array( $overrides['category__and'] ) ? explode( ',', $overrides['category__and'] ) : $overrides['category__and'];
       }
 
-      // Include tags
+      /** Include tags */
       if ( ! empty( $overrides['tag__in'] ) ) {
         $this->query_options['tag__in'] = ! is_array( $overrides['tag__in'] ) ? explode( ',', $overrides['tag__in'] ) : $overrides['tag__in'];
       }
 
-      // Include taxonomy and terms
+      /** Include taxonomy and terms */
       if ( ! empty( $overrides['taxonomy'] ) && ! empty( $overrides['terms'] ) ) {
         $this->query_options['tax_query'] = array(
           array(

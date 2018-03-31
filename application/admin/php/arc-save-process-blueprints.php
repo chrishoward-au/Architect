@@ -33,7 +33,6 @@
 
 
     foreach ($pzarc_blueprints as $key => $value) {
-
       // First off process the styling settings, which should be automatable
       if (substr_count($key, '_blueprints_styling_') === 1 && !empty($_architect_options['architect_enable_styling'])) {
 
@@ -66,12 +65,19 @@
                   break;
               }
             }
-            $pzarc_contents .= pzarc_get_styling('blueprint', $bpkeys, $value, //                                                 $specificity_class.'.pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ],
-                $specificity_class//                                    $bpkeys[ 'classes' ]
+            $pzarc_contents .= pzarc_get_styling('blueprint', $bpkeys, $value,
+                //                                                 $specificity_class.'.pzarchitect.pzarc-blueprint_' . $pzarc_blueprints[ '_blueprints_short-name' ],
+                $specificity_class
+            //                                    $bpkeys[ 'classes' ]
             );
           }
         }
       }
+//      if ($key=='_blueprints_styling_blueprint-margins' && $specificity_class=='.pzarc-blueprint_simple-grid') {
+//        var_dump( $specificity_class, $key, $value);
+//        echo $pzarc_contents;
+//      }
+
     }
     switch ($pzarc_blueprints['_blueprints_blueprint-align']) {
       case 'right':

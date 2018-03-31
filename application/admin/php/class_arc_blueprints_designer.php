@@ -1,71 +1,5 @@
 <?php
 
-  define( '_amb_layouts_help', 999 );
-  define( '_amb_tabular', 1000 );
-  define( '_amb_styling_tabular', 1050 );
-  define( '_amb_accordion', 1100 );
-  define( '_amb_styling_accordion', 1150 );
-  define( '_amb_slidertabbed', 1200 );
-  define( '_amb_styling_slidertabbed', 1250 );
-  define( '_amb_masonry', 1300 );
-  define( '_amb_styling_masonry', 1350 );
-  define( '_amb_pagination', 1400 );
-  define( '_amb_section', 1500 );
-  define( '_amb_section1', 1501 );
-  define( '_amb_section2', 1502 );
-  define( '_amb_section3', 1503 );
-
-  // Where's section styling?
-
-  define( '_amb_bp_custom_css', 1600 ); // 0s are mains
-  define( '_amb_blueprint_help', 1799 ); // 99s are help
-  define( '_amb_styling_sections_wrapper', 1850 ); // 50s are styling
-  define( '_amb_styling_page', 1950 );
-  define( '_amb_styling_general', 2050 );
-
-  define( '_amb_titles', 2100 );
-  define( '_amb_titles_help', 2199 );
-  define( '_amb_styling_titles', 2150 );
-  define( '_amb_titles_responsive', 2100 );
-
-  define( '_amb_body_excerpt', 2200 );
-  define( '_amb_body_excerpt_help', 2299 );
-  define( '_amb_styling_body', 2250 );
-  define( '_amb_styling_excerpt', 2350 );
-  define( '_amb_body_excerpt_responsive', 2400 );
-
-  define( '_amb_customfields', 2500 );
-  define( '_amb_customfields_help', 2599 );
-  define( '_amb_styling_customfields', 2550 );
-  for ( $i = 1; $i <= 40; $i ++ ) {
-    define( '_amb_customfields' . $i, 2500 + $i );
-    define( '_amb_styling_customfields' . $i, 2550 + $i );
-  }
-
-  define( '_amb_features', 2600 );
-  define( '_amb_features_help', 2699 );
-  define( '_amb_styling_features', 2650 );
-
-  define( '_amb_general', 2700 );
-
-  define( '_amb_meta', 2800 );
-  define( '_amb_meta_help', 2899 );
-  define( '_amb_styling_meta', 2850 );
-
-  define( '_amb_panels', 2900 );
-  define( '_amb_styling_panels', 2950 );
-  define( '_amb_panels_help', 2999 );
-  define( '_amb_panels_css', 3000 );
-
-
-  define( '_amb_sources', 3100 );
-  define( '_amb_sources_settings', 3110 );
-  define( '_amb_sources_filters', 3120 );
-  define( '_amb_sources_custom_sorting', 3130 );
-  define( '_amb_sources_help', 3199 );
-
-  define( '_amb_tabs', 3200 );
-
   class arc_Blueprints_Designer {
 
     public $content_types;
@@ -186,7 +120,7 @@
 
       } elseif ( 'edit-arc-blueprints' === $screen->id ) {
 //        require_once( PZARC_DOCUMENTATION_PATH.PZARC_LANGUAGE . '/blueprints-listing-pageguide.php');
-        require_once PZARC_PLUGIN_PATH . 'presets/presets.php';
+        require_once PZARC_PLUGIN_PATH . 'presets/class_arcPresetsLoader.php';
         wp_enqueue_script( 'jquery-pzarc-blueprints-presets', PZARC_PLUGIN_APP_URL . '/admin/js/arc-blueprints-presets.js', array( 'jquery', 'jquery-ui-draggable', ), PZARC_VERSION, TRUE );
 //        wp_enqueue_script('jquery-echo-js', PZARC_PLUGIN_APP_URL . '/admin/js/echo.js', array('jquery'), true);
         wp_enqueue_script( 'jquery-lazy', PZARC_PLUGIN_APP_URL . '/admin/js/jquery.lazy.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
@@ -215,6 +149,7 @@
       global $_architect_options;
       $arc_styling            = ! empty( $_architect_options['architect_enable_styling'] ) ? 'arc-styling-on' : 'arc-styling-off';
       $presets                = new arcPresetsLoader();
+
       $presets_array          = $presets->render();
       $presets_html           = $presets_array['html'];
       $content['arc-message'] = '
@@ -251,7 +186,9 @@
                 <button class="tabby-masonry" data-tab="#masonry">' . __( 'Masonry', 'pzarchitect' ) . '</button>
                 <button class="tabby-accordion" data-tab="#accordion">' . __( 'Accordion', 'pzarchitect' ) . '</button>
                 <button class="tabby-tabular" data-tab="#tabular">' . __( 'Tabular', 'pzarchitect' ) . '</button>
-                <button class="tabby-custom" data-tab="#import">' . __( 'Import', 'pzarchitect' ) . '</button>
+                <button class="tabby-custom" data-tab="#import">' . __( 'Import', 'pzarchitect' ) . '</button>'.
+                                (!empty($presets_html['error'])?'
+                <button class="tabby-error" data-tab="#error">' . __( 'Error', 'pzarchitect' ) . '</button>':'').'
             </div>
 
            <div class="tabby tabs-content container">
@@ -263,7 +200,9 @@
            <div class="tabs-pane" id="tabular">' . $presets_html['table'] . '</div>
            <div class="tabs-pane" id="import">
                 If you have Presets to import, do so in the Architect > Tools page
-           </div>
+           </div>'.
+                                (!empty($presets_html['error'])? '<div class="tabs-pane" id="error">Please contact your server host and adivse them of the following error:<br>:' . $presets_html['error'] . '</div>':'')
+                                .'
            </div>
            <div class="footer">
            <p>• All Presets use Dummy Content by default. Please change to the content of your choice after loading the chosen Preset.</p>
@@ -281,7 +220,6 @@
       return $content;
 
     }
-
 
     /**
      * [add_blueprint_columns description]
@@ -1071,11 +1009,17 @@
                 ),
 
                 // TODO: Add shadows! Or maybe not!
-                pzarc_redux_bg( $prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ] ), pzarc_redux_padding( $prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ] ), pzarc_redux_margin( $prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ] ), pzarc_redux_borders( $prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ] ), pzarc_redux_links( $prefix . $thisSection . $link, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $link ] ), array(
+                pzarc_redux_bg( $prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ] ),
+                pzarc_redux_padding( $prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ] ),
+                pzarc_redux_margin( $prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ] ),
+                pzarc_redux_borders( $prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ] ),
+                pzarc_redux_links( $prefix . $thisSection . $link, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $link ] ),
+                array(
                 'id'     => $prefix . 'blueprint-end-section-blueprint',
                 'type'   => 'section',
                 'indent' => FALSE,
-            ), array(
+            ),
+                array(
                 'title'    => __( 'Blueprint title', 'pzarchitect' ),
                 'id'       => $prefix . 'blueprint-section-blueprint-title-css',
                 'type'     => 'section',

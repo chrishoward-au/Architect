@@ -107,33 +107,33 @@
     $disable_google_fonts = isset( $_architect_options['architect_disable_google_fonts'] ) ? $_architect_options['architect_disable_google_fonts'] : FALSE;
 
     $return_array = array(
-      'title'           => __( 'Typography', 'pzarchitect' ),
-      'id'              => $id,
-      'subtitle'        => __( 'You can change the typography units to px,em or rem in Architect > Options', 'pzarchitect' ),
-      'desc'            => __( 'Tip: If you set the typography line height to less than 3, Architect will use it as a multiplier of the font size.e.g. line-height:1.5.', 'pzarchitect' ),
-      //       'output'          => $selectors,
-      'type'            => 'typography',
-      'text-decoration' => TRUE,
-      'font-variant'    => TRUE,
-      'text-transform'  => TRUE,
-      'font-family'     => ! $disable_font_family,
-      'font-size'       => TRUE,
-      'font-weight'     => TRUE,
-      'font-style'      => TRUE,
-      'font-backup'     => ! $disable_font_family,
-      'google'          => ! $disable_font_family && ! $disable_google_fonts,
-      'subsets'         => FALSE,
-      'custom_fonts'    => FALSE,
-      'text-align'      => TRUE,
-      //'text-shadow'       => false, // false
-      'color'           => TRUE,
-      'preview'         => TRUE,
-      'line-height'     => TRUE,
-      'word-spacing'    => TRUE,
-      'letter-spacing'  => TRUE,
-      'units'           => $units,
-      'default'         => $defaults,
-      'ext-font-css'    => $extra_fonts,
+        'title'           => __( 'Typography', 'pzarchitect' ),
+        'id'              => $id,
+        'subtitle'        => __( 'You can change the typography units to px,em or rem in Architect > Options', 'pzarchitect' ),
+        'desc'            => __( 'Tip: If you set the typography line height to less than 3, Architect will use it as a multiplier of the font size.e.g. line-height:1.5.', 'pzarchitect' ),
+        //       'output'          => $selectors,
+        'type'            => 'typography',
+        'text-decoration' => TRUE,
+        'font-variant'    => TRUE,
+        'text-transform'  => TRUE,
+        'font-family'     => ! $disable_font_family,
+        'font-size'       => TRUE,
+        'font-weight'     => TRUE,
+        'font-style'      => TRUE,
+        'font-backup'     => ! $disable_font_family,
+        'google'          => ! $disable_font_family && ! $disable_google_fonts,
+        'subsets'         => FALSE,
+        'custom_fonts'    => FALSE,
+        'text-align'      => TRUE,
+        //'text-shadow'       => false, // false
+        'color'           => TRUE,
+        'preview'         => TRUE,
+        'line-height'     => TRUE,
+        'word-spacing'    => TRUE,
+        'letter-spacing'  => TRUE,
+        'units'           => $units,
+        'default'         => $defaults,
+        'ext-font-css'    => $extra_fonts,
     );
     foreach ( $return_array as $k => $v ) {
       if ( in_array( $k, $exclude ) ) {
@@ -154,19 +154,19 @@
    */
   function pzarc_redux_bg( $id, $selectors = NULL, $defaults = array( 'color' => '' ) ) {
     return array(
-      'title'                 => __( 'Background', 'pzarchitect' ),
-      'id'                    => $id,
-      //        'output'                => $selectors,
-      //        'compiler'              => $selectors,
-      'type'                  => 'spectrum',
-      'mode'                  => 'background-color',
-      'background-image'      => FALSE,
-      'background-repeat'     => FALSE,
-      'background-size'       => FALSE,
-      'background-attachment' => FALSE,
-      'background-position'   => FALSE,
-      'preview'               => FALSE,
-      'default'               => $defaults,
+        'title'                 => __( 'Background', 'pzarchitect' ),
+        'id'                    => $id,
+        //        'output'                => $selectors,
+        //        'compiler'              => $selectors,
+        'type'                  => 'spectrum',
+        'mode'                  => 'background-color',
+        'background-image'      => FALSE,
+        'background-repeat'     => FALSE,
+        'background-size'       => FALSE,
+        'background-attachment' => FALSE,
+        'background-position'   => FALSE,
+        'preview'               => FALSE,
+        'default'               => $defaults,
     );
   }
 
@@ -179,17 +179,17 @@
    */
   function pzarc_redux_padding( $id, $selectors, $defaults = array( 'units' => '%' ) ) {
     return array(
-      'title'   => __( 'Padding', 'pzarchitect' ),
-      'id'      => $id,
-      //      'output'  => $selectors,
-      'mode'    => 'padding',
-      'type'    => 'spacing',
-      'units'   => array(
-        '%',
-        'px',
-        'em',
-      ),
-      'default' => $defaults,
+        'title'   => __( 'Padding', 'pzarchitect' ),
+        'id'      => $id,
+        //      'output'  => $selectors,
+        'mode'    => 'padding',
+        'type'    => 'spacing',
+        'units'   => array(
+            '%',
+            'px',
+            'em',
+        ),
+        'default' => $defaults,
     );
 
   }
@@ -205,21 +205,21 @@
   function pzarc_redux_margin( $id, $selectors, $defaults = array( 'units' => '%' ), $limits = 'tblr' ) {
     //   var_dump($id);
     return array(
-      'title'   => __( 'Margins', 'pzarchitect' ),
-      'id'      => $id,
-      //        'output'  => $selectors,
-      'mode'    => 'margin',
-      'type'    => 'spacing',
-      'units'   => array(
-        '%',
-        'px',
-        'em',
-      ),
-      'default' => $defaults,
-      'top'     => ( strpos( $limits, 't' ) !== FALSE ),
-      'bottom'  => ( strpos( $limits, 'b' ) !== FALSE ),
-      'left'    => ( strpos( $limits, 'l' ) !== FALSE ),
-      'right'   => ( strpos( $limits, 'r' ) !== FALSE ),
+        'title'   => __( 'Margins', 'pzarchitect' ),
+        'id'      => $id,
+        //        'output'  => $selectors,
+        'mode'    => 'margin',
+        'type'    => 'spacing',
+        'units'   => array(
+            '%',
+            'px',
+            'em',
+        ),
+        'default' => $defaults,
+        'top'     => ( strpos( $limits, 't' ) !== FALSE ),
+        'bottom'  => ( strpos( $limits, 'b' ) !== FALSE ),
+        'left'    => ( strpos( $limits, 'l' ) !== FALSE ),
+        'right'   => ( strpos( $limits, 'r' ) !== FALSE ),
     );
 
   }
@@ -233,11 +233,11 @@
    */
   function pzarc_redux_links( $id, $selectors, $defaults = array() ) {
     return array(
-      'title'   => __( 'Links', 'pzarchitect' ),
-      'id'      => $id,
-      'type'    => 'links',
-      //            'output'  => $selectors,
-      'default' => $defaults,
+        'title'   => __( 'Links', 'pzarchitect' ),
+        'id'      => $id,
+        'type'    => 'links',
+        //            'output'  => $selectors,
+        'default' => $defaults,
     );
 
   }
@@ -289,12 +289,12 @@
   function pzarc_redux_borders( $id, $selectors, $defaults = '' ) {
 
     return array(
-      'title'   => __( 'Border', 'pzarchitect' ),
-      'id'      => $id,
-      'type'    => 'border',
-      'all'     => FALSE,
-      //      'output'  => $selectors,
-      'default' => $defaults,
+        'title'   => __( 'Border', 'pzarchitect' ),
+        'id'      => $id,
+        'type'    => 'border',
+        'all'     => FALSE,
+        //      'output'  => $selectors,
+        'default' => $defaults,
     );
   }
 
@@ -308,15 +308,15 @@
   function pzarc_redux_border_radius( $id, $selectors, $defaults = '' ) {
 
     return array(
-      'title'    => __( 'Border Radius', 'pzarchitect' ),
-      'subtitle' => __( 'TopLeft, TopRight, BottomLeft, BottomRight', 'pzarchitect' ),
-      'id'       => $id,
-      'type'     => 'border',
-      'all'      => FALSE,
-      'style'    => FALSE,
-      'color'    => FALSE,
-      //       'output'  => $selectors,
-      'default'  => $defaults,
+        'title'    => __( 'Border Radius', 'pzarchitect' ),
+        'subtitle' => __( 'TopLeft, TopRight, BottomLeft, BottomRight', 'pzarchitect' ),
+        'id'       => $id,
+        'type'     => 'border',
+        'all'      => FALSE,
+        'style'    => FALSE,
+        'color'    => FALSE,
+        //       'output'  => $selectors,
+        'default'  => $defaults,
     );
   }
 
@@ -336,6 +336,7 @@
     // Actually, $_architect doesn't populate if it's not here
     require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arc_blueprints_designer.php';
     $blueprints = new arc_Blueprints_Designer( 'defaults' );
+
 //    $panels     = new arc_Panels_Layouts('defaults');
 
     global $_architect;
@@ -361,16 +362,16 @@
       $_architect['defaults']['blueprints'] = ( ! isset( $_architect['defaults']['blueprints'] ) ? array() : $_architect['defaults']['blueprints'] );
       $bpd                                  = array();
 
-      $bpd['layout_general']                                             = $blueprints->pzarc_mb_blueprint_general_settings( $_architect['defaults']['blueprints'], TRUE );
+      $bpd['layout_general']                                             = $blueprints->mb_general( $_architect['defaults']['blueprints'], TRUE );
       $_architect['defaults']['blueprints']['_blueprint_layout_general'] = $bpd['layout_general'][0]['sections'];
 
-      $bpd['design']                                             = $blueprints->pzarc_mb_blueprint_design( $_architect['defaults']['blueprints'], TRUE );
+      $bpd['design']                                             = $blueprints->mb_blueprint_design( $_architect['defaults']['blueprints'], TRUE );
       $_architect['defaults']['blueprints']['_blueprint_design'] = $bpd['design'][0]['sections'];
 
-      $bpd['types']                                             = $blueprints->pzarc_mb_blueprint_types( $_architect['defaults']['blueprints'], TRUE );
+      $bpd['types']                                             = $blueprints->mb_layouts( $_architect['defaults']['blueprints'], TRUE );
       $_architect['defaults']['blueprints']['_blueprint_types'] = $bpd['types'][0]['sections'];
 
-      $bpd['source']                                             = $blueprints->pzarc_mb_blueprint_content_selection( $_architect['defaults']['blueprints'], TRUE );
+      $bpd['source']                                             = $blueprints->mb_sources( $_architect['defaults']['blueprints'], TRUE );
       $_architect['defaults']['blueprints']['_contents_metabox'] = $bpd['source'][0]['sections'];
 
       // Apply the defaults
@@ -401,12 +402,12 @@
 //var_dump($_architect);
 //      $pzarc_panel_general_settings = $blueprints->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ], true);
       $pand                 = array();
-      $pand['panels']       = $blueprints->pzarc_mb_panels_layout( $_architect['defaults']['panels'], TRUE );
-      $pand['titles']       = $blueprints->pzarc_mb_titles_settings( $_architect['defaults']['panels'], TRUE );
-      $pand['meta']         = $blueprints->pzarc_mb_meta_settings( $_architect['defaults']['panels'], TRUE );
-      $pand['features']     = $blueprints->pzarc_mb_features_settings( $_architect['defaults']['panels'], TRUE );
-      $pand['body']         = $blueprints->pzarc_mb_body_settings( $_architect['defaults']['panels'], TRUE );
-      $pand['customfields'] = $blueprints->pzarc_mb_customfields_settings( $_architect['defaults']['panels'], TRUE );
+      $pand['panels']       = $blueprints->mb_panels( $_architect['defaults']['panels'], TRUE );
+      $pand['titles']       = $blueprints->mb_titles( $_architect['defaults']['panels'], TRUE );
+      $pand['meta']         = $blueprints->mb_meta( $_architect['defaults']['panels'], TRUE );
+      $pand['features']     = $blueprints->mb_features( $_architect['defaults']['panels'], TRUE );
+      $pand['body']         = $blueprints->mb_body_excerpt( $_architect['defaults']['panels'], TRUE );
+      $pand['customfields'] = $blueprints->mb_customfields__premium_only( $_architect['defaults']['panels'], TRUE );
 
       //     $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
       $_architect['defaults']['panels']['_panels_design']       = $pand['panels'][0]['sections'];
@@ -562,10 +563,10 @@
     // Don't need to check for GPlus class coz we add the post type
     // Get GalleryPlus galleries
     $args    = array(
-      'post_type'   => 'gp_gallery',
-      'numberposts' => - 1,
-      'post_status' => NULL,
-      'post_parent' => NULL,
+        'post_type'   => 'gp_gallery',
+        'numberposts' => - 1,
+        'post_status' => NULL,
+        'post_parent' => NULL,
     );
     $albums  = get_posts( $args );
     $results = array();
@@ -588,13 +589,13 @@
     $results = array();
 
     $args   = array(
-      'post_type'   => array(
-        'post',
-        'page',
-      ),
-      'numberposts' => - 1,
-      'post_status' => 'publish',
-      'post_parent' => NULL,
+        'post_type'   => array(
+            'post',
+            'page',
+        ),
+        'numberposts' => - 1,
+        'post_status' => 'publish',
+        'post_parent' => NULL,
     );
     $albums = get_posts( $args );
     if ( $albums ) {
@@ -645,8 +646,8 @@
 
   function pzarc_get_post_types() {
     $all_post_types = array(
-      'post' => 'Posts',
-      'page' => 'Pages',
+        'post' => 'Posts',
+        'page' => 'Pages',
     );
     $post_types     = pzarc_get_custom_post_types();
 
@@ -655,8 +656,8 @@
 
   function pzarc_get_custom_post_types() {
     $pzarc_cpts = ( get_post_types( array(
-      '_builtin' => FALSE,
-      'public'   => TRUE,
+        '_builtin' => FALSE,
+        'public'   => TRUE,
     ), 'objects' ) );
     $return     = array();
     foreach ( $pzarc_cpts as $key => $value ) {
@@ -684,12 +685,12 @@
       return array();
     }
     $args                 = array(
-      'posts_per_page'   => - 1,
-      'orderby'          => 'post_title',
-      'order'            => 'ASC',
-      'post_type'        => $pzarc_post_type,
-      'post_status'      => 'publish',
-      'suppress_filters' => TRUE,
+        'posts_per_page'   => - 1,
+        'orderby'          => 'post_title',
+        'order'            => 'ASC',
+        'post_type'        => $pzarc_post_type,
+        'post_status'      => 'publish',
+        'suppress_filters' => TRUE,
     );
     $pzarc_post_types_obj = get_posts( $args );
     $pzarc_post_type_list = array();
@@ -738,24 +739,24 @@
    */
   function pzarc_get_blueprints( $inc_post_id = FALSE ) {
     $query_options    = array(
-      'post_type'      => 'arc-blueprints',
-      'meta_key'       => '_blueprints_short-name',
-      'posts_per_page' => '-1',
+        'post_type'      => 'arc-blueprints',
+        'meta_key'       => '_blueprints_short-name',
+        'posts_per_page' => '-1',
     );
     $blueprints_query = new WP_Query( $query_options );
-    $pzarc_return     = array();
+    $pzarc_blueprints     = array();
     while ( $blueprints_query->have_posts() ) {
       $blueprints_query->next_post();
       $the_panel_meta = get_post_meta( $blueprints_query->post->ID );
       $bpid           = $the_panel_meta['_blueprints_short-name'][0] . ( $inc_post_id ? '##' . $blueprints_query->post->ID : '' );
       // This caused an error with the WooCommerce 2.3
       //     $pzarc_return[ $bpid ] = get_the_title($blueprints_query->post->ID);
-      $pzarc_return[ $bpid ] = $blueprints_query->post->post_title;
+      $pzarc_blueprints[ $bpid ] = $blueprints_query->post->post_title;
     };
-    asort( $pzarc_return );
+    asort( $pzarc_blueprints );
     wp_reset_postdata();
 
-    return $pzarc_return;
+    return $pzarc_blueprints;
   }
 
   /**
@@ -783,7 +784,7 @@
 
     if ( ! empty( $_architect_options['architect_exclude_hidden_custom'] ) ) {
       $pzarc_cf_list = $wpdb->get_results(//        "SELECT DISTINCT meta_key FROM $wpdb->postmeta HAVING meta_key NOT LIKE '\_%' ORDER BY meta_key"
-        "SELECT DISTINCT meta_key FROM $wpdb->postmeta  HAVING (
+          "SELECT DISTINCT meta_key FROM $wpdb->postmeta  HAVING (
           meta_key NOT LIKE '\_%' 
           ) ORDER BY meta_key" );
 
@@ -793,7 +794,7 @@
 //    if ( false === ( $pzep_cf_list = get_transient( 'pzarc_custom_fields' ) ) ) {
       // It wasn't there, so regenerate the data and save the transient
       $pzarc_cf_list = $wpdb->get_results(//        "SELECT DISTINCT meta_key FROM $wpdb->postmeta ORDER BY meta_key"
-        "SELECT DISTINCT meta_key FROM $wpdb->postmeta  HAVING (
+          "SELECT DISTINCT meta_key FROM $wpdb->postmeta  HAVING (
           meta_key NOT LIKE '\_blueprints_%' AND
           meta_key NOT LIKE '\_panels_%' AND
           meta_key NOT LIKE '\_content_%' AND
@@ -810,68 +811,68 @@
 //        "SELECT meta_key,post_id,wp_posts.post_type FROM wp_postmeta,wp_posts GROUP BY meta_key HAVING ((meta_key NOT LIKE '\_%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'enclosure%') AND (wp_posts.post_type NOT LIKE 'attachment' AND wp_posts.post_type NOT LIKE 'revision' AND wp_posts.post_type NOT LIKE 'acf' AND wp_posts.post_type NOT LIKE 'arc-%' AND wp_posts.post_type NOT LIKE 'nav_menu_item' AND wp_posts.post_type NOT LIKE 'wp-types%')) ORDER BY meta_key"
 //    );
     $exclude_fields   = array(
-      'ID',
-      'post_id',
-      'post_author',
-      'post_date',
-      'post_date_gmt',
-      'post_content',
-      'post_title',
-      'post_excerpt',
-      'post_status',
-      'comment_status',
-      'ping_status',
-      'post_password',
-      'post_name',
-      'to_ping',
-      'pinged',
-      'post_modified',
-      'post_modified_gmt',
-      'post_content_filtered',
-      'post_parent',
-      'guid',
-      'menu_order',
-      'post_type',
-      'post_mime_type',
-      'comment_count',
-      'meta_id',
-      'meta_key',
-      'meta_value',
-      'enclosure',
-      'hide_on_screen',
-      'original_post_id',
-      'pre_import_post_id',
-      'pre_import_post_parent',
-      'panels_data',
-      'position',
-      'rule',
-      'layout',
-      'standard_link_url_field',
-      'standard_seo_post_level_layout',
-      'standard_seo_post_meta_description',
-      'sharing_disabled',
+        'ID',
+        'post_id',
+        'post_author',
+        'post_date',
+        'post_date_gmt',
+        'post_content',
+        'post_title',
+        'post_excerpt',
+        'post_status',
+        'comment_status',
+        'ping_status',
+        'post_password',
+        'post_name',
+        'to_ping',
+        'pinged',
+        'post_modified',
+        'post_modified_gmt',
+        'post_content_filtered',
+        'post_parent',
+        'guid',
+        'menu_order',
+        'post_type',
+        'post_mime_type',
+        'comment_count',
+        'meta_id',
+        'meta_key',
+        'meta_value',
+        'enclosure',
+        'hide_on_screen',
+        'original_post_id',
+        'pre_import_post_id',
+        'pre_import_post_parent',
+        'panels_data',
+        'position',
+        'rule',
+        'layout',
+        'standard_link_url_field',
+        'standard_seo_post_level_layout',
+        'standard_seo_post_meta_description',
+        'sharing_disabled',
     );
     $exclude_prefixes = array(
-      '_blueprints',
-      '_panels',
-      'panels_',
-      '_animation',
-      '_pzarc_pagebuilder',
-      '_pz',
-      '_hw',
-      '_wp_',
-      '_format',
-      '_edit',
-      '_content',
-      '_attachment',
-      '_menu',
-      '_oembed',
-      '_publicize',
-      '_thumbnail',
-      '_slick',
-      'pzgp',
-      'pzsp',
-      'field_',
+        '_blueprints',
+        '_panels',
+        'panels_',
+        '_animation',
+        '_pzarc_pagebuilder',
+        '_pz',
+        '_hw',
+        '_wp_',
+        '_format',
+        '_edit',
+        '_content',
+        '_attachment',
+        '_menu',
+        '_oembed',
+        '_publicize',
+        '_thumbnail',
+        '_slick',
+        'pzgp',
+        'pzsp',
+        'field_',
 
 
     );
@@ -1031,15 +1032,15 @@
 
     /* remove tabs, spaces, newlines, etc. */
     $minify = str_replace( array(
-      "\r\n",
-      "\r",
-      "\n",
-      "\t",
+        "\r\n",
+        "\r",
+        "\n",
+        "\t",
     ), '', $minify );
     $minify = str_replace( array(
-      '  ',
-      '    ',
-      '    ',
+        '  ',
+        '    ',
+        '    ',
     ), ' ', $minify );
 
     return $minify;
@@ -1218,12 +1219,12 @@
     $borders_css = '';
     // This is to fix Redux making borders zero all the time
     $dodgy_values = array(
-      'border-top'    => '0',
-      'border-right'  => '0',
-      'border-bottom' => '0',
-      'border-left'   => '0',
-      'border-style'  => 'solid',
-      'border-color'  => '',
+        'border-top'    => '0',
+        'border-right'  => '0',
+        'border-bottom' => '0',
+        'border-left'   => '0',
+        'border-style'  => 'solid',
+        'border-color'  => '',
     );
 
     if ( ! empty( $properties ) && $properties != $dodgy_values ) {
@@ -1450,23 +1451,23 @@
 
   function pzarc_check_googlefont( $properties ) {
     $redux_standard_fonts = array(
-      "Arial, Helvetica, sans-serif"                         => "Arial, Helvetica, sans-serif",
-      "'Arial Black', Gadget, sans-serif"                    => "'Arial Black', Gadget, sans-serif",
-      "'Bookman Old Style', serif"                           => "'Bookman Old Style', serif",
-      "'Comic Sans MS', cursive"                             => "'Comic Sans MS', cursive",
-      "Courier, monospace"                                   => "Courier, monospace",
-      "Garamond, serif"                                      => "Garamond, serif",
-      "Georgia, serif"                                       => "Georgia, serif",
-      "Impact, Charcoal, sans-serif"                         => "Impact, Charcoal, sans-serif",
-      "'Lucida Console', Monaco, monospace"                  => "'Lucida Console', Monaco, monospace",
-      "'Lucida Sans Unicode', 'Lucida Grande', sans-serif"   => "'Lucida Sans Unicode', 'Lucida Grande', sans-serif",
-      "'MS Sans Serif', Geneva, sans-serif"                  => "'MS Sans Serif', Geneva, sans-serif",
-      "'MS Serif', 'New York', sans-serif"                   => "'MS Serif', 'New York', sans-serif",
-      "'Palatino Linotype', 'Book Antiqua', Palatino, serif" => "'Palatino Linotype', 'Book Antiqua', Palatino, serif",
-      "Tahoma,Geneva, sans-serif"                            => "Tahoma, Geneva, sans-serif",
-      "'Times New Roman', Times,serif"                       => "'Times New Roman', Times, serif",
-      "'Trebuchet MS', Helvetica, sans-serif"                => "'Trebuchet MS', Helvetica, sans-serif",
-      "Verdana, Geneva, sans-serif"                          => "Verdana, Geneva, sans-serif",
+        "Arial, Helvetica, sans-serif"                         => "Arial, Helvetica, sans-serif",
+        "'Arial Black', Gadget, sans-serif"                    => "'Arial Black', Gadget, sans-serif",
+        "'Bookman Old Style', serif"                           => "'Bookman Old Style', serif",
+        "'Comic Sans MS', cursive"                             => "'Comic Sans MS', cursive",
+        "Courier, monospace"                                   => "Courier, monospace",
+        "Garamond, serif"                                      => "Garamond, serif",
+        "Georgia, serif"                                       => "Georgia, serif",
+        "Impact, Charcoal, sans-serif"                         => "Impact, Charcoal, sans-serif",
+        "'Lucida Console', Monaco, monospace"                  => "'Lucida Console', Monaco, monospace",
+        "'Lucida Sans Unicode', 'Lucida Grande', sans-serif"   => "'Lucida Sans Unicode', 'Lucida Grande', sans-serif",
+        "'MS Sans Serif', Geneva, sans-serif"                  => "'MS Sans Serif', Geneva, sans-serif",
+        "'MS Serif', 'New York', sans-serif"                   => "'MS Serif', 'New York', sans-serif",
+        "'Palatino Linotype', 'Book Antiqua', Palatino, serif" => "'Palatino Linotype', 'Book Antiqua', Palatino, serif",
+        "Tahoma,Geneva, sans-serif"                            => "Tahoma, Geneva, sans-serif",
+        "'Times New Roman', Times,serif"                       => "'Times New Roman', Times, serif",
+        "'Trebuchet MS', Helvetica, sans-serif"                => "'Trebuchet MS', Helvetica, sans-serif",
+        "Verdana, Geneva, sans-serif"                          => "Verdana, Geneva, sans-serif",
     );
 
     $return_val = '';
@@ -1503,12 +1504,12 @@
 
       // Get the next slug name
       $args                = array(
-        'post_status'    => array(
-          'publish',
-          'draft',
-        ),
-        'post_type'      => 'arc-blueprints',
-        'posts_per_page' => 1,
+          'post_status'    => array(
+              'publish',
+              'draft',
+          ),
+          'post_type'      => 'arc-blueprints',
+          'posts_per_page' => 1,
       );
       $last_blueprint      = get_posts( $args );
       $next_id             = ( isset( $last_blueprint[0]->ID ) ? $last_blueprint[0]->ID + 1 : '1' );
@@ -1520,19 +1521,19 @@
          * new post data array
          */
       $args = array(
-        'comment_status' => $preset['post']->comment_status,
-        'ping_status'    => $preset['post']->ping_status,
-        'post_author'    => $new_post_author,
-        'post_content'   => $preset['post']->post_content,
-        'post_excerpt'   => $preset['post']->post_excerpt,
-        'post_name'      => $alt_slug ? $alt_slug : $new_slug,
-        'post_parent'    => $preset['post']->post_parent,
-        'post_password'  => $preset['post']->post_password,
-        'post_status'    => $alt_slug ? 'publish' : 'draft',
-        'post_title'     => $alt_title ? $alt_title : '(New) ' . $preset['post']->post_title,
-        'post_type'      => $preset['post']->post_type,
-        'to_ping'        => $preset['post']->to_ping,
-        'menu_order'     => $preset['post']->menu_order,
+          'comment_status' => $preset['post']->comment_status,
+          'ping_status'    => $preset['post']->ping_status,
+          'post_author'    => $new_post_author,
+          'post_content'   => $preset['post']->post_content,
+          'post_excerpt'   => $preset['post']->post_excerpt,
+          'post_name'      => $alt_slug ? $alt_slug : $new_slug,
+          'post_parent'    => $preset['post']->post_parent,
+          'post_password'  => $preset['post']->post_password,
+          'post_status'    => $alt_slug ? 'publish' : 'draft',
+          'post_title'     => $alt_title ? $alt_title : '(New) ' . $preset['post']->post_title,
+          'post_type'      => $preset['post']->post_type,
+          'to_ping'        => $preset['post']->to_ping,
+          'menu_order'     => $preset['post']->menu_order,
       );
 
       /*
@@ -1631,8 +1632,8 @@
 
     if ( ! $pzarc_cssblueprint_cache ) {
       add_option( 'pzarc_css', maybe_serialize( array(
-        'blueprints' => array(),
-        'panels'     => array(),
+          'blueprints' => array(),
+          'panels'     => array(),
       ) ), NULL, 'no' );
     }
     require_once( PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php' );
@@ -1641,6 +1642,7 @@
     update_option( 'pzarc-run-rebuild', FALSE );
     delete_option( 'architect_custom_fields' );
     delete_option( 'arc-blueprint-usage' );
+    update_option('arc_blueprints',pzarc_get_blueprints(false));
 
 
   }
@@ -1720,9 +1722,9 @@
    */
   function pzarc_upload_file( $pzarc_file = NULL, $pzarc_upload_type = NULL, $pzarc_newbpname = NULL ) {
     if ( in_array( $pzarc_upload_type, array(
-        'blueprint',
-        'preset',
-      ) ) && ! empty( $pzarc_file ) ) {
+            'blueprint',
+            'preset',
+        ) ) && ! empty( $pzarc_file ) ) {
 
       if ( ! function_exists( 'wp_handle_upload' ) ) {
         require_once( ABSPATH . 'wp-admin/includes/file.php' );
@@ -1731,11 +1733,11 @@
       // TODO Skip if the folder already exists but then we'll need a way to replace old ones
       $uploadedfile     = $pzarc_file;
       $upload_overrides = array(
-        'test_form' => FALSE,
-        'mimes'     => array(
-          'zip' => 'application/zip',
-          'txt' => 'text/plain',
-        ),
+          'test_form' => FALSE,
+          'mimes'     => array(
+              'zip' => 'application/zip',
+              'txt' => 'text/plain',
+          ),
       );
 
       switch ( $pzarc_upload_type ) {
@@ -1788,9 +1790,9 @@
    */
   function pzarc_presets_upload_dir( $dir ) {
     return array(
-             'path'   => $dir['basedir'] . '/pizazzwp/architect/presets',
-             'url'    => $dir['baseurl'] . '/pizazzwp/architect/presets',
-             'subdir' => '/pizazzwp/architect/presets',
+               'path'   => $dir['basedir'] . '/pizazzwp/architect/presets',
+               'url'    => $dir['baseurl'] . '/pizazzwp/architect/presets',
+               'subdir' => '/pizazzwp/architect/presets',
            ) + $dir;
   }
 
@@ -1801,9 +1803,9 @@
    */
   function pzarc_blueprints_upload_dir( $dir ) {
     return array(
-             'path'   => PZARC_CACHE_PATH,
-             'url'    => PZARC_CACHE_URL,
-             'subdir' => '',
+               'path'   => PZARC_CACHE_PATH,
+               'url'    => PZARC_CACHE_URL,
+               'subdir' => '',
            ) + $dir;
   }
 
@@ -1826,7 +1828,7 @@
        * and all the original post data then
        */
 
-    require_once PZARC_PLUGIN_PATH . 'presets/presets.php';
+    require_once PZARC_PLUGIN_PATH . 'presets/class_arcPresetsLoader.php';
     $presets         = new arcPresetsLoader();
     $presets_array   = $presets->render();
     $arc_preset_data = $presets_array['data'][ $preset_name ];
@@ -1890,8 +1892,8 @@
    */
   function pzarc_get_taxonomies( $catstags = TRUE, $has_blank = TRUE ) {
     $taxonomy_list = get_taxonomies( array(
-      'public'   => TRUE,
-      '_builtin' => FALSE,
+        'public'   => TRUE,
+        '_builtin' => FALSE,
     ) );
     foreach ( $taxonomy_list as $k => $v ) {
       $tax_obj             = get_taxonomy( $k );
@@ -1899,12 +1901,12 @@
     }
     // Add the None option if required
     $extras        = $has_blank ? array(
-      0          => '',
-      'category' => 'Categories',
-      'post_tag' => 'Tags',
+        0          => '',
+        'category' => 'Categories',
+        'post_tag' => 'Tags',
     ) : array(
-      'category' => 'Categories',
-      'post_tag' => 'Tags',
+        'category' => 'Categories',
+        'post_tag' => 'Tags',
     );
     $taxonomy_list = $catstags ? $extras + $taxonomy_list : $taxonomy_list;
 
@@ -1953,10 +1955,10 @@
     $display_description = ( ! isset( $blueprint['_blueprints_show-archive-description'] ) || ! empty( $blueprint['_blueprints_show-archive-description'] ) );
     $desc                = '';
     $title_override      = array(
-      'category' => $arcoptions['architect_language-categories-archive-pages-title'],
-      'tag'      => $arcoptions['architect_language-tags-archive-pages-title'],
-      'month'    => $arcoptions['architect_language-tags-archive-pages-title'],
-      'custom'   => $arcoptions['architect_language-custom-archive-pages-title'],
+        'category' => $arcoptions['architect_language-categories-archive-pages-title'],
+        'tag'      => $arcoptions['architect_language-tags-archive-pages-title'],
+        'month'    => $arcoptions['architect_language-tags-archive-pages-title'],
+        'custom'   => $arcoptions['architect_language-custom-archive-pages-title'],
     );
 
     pzdb( 'page title' );
@@ -2056,8 +2058,8 @@
    */
   function return_taxonomies() {
     $args       = array(
-      'public'   => TRUE,
-      '_builtin' => FALSE,
+        'public'   => TRUE,
+        '_builtin' => FALSE,
     );
     $output     = 'names';
     $taxonomies = get_taxonomies( $args, $output );
@@ -2390,6 +2392,14 @@
 
   class ArcFun {
 
+    static function get_blueprint_id( $post ) {
+      return $post->ID;
+    }
+
+    static function get_blueprint_title( $post ) {
+      return $post->post_title;
+    }
+
     static function get_tables( $limit = NULL ) {
       global $wpdb;
       // Get all tables for current site
@@ -2462,7 +2472,7 @@
         return NULL;
       }
       foreach ( $settings['fieldset'] as $field_info ) {
-        $content   .= ( isset( $field_info->arc_fieldbefore ) ? ArcFun::strip_tags($field_info->arc_fieldbefore,'<br><p><strong><em><ul><ol><li><h1><h2><h3><h4><h5><h6>') : '' );
+        $content   .= ( isset( $field_info->arc_fieldbefore ) ? ArcFun::strip_tags( $field_info->arc_fieldbefore, '<br><p><strong><em><ul><ol><li><h1><h2><h3><h4><h5><h6>' ) : '' );
         $field_val = arc_get_table_field_value( ArcFun::extract_table_field( $field_info->arc_fieldname ) );
         switch ( $field_info->field_type ) {
 
@@ -2470,9 +2480,9 @@
           case 'image':
             if ( function_exists( 'bfi_thumb' ) ) {
 
-              $content .= '<img src="' . esc_url(bfi_thumb( $field_val )) . '">';
+              $content .= '<img src="' . esc_url( bfi_thumb( $field_val ) ) . '">';
             } else {
-              $content .= '<img src="' .esc_url($field_val) . '">';
+              $content .= '<img src="' . esc_url( $field_val ) . '">';
             }
             break;
 
@@ -2486,7 +2496,7 @@
               $dimensions['height'] = $field_info->embed_height;
             }
 
-            $content .= wp_oembed_get( esc_url($field_val), $dimensions );
+            $content .= wp_oembed_get( esc_url( $field_val ), $dimensions );
             break;
 
           case 'date':
@@ -2556,18 +2566,18 @@
 
 
         }
-        $content .= ( isset( $field_info->arc_fieldafter ) ? ArcFun::strip_tags($field_info->arc_fieldafter,'<br><p><strong><em><ul><ol><li><h1><h2><h3><h4><h5><h6>') : '' );
+        $content .= ( isset( $field_info->arc_fieldafter ) ? ArcFun::strip_tags( $field_info->arc_fieldafter, '<br><p><strong><em><ul><ol><li><h1><h2><h3><h4><h5><h6>' ) : '' );
 
       }
 
       $prefix_image = '';
       $suffix_image = '';
       if ( ! empty( $settings['prefix-image'] ) ) {
-        $prefix_image = '<img src="' . esc_url($settings['prefix-image_src']) . '" class="arcaf-presuff-image prefix-image" width=' . esc_attr($settings['ps-images-width']) . ' height=' . esc_attr($settings['ps-images-height']) . ' >';
+        $prefix_image = '<img src="' . esc_url( $settings['prefix-image_src'] ) . '" class="arcaf-presuff-image prefix-image" width=' . esc_attr( $settings['ps-images-width'] ) . ' height=' . esc_attr( $settings['ps-images-height'] ) . ' >';
       }
 
       if ( ! empty( $settings['suffix-image'] ) ) {
-        $suffix_image = '<img src="' . esc_url($settings['suffix-image_src']) . '" class="arcaf-presuff-image suffix-image" width=' . esc_attr($settings['ps-images-width']) . ' height=' . esc_attr($settings['ps-images-height']) . ' >';
+        $suffix_image = '<img src="' . esc_url( $settings['suffix-image_src'] ) . '" class="arcaf-presuff-image suffix-image" width=' . esc_attr( $settings['ps-images-width'] ) . ' height=' . esc_attr( $settings['ps-images-height'] ) . ' >';
       }
 
 
@@ -2575,7 +2585,7 @@
       $suffix_text = ! empty( $settings['suffix-text'] ) ? '<span class="arcaf-suffix-text">' . $settings['suffix-text'] . '</span>' : '';
       $content     = $prefix_image . $prefix_text . $content . $suffix_text . $suffix_image;
       if ( ! empty( $settings['link-field'] ) ) {
-        $content = '<a href="'.($settings['link-behaviour']==='email'?'mailto:':'') . esc_url(arc_get_table_field_value( ArcFun::extract_table_field($settings['link-field'])) ) . '" target="' . esc_attr($settings['link-behaviour']==='email'?'_self':$settings['link-behaviour']) . '" rel="noopener">' . $content . '</a>';
+        $content = '<a href="' . ( $settings['link-behaviour'] === 'email' ? 'mailto:' : '' ) . esc_url( arc_get_table_field_value( ArcFun::extract_table_field( $settings['link-field'] ) ) ) . '" target="' . esc_attr( $settings['link-behaviour'] === 'email' ? '_self' : $settings['link-behaviour'] ) . '" rel="noopener">' . $content . '</a>';
       }
 
 
@@ -2600,8 +2610,8 @@
      *
      * @return string
      */
-    static function strip_tags($string,$tags='<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6>'){
-      return strip_tags($string,$tags);
+    static function strip_tags( $string, $tags = '<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6>' ) {
+      return strip_tags( $string, $tags );
     }
 
   }

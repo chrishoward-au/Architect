@@ -1197,6 +1197,8 @@ body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:af
         cursor: default; }
     .tabby.tabs button.first {
       margin-left: 10px; }
+    .tabby.tabs button.tabby-error {
+      background: red; }
 
 a.pzarc-codex {
   text-decoration: none; }
@@ -1318,7 +1320,7 @@ body.arc-beginner .arc-field-advanced {
   border-bottom: solid 2px #0074a2; }
   #redux-_architect-metabox-_blueprint_tabs_blueprints .hndle, #redux-_architect-metabox-_blueprint_tabs_blueprints .handlediv {
     display: none; }
-  #redux-_architect-metabox-_blueprint_tabs_blueprints #settings-chooser_box_redux-_architect-metabox-_blueprint_tabs_blueprints_section_group td {
+  #redux-_architect-metabox-_blueprint_tabs_blueprints [id='3200_box_redux-_architect-metabox-_blueprint_tabs_blueprints_section_group'] td {
     padding: 0 !important; }
 
 body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {

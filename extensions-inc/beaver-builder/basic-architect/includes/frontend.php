@@ -14,8 +14,8 @@
 <div class="fl-example-text">
   <?php
     //var_dump($settings);
-    $additional_overrides = pzarc_generate_additional_overrides('beaver', $settings);
-
+    $additional_overrides = pzarc_generate_additional_overrides( 'beaver', $settings );
+   //var_dump( $settings );
     // change this to use WordPress keywords. Change all of architect like that!
     $pzarc_overrides = $settings->override_filters === 'yes' ? array(
         'post__in'         => $settings->post__in,
@@ -28,16 +28,17 @@
         'terms'            => $settings->terms,
     ) : NULL;
 
-    if ($settings->custom_overrides) {
-      $custom_overrides = explode("\n", str_replace("\r", "", $settings->custom_overrides));
-      foreach ($custom_overrides as $override) {
-        $exploded = explode('=',$override);
-        $pzarc_overrides[$exploded[0]] = str_replace('"','',$exploded[1]);
+    $pzarc_overrides['panels_per_view']=  ( empty( $settings->panels_per_view ) ? FALSE : $settings->panels_per_view );
+
+    if ( $settings->custom_overrides ) {
+      $custom_overrides = explode( "\n", str_replace( "\r", "", $settings->custom_overrides ) );
+      foreach ( $custom_overrides as $override ) {
+        $exploded                        = explode( '=', $override );
+        $pzarc_overrides[ $exploded[0] ] = str_replace( '"', '', $exploded[1] );
       }
     }
 
     // pzarchitect($pzarc_blueprint = null, $pzarc_overrides = null, $tablet_bp = null, $phone_bp = null)
-
-    pzarchitect($settings->blueprint_default, $pzarc_overrides, $settings->blueprint_tablet, $settings->blueprint_phone, $additional_overrides, 'beaver_module_basic');
+    pzarc( $settings->blueprint_default, $pzarc_overrides, 'beaver_module_basic', null,$additional_overrides,$settings->blueprint_tablet, $settings->blueprint_phone );
   ?>
 </div>
