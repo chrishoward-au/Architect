@@ -5,125 +5,6 @@
   {
     private $presets;
 
-    function _construct()
-    {
-
-    }
-
-//    function get_presets()
-//    {
-//
-//      // Masonry
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-pinterest.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-pinterest.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//
-//      // Grids
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-glossy-magazine.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-glossy-magazine.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-magazine-grid.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-magazine-grid.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-blog-excerpts-3x3.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-blog-excerpts-3x3.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-single-page.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-single-page.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-testimonials.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-testimonials.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-thumb-gallery.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-thumb-gallery.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-recent-posts-small-excerpts.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-recent-posts-small-excerpts.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//
-//      // Sliders
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-featured-posts-vertical-content.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-featured-posts-vertical-content.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-featured-posts-horizontal-content.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-featured-posts-horizontal-content.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-slider-full-width.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-slider-full-width.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-features-slider-title-nav.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-features-slider-title-nav.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-features-slider-nav-inside.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-features-slider-nav-inside.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-slider-image-slideshow.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-slider-image-slideshow.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//
-//      // tabbed
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-tabbed-horizontal-top.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-tabbed-horizontal-top.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-tabbed-vertical-left.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-tabbed-vertical-left.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//
-//      // tabular
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-tabular.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-tabular.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//
-//      // accordion
-//      $this->presets[] = array(
-//          'data'     => PZARC_PLUGIN_URL . 'presets/preset-accordion.txt',
-//          'image'    => PZARC_PLUGIN_URL . 'presets/preset-accordion.jpg',
-//          'designer' => 'Chris Howard'
-//      );
-//
-//      // TODO: Add a bit here to look in uploads/architect/presets
-//
-//      // check folder exists
-//
-//      // look for presets files... data,screenie in folders of designer name!
-//      /// all should have identical names except to prefix arc-preset-data,screen and appropriate suffix
-//      //eg. arc-preset-
-//    }
-
     function render()
     {
       $this->presets = apply_filters('arc-add-presets', $this->presets);
@@ -136,15 +17,15 @@
                              'data' => array());
       $blank_gif     = PZARC_PLUGIN_APP_URL . 'admin/assets/images/blank.gif';
       foreach ($this->presets as $index => $values) {
+        $error = '';
 //        $file_contents = file_get_contents($values[ 'data' ]);
-
         $ch = curl_init($values[ 'data' ]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $file_contents = curl_exec($ch);
+        $error = 'Error '.curl_errno($ch).': '.curl_error($ch);
         curl_close($ch);
 
         $file_data = json_decode($file_contents, true);
-
         if (!empty($file_data[ 'bptype' ])) {
           $preset_post = json_decode($file_data[ 'post' ], true);
           $preset_meta = json_decode($file_data[ 'meta' ], true);
@@ -162,6 +43,9 @@
               </span>
           ';
           $render[ 'data' ][ $file_data[ 'bptype' ] . '_' . $preset_post[ 'post_name' ] ] = $file_data;
+
+        } elseif (!empty($error)) {
+          $render[ 'html' ][ 'error' ] = $error;
         }
       }
 
