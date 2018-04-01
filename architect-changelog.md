@@ -3,6 +3,18 @@
 ## Notes:
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
+## 1.11.1 - 2 April 2018
+* ADDED: Error msg if Presets selector can't read presets files.
+* FIXED: Removed Features tab as it's not populated
+* FIXED: Changed misleading message saying "This theme requires Redux" to "This plugin requires Redux"
+* FIXED: Strip architect shortcodes in excerpts to prevent loops
+* FIXED: Replaced sections array keys with numeric constants due to PHP 7.1.12 notices
+* FIXED: Prevent a Blueprint from calling itself when nesting Blueprints
+* FIXED: Patch for Freemius where sometimes giving cURL error when activating licence
+* CHANGED: Now using class rather than ID when creating Blueprint CSS since Blueprints can be re-used on the same page. You will need to change any custom CSS that was using the ID.
+* CHANGED: Blueprint CSS to load as late as possible in head.
+* CHANGED: Remove custom fields support from free version
+
 ## 1.11.0 - 1 Feb 2018
 ### Beaver Builder specific enhancements
 * ADDED: Beaver module Any Fields to display any field from any table
