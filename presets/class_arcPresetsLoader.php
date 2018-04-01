@@ -16,13 +16,14 @@
                                              'table'     => ''),
                              'data' => array());
       $blank_gif     = PZARC_PLUGIN_APP_URL . 'admin/assets/images/blank.gif';
-      foreach ($this->presets as $index => $values) {
+      foreach ($this->presets as $index => $preset) {
         $error = '';
 //        $file_contents = file_get_contents($values[ 'data' ]);
-        $ch = curl_init($values[ 'data' ]);
+        // Curl method
+        $ch = curl_init($preset[ 'data' ]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $file_contents = curl_exec($ch);
-        $error = 'Error '.curl_errno($ch).': '.curl_error($ch);
+        $error = 'cURL error '.curl_errno($ch).': '.curl_error($ch);
         curl_close($ch);
 
         $file_data = json_decode($file_contents, true);
@@ -34,9 +35,9 @@
           <span>
             <label class="arc-preset-item ' . $file_data[ 'bptype' ] . '" for="element_' . $file_data[ 'bptype' ] . '_' . $preset_post[ 'post_name' ] . '">
               <input id="element_' . $file_data[ 'bptype' ] . '_' . $preset_post[ 'post_name' ] . '" name="architect_preset_selector" class="element radio" type="radio" value="' . $file_data[ 'bptype' ] . '_' . $preset_post[ 'post_name' ] . '">
-              <img src="' . esc_attr($values[ 'image' ]) . '">
+              <img src="' . esc_attr($preset[ 'image' ]) . '">
               <p class="arc-preset-title">' . ($file_data[ 'title' ]) . '</p>
-              <p class="arc-preset-designer">Designed by: ' . esc_html($values[ 'designer' ]) . '</p>
+              <p class="arc-preset-designer">Designed by: ' . esc_html($preset[ 'designer' ]) . '</p>
               <p class="arc-preset-description">' . $description . '</p>
             </label>
 
