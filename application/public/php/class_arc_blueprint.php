@@ -68,19 +68,8 @@
 			pzdb( 'top get blueprint' );
 			// meed to return a structure for the panels, the content source, the navgation info
 			// This is added to support Shortcake which returns an ID rather than the shortname
-			if ( is_numeric( $this->name ) ) {
-				$meta_query_args = array(
-					'post_type' => 'arc-blueprints',
-					'include'   => $this->name,
-				);
-			} else {
-				$meta_query_args = array(
-					'post_type'    => 'arc-blueprints',
-					'meta_key'     => '_blueprints_short-name',
-					'meta_value'   => $this->name,
-					'meta_compare' => '=',
-				);
-			}
+
+      $meta_query_args = ArcFun::get_blueprint_query_args($this->name);
 			$bp              = get_posts( $meta_query_args );
 			$blueprint_query = NULL;
 			if ( isset( $bp[0] ) ) {

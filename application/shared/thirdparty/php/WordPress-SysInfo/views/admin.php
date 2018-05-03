@@ -16,6 +16,8 @@
   $all_options_serialized = serialize( $all_options );
   $all_options_bytes      = round( mb_strlen( $all_options_serialized, '8bit' ) / 1024, 2 );
   $all_options_transients = $sysinfo->get_transients_in_options( $all_options );
+  $architect_timers       = get_option('architect_timers', array('runs'=>0,'total_time'=>'0','avg_time'=>0));
+
   global $_architect_options;
 
   $blueprints=get_posts(array('post_type'=>'arc-blueprints','posts_per_page'=>-1));
@@ -73,13 +75,14 @@
 <?php _e( 'PHP GD Support:', 'pzarchitect' ); ?>         <?php echo ( function_exists( 'gd_info' ) ) ? _e( 'Yes', 'pzarchitect' ) . "\n" : _e( 'No', 'pzarchitect' ) . "\n"; ?>
 <?php _e( 'PHP Imagick Support:', 'pzarchitect' ); ?>    <?php echo ( class_exists( 'Imagick' ) ) ? _e( 'Yes', 'pzarchitect' ) . "\n" : _e( 'No', 'pzarchitect' ) . "\n"; ?>
 <?php _e( 'PHP Memory Limit:', 'pzarchitect' ); ?>       <?php echo $memory_limit . "\n"; ?>
-<?php _e( 'PHP Memory Usage:', 'pzarchitect' ); ?>       <?php echo $memory_usage . "M (" . round( $memory_usage / $memory_limit * 100, 0 ) . "%)\n"; ?>
+<?php _e( 'PHP Memory Usage:', 'pzarchitect' ); ?>       <?php echo $memory_usage . "M (" . round( (float)$memory_usage / (float) $memory_limit * 100, 0 ) . "%)\n"; ?>
 <?php _e( 'PHP Post Max Size:', 'pzarchitect' ); ?>      <?php echo ini_get( 'post_max_size' ) . "\n"; ?>
 <?php _e( 'PHP Upload Max Size:', 'pzarchitect' ); ?>    <?php echo ini_get( 'upload_max_filesize' ) . "\n"; ?>
 <?php _e( 'PHP Max Input Vars:', 'pzarchitect' ); ?>     <?php echo ini_get( 'max_input_vars' ) . "\n"; ?>
 <?php if (ini_get( 'suhosin.post.max_vars' )) {_e( 'Suhosin Max Input Vars:', 'pzarchitect' ); ?>     <?php echo ini_get( 'suhosin.post.max_vars' ) . "\n";} ?>
 <?php if (ini_get( 'suhosin.request.max_vars' )) {_e( 'Suhosin Request Max Input Vars:', 'pzarchitect' ); ?>     <?php echo ini_get( 'suhosin.request.max_vars' ) . "\n";} ?>
 
+<?php _e( 'WP Memory Limit:', 'pzarchitect' ); ?>        <?php echo WP_MEMORY_LIMIT . "\n"; ?>
 <?php _e( 'WP Options Count:', 'pzarchitect' ); ?>       <?php echo count( $all_options ) . "\n"; ?>
 <?php _e( 'WP Options Size:', 'pzarchitect' ); ?>        <?php echo $all_options_bytes . "kb\n" ?>
 <?php _e( 'WP Options Transients:', 'pzarchitect' ); ?>  <?php echo count( $all_options_transients ) . "\n"; ?>
@@ -103,6 +106,8 @@ WP_POST_REVISIONS:      <?php echo defined( 'WP_POST_REVISIONS' ) ? WP_POST_REVI
 <?php _e( 'All custom fields:', 'pzarchitect' ); ?>      <?php echo ( ! empty( $_architect_options[ 'architect_exclude_hidden_custom' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
 <?php _e( 'Animation enabled:', 'pzarchitect' ); ?>      <?php echo ( ! empty( $_architect_options[ 'architect_animation-enable' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
 <?php _e( 'Beta enabled:', 'pzarchitect' ); ?>           <?php echo ( ! empty( $_architect_options[ 'architect_beta_features' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
+<?php //_e( 'Total Blueprint displays:', 'pzarchitect' ); ?><?php //echo $architect_timers['runs'] . "\n"; ?>
+<?php _e( 'Average time to display Blueprints:', 'pzarchitect' ); ?>   <?php echo round($architect_timers['avg_time'],2) . "\n"; ?>
 
 <?php _e( 'ACTIVE THEME:', 'pzarchitect' ); ?>
 <?php echo "\n=============\n\r"; ?>

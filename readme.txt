@@ -87,6 +87,19 @@ For support, please send an email to support@pizazzwp.com
 
 TODO: Gutenberg block
 TODO: Update shortcode help!
+TODO: SrcSet
+TODO: Investigate CSS Grid
+TODO: Rework fields so all generic
+TODO : Masonry bug
+
+= 1.12.0
+* CHANGED: SysInfo now shows WP_MEMORY_LIMIT
+* CHANGED: SysInfo now shows average Blueprint loading times (a hugh time is likely indicative of a slow site)
+
+* FIXED: Error in SysInfo PHP Memory Limit
+
+*UPGRADED: Isotope to 3.0.6
+*UPGRADED: ImagesLoaded to 4.1.4
 
 
 = 1.11.1

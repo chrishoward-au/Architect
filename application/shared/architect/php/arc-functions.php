@@ -774,7 +774,6 @@
    */
   function pzarc_get_custom_fields( $pzarc_custom_fields = array(), $inc_custom_prefix = FALSE ) {
     global $wpdb;
-
     global $_architect_options;
 
     // WARNING: This may cause problems with missing custom fields
@@ -2614,4 +2613,39 @@
       return strip_tags( $string, $tags );
     }
 
+    static function enqueue_scripts($layout_type='basic',$blueprint='none') {
+      switch ($layout_type) {
+        case 'basic':
+          break;
+        case 'masonry':
+          wp_enqueue_script( 'js-imagesloaded' );
+          wp_enqueue_script( 'js-isotope' );
+          wp_enqueue_script( 'js-isotope-packery' );
+          wp_enqueue_script( 'js-front-isotope' );
+          break;
+
+      }
+    }
+
+    /**
+     * @param $blueprint_name
+     *
+     * @return array
+     */
+    static function get_blueprint_query_args($blueprint_name){
+      if ( is_numeric( $blueprint_name ) ) {
+        return array(
+            'post_type' => 'arc-blueprints',
+            'include'   => $blueprint_name,
+        );
+      } else {
+        return array(
+            'post_type'    => 'arc-blueprints',
+            'meta_key'     => '_blueprints_short-name',
+            'meta_value'   => $blueprint_name,
+            'meta_compare' => '=',
+        );
+      }
+
+    }
   }

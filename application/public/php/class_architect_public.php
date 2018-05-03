@@ -327,7 +327,12 @@
 
       echo '<!-- Blueprint: ' . $this->build->blueprint['blueprint-title'] . ' -->';
       $demo_mode_hints = isset( $_GET['demo'] ) ? ' data-hint="' . ( $blueprint_type == 'basic' ? 'Grid' : ucwords( $blueprint_type ) ) . ' : ' . $this->build->blueprint['blueprint-title'] . '"' : '';
+      /**
+       * BLUEPRINT HTML STARTS HERE
+       */
+      // Cahngedin v1.11.1 to use the class not the ID in the CSS
       echo '<div id="pzarc-blueprint_' . $this->build->blueprint['_blueprints_short-name'] . '" ' . $demo_mode_hints . ' class="' . $this->build->blueprint['uid'] . ' pzarchitect layout-' . $blueprint_type . ' ' . $use_hw_css . ' pzarc-blueprint pzarc-blueprint_' . $this->build->blueprint['_blueprints_short-name'] . ' nav-' . $bp_nav_type . ' icomoon ' . ( $bp_nav_type === 'navigator' ? 'navpos-' . $bp_nav_pos : '' ) . ( is_rtl() ? ' rtl' : ' ltr' ) . ' hint--top">';
+
       /** Page title */
       pzdb( 'after blueprint open' );
       echo apply_filters( 'arc_page_title', pzarc_display_page_title( $this->build->blueprint, $_architect_options ) );

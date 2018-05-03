@@ -312,6 +312,7 @@
         update_option('arc_blueprints',pzarc_get_blueprints(false));
         bfi_flush_image_cache();
         delete_option( 'architect_custom_fields' );
+        delete_option( 'architect_timers' );
         // Clear the registry of Blueprint usages
         delete_option( 'arc-blueprint-usage' );
         if ( $pzarc_css_success ) {

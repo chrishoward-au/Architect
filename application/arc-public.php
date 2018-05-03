@@ -257,6 +257,8 @@
    */
   function pzarc( $blueprint = NULL, $overrides = NULL, $caller = NULL, $tag = NULL, $additional_overrides = NULL, $tablet_bp = NULL, $phone_bp = NULL ) {
     pzdb( 'start pzarc' );
+    $pzarc_start_time = microtime(true);
+
 //var_dump(get_the_ID(),get_the_title(),$blueprint);
 //global $wp_the_query, $wp_query;
 //var_dump($wp_the_query->queried_object_id,$wp_query->queried_object_id);
@@ -332,7 +334,6 @@ $arc_blueprint_stack[]=$blueprint;
       $GLOBALS['_architect_options'] = get_option( '_architect_options', array() );
     }
 
-
     wp_enqueue_style( PZARC_NAME . '-plugin-styles' );
     wp_enqueue_style( PZARC_NAME . '-dynamic-styles' );
 //    wp_enqueue_style('pzarc_css');
@@ -362,6 +363,7 @@ $arc_blueprint_stack[]=$blueprint;
       add_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
       add_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6 );
       add_filter( 'image_downsize', 'bfi_image_downsize', 1, 3 );
+
       $architect = new Architect_Public( $blueprint, $is_shortcode, $device );
 
       // If no errors, let's go!
@@ -413,6 +415,20 @@ $arc_blueprint_stack[]=$blueprint;
     $in_arc = 'no';
     // v.1.11.1: Remove the last blueprint in the stack else we can't use same Blueprint multiple times on a page.
     array_pop($arc_blueprint_stack);
+
+    $pzarc_end_time = microtime(true);
+    $pzarc_this_time = ($pzarc_end_time-$pzarc_start_time);
+    if ($pzarc_this_time>0) {
+      $pzarc_architect_timers               = get_option( 'architect_timers', array( 'runs' => 0, 'total_time' => '0', 'avg_time' => 0 ) );
+      $pzarc_architect_timers['runs']       = $pzarc_architect_timers['runs'] + 1;
+      $pzarc_architect_timers['total_time'] = $pzarc_architect_timers['total_time'] + $pzarc_this_time;
+      $pzarc_architect_timers['avg_time']   = $pzarc_architect_timers['total_time'] / $pzarc_architect_timers['runs'];
+      update_option( 'architect_timers', $pzarc_architect_timers );
+      //delete_option( 'architect_timers' );
+    }
+//    var_dump($pzarc_this_time);
+//    var_dump($pzarc_architect_timers);
+
   }
 
 

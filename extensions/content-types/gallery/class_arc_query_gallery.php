@@ -15,6 +15,7 @@
       if ($source === 'gallery') {
 
         $prefix         = '_content_galleries_';
+//        var_dump($prefix . 'gallery-source', $this->build->blueprint[ $prefix . 'gallery-source' ], $this->build->blueprint);
         $gallery_source = !empty($overrides['ids']) ? 'ids' : $this->build->blueprint[ $prefix . 'gallery-source' ];
         if ($gallery_source === 'galleryplus' || $gallery_source === 'wpgallery') {
           if ($gallery_source === 'galleryplus') {

@@ -282,9 +282,11 @@
       }
       wp_enqueue_style( PZARC_NAME . '-styles', PZARC_PLUGIN_APP_URL . '/public/css/architect-styles.css', FALSE, PZARC_VERSION );
       wp_register_style( PZARC_NAME . '-plugin-styles', PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css', FALSE, PZARC_VERSION );
+      wp_enqueue_style( PZARC_NAME . '-plugin-styles');
       // Need this for custom CSS in styling options
       if ( file_exists( PZARC_CACHE_PATH . 'arc-dynamic-styles.css' ) ) {
         wp_register_style( PZARC_NAME . '-dynamic-styles', PZARC_CACHE_URL . 'arc-dynamic-styles.css', FALSE, PZARC_VERSION );
+        wp_enqueue_style( PZARC_NAME . '-dynamic-styles');
       }
     }
 
@@ -298,11 +300,9 @@
       wp_enqueue_script( 'jquery' );
       wp_register_script( 'js-imagesloaded', PZARC_PLUGIN_APP_URL . '/public/js/imagesloaded.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
 
-      wp_register_script( 'js-isotope', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
+      wp_register_script( 'js-isotope', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.js', array( 'jquery' ), PZARC_VERSION, TRUE );
+     // wp_register_script( 'js-isotope', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
       wp_register_script( 'js-isotope-packery', PZARC_PLUGIN_APP_URL . '/public/js/packery-mode.pkgd.js', array( 'jquery' ), PZARC_VERSION, TRUE );
-
-//        wp_register_script( 'js-isotope', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
-//        wp_register_script( 'js-isotope-packery', PZARC_PLUGIN_APP_URL . '/public/js/packery-mode.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
 
       wp_register_script( 'js-front', PZARC_PLUGIN_APP_URL . '/public/js/arc-front.js', array( 'jquery' ), PZARC_VERSION, TRUE );
       wp_register_script( 'js-front-isotope', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-isotope.js', array( 'jquery' ), PZARC_VERSION, TRUE );

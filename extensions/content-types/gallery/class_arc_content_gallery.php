@@ -117,6 +117,7 @@
       // This has to be post_type
       $registry->set( 'post_types', $settings ,$prefix);
       $registry->set( 'content_source', array( 'gallery' => plugin_dir_path( __FILE__ ) ) );
+
     }
   }
 
