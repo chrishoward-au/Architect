@@ -139,7 +139,8 @@
    *   */
   function pzarc_process_bp_sections(&$pzarc_blueprints, $i, $nl, &$_architect_options) {
 
-    $specificity_class = '#pzarc-blueprint_' . $pzarc_blueprints['_blueprints_short-name']; /// Dang! This doesn't work with blueprints in blueprints. 1.10.8 // v1.11.1 Changed to class from ID
+    //$specificity_class = '#pzarc-blueprint_' . $pzarc_blueprints['_blueprints_short-name']; /// Dang! This doesn't work with blueprints in blueprints. 1.10.8 // v1.11.1 Changed to class from ID
+    $specificity_class = '.pzarc-blueprint_' . $pzarc_blueprints['_blueprints_short-name']; /// Dang! This doesn't work with blueprints in blueprints. 1.10.8 // v1.11.1 Changed to class from ID // v1.12.0 actually changed! Need to see if it breaks stuff
     $sections_class    = $specificity_class . '  .pzarc-sections  .pzarc-section_' . ($i + 1); // Removed > coz breaks new masonry features v1.9.3
     $panels_class      = $sections_class . ' .pzarc-panel.pzarc-panel_'.$pzarc_blueprints['_blueprints_short-name']; // More specific 1.10.8
     $pzarc_mediaq_css  = '';
@@ -161,20 +162,20 @@
     $columns                 = intval($pzarc_blueprints['_blueprints_section-' . $i . '-columns-breakpoint-1']);
     $panel_width             = $pzarc_blueprints['_blueprints_section-' . $i . '-panel-width-breakpoint-1'];
     $pzarc_mediaq_opener_css = '@media all and (min-width:' . $em_width[1] . 'em) {';
-    $pzarc_mediaq_css        .= pzarc_breakpoint_css($pzarc_mediaq_opener_css, $pzarc_blueprints, $i, '.large{}', $columns, $panel_width, $nl, $panels_class);
+    $pzarc_mediaq_css        .= pzarc_breakpoint_css($pzarc_mediaq_opener_css, $pzarc_blueprints, $i, '.large{}', $columns, $panel_width, $nl, $panels_class,$sections_class);
 
 
     /** Medium */
     $columns                 = intval($pzarc_blueprints['_blueprints_section-' . $i . '-columns-breakpoint-2']);
     $panel_width             = $pzarc_blueprints['_blueprints_section-' . $i . '-panel-width-breakpoint-2'];
     $pzarc_mediaq_opener_css = '@media all and (min-width: ' . $em_width[2] . 'em) and (max-width: ' . ($em_width[1] - 0.1) . 'em) {';
-    $pzarc_mediaq_css        .= pzarc_breakpoint_css($pzarc_mediaq_opener_css, $pzarc_blueprints, $i, '.medium{}', $columns, $panel_width, $nl, $panels_class);
+    $pzarc_mediaq_css        .= pzarc_breakpoint_css($pzarc_mediaq_opener_css, $pzarc_blueprints, $i, '.medium{}', $columns, $panel_width, $nl, $panels_class,$sections_class);
 
     /** Small */
     $columns                 = intval($pzarc_blueprints['_blueprints_section-' . $i . '-columns-breakpoint-3']);
     $panel_width             = $pzarc_blueprints['_blueprints_section-' . $i . '-panel-width-breakpoint-3'];
     $pzarc_mediaq_opener_css = '@media all and (max-width: ' . ($em_width[2] - 0.1) . 'em) {';
-    $pzarc_mediaq_css        .= pzarc_breakpoint_css($pzarc_mediaq_opener_css, $pzarc_blueprints, $i, '.small{}', $columns, $panel_width, $nl, $panels_class);
+    $pzarc_mediaq_css        .= pzarc_breakpoint_css($pzarc_mediaq_opener_css, $pzarc_blueprints, $i, '.small{}', $columns, $panel_width, $nl, $panels_class,$sections_class);
 
 
     $pzarc_css = $pzarc_mediaq_css;
@@ -206,7 +207,7 @@
    * @return string
    * @internal param $hmargin
    */
-  function pzarc_breakpoint_css($pzarc_mediaq_opener_css, &$pzarc_blueprints, $i, $pzarc_mediaq_css, $columns, $panel_width, $nl, $panels_class) {
+  function pzarc_breakpoint_css($pzarc_mediaq_opener_css, &$pzarc_blueprints, $i, $pzarc_mediaq_css, $columns, $panel_width, $nl, $panels_class,$sections_class) {
 
     $pzarc_mediaq_css .= $pzarc_mediaq_opener_css;
     // Calc allows us to do crazy maths like 25% -3px
@@ -223,6 +224,7 @@
     else {
       $hmargin = ($lmargin + $rmargin) . (empty($margin_units) ? '%' : $margin_units);
     }
+    $hmargin =((float)$hmargin=0)?'0':$hmargin; //v1.12.0
 
     if ($pzarc_blueprints['_blueprints_section-0-panels-fixed-width']) {
       $column_width = $panel_width . 'px;';
@@ -246,8 +248,11 @@
     //  Don't want gutters here iff using masonry layoutt
     switch (TRUE) {
       case 'masonry' === $pzarc_blueprints['_blueprints_section-' . $i . '-layout-mode']:
-        $pzarc_mediaq_css .= str_replace('.pzarc-panel', '', $panels_class . ' .gutter-sizer {width: ' . ($hmargin) . ';}');
-        $pzarc_mediaq_css .= str_replace('.pzarc-panel', '', $panels_class . ' .grid-sizer { width:' . $column_width . ';}');
+
+        $pzarc_mediaq_css .= $sections_class.' .gutter-sizer {width: ' . $hmargin . ';}'; // Did this more sensible way. v1.12.0
+        $pzarc_mediaq_css .= $sections_class.' .grid-sizer { width:' . $column_width . ';}'; // Did this more sensible way. v1.12.0
+//        $pzarc_mediaq_css .= preg_replace('/.pzarc-panel/', '', $panels_class . ' .gutter-sizer {width: ' . ($hmargin) . ';}',1); // changed from str_replace to preg_replace to limit to 1 repalce v1.12.0
+//        $pzarc_mediaq_css .= preg_replace('/.pzarc-panel/', '', $panels_class . ' .grid-sizer { width:' . $column_width . ';}',1); // changed from str_replace to preg_replace to limit to 1 repalce v1.12.0
         break;
 
       case 'basic' === $pzarc_blueprints['_blueprints_section-' . $i . '-layout-mode'] && !empty($pzarc_blueprints['_blueprints_section-' . $i . '-layout-mode']):

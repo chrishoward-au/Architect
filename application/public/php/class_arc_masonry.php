@@ -224,7 +224,7 @@
           var container = jQuery( bpsection ).isotope( {
             // options
             layoutMode: '{$this->layout_mode}',
-            itemSelector: '.' + arcIsotopeID + ' .pzarc-panel',
+            itemSelector: '.' + arcIsotopeID + ' .pzarc-panel_{$blueprint}',
             transitionDuration: {$transition_duration},
             stagger: {$stagger_duration},
             getSortData: {
