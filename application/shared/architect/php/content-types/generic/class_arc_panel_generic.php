@@ -897,7 +897,7 @@
         $panel_def[ $component ] = str_replace( '{{postlink}}', $panel_def['postlink'], $panel_def[ $component ] );
         $panel_def[ $component ] = str_replace( '{{closepostlink}}', '</a>', $panel_def[ $component ] );
       }
-
+;
       switch ( TRUE ) {
         case ! empty( $this->section['_panels_design_use-scale-fonts-title'] ) && ! empty( $this->section['_panels_design_use-responsive-font-size-title'] ):
           $panel_def[ $component ] = str_replace( '{{extensionclass}}', '{{extensionclass}} is-responsive-scaled ', $panel_def[ $component ] );

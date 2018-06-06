@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hook
 Requires at least: 4.0
 Tested up to: 5.0
 Requires PHP: 5.6
-Stable tag: 1.11.1
+Stable tag: 1.12.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -87,9 +87,11 @@ For support, please send an email to support@pizazzwp.com
 
 TODO: Gutenberg block
 TODO: Update shortcode help!
+TODO: Debug slideshows *nem
+TODO: Don't upscale images smaller than dimensions.
 TODO: SrcSet
-TODO: Investigate CSS Grid
-TODO: Rework fields so all generic
+
+TODO: Remove affiliation code
 
 = 1.12.0
 * CHANGED: SysInfo now shows WP_MEMORY_LIMIT
@@ -876,3 +878,5 @@ TODO:? Advanced Featured Images module
 TODO: Focal point tute
 TODO: Add users as content source
 TODO:? Add any fields to custom field filtering
+TODO: Investigate CSS Grid
+TODO: Rework fields so all generic

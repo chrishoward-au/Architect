@@ -108,6 +108,9 @@
       require_once PZARC_PLUGIN_PATH . '/extensions-inc/beaver-builder/fl-custom-module-architect.php';
       require_once PZARC_PLUGIN_PATH . '/extensions-inc/beaver-architect-modules-2.0/fl-architect-modules-bb2.php';
 
+      // Load Gutenberg
+//      require_once PZARC_PLUGIN_PATH . '/gutenberg/architect-generic/plugin.php';
+
 
       // Pro
       pzdb( 'before architect pro' );
