@@ -23,7 +23,7 @@
         'has_addons'          => false,
         'has_paid_plans'      => true,
         'is_org_compliant'    => false,
-        'has_affiliation'     => 'all',
+//        'has_affiliation'     => 'all',
         'menu'                => array(
           'slug'           => 'pzarc',
           'first-path'     => 'admin.php?page=pzarc_support',

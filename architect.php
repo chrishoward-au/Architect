@@ -69,4 +69,4 @@
     return $links;
   }
 
-  require_once 'arc-gb-plugin.php';
+  //require_once plugin_dir_path( __FILE__ ) . 'gutenberg/architect-generic/src/init.php';

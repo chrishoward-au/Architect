@@ -96,6 +96,7 @@ TODO: Remove affiliation code
 = 1.12.0
 * CHANGED: SysInfo now shows WP_MEMORY_LIMIT
 * CHANGED: SysInfo now shows average Blueprint loading times (a hugh time is likely indicative of a slow site)
+* CHANGED: Removed affiliation
 
 * FIXED: Error in SysInfo PHP Memory Limit
 * FIXED: Masonry broke with v1.11.1
