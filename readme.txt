@@ -91,7 +91,6 @@ TODO: Debug slideshows *nem
 TODO: Don't upscale images smaller than dimensions.
 TODO: SrcSet
 
-TODO: Remove affiliation code
 
 = 1.12.0
 * CHANGED: SysInfo now shows WP_MEMORY_LIMIT
@@ -100,9 +99,11 @@ TODO: Remove affiliation code
 
 * FIXED: Error in SysInfo PHP Memory Limit
 * FIXED: Masonry broke with v1.11.1
+* FIXED: Problems with grid margins breaking layout wrapping
 
-*UPGRADED: Isotope to 3.0.6
-*UPGRADED: ImagesLoaded to 4.1.4
+* UPGRADED: Isotope to 3.0.6
+* UPGRADED: ImagesLoaded to 4.1.4
+* UPGRADED: Freemius SDK to 2.1.1
 
 
 = 1.11.1

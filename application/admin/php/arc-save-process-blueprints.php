@@ -224,7 +224,7 @@
     else {
       $hmargin = ($lmargin + $rmargin) . (empty($margin_units) ? '%' : $margin_units);
     }
-    $hmargin =((float)$hmargin=0)?'0':$hmargin; //v1.12.0
+    $hmargin =((float)$hmargin==0)?'0':$hmargin; //v1.12.0
 
     if ($pzarc_blueprints['_blueprints_section-0-panels-fixed-width']) {
       $column_width = $panel_width . 'px;';
