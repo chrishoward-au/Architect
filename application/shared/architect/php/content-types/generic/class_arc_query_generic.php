@@ -380,6 +380,16 @@
         $this->query_options['tag__in'] = ! is_array( $overrides['tag__in'] ) ? explode( ',', $overrides['tag__in'] ) : $overrides['tag__in'];
       }
 
+      /** Exclude tags */
+      if ( ! empty( $overrides['tag__not_in'] ) ) {
+        $this->query_options['tag__not_in'] = ! is_array( $overrides['tag__not_in'] ) ? explode( ',', $overrides['tag__not_in'] ) : $overrides['tag__not_in'];
+      }
+
+      /** Must be in all categories */
+      if ( ! empty( $overrides['tag__and'] ) ) {
+        $this->query_options['tag__and'] = ! is_array( $overrides['tag__and'] ) ? explode( ',', $overrides['tag__and'] ) : $overrides['tag__and'];
+      }
+
       /** Include taxonomy and terms */
       if ( ! empty( $overrides['taxonomy'] ) && ! empty( $overrides['terms'] ) ) {
         $this->query_options['tax_query'] = array(

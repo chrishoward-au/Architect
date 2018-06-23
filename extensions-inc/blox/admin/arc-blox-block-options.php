@@ -16,7 +16,7 @@
       $this->tabs
              = array(
           'build'  => 'Blueprint',
-          'custom' => 'Overrides',
+          'custom' => 'Filters',
           //          'info'   => 'Info'
       );
 
@@ -58,7 +58,9 @@
           self::pzarc_custom($block, true)
       );
       foreach ($options as $option) {
-        $settings[ $option[ 'name' ] ] = BloxBlockAPI::get_setting($block, $option[ 'name' ], $option[ 'default' ]);
+        if ($option['type'] !== 'heading') {
+          $settings[ $option['name'] ] = BloxBlockAPI::get_setting( $block, $option['name'], $option['default'] );
+        }
       }
 
       return $settings;
@@ -105,6 +107,45 @@
             'options' => $pzarc_blueprints,
             'tooltip' => __('Choose a Blueprint to display on phones', 'pzarchitect')
           ),
+          'pzarc-overrides-heading'    => array(
+              'name'  => 'overrides-heading',
+              'type'  => 'heading',
+              'label' => 'Overrides'
+          ),
+          'pzarc-overrides-ids' => array(
+              'type'    => 'text',
+              'name'    => 'pzarc-overrides-ids',
+              'label'   => __('Override IDs', 'pzpzarc'),
+              'default' => '',
+              'tooltip' => __('Enter comma separated list of IDs of content to display instead of the Blueprint\'s preset. Note: This should be the same content type as the Blueprint was created.', 'pzarchitect')
+          ),
+          'pzarc-panels-per-view'   => array(
+              'name'=>'pzarc-panels-per-view',
+              'type'    => 'text',
+              'label'   => __('Override number of posts to show', 'pzarchitect'),
+              'default' => '',
+              'tooltip'=>__('Note: If the selection contains sticky posts, these will affect this limit.','pzarchitect')
+          ),
+          'pzarc-blueprint-title'   => array(
+              'name'=>'pzarc-blueprint-title',
+              'type'    => 'text',
+              'label'   => __('Override Blueprint display title', 'pzarchitect'),
+              'default' => '',
+          ),
+          'pzarc-overrides-page-title' => array(
+              'type'    => 'checkbox',
+              'name'    => 'pzarc-overrides-page-title',
+              'label'   => __('Show page title', 'pzpzarc'),
+              'default' => '',
+              'tooltip' => __('', 'pzarchitect')
+          ),
+          'pzarc-custom-overrides'   => array(
+              'name'=>'pzarc-custom-overrides',
+              'type'    => 'textarea',
+              'label'   => __('Custom overrides', 'pzarchitect'),
+              'default' => '',
+              'tooltip'=>__('Enter shortcode parameter style. e.g rssurl="http://myurl.com/feed" count="5"','pzarchitect')
+          ),
 
 
       );
@@ -115,6 +156,8 @@
     static function pzarc_custom($block, $just_defaults)
     {
       $taxonomy_list = array();
+      $catlist = array();
+      $taglist=array();
       if (!$just_defaults) {
         $taxonomy_list  = get_taxonomies( array(
                                               'public'   => true,
@@ -127,19 +170,81 @@
         }
         $extras        = array( 0 => '', 'category' => 'Categories', 'post_tag' => 'Tags' );
         $taxonomy_list = $extras + $taxonomy_list;
+        $catlist = pzarc_get_terms( 'category', array(
+            'hide_empty' => false,
+        ),true,true );
+        $taglist = pzarc_get_terms( 'post_tag', array(
+            'hide_empty' => false,
+        ),true,true );
       }
       $settings = array(
-          'pzarc-overrides-ids' => array(
-              'type'    => 'text',
-              'name'    => 'pzarc-overrides-ids',
-              'label'   => __('IDs', 'pzpzarc'),
+          'pzarc-categories-heading'    => array(
+              'name'  => 'categories-heading',
+              'type'  => 'heading',
+              'label' => 'Categories'
+          ),
+          'pzarc-category__in'     => array(
+              'name'=>'pzarc-category__in',
+              'type'   => 'multi-select',
+              'options'=>$catlist,
+              'label'  => __('Include Categories', 'pzarchitect'),
               'default' => '',
-              'tooltip' => __('Enter  comma separated list of IDs of content to display instead of the Blueprint\'s preset', 'pzarchitect')
+          ),
+          'pzarc-cat_all_any'      => array(
+              'name'=>'pzarc-cat_all_any',
+              'type'    => 'select',
+              'label'   => __('In ANY or ALL categories', 'pzarchitect'),
+              'default' => 'any',
+              'options' => array(
+                  'any' => __('Any', 'pzarchitect'),
+                  'all' => __('All', 'pzarchitect'),
+              ),
+          ),
+          'pzarc-category__not_in' => array(
+              'name'=>'pzarc-category__not_in',
+              'type'   => 'multi-select',
+              'options'=>$catlist,
+              'label'  => __('Exclude Categories', 'pzarchitect'),
+              'default' => '',
+          ),
+          'pzarc-tags-heading'    => array(
+              'name'  => 'tags-heading',
+              'type'  => 'heading',
+              'label' => 'Tags'
+          ),
+          'pzarc-tag__in'          => array(
+              'name'=>'pzarc-tag__in',
+              'type'   => 'multi-select',
+              'options'=>$taglist,
+              'label'  => __('Include Tags', 'pzarchitect'),
+              'default' => '',
+          ),
+          'pzarc-tag_all_any'      => array(
+              'name'=>'pzarc-tag_all_any',
+              'type'    => 'select',
+              'label'   => __('In ANY or ALL categories', 'pzarchitect'),
+              'default' => 'any',
+              'options' => array(
+                  'any' => __('Any', 'pzarchitect'),
+                  'all' => __('All', 'pzarchitect'),
+              ),
+          ),
+          'pzarc-tag__not_in'      => array(
+              'name'=>'pzarc-tag__not_in',
+              'type'   => 'multi-select',
+              'options'=>$taglist,
+              'label'  => __('Exclude Tags', 'pzarchitect'),
+              'default' => '',
+          ),
+          'pzarc-custom-heading'    => array(
+              'name'  => 'custom-heading',
+              'type'  => 'heading',
+              'label' => 'Custom'
           ),
           'pzarc-overrides-taxonomy' => array(
               'type'    => 'select',
               'name'    => 'pzarc-overrides-taxonomy',
-              'label'   => __('Taxonomy', 'pzpzarc'),
+              'label'   => __('Other Taxonomy', 'pzpzarc'),
               'default' => '',
               'tooltip' => __('', 'pzarchitect'),
               'options'=>$taxonomy_list
@@ -147,16 +252,9 @@
           'pzarc-overrides-terms' => array(
               'type'    => 'text',
               'name'    => 'pzarc-overrides-terms',
-              'label'   => __('Terms', 'pzpzarc'),
+              'label'   => __('Taxonomy Terms', 'pzpzarc'),
               'default' => '',
               'tooltip' => __('Enter taxonomy terms as a comma separated list. This is the WP slug name of the term.', 'pzarchitect')
-          ),
-          'pzarc-overrides-page-title' => array(
-              'type'    => 'checkbox',
-              'name'    => 'pzarc-overrides-page-title',
-              'label'   => __('Show page title', 'pzpzarc'),
-              'default' => '',
-              'tooltip' => __('', 'pzarchitect')
           ),
 
       );
