@@ -1919,7 +1919,7 @@
    *
    * @return array|int|null|WP_Error
    */
-  function pzarc_get_terms( $taxonomy = '', $args = array(), $array = TRUE ) {
+  function pzarc_get_terms( $taxonomy = '', $args = array(), $array = TRUE, $use_id=false ) {
 
     $terms = get_terms( $taxonomy, $args );
     if ( isset( $terms->errors ) ) {
@@ -1928,7 +1928,7 @@
       if ( $array && ! empty( $terms ) ) {
         $term_list = array();
         foreach ( $terms as $k => $v ) {
-          $term_list[ $v->slug ] = $v->name;
+          $term_list[ ($use_id?$v->term_id:$v->slug) ] = $v->name;
         }
         $terms = $term_list;
       }
@@ -2648,4 +2648,5 @@
       }
 
     }
+
   }
