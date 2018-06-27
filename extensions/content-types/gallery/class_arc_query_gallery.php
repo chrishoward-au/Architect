@@ -12,12 +12,11 @@
 
     protected function content_filters($source, $overrides)
     {
-
       if ($source === 'gallery') {
 
         $prefix         = '_content_galleries_';
+//        var_dump($prefix . 'gallery-source', $this->build->blueprint[ $prefix . 'gallery-source' ], $this->build->blueprint);
         $gallery_source = !empty($overrides['ids']) ? 'ids' : $this->build->blueprint[ $prefix . 'gallery-source' ];
-
         if ($gallery_source === 'galleryplus' || $gallery_source === 'wpgallery') {
           if ($gallery_source === 'galleryplus') {
             $gallery_post = get_post($this->build->blueprint[ $prefix . 'galleryplus' ]);
@@ -30,7 +29,9 @@
               preg_match("/(?<=ids=\")([\\d,\\,])*/u", $matches[ 0 ][ 0 ], $ids);
 
               $this->query_options[ 'post_type' ]           = 'attachment';
-              $this->query_options[ 'post__in' ]            = explode(',', $ids[ 0 ]);
+              if (isset($ids[0])) {
+                $this->query_options[ 'post__in' ] = explode(',', $ids[ 0 ]);
+              }
               $this->query_options[ 'post_status' ]         = array('publish', 'inherit', 'private');
               $this->query_options[ 'ignore_sticky_posts' ] = true;
             }

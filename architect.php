@@ -1,402 +1,72 @@
 <?php
 
-  /*
-    Plugin Name: Architect
-    Plugin URI: http://architect4wp.com
-    Description: Architect is a multipurpose, all-in-one content layout builder. <strong>Build your own slider, grid, tabbed, gallery, masonry, accordion or tabular layouts with ANY content source</strong>. Display using shortcodes, widgets, Headway blocks, WP action hooks and template tags, and WP Gallery shortcode.
-    Version: 1.6.0
-    Author: Chris Howard
-    Author URI: http://pizazzwp.com
-    License: GNU GPL v2
-    Support: support@pizazzwp.com
-   */
-
-  if ( ! defined( 'ABSPATH' ) ) {
-    echo '+++Divide By Cucumber Error. Please Reinstall Universe And Reboot +++. R.I.P Terry Pratchett 1948-2015';
-    exit;
-  } // Exit if accessed directly
-
-  if ( defined( 'PZARC_DEBUG' ) && PZARC_DEBUG ) {
-    global $pzstart_time;
-    $pzstart_time = microtime( true );
-    pzdb( 'start' );
-  }
-
-
-  class pzArchitect {
-
-    function __construct() {
-
-      if ( ! defined( 'PZARC_TESTER' ) ) {
-        $arc_options = get_option( '_architect_options', array() );
-        define( 'PZARC_TESTER', ( isset( $arc_options[ 'architect_enable_beta' ] ) ? $arc_options[ 'architect_enable_beta' ] : false ) );
-      }
-
-      /**
-       * REMEMBER TO UPDATE VERSION IN arc-admin.scss
-       * REMEMBER TO UPDATE VERSION IN arc-admin.scss
-       */
-      define( 'PZARC_VERSION', '1.6.0' );
-      /**
-       * REMEMBER TO UPDATE VERSION IN arc-admin.scss
-       * REMEMBER TO UPDATE VERSION IN arc-admin.scss
-       */
-      define( 'PZARC_NAME', 'pzarchitect' ); // This is also same as the locale
-      define( 'PZARC_FOLDER', '/pizazzwp-architect' );
-      define( 'PZARC_CODEX', 'http://architect4wp.com/codex-listings' );
-
-      define ( 'PZARC_BETA', false );
-
-      define( 'PZARC_PLUGIN_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
-      define( 'PZARC_PLUGIN_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
-      define( 'PZARC_PLUGIN_FILE',__FILE__);
-      define( 'PZARC_PLUGIN_APP_URL', PZARC_PLUGIN_URL . 'application/' );
-      define( 'PZARC_PLUGIN_APP_PATH', PZARC_PLUGIN_PATH . 'application/' );
-      define( 'PZARC_DOCUMENTATION_URL', PZARC_PLUGIN_URL . 'documentation/' );
-      define( 'PZARC_DOCUMENTATION_PATH', PZARC_PLUGIN_PATH . 'documentation/' );
-      define( 'PZARC_PLUGIN_ASSETS_URL', PZARC_PLUGIN_APP_URL . 'shared/assets/' );
-      define( 'PZARC_PLUGIN_PRESETS_URL', PZARC_PLUGIN_URL . 'presets/' );
-      define( 'PZARC_CACHE', '/arc/' );
-
-      $upload_dir = wp_upload_dir();
-      if (substr(home_url(),0,5)==='https' &&  substr($upload_dir['baseurl'],0,5)==='http:') {
-        $upload_dir['baseurl']=str_replace('http:','https:',$upload_dir['baseurl']);
-      }
-      define('PZARC_UPLOADS_BASEPATH',$upload_dir['basedir']);
-      define('PZARC_UPLOADS_BASEURL',$upload_dir['baseurl']);
-
-      define('PZARC_PRESETS_PATH',PZARC_UPLOADS_BASEPATH.'/pizazzwp/architect/presets/');
-      define('PZARC_PRESETS_URL',PZARC_UPLOADS_BASEURL.'/pizazzwp/architect/presets/');
-
-      define( 'PZARC_CACHE_URL',  PZARC_UPLOADS_BASEURL . '/cache/pizazzwp/arc/'  );
-      define( 'PZARC_CACHE_PATH',  PZARC_UPLOADS_BASEPATH . '/cache/pizazzwp/arc/'  );
-
-      // TODO: Setup an option for changing the language
-      $language = substr( get_locale(), 0, 2 );
-
-      define( 'PZARC_LANGUAGE', 'en' );
-
-      define( 'PZARC_TRANSIENTS_KEEP', 12 * HOUR_IN_SECONDS );
-
-
-
-      pzdb( 'after dependency check' );
-// Maybe we can go without this!
-//      @include plugin_dir_path(__FILE__).'init_headway.php';
-      if ( is_admin() ) {
-        // Before we go anywhere, make sure dependent plugins are loaded and active.
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-check-dependencies.php';
-        wp_mkdir_p( PZARC_CACHE_PATH );
-        // Why the heck doesn't this work when it's in initialise?
-        pzdb( 'after dependency check' );
-      }
-
-      // Need this one to create the Architect widget
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_widget.php';
-
-      // Load plugin text domain
-      add_action( 'init', array( $this, 'pzarc_text_domain' ) );
-
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-functions.php';
-
-      // Register admin styles and scripts
-
-      if ( is_admin() ) {
-        add_action( 'admin_print_styles', array( $this, 'register_admin_styles' ) );
-        add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );
-        //		add_action( 'init', array( $this, 'admin_initialize' ) );
-        require_once PZARC_PLUGIN_APP_PATH . '/arc-admin.php';
-
-        pzdb( 'after admin load' );
-
-      } else {
-        // Front end includes, Register site styles and scripts
-        add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ) );
-        add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_scripts' ) );
-
-
-        require_once PZARC_PLUGIN_APP_PATH . '/arc-public.php';
-        pzdb( 'after public  load' );
-
-      }
-
-      // Register hooks that are fired when the plugin is activated, deactivated, and uninstalled, respectively.
-      register_activation_hook( __FILE__, array( $this, 'activate' ) );
-      register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
-      //	register_uninstall_hook( __FILE__, array( $this, 'uninstall' ) );
-
-      add_action( 'init', array( $this, 'init' ) );
-      add_action( 'after_setup_theme', array( $this, 'register_architect_block' ) );
-
-
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_registry.php';
-
-      if ( version_compare( PHP_VERSION, '5.3.0' ) >= 0 ) {
-        // include PHP5.3+ code here
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_set_data.php';
-      } else {
-        // load legacy code here
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_set_data-legacy.php';
-      }
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_blueprint_data.php';
-
-      // Load custom custom types
-      if ( is_admin() ) {
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-panels.php';
-
-        self::update();
-
-      }
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-blueprints.php';
-
-      // Load all the builtin post types
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_content_defaults.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/post/class_arc_content_posts.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/page/class_arc_content_pages.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/dummy/class_arc_content_dummy.php';
-
-      // Load Architect page templater
-      $pzarc_use_page_templater = get_option('architect_use-builder');
-//      var_dump($pzarc_use_page_templater);
-//      if ($pzarc_use_page_templater) {
-        require_once PZARC_PLUGIN_APP_PATH . '/admin/php/class_arcPageTemplater.php';
-//      }
-
-
-      require_once PZARC_PLUGIN_PATH.'/extensions-inc/beaver-builder/fl-custom-module-architect.php';
-      pzdb( 'before architect pro' );
-
-
-      // This is a shorthand way of doing an if. When pro isn't present, it's the lite version.
-      $pzarc_current_theme = wp_get_theme();
-
-      $hw_opts = null;
-      $pzarc_status = get_option( 'edd_architect_license_status' );
-
-      if ( ($pzarc_current_theme->get('Name') === 'Headway Base' || $pzarc_current_theme->get('Template')=='headway') && ( $pzarc_status == false || $pzarc_status !== 'valid' )) {
-        if ( is_multisite() ) {
-          $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
-
-        } else {
-          $hw_opts = get_option( 'headway_option_group_general' );
-        }
-
-
-      }
-      if ( ( ! empty( $hw_opts[ 'license-status-architect' ] ) && $hw_opts[ 'license-status-architect' ] == 'valid' ) || ( $pzarc_status !== false && $pzarc_status == 'valid' ) ) {
-        define('PZARC_PRO',true);
-        @include PZARC_PLUGIN_PATH . '/extensions/architect-pro.php';
-      }
-
-      switch (true) {
-        case ( ! empty( $hw_opts[ 'license-status-architect' ] ) && $hw_opts[ 'license-status-architect' ] == 'valid' ) && ( $pzarc_status === false || $pzarc_status !== 'valid' ) :
-          define('PZARC_SHOP','(H)');
-          break;
-        case (  $pzarc_status !== false && $pzarc_status === 'valid' ) :
-          define('PZARC_SHOP','(P)');
-          break;
-        default:
-          define('PZARC_SHOP','(L)');
-
-      }
-      pzdb( 'after architect pro' );
-
-      // Extensions hook in here
-      do_action( 'arc_load_extensions' );
-
-     require_once(PZARC_PLUGIN_PATH. '/extensions-inc/sliders/slick15/arc-slick15-init.php');
-
-
-      // Rebuiild cache if instructed
-
-      if ( get_option( 'pzarc-run-rebuild' ) ) {
-
-        add_action( 'admin_init', 'pzarc_rebuild' );
-
-      }
-    }
-
-    function __destruct() {
-      pzdb( 'the end' );
-    }
-
-    public function init() {
-
-    }
-
-
-    public function register_architect_block() {
-
-      if ( class_exists( 'HeadwayDisplay' ) ) {
-        require( 'application/public/php/headway/arc-headway-block-display.php' );
-        require( 'application/admin/php/headway/arc-headway-block-options.php' );
-
-        return headway_register_block( 'HeadwayArchitectBlock', PZARC_PLUGIN_APP_URL . '/admin/php/headway' );
-      }
-    }
-
-    /**
-     * Fired when the plugin is activated.
-     *
-     * @param  boolean $network_wide True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog
-     */
-    public function activate( $network_wide ) {
-      /** Check for correct version of Pizazz Libs  */
-      if ( defined( 'PIZAZZ_VERSION' ) ) {
-        if ( version_compare( PIZAZZ_VERSION, '1.6.3', '<' ) ) {
-          die( __( 'Cannot activate Architect because an out of date version of PizazzWP Libs is active. It needs to be at least version 1.6.3. Deactivate or upgrade it, and try again. Here is a manual link if you need it: <a href="https://s3.amazonaws.com/341public/LATEST/pizazzwp-libs.zip">Latest Pizazz Libs</a>', 'pzarchitect' ) );
-
-          return;
-        }
-
-      }
-      if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
-        require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-check-dependencies.php';
-      }
-      TGM_Plugin_Activation::get_instance()->update_dismiss();
-
-      update_option( 'pzarc-run-rebuild', true );
-
-    }
-
-    public function admin_initialize() {
-    }
-
-// end activate
-
-    /**
-     * Fired when the plugin is deactivated.
-     *
-     * @param  boolean $network_wide True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog
-     */
-    public function deactivate( $network_wide ) {
-      // TODO:	Define deactivation functionality here
-    }
-
-// end deactivate
-
-    /**
-     * Fired when the plugin is uninstalled.
-     *
-     * @param  boolean $network_wide True if WPMU superadmin uses "Network Activate" action, false if WPMU is disabled or plugin is activated on an individual blog
-     */
-    public function uninstall( $network_wide ) {
-      // TODO:	Define uninstall functionality here
-    }
-
-// end uninstall
-
-    /**
-     * Loads the plugin text domain for translation
-     */
-    public function pzarc_text_domain() {
-
-      $domain = PZARC_NAME;
-      $locale = apply_filters( 'plugin_locale', get_locale(), $domain );
-      load_textdomain( $domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo' );
-    //  var_dump(WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo',dirname( plugin_basename( __FILE__ ) ) . '/application/languages/');
-      load_plugin_textdomain( $domain, false, dirname( plugin_basename( __FILE__ ) ) . '/application/languages/' );
-    }
-
-// end plugin_textdomain
-
-    /**
-     * Registers and enqueues admin-specific styles.
-     */
-    public function register_admin_styles() {
-
-      wp_enqueue_style( 'pzarc-admin-styles', PZARC_PLUGIN_APP_URL . '/admin/css/arc-admin.css',false,PZARC_VERSION );
-      wp_register_style( 'pzarc-jqueryui-css', PZARC_PLUGIN_APP_URL . '/shared/thirdparty/jquery-ui-1.10.2.custom/css/pz_architect/jquery-ui-1.10.2.custom.min.css' );
-//wp_enqueue_style('fontawesome','//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
-    }
-
-// end register_admin_styles
-
-    /**
-     * Registers and enqueues admin-specific JavaScript.
-     */
-    public function register_admin_scripts() {
-
-    }
-
-// end register_admin_scripts
-
-    /**
-     * Registers and enqueues plugin-specific styles.
-     */
-    public function register_plugin_styles() {
-
-      wp_enqueue_style( PZARC_NAME . '-styles', PZARC_PLUGIN_APP_URL . '/public/css/architect-styles.css',false,PZARC_VERSION );
-      wp_register_style( PZARC_NAME . '-plugin-styles', PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css',false,PZARC_VERSION );
-      // Need this for custom CSS in styling options
-      if ( file_exists( PZARC_CACHE_PATH . 'arc-dynamic-styles.css' ) ) {
-        wp_register_style( PZARC_NAME . '-dynamic-styles', PZARC_CACHE_URL . 'arc-dynamic-styles.css',false,PZARC_VERSION );
-      }
-    }
-
-// end register_plugin_styles
-
-    /**
-     * Registers and enqueues plugin-specific scripts.
-     */
-    public function register_plugin_scripts() {
-
-      wp_enqueue_script( 'jquery' );
-      wp_register_script( 'js-imagesloaded', PZARC_PLUGIN_APP_URL . '/public/js/imagesloaded.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
-      wp_register_script( 'js-isotope-v2', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
-      wp_register_script( 'js-isotope-packery', PZARC_PLUGIN_APP_URL . '/public/js/packery-mode.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, true );
-      wp_register_script( 'js-front', PZARC_PLUGIN_APP_URL . '/public/js/arc-front.js', array( 'jquery' ), PZARC_VERSION, true );
-      wp_register_script( 'js-front-isotope', PZARC_PLUGIN_APP_URL . '/public/js/arc-front-isotope.js', array( 'jquery' ), PZARC_VERSION, true );
-
-
-    }
-
-// end register_plugin_scripts
-
-    private static function update() {
-      $current_db_version = get_option( 'architect_db_version' );
-      $db_updates         = array(
-        '1.1.0.0' => 'updates/architect-1100.php',
-        '1.2.0.0' => 'updates/architect-1200.php',
-        '1.3.0.0' => 'updates/architect-1300.php',
-        '1.4.0.0' => 'updates/architect-1400.php',
-        '1.5.0.0' => 'updates/architect-1500.php',
-      );
-
-      foreach ( $db_updates as $version => $updater ) {
-        if ( version_compare( $current_db_version, $version, '<' ) ) {
-          include( $updater );
-          update_option( 'architect_db_version', $version );
+	/*
+	  Plugin Name: Architect - a DIY content block builder
+	  Plugin URI: http://architect4wp.com
+	  Description: Build the content layouts that your theme or page builder can't. Themes, page builders, and now Gutenberg provide blocks or modules for displaying content. Architect lets your create custom content blocks that you can then display with any theme, page builder or Gutenberg.
+	  Version: 1.13.0
+	  Author: Chris Howard
+	  Author URI: http://pizazzwp.com
+	  License: GNU GPL v2
+	  Support: support@pizazzwp.com
+
+	 * @fs_premium_only /extensions/
+	 */
+
+	if ( ! defined( 'ABSPATH' ) ) {
+		echo '+++Divide By Cucumber Error. Please Reinstall Universe And Reboot +++. R.I.P Terry Pratchett 1948-2015';
+		exit;
+	} // Exit if accessed directly
+
+	/**
+	 * REMEMBER TO UPDATE VERSION IN arc-admin.scss
+	 */
+	define( 'PZARC_VERSION', '1.13.0' );
+  if ( ! function_exists( 'arc_fs' ) ) {
+
+
+    if ( ! function_exists( 'pzdb' ) ) {
+      function pzdb( $pre = NULL, $var = 'dorkus' ) {
+        if ( defined( 'PZARC_DEBUG' ) && PZARC_DEBUG ) {
+          static $oldtime;
+          $oldtime = empty( $oldtime ) ? microtime( TRUE ) : $oldtime;
+          $btr     = debug_backtrace();
+          $line    = $btr[0]['line'];
+          $file    = basename( $btr[0]['file'] );
+          global $pzstart_time;
+          echo "\n<!-- " . strtoupper( $pre ) . ': ' . $file . ':' . $line . ': ' . round( ( microtime( TRUE ) - $pzstart_time ), 5 ) . 's. Time since last: ' . round( microtime( TRUE ) - $oldtime, 5 ) . "s -->\n";
+          $oldtime = microtime( TRUE );
+          if ( $var !== 'dorkus' ) {
+            var_dump( $var );
+          }
         }
       }
 
-      update_option( 'architect_db_version', PZARC_VERSION );
-    }
-
-
-  }
-
-// end class
-
-  $pzarc = new pzArchitect();
-
-
-  function pzdb( $pre = null, $var = 'dorkus' ) {
-    if ( defined( 'PZARC_DEBUG' ) && PZARC_DEBUG ) {
-      static $oldtime;
-      $oldtime = empty( $oldtime ) ? microtime( true ) : $oldtime;
-      $btr     = debug_backtrace();
-      $line    = $btr[ 0 ][ 'line' ];
-      $file    = basename( $btr[ 0 ][ 'file' ] );
-      global $pzstart_time;
-      var_dump( strtoupper( $pre ) . ': ' . $file . ':' . $line . ': ' . round( ( microtime( true ) - $pzstart_time ), 5 ) . 's. Time since last: ' . round( microtime( true ) - $oldtime, 5 ) . 's' );
-      $oldtime = microtime( true );
-      if ( $var !== 'dorkus' ) {
-        var_dump( $var );
+      if ( defined( 'PZARC_DEBUG' ) && PZARC_DEBUG ) {
+        global $pzstart_time;
+        $pzstart_time = microtime( TRUE );
+        pzdb( 'start' );
       }
+
+      include_once 'load-freemius.php';
+
+      require_once( 'class_pzarchitect.php' );
+      $pzarc = new pzArchitect();
+
+
+      pzdb( 'bottom' );
+
+    } else {
+      die( 'Another copy of Architect,'. PZARC_VERSION .', is active. Please deactivate it first and then activate this new one, version 1.10.0 ');
     }
   }
 
+  add_filter( 'plugin_action_links_'.plugin_basename(__FILE__), 'pzarc_plugin_action_links' );
+  add_filter( 'network_admin_plugin_action_links_'.plugin_basename(__FILE__), 'pzarc_plugin_action_links' );
 
-  pzdb( 'bottom' );
+  function pzarc_plugin_action_links( $links ) {
+    $links[] = '<a href="https://s3.amazonaws.com/341public/LATEST/Architect/architect-changelog.html" target="_blank">Changelog</a>';
+    return $links;
+  }
 
+  //require_once plugin_dir_path( __FILE__ ) . 'gutenberg/architect-generic/src/init.php';

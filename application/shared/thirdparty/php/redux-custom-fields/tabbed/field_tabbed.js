@@ -25,7 +25,6 @@
           jQuery.redux.initFields();
         } );
 
-        console.log( targets );
         jQuery( targets ).each( function ()
         {
           // Select first tab
@@ -55,6 +54,11 @@
   jQuery( '.redux-container-tabbed li' ).on( 'click', function ( e )
   {
     var clickedThis = this;
+    if ( jQuery(clickedThis).hasClass( 'pztabs-unused' ) )
+    {
+      return false;
+    }
+
     var targets = jQuery( clickedThis ).data( 'targets' ).split( ',' );
     jQuery( targets ).each( function ()
     {

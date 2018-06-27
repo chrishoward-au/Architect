@@ -1,0 +1,17 @@
+.redux-container-links .pzarc-links-table {
+  border-spacing:0;
+}
+
+.redux-container-links .pzarc-links-table tr{
+  height: 2.6em;
+}
+
+.redux-container-links .pzarc-links-table .pzarc-links-drop1 {
+  width:70px;
+}
+.redux-container-links .pzarc-links-table .pzarc-links-text1 {
+  width:70px;
+}
+.redux-container-links .pzarc-links-table .pzarc-links-text2 {
+  width:220px;
+}

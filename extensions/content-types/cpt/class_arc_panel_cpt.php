@@ -8,5 +8,9 @@
  */
 
 class arc_Panel_CPT extends  arc_Panel_Generic{
+  public function __construct(&$build) {
+
+    parent::__construct( $build );
+  }
 
 } 

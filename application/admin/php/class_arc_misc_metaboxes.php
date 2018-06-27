@@ -23,7 +23,7 @@
     }
 
     function init() {
-      wp_enqueue_script( 'jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array( 'jquery' ), true );
+      wp_enqueue_script( 'jquery-pzarc-metaboxes', PZARC_PLUGIN_APP_URL . '/admin/js/arc-metaboxes.js', array( 'jquery' ), PZARC_VERSION,true );
 
     }
     /** Featured Video */
@@ -42,6 +42,7 @@
       if ($_architect_options[ 'architect_mod-video-fields' ][ 'pz_snippets' ] == 1) {
         $pzarc_vids_on[ ] = 'pz_snippets';
       }
+
       $boxSections    = array();
       $boxSections[ ] = array(
         //'title'         => __('General Settings', 'pzarchitect'),

@@ -8,11 +8,13 @@
  */
 
   if (!post_type_exists('pz_snippets') && !function_exists('pz_create_snippets_post_type')) {
-    add_action('init', 'pz_create_snippets_post_type');
+    //add_action('init', 'pz_create_snippets_post_type');
     function pz_create_snippets_post_type()
     {
+      $architect_options = get_option( '_architect_options' );
+      $rewrite_slug=(array_key_exists('architect_rewrites-snippets',$architect_options)?esc_html(str_replace( ' ','' ,  $architect_options['architect_rewrites-snippets'])):'pz_snippets');
       $labels = array(
-          'name'               => _x('Snippets', 'post type general name'),
+          'name'               => _x('Snippets (Architect)', 'post type general name'),
           'singular_name'      => _x('Snippet', 'post type singular name'),
           'add_new'            => _x('Add New Snippet', 'gallery'),
           'add_new_item'       => __('Add New Snippet'),
@@ -25,20 +27,23 @@
           'parent_item_colon'  => '',
           'menu_name'          => _x('Snippets', 'pzarchitect'),
       );
+
       $args   = array(
           'labels'             => $labels,
           'public'             => true,
           'publicly_queryable' => true,
           'show_ui'            => true,
+          'show_in_rest'=> false,  // Prevents using Gutenberg editor
+          'exclude_from_search' => !empty($architect_options['architect_exclude-snippets-search']),
           //          'show_in_menu'       => 'pzarc',
           'menu_icon'          => 'dashicons-format-aside',
           'query_var'          => true,
-          'rewrite'            => true,
+          'rewrite'            => array('slug'=>$rewrite_slug),
           'capability_type'    => 'page',
           'has_archive'        => true,
           'hierarchical'       => true,
           'taxonomies'         => array('category', 'post_tag'),
-          //          'menu_position'      => 999,
+                   'menu_position'      => 999,
           'supports'           => array('title',
                                         'editor',
                                         'author',
@@ -139,6 +144,8 @@
 
       }
     }
+
+    pz_create_snippets_post_type();
 
   }
 

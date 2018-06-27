@@ -266,6 +266,12 @@
                       'type'    => 'text',
                       'default' => '',
                   ),
+//                  array(
+//                      'title'   => __('Order', 'pzarc'),
+//                      'id'      => $prefix . 'order',
+//                      'type'    => 'text',
+//                      'default' => 10,
+//                  ),
                   array(
                       'title'   => __('Blueprint shortname', 'pzarc'),
                       'id'      => $prefix . 'blueprint',
@@ -275,7 +281,7 @@
                       'default' => '',
                   ),
                   array(
-                      'title'   => __('Page IDs', 'pzarc'),
+                      'title'   => __('Page types', 'pzarc'),
                       'id'      => $prefix . 'pageids',
                       'type'    => 'select',
                       'multi'   => true,
@@ -283,16 +289,17 @@
                       'options' => array(
                           'all'         => __('All','pzarchitect'),
                           'home'        => __('Home','pzarchitect'),
+                          'specific'    => __('Specific IDs','pzarchitect'),
                           'single-post' => __('Single Post','pzarchitect'),
                           'single-page' => __('Single page','pzarchitect'),
                           'blog'        => __('Blog page','pzarchitect'),
-                          'catergories' => __('Categories','pzarchitect'),
-                          'tags'        => __('Tags','pzarchitect'),
-                          'dates'       => __('Dates','pzarchitect'),
-                          'authors'     => __('Authors','pzarchitect'),
+                          'categories' => __('Category archives','pzarchitect'),
+                          'tags'        => __('Tag archives','pzarchitect'),
+                          'tax'        => __('Custom taxonomy archives','pzarchitect'),
+                          'dates'       => __('Date archives','pzarchitect'),
+                          'authors'     => __('Author archives','pzarchitect'),
                           'search'      => __('Search','pzarchitect'),
-                          '404'         => __('404','pzarchitect'),
-                          'specific'    => __('Specific','pzarchitect')
+                          '404'         => __('404','pzarchitect')
                       )
                   ),
                   array(
@@ -300,7 +307,14 @@
                       'id'      => $prefix . 'specificids',
                       'type'    => 'text',
                       'default' => '',
-                      //                      'required'=> array($prefix . 'pageids','contains','specific')
+                      'required'=> array($prefix . 'pageids','contains','specific')
+                  ),
+                  array(
+                      'title'   => __('Custom taxonomy slugs', 'pzarc'),
+                      'id'      => $prefix . 'tax-slugs',
+                      'type'    => 'text',
+                      'default' => '',
+                      'required'=> array($prefix . 'pageids','contains','tax')
                   ),
 
               )

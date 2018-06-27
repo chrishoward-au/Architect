@@ -14,15 +14,17 @@ jQuery( document ).ready( function ()
   // This is necessary when no tabs to switch with.
 //  jQuery('#redux-_architect-metabox-panels-design').show();
 
+ pzarc_update_tabs_to_show( jQuery('#_architect-_panels_design_components-to-show .buttonset .buttonset-item') );
+
   /** ***********************************************************************************************************************
    * Update status message and field data
    */
   function pzarc_update_status( cell_layout )
   {
-    ////console.log(event.timeStamp);
     var showing = "";
     jQuery.each( cell_layout, function ( index, value )
     {
+      //console.log(value);
       if ( value.show )
       {
         index = ('image' === index) ? 'feature' : index;
@@ -37,7 +39,6 @@ jQuery( document ).ready( function ()
 
     //var pztarget = jQuery( 'fieldset#_architect-_panels_design_components-to-show input#_panels_design_components-to-show-buttonsetimage' );
     //var features_row = jQuery( "fieldset#_architect-_panels_design_feature-location" ).parentsUntil( 'tbody' );
-    ////   console.log(jQuery( pztarget ).attr( 'checked' ) );
     //if ( 'checked' !== jQuery( pztarget ).attr( 'checked' ) )
     //{
     //  features_row.hide();
@@ -48,7 +49,6 @@ jQuery( document ).ready( function ()
     //  features_row.show();
     //
     //}
-    //console.log(event.timeStamp);
 
   }
 
@@ -113,10 +113,11 @@ jQuery( document ).ready( function ()
 
   /** ***********************************************************************************************************************/
   /** COMPONENTS TO SHOW **/
-  jQuery( 'fieldset#_architect-_panels_design_components-to-show input' ).change( function ( e )
+  jQuery( 'fieldset#_architect-_panels_design_components-to-show input.buttonset-item' ).change( function ( e )
   {
     var pztarget = e.target;
-    switch (pztarget.value)
+    var targVal = getValue(pztarget);
+    switch (targVal)
     {
       case 'image':
         var features_row = jQuery( "fieldset#_architect-_panels_design_feature-location" ).parentsUntil( 'tbody' );
@@ -254,20 +255,13 @@ jQuery( document ).ready( function ()
       {
         jQuery( ".pzarc-content-area.sortable" ).append( element_html[index] );
       } );
-      //console.log(event.timeStamp);
       var cell_layout = get_cell_layout();
-      //console.log(event.timeStamp);
       pzarc_update_component_location( cell_layout );
-      //console.log(event.timeStamp);
       pzarc_update_components_container_width(  );
-      //console.log(event.timeStamp);
       pzarc_update_components_nudge(  );
-      //console.log(event.timeStamp);
       pzarc_update_component_visibility( cell_layout );
-      //console.log(event.timeStamp);
 //            pzarc_update_feature( cell_layout );
       pzarc_update_status( cell_layout );
-      //console.log(event.timeStamp);
     }
   } );
 
@@ -329,31 +323,30 @@ jQuery( document ).ready( function ()
    */
   function pzarc_update_component_visibility( cell_layout )
   {
-    var components_state = jQuery( "fieldset#_architect-_panels_design_components-to-show input" );
+    var components_state = jQuery( "fieldset#_architect-_panels_design_components-to-show input.buttonset-item" );
     jQuery.each( components_state, function ( index, value )
     {
-      if ( value.value !== '' )
+
+      var theValue = getValue(value);
+
+      if ( theValue !== '' && theValue !== undefined)
       {
-        cell_layout[value.value].show = value.checked;
+        cell_layout[theValue].show = value.checked;
         if ( value.checked )
         {
-          jQuery( '.pzarc-draggable-' + value.value ).show();
-          jQuery( '.pzarc-draggable-' + value.value ).css( 'width', cell_layout[value.value].width + '%' );
+          jQuery( '.pzarc-draggable-' + theValue ).show();
+          jQuery( '.pzarc-draggable-' + theValue ).css( 'width', cell_layout[theValue].width + '%' );
 
         }
         else
         {
-          jQuery( '.pzarc-draggable-' + value.value ).hide();
+          jQuery( '.pzarc-draggable-' + theValue ).hide();
         }
       }
     } );
-    //console.log(event.timeStamp);
     pzarc_update_feature_type( jQuery( 'input[name="_architect[_panels_settings_feature-type]"]:checked' ).get( 0 ).value );
-    //console.log(event.timeStamp);
     pzarc_update_feature( cell_layout );
-    //console.log(event.timeStamp);
     pzarc_update_status( cell_layout );
-    //console.log(event.timeStamp);
     return cell_layout;
   }
 
@@ -378,7 +371,6 @@ jQuery( document ).ready( function ()
     // Because this function is called in different ways,we reget the value of feature location
     jQuery( 'input[name="_architect[_panels_design_feature-location]"]' ).each( function ()
     {
-      //console.log(event.timeStamp);
       if ( this.checked )
       {
         featureLocation = this.value;
@@ -547,7 +539,6 @@ jQuery( document ).ready( function ()
         break;
     }
     pzarc_update_status( cell_layout );
-    //console.log(event.timeStamp);
   }
 
   function pzarc_update_component_location( cell_layout )
@@ -601,7 +592,6 @@ jQuery( document ).ready( function ()
         break;
     }
     pzarc_update_status( cell_layout );
-    //console.log(event.timeStamp);
   }
 
   function pzarc_update_components_container_width()
@@ -614,7 +604,6 @@ jQuery( document ).ready( function ()
 
 
   }
-
 
   function pzarc_update_components_nudge()
   {
@@ -651,7 +640,6 @@ jQuery( document ).ready( function ()
     {
       jQuery( '.pzarc-content-area' ).css( 'marginLeft', nudgexy[0] + '%' ).css( 'marginBottom', nudgexy[1] + '%' );
     }
-    //console.log(event.timeStamp);
   }
 
 
@@ -659,15 +647,34 @@ jQuery( document ).ready( function ()
    * Update tabs to show
    */
 
-  function pzarc_update_tabs_to_show( e )
+  function pzarc_update_tabs_to_show( et )
   {
-    jQuery( e ).each( function ()
+    var tabs = jQuery('#_architect-_blueprint_tabs_tabs');
+    var els;
+    if (undefined === et.target)
+    {
+      els = et;
+    } else {
+       els = et.target;
+    }
+    jQuery( els ).each( function ()
     {
       var tab_status = true;
-      switch (this.target.value)
+       var tabVal = getValue(this);
+      switch (tabVal)
       {
         case 'title':
-          jQuery( '#1_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( this.target.checked );
+          tab_status = (
+              jQuery( 'input#_panels_design_components-to-show-buttonsettitle:checked' ).length === 1
+          );
+//          jQuery(tabs).find('#tab-titles' ).toggle(tab_status);
+
+          var theTabTitles = jQuery( tabs ).find( '#tab-titles' );
+          if (!tab_status) {
+              theTabTitles.addClass('pztabs-unused' ).attr('title','Titles not used in this Blueprint');
+            } else {
+              theTabTitles.removeClass('pztabs-unused' ).removeAttr('title');
+            }
           break;
         case 'meta1':
         case 'meta2':
@@ -677,21 +684,39 @@ jQuery( document ).ready( function ()
           jQuery( 'input#_panels_design_components-to-show-buttonsetmeta2:checked' ).length === 1 ||
           jQuery( 'input#_panels_design_components-to-show-buttonsetmeta3:checked' ).length === 1
           );
-          jQuery( '#2_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
+      //    jQuery(tabs).find('#tab-meta' ).toggle(tab_status);
+          var theTabMeta = jQuery(tabs).find('#tab-meta' );
+          if (!tab_status) {
+            theTabMeta.addClass('pztabs-unused').attr('title','No meta fields used in this Blueprint');
+          } else {
+            theTabMeta.removeClass('pztabs-unused').removeAttr('title');
+          }
           break;
         case 'content':
         case 'excerpt':
           tab_status = (
           jQuery( 'input#_panels_design_components-to-show-buttonsetcontent:checked' ).length === 1 ||
           jQuery( 'input#_panels_design_components-to-show-buttonsetexcerpt:checked' ).length === 1);
-          jQuery( '#3_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
+       //   jQuery(tabs).find('#tab-body' ).toggle(tab_status);
+          var theTabBody = jQuery(tabs).find('#tab-body' );
+          if (!tab_status) {
+            theTabBody.addClass('pztabs-unused').attr('title','Body/excerpt not used in this Blueprint');
+          } else {
+            theTabBody.removeClass('pztabs-unused').removeAttr('title');
+          }
           break;
         case 'image':
 
           tab_status = (
           jQuery( 'input#_panels_design_components-to-show-buttonsetimage:checked' ).length === 1
           );
-          jQuery( '#4_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
+    //      jQuery(tabs).find('#tab-features' ).toggle(tab_status);
+          var theTabFeatures = jQuery(tabs).find('#tab-features' );
+          if (!tab_status) {
+            theTabFeatures.addClass('pztabs-unused').attr('title','Featured image/video not used in this Blueprint');
+          } else {
+            theTabFeatures.removeClass('pztabs-unused').removeAttr('title');
+          }
           break;
         case 'custom1':
         case 'custom2':
@@ -701,12 +726,17 @@ jQuery( document ).ready( function ()
           jQuery( 'input#_panels_design_components-to-show-buttonsetcustom2:checked' ).length === 1 ||
           jQuery( 'input#_panels_design_components-to-show-buttonsetcustom3:checked' ).length === 1
           );
-          jQuery( '#5_box_redux-_architect-metabox-panels-design_section_group_li' ).toggle( tab_status );
+        //  jQuery(tabs).find('#tab-customfields' ).toggle(tab_status);
+          var theTabCustomFields = jQuery(tabs).find('#tab-customfields' );
+          if (!tab_status) {
+            theTabCustomFields.addClass('pztabs-unused').attr('title','No custom fields used in this Blueprint');
+          } else {
+            theTabCustomFields.removeClass('pztabs-unused').removeAttr('title');
+          }
           break;
 
       }
     } );
-    //console.log(event.timeStamp);
 
   }
 
@@ -727,7 +757,6 @@ jQuery( document ).ready( function ()
         this.src = this.src.replace( /sample-image.jpg/g, "sample-video.jpg" );
       }
     } );
-    //console.log(event.timeStamp);
   }
 
   function pzarc_reposition_components( cell_layout, t )
@@ -743,21 +772,18 @@ jQuery( document ).ready( function ()
       switch (true)
       {
         case ( (1 === jQuery( 'input#_panels_design_components-position-buttonsetleft:checked' ).length || 1 === jQuery( 'input#_panels_design_components-position-buttonsetright:checked' ).length) ):
-          console.log( 'left || right' )
           // UPDATE
           jQuery( '.pzarc-dropzone' ).append( feature ).append( components );
           jQuery( '.pzgp-cell-image-behind' ).width( 100 - t.textContent + '%' ).css( 'position', 'absolute' );
           jQuery( '.pzarc-content-area' ).css( 'position', 'absolute' );
           break;
         case ( (1 === jQuery( 'input#_panels_design_components-position-buttonsetbottom:checked' ).length)):
-          console.log( 'bottom' );
           jQuery( '.pzarc-dropzone' ).append( feature ).append( components );
           jQuery( '.pzarc-content-area' ).css( 'position', 'relative' )
           jQuery( '.pzgp-cell-image-behind' ).css( 'position', 'relative' );
           break;
 
         case ( (1 === jQuery( 'input#_panels_design_components-position-buttonsettop:checked' ).length)):
-          console.log( 'top' );
           jQuery( '.pzarc-dropzone' ).append( components ).append( feature );
           jQuery( '.pzarc-content-area' ).css( 'position', 'relative' )
           jQuery( '.pzgp-cell-image-behind' ).css( 'position', 'relative' );
@@ -774,15 +800,25 @@ jQuery( document ).ready( function ()
       jQuery( '.pzarc-content-area' ).css( 'position', 'absolute' );
 
     }
-    //console.log(event.timeStamp);
 
   }
+
+  /**
+   *
+   */
   function get_cell_layout() {
-    //console.log(event.timeStamp);
     var cell_layout_serialized = jQuery( '#_panels_design_preview-text' ).val();
     var cell_layout = jQuery.parseJSON( cell_layout_serialized );
-    //console.log(event.timeStamp);
     return cell_layout;
+  }
+
+  /**
+   *
+   * @param t
+   * @returns {*|string}
+   */
+  function getValue(t){
+    return (jQuery(t).data("val") === undefined ?t.value:jQuery(t).data("val"));
   }
 
 } )

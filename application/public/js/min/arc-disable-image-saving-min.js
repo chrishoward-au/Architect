@@ -1,0 +1,1 @@
+jQuery(document).ready(function(){"use strict";function e(e){if(jQuery(e.target).parent().hasClass("disable-save")||jQuery(e.target).hasClass("disable-save"))return!1}function a(){jQuery(".hentry.disable-save img").addClass("disable-save")}document.oncontextmenu=e,a()});

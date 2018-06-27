@@ -24,15 +24,15 @@
     }
 
     function init() {
-      wp_register_style( 'css-animate', plugin_dir_url( __FILE__ ) . '/animate.min.css' );
-      wp_register_script( 'wow-front', plugin_dir_url( __FILE__ ) . '/arc-front-wow.js', array( 'jquery' ), '', true );
-      wp_register_script( 'wow-js', plugin_dir_url( __FILE__ ) . '/WOW/wow.js', array(), null, true );
-      wp_enqueue_style( 'css-animate' );
-      wp_enqueue_script( 'wow-js' );
-      wp_enqueue_script( 'wow-front' );
+      wp_register_style( 'css-animate', plugin_dir_url( __FILE__ ) . '/animate.min.css',false,PZARC_VERSION );
+      wp_register_script( 'wow-front', plugin_dir_url( __FILE__ ) . '/arc-front-wow.js', array( 'jquery' ), PZARC_VERSION, true );
+      wp_register_script( 'wow-js', plugin_dir_url( __FILE__ ) . '/WOW/wow.js', array(), PZARC_VERSION, true );
     }
 
     function load_blueprint( $blueprint ) {
+      wp_enqueue_style( 'css-animate' );
+      wp_enqueue_script( 'wow-js' );
+      wp_enqueue_script( 'wow-front' );
       $animation          = new arcAnimationAdmin( true );
       $metaboxes          = array();
       $animation_settings = $animation->pzarc_mb_animation( $metaboxes, true );

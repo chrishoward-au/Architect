@@ -11,6 +11,10 @@
   class arc_Panel_nextgen extends arc_Panel_Generic
   {
 
+    public function __construct(&$build) {
+
+      parent::__construct( $build );
+    }
 
     function get_title(&$post)
     {
@@ -69,7 +73,7 @@
     }
 
     /**
-     * Custom loop for Dummy data
+     * Custom loop
      */
     public function loop($section_no, &$architect, &$panel_class, $class)
     {

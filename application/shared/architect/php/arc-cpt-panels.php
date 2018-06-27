@@ -36,6 +36,7 @@
           'public'              => false,
           'publicly_queryable'  => false,
           'show_ui'             => false,
+          'show_in_rest'=> false,  // Prevents using Gutenberg editor
 //          'show_in_menu'        => 'pzarc',
           'show_in_nav_menus'   => false,
           'query_var'           => true,

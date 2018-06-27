@@ -1,0 +1,27 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 512 626" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g id="Grid">
+        <g transform="matrix(1.25897,0,0,1.97986,-21.9228,-45.5216)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.25897,0,0,1.97986,-21.9228,196.232)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.25897,0,0,1.97986,140.736,-45.5216)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.25897,0,0,1.97986,140.736,196.232)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.25897,0,0,1.97986,304.649,-45.5216)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.25897,0,0,1.97986,304.649,196.232)">
+            <rect x="35.811" y="35.435" width="110.802" height="110.802" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-12.318,50.4394)">
+            <text x="175.438px" y="537.067px" style="font-family:'MyriadPro-Bold';font-size:96px;fill:rgb(64,64,64);">G<tspan x="241.198px " y="537.067px ">r</tspan>id</text>
+        </g>
+    </g>
+</svg>

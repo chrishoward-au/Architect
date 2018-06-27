@@ -1,7 +1,7 @@
 //  http://bourbon.io/docs/
 @import "bourbon";
 
-$version: "1.6.0";
+$version: "1.13.0";
 // THIS IS THE SCSS VERSION
 $highlight: #0074a2;
 $border-radius: 3px;
@@ -27,6 +27,12 @@ $blue-900: #0d47a1;
 $indigo-900: #1a237e;
 $violet-900: #311b92;
 
+$medium-grey: #ddd;
+$light-grey: #eee;
+
+$light-blue: #9cf;
+$dark-light-blue: #0080ff;
+
 $lightest: 40%;
 $darker: 10%;
 
@@ -36,6 +42,13 @@ $darker: 10%;
 
 li.arc-message {
   width: 100%;
+  .after-title-help {
+    border: none;
+    background: none;
+    .inside {
+      padding: 0;
+    }
+  }
 }
 
 .pzarc-tab-icon {
@@ -65,20 +78,6 @@ body span.pzarc-shortname {
   font-weight: inherit !important;
   color: inherit !important;
 }
-
-/*
-#xpzwp_arc-panels-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a span
-{display:inline-block;
- padding:3px 0 0 0px;
-}
-#xpzwp_arc-panels-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a img {
-	float:right;
-	padding:0 0 0 1px;
-}
-#xpzwp_arc-panels-id ul#pzarc-meta-nav li.pzarc-meta-tab-title a {
-	right:0;
-}
-*/
 
 .arc-updates ul,
 .pzarc-infobox ul {
@@ -142,7 +141,7 @@ div.pzarc-dragsource {
   border: #bbb solid 1px;
   height: 300px;
   box-sizing: border-box;
-  //background: #ddd url(bg-preview.jpg);
+  //background: $medium-grey url(bg-preview.jpg);
   overflow: hidden;
   width: 452px;
   position: relative;
@@ -200,7 +199,7 @@ div.pzarc-dragsource {
   box-sizing: border-box;
   width: 49%;
   background: #fff;
-  border: solid 1px #ddd;
+  border: solid 1px $medium-grey;
 }
 
 .pzarc_cell_header_right,
@@ -210,7 +209,7 @@ div.pzarc-dragsource {
   box-sizing: border-box;
   width: 49%;
   background: #fff;
-  border: solid 1px #ddd;
+  border: solid 1px $medium-grey;
 }
 
 .pzarc_cell_columns {
@@ -232,8 +231,8 @@ div.pzarc-dragsource {
 
 #pzarc-custom-pzarc_layout .ui-resizable-e {
   width: 2px;
-  background: #eee;
-  border-right: groove 5px #ccc;
+  background: $light-grey;
+  border-right: groove 5px $dark-light-blue;
   position: absolute;
   right: 0;
   top: 0;
@@ -251,8 +250,8 @@ div.pzarc-dragsource {
 }
 
 .pzarc-draggable:hover {
-  background: #ddd;
-  color: #444;
+  background: $light-blue;
+  color: #fff;
 }
 
 .pzarc-draggable:hover img {
@@ -364,7 +363,7 @@ ul#pzarc-meta-nav.vertical {
 .pzarc_palette {
   width: 290px;
   background-color: #555;
-  border: solid 1px #ddd;
+  border: solid 1px $medium-grey;
   margin: 20px 10px 10px 10px;
   display: block;
   box-shadow: 0px 0px 3px #aaa;
@@ -393,7 +392,7 @@ ul#pzarc-meta-nav.vertical {
 
 .pzarc_palette label {
   font-weight: bold;
-  color: #ddd;
+  color: $medium-grey;
   width: 90px;
   display: inline-block;
 }
@@ -417,7 +416,7 @@ ul.pzarc-meta-nav li.pzarc-meta-tab-title.ui-state-default {
   margin-right: 3px;
   margin-bottom: 0;
   padding-bottom: 0px;
-  xborder: solid 1px #eee;
+  xborder: solid 1px $light-grey;
   border-bottom: none;
   min-height: 20px;
 }
@@ -443,7 +442,7 @@ ul#pzarc-meta-nav li.pzarc-meta-tab-title {
 }
 
 .pzarc-form-table {
-  xborder: solid 1px #eee;
+  xborder: solid 1px $light-grey;
   margin-top: 0
 }
 
@@ -459,7 +458,7 @@ ul#pzarc-meta-nav li {
 }
 
 ul#pzarc-meta-nav li.pzarc-meta-tab-title {
-  xborder-bottom: solid 1px #ddd;
+  xborder-bottom: solid 1px $medium-grey;
   padding-right: 0px !important;
   padding-left: 0px !important;
   margin-right: 0 !important;
@@ -581,7 +580,7 @@ h4.pz-field-heading {
   cursor: pointer;
   font-weight: bold;
   color: #fff;
-  background-color: #ddd;
+  background-color: $medium-grey;
   padding: 2px 5px;
   border-radius: 30px;
   font-size: 10px;
@@ -697,8 +696,10 @@ body.screen-arc-contents {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkVGQzUzN0I1NEY4OTExRTNBNkIyOTc4MDZBQjhCODQwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkVGQzUzN0I2NEY4OTExRTNBNkIyOTc4MDZBQjhCODQwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUE2OEJDNjI0QUJDMTFFM0E2QjI5NzgwNkFCOEI4NDAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RUZDNTM3QjQ0Rjg5MTFFM0E2QjI5NzgwNkFCOEI4NDAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz63BXjiAAAAbklEQVR42mL8//8/AyWAcdQArAawA/EfIP6HRT0bVO4vPgPcgLgKqgjZEE4gPgfE1UD8GS4KMgANcwBxx39McBeIjdDVYzMAhmuRNF8GYg1s6vAZAMKtQHwOl2YQJhQLzEAsAMRvR1MiDQ0ACDAAM+fK4wDJEZAAAAAASUVORK5CYII=');
     background-repeat: no-repeat;
     background-position: right;
-    -webkit-appearance: none /* this is required for Webkit browsers */;
-    -moz-appearance: none /* this is not supported currently */;
+    -webkit-appearance: none /* this is required for Webkit browsers */
+  ;
+    -moz-appearance: none /* this is not supported currently */
+  ;
     appearance: none;
   }
 }
@@ -710,8 +711,10 @@ body.screen-arc-panels {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAICAYAAADN5B7xAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjJDRTM0NDA3NkQzNjExRTNCOTczQTIzN0VBMDMxMUM3IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjJDRTM0NDA4NkQzNjExRTNCOTczQTIzN0VBMDMxMUM3Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MkNFMzQ0MDU2RDM2MTFFM0I5NzNBMjM3RUEwMzExQzciIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MkNFMzQ0MDY2RDM2MTFFM0I5NzNBMjM3RUEwMzExQzciLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7yBBv7AAAAlUlEQVR42mL8//8/AymA5fDhw5xA+icQY9PJpqen94efn/8vTIARiOOAOBIkCcT/kBSDDDq3Z8+eamdn589wG4B4LRCrAHEtmun3gHgBMzPzZ1zOq4U6C4QvA7EGSHD//v0MIH/CMAuShmYg5gBiTyCOAuIbIMG/f/+ietrBwQGZXwfEfUD8FiYgLCyMooGR1GAFCDAA+9EubKwaKIsAAAAASUVORK5CYII=');
     background-repeat: no-repeat;
     background-position: right;
-    -webkit-appearance: none /* this is required for Webkit browsers */;
-    -moz-appearance: none /* this is not supported currently */;
+    -webkit-appearance: none /* this is required for Webkit browsers */
+  ;
+    -moz-appearance: none /* this is not supported currently */
+  ;
     appearance: none;
   }
 }
@@ -848,33 +851,71 @@ body.screen-arc-blueprints #blueprint-preview .pzarc-section-cell p {
 }
 
 body.arc-bgimage {
-  &.arc-bg-blue #wpwrap {
-    background-size: cover;
-    background-image: url('images/trianglify-background-blue.svg');
-  }
   &.arc-bg-green #wpwrap {
     background-size: cover;
-    background-image: url('images/trianglify-background-green.svg');
+    background: #DCE35B; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #DCE35B, #45B649); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #DCE35B, #45B649); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
   &.arc-bg-ocean-blue #wpwrap {
     background-size: cover;
-    background-image: url('images/trianglify-background-ocean-blue.svg');
+    background: #43C6AC; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #191654, #43C6AC); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
   &.arc-bg-orange-green #wpwrap {
     background-size: cover;
-    background-image: url('images/trianglify-background-orange-green.svg');
+    background: #c21500; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #ffc500, #c21500); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
   &.arc-bg-pink #wpwrap {
     background-size: cover;
-    background-image: url('images/trianglify-background-pink.svg');
+    background: #C6426E; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #C6426E, #642B73); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #C6426E, #642B73); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
-  &.arc-bg-purple #wpwrap {
+
+  &.arc-bg-malibu-beach #wpwrap {
     background-size: cover;
-    background-image: url('images/trianglify-background-purple.svg');
+    background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
   }
-  &.arc-bg-red-blue #wpwrap {
+  &.arc-bg-morpheous-den #wpwrap {
     background-size: cover;
-    background-image: url('images/trianglify-background-red-blue.svg');
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  }
+  &.arc-bg-dusty-grass #wpwrap {
+    background-size: cover;
+    background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+  }
+
+  &.arc-bg-mixed-hopes #wpwrap {
+    background-size: cover;
+    background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
+  }
+  &.arc-bg- #wpwrap {
+    background-size: cover;
+
+  }
+  &.arc-bg- #wpwrap {
+    background-size: cover;
+
+  }
+  &.arc-bg- #wpwrap {
+    background-size: cover;
+
+  }
+  &.arc-bg- #wpwrap {
+    background-size: cover;
+
+  }
+  &.arc-bg- #wpwrap {
+    background-size: cover;
+
+  }
+  &.arc-bg- #wpwrap {
+    background-size: cover;
+
   }
 
   &.architect_page_pzarc_about .wrap {
@@ -925,7 +966,7 @@ body.arc-bgimage {
     }
     .redux-container,
     .redux_metabox_panel {
-      background: rgba(255, 255, 255, 0.0);
+      background: rgba(255, 255, 255, 0.42);
     }
 
     .postbox {
@@ -954,6 +995,7 @@ body.arc-bgimage {
   margin-right: 5px;
   font-size: 14px;
   color: #63bdcf;
+
 }
 
 a:hover span.dashicons,
@@ -1094,7 +1136,7 @@ body.admin-color-midnight {
 
 .redux-container-tabbed ul,
 .redux-container-tabbed {
-  padding: 0 !important;
+  padding: 0 0 0 5px !important;
   margin: 0;
 }
 
@@ -1125,7 +1167,7 @@ input[readonly]:focus,
 input[readonly]:hover,
 input[readonly]:active {
   border: none;
-  background: #eee;
+  background: $light-grey;
   box-shadow: none;
   width: 90%;
 }
@@ -1356,7 +1398,7 @@ span.bold {
       position: relative;
       clear: both;
       margin-left: 0;
-      border-top: solid 1px #ddd;
+      border-top: solid 1px $medium-grey;
     }
     .postbox .redux-container .redux-sidebar .redux-group-menu .active a {
       background: #707070;
@@ -1382,7 +1424,7 @@ body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsectio
 }
 
 body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li a {
-  background: #ddd !important;
+  background: $medium-grey !important;
 }
 
 body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections ul.subsection li a {
@@ -1414,11 +1456,11 @@ body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:af
 .tabby {
   &.tabs {
     margin-top: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $medium-grey;
     outline: none;
     button {
       background: none;
-      border: 1px solid #ddd;
+      border: 1px solid $medium-grey;
       border-bottom: none;
       border-top-left-radius: 3px;
       border-bottom-right-radius: 3px;
@@ -1434,13 +1476,17 @@ body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:af
         color: #fff;
         background: $highlight;
         &:hover {
-          background: #eee;
+          background: $light-grey;
           color: $highlight;
           cursor: default;
         }
       }
       &.first {
         margin-left: 10px;
+      }
+
+      &.tabby-error {
+        background:red;
       }
 
     }
@@ -1456,11 +1502,16 @@ a.pzarc-codex {
 
 // Hide all sections except Blueprint Layouts initially
 #redux-_architect-metabox-panels-design,
-#redux-_architect-metabox-panels-styling,
-#redux-_architect-metabox-blueprint-stylings,
 #redux-_architect-metabox-layout-settings,
-#redux-_architect-metabox-content-selections {
+#redux-_architect-metabox-titles-settings,
+#redux-_architect-metabox-features-settings,
+#redux-_architect-metabox-meta-settings,
+#redux-_architect-metabox-body-settings,
+#redux-_architect-metabox-customfields-settings,
+#redux-_architect-metabox-content-selections,
+#redux-_architect-metabox-type-settings {
   display: none;
+  border-top: none;
 }
 
 body.arc-blueprints *,
@@ -1569,6 +1620,34 @@ body.arc-beginner .arc-field-advanced {
   display: none !important;
 }
 
+#redux-_architect-metabox-_blueprint_tabs_blueprints {
+  margin-bottom: 0;
+  border-bottom: solid 2px #0074a2;
+  .hndle, .handlediv {
+    display: none;
+  }
+
+  [id='3200_box_redux-_architect-metabox-_blueprint_tabs_blueprints_section_group'] td {
+    padding: 0 !important;
+  }
+
+}
+
+body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {
+  border-bottom: #e14d43 2px solid;
+}
+
+.redux-_architect {
+  h3.redux-hndle, h2.hndle {
+    background: #333;
+    color: #fff;
+    text-shadow: none;
+  }
+  //.redux-container {
+  //  background-color:$blue-50;
+  //}
+}
+
 #_architect-_blueprint_tabs_tabs .active span.stepno {
   background: #fff;
 }
@@ -1579,6 +1658,11 @@ body.arc-beginner .arc-field-advanced {
   border-radius: 25px;
   padding: 0 5px;
   font-weight: bold;
+}
+
+#redux-_architect-metabox-_blueprint_tabs_blueprints .redux-main {
+  padding: 0 !important;
+  box-shadow: none;
 }
 
 .arc-important {
@@ -1597,8 +1681,9 @@ body.arc-beginner .arc-field-advanced {
   }
 }
 
+/*
 #tab-presets {
-  border-bottom: solid 4px $violet;
+  // border-bottom: solid 4px $violet;
   &.active {
     background: $violet-900;
     span.stepno {
@@ -1620,7 +1705,7 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-presets {
   h3.redux-hndle, h2.hndle {
-    border-bottom: solid 4px $violet !important;
+    // border-bottom: solid 4px $violet !important;
     background: #222;
     color: #fff;
     // background: $violet-900 !important;
@@ -1631,7 +1716,7 @@ body.arc-beginner .arc-field-advanced {
 }
 
 #tab-layout {
-  border-bottom: solid 4px $indigo;
+  // border-bottom: solid 4px $indigo;
   &.active {
     background: $indigo-900;
     span.stepno {
@@ -1639,7 +1724,7 @@ body.arc-beginner .arc-field-advanced {
     }
   }
   &:hover {
-    background: $indigo-900;
+//    background: $indigo-900;
     span.stepno {
       color: inherit;
     }
@@ -1653,10 +1738,10 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-layout-settings {
   h3.redux-hndle, h2.hndle {
-    border-bottom: solid 4px $indigo !important;
+    // border-bottom: solid 4px $indigo !important;
     background: #222;
     color: #fff;
-   // background: $indigo-900 !important;
+    // background: $indigo-900 !important;
   }
   .redux-container {
     background: $indigo-50;
@@ -1665,7 +1750,7 @@ body.arc-beginner .arc-field-advanced {
 
 // Panels design
 #tab-panels {
-  border-bottom: solid 4px $orange;
+  // border-bottom: solid 4px $orange;
   &.active {
     background: $orange-900;
     span.stepno {
@@ -1673,7 +1758,7 @@ body.arc-beginner .arc-field-advanced {
     }
   }
   &:hover {
-    background: $orange-900;
+ //   background: $orange-900;
     span.stepno {
       color: inherit;
     }
@@ -1687,7 +1772,7 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-panels-design {
   h3.redux-hndle, h2.hndle {
-    border-bottom: solid 4px $orange !important;
+    // border-bottom: solid 4px $orange !important;
     background: #222;
     color: #fff;
     // background: $orange-900 !important;
@@ -1700,7 +1785,7 @@ body.arc-beginner .arc-field-advanced {
 
 // Content selection
 #tab-content {
-  border-bottom: solid 4px $red;
+  // border-bottom: solid 4px $red;
   &.active {
     background: $red-900;
     span.stepno {
@@ -1708,7 +1793,7 @@ body.arc-beginner .arc-field-advanced {
     }
   }
   &:hover {
-    background: $red-900;
+ //   background: $red-900;
     span.stepno {
       color: inherit;
     }
@@ -1722,7 +1807,7 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-content-selections {
   h3.redux-hndle, h2.hndle {
-    border-bottom: solid 4px $red !important;
+    // border-bottom: solid 4px $red !important;
     background: #222;
     color: #fff;
     // background: $red-900 !important;
@@ -1734,7 +1819,7 @@ body.arc-beginner .arc-field-advanced {
 
 // Blueprint Styling
 #tab-styling {
-  border-bottom: solid 4px $blue;
+  // border-bottom: solid 4px $blue;
   &.active {
     background: $blue-900;
     span.stepno {
@@ -1757,7 +1842,7 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-blueprint-stylings {
   h3.redux-hndle, h2.hndle {
-    border-bottom: solid 4px $blue !important;
+    // border-bottom: solid 4px $blue !important;
     background: #222;
     color: #fff;
     // background: $blue-900 !important;
@@ -1769,7 +1854,7 @@ body.arc-beginner .arc-field-advanced {
 
 // Content styling
 #tab-content_styling {
-  border-bottom: solid 4px $green;
+  // border-bottom: solid 4px $green;
   &.active {
     background: $green-900;
     span.stepno {
@@ -1791,7 +1876,7 @@ body.arc-beginner .arc-field-advanced {
 
 #redux-_architect-metabox-panels-styling {
   h3.redux-hndle, h2.hndle {
-    border-bottom: solid 4px $green !important;
+    //  $green !important;
     background: #222;
     color: #fff;
     // background: $green-900 !important;
@@ -1800,7 +1885,7 @@ body.arc-beginner .arc-field-advanced {
     background: $green-50;
   }
 }
-
+*/
 //
 a.arc-important-button {
   color: #fff;
@@ -1828,18 +1913,15 @@ li.arc-message {
 }
 
 .arc-presets-selector {
-  border-radius: $border-radius;
   position: relative;
-  background: #777;
+  background: $medium-grey;
   height: auto;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   h2.heading {
     width: 100%;
     color: #fff;
-    background: #333;
+    background: #00a0d2;
     box-sizing: border-box;
-    border-top-left-radius: $border-radius;
-    border-top-right-radius: $border-radius;
+    border-radius: 0;
     padding: 10px;
     font-size: 17px;
     cursor: pointer;
@@ -1862,29 +1944,26 @@ li.arc-message {
     padding: 0;
     border: none;
     button {
-      color: #eee;
-      background: #999;
+      color: $light-grey;
+      background: #00a0d2;
       margin: 2px 2px 0 2px;
       padding: 10px;
       border: none;
-      border-top-left-radius: $border-radius;
-      border-top-right-radius: $border-radius;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
+      border-radius: 0;
       &:hover {
         cursor: pointer;
-        background: #aaa;
+        background: #00b9eb;
         color: #fff;
       }
       &.active {
-        background: #f3f3f3;
+        background: #fff;
         color: $highlight;
       }
     }
   }
   .footer {
     padding: 5px 10px;
-    color: #fff;
+    color: #006799;
     width: 60%;
     white-space: normal;
     margin: 5px;
@@ -1901,7 +1980,7 @@ li.arc-message {
 
   }
   .container {
-    background: #f3f3f3;
+    background: #fff;
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
@@ -1916,10 +1995,11 @@ li.arc-message {
       vertical-align: top;
       max-width: 200px;
       padding: 5px 10px;
-      background: #e7e7e7;
+      background: #fff;
       white-space: normal;
+      min-height: 280px;
       &:hover {
-        background: #fff;
+        background: #e7e7e7;
       }
       label {
         p {
@@ -1995,7 +2075,7 @@ li.arc-message {
   }
   textarea {
     resize: none;
-    background: #eee;
+    background: $light-grey;
 
   }
 }
@@ -2044,9 +2124,9 @@ li.arc-message {
     box-sizing: border-box;
     border-top: solid 1px #fff;
     border-left: solid 1px #fff;
-    border-bottom: solid 1px #eee;
-    border-right: solid 1px #eee;
-    background: #f6f6f6;
+    border-bottom: solid 1px $light-grey;
+    border-right: solid 1px $light-grey;
+    background: #f2f2f2;
     display: inline-block;
     vertical-align: top;
     border-radius: 3px;
@@ -2056,6 +2136,9 @@ li.arc-message {
     }
     &.col2 {
       width: 45%;
+    }
+    &.arc-is-lite {
+      background:$blue-50;
     }
 
     h3 {
@@ -2107,7 +2190,7 @@ li.arc-message {
       font-size: 15px;
       display: inline-block;;
       margin-top: -6px;
-      box-sizing:border-box;
+      box-sizing: border-box;
     }
   }
 }
@@ -2142,7 +2225,7 @@ body.arc-beginner {
 }
 
 .arc-installed-presets {
-  background: #eee;
+  background: $light-grey;
   padding: 1px 10px;
   border-radius: 3px;
   ul {
@@ -2159,3 +2242,137 @@ body.arc-beginner {
   color: tomato;
 }
 
+// Blueprints
+//#tab-layout:hover,
+//#tab-type:hover {
+//  background: $blue-900;
+//  a {
+//    color: #fff;
+//  }
+//}
+#redux-_architect-metabox-layout-settings,
+#redux-_architect-metabox-type-settings {
+  h3.redux-hndle, h2.hndle {
+    border-bottom: solid 4px $blue !important;
+    background: #222;
+    color: #fff;
+  }
+  .redux-container {
+    //background: $blue-50;
+  }
+}
+
+// Content
+//#tab-content:hover {
+//  background: $red-900;
+//  a {
+//    color: #fff;
+//  }
+//
+//}
+
+//#tab-panels:hover,
+//#tab-titles:hover,
+//#tab-meta:hover,
+//#tab-features:hover,
+//#tab-body:hover,
+//#tab-customfields:hover {
+//  background: $orange-900;
+//  &.pztabs-unused:hover {
+//    background: transparent;
+//    color: #bbb;
+//  }
+//  color: #fff;
+//}
+
+#redux-_architect-metabox-content-selections {
+  h3.redux-hndle, h2.hndle {
+    border-bottom: solid 4px $red !important;
+    background: #222;
+    color: #fff;
+  }
+  .redux-container {
+    //background: $red-50;
+  }
+
+}
+
+#redux-_architect-metabox-panels-design,
+#redux-_architect-metabox-titles-settings,
+#redux-_architect-metabox-meta-settings,
+#redux-_architect-metabox-features-settings,
+#redux-_architect-metabox-body-settings,
+#redux-_architect-metabox-customfields-settings {
+  h3.redux-hndle, h2.hndle {
+    border-bottom: solid 4px $orange !important;
+    background: #222;
+    color: #fff;
+    // background: $blue-900 !important;
+  }
+  .redux-container {
+    //background: $orange-50;
+  }
+
+}
+
+.widefat {
+  .column-layout-type {
+    width: 54px;
+    .pzarc-layout-type-column {
+    }
+  }
+  .column-_blueprints_content-source {
+    width: 8em;
+  }
+}
+
+.pzarc-about-box {
+  background: #f9f9f9;
+  padding: 20px;
+  border: 1px solid $medium-grey;
+  max-width: 960px;
+  margin-bottom:20px;
+  &.alert {
+    border-left:solid 3px #dd2222;
+  }
+}
+
+.arc-export-save {
+  font-weight: bold;
+  font-size: 15px;
+  border-left: solid 3px RGB(61, 180, 76);
+  padding-left: 10px;
+  background: RGBA(61, 180, 76, 0.07)
+}
+
+.arc-used-on {
+  max-height: 100px;
+  overflow: auto;
+  white-space: nowrap;
+  .rows {
+    margin: 0 !important;
+    &.odd {
+    }
+    &.even {
+      background: #eee;
+    }
+  }
+}
+
+.fs-submenu-item.architect.affiliation::before,
+.fs-submenu-item.architect.account::before,
+.fs-submenu-item.architect.contact::before,
+.fs-submenu-item.architect.pricing::before ,
+.fs-submenu-item.architect.upgrade::before {
+  content: "• ";
+  padding-left:8px;
+  display:inline-block;
+  color:#63bdcf;
+  margin-right:10px;
+}
+
+.architect_page_pzarc_support {
+  .tabs-content {
+//    font-size:14px;
+  }
+}

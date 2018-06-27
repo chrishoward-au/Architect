@@ -6,14 +6,26 @@
     padding: $base-gap;
   }
 
+  .message-notify {
+    background: $notifybg;
+    color: $notifyfg;
+    border: solid $base-border-width $notifyfg;
+    padding: $base-gap;
+  }
+
   .message-error {
     font-size: $base-font-size*1.6;
     font-family: sans-serif;
     color: $oopsfg;
     background: $oopsbg;
-    border: $base-border-width solid $oopsfg;
+    border: none;
     display: inline-block;
     margin: $base-gap 0;
     padding: $base-gap*2;
+  }
+
+  .arc-date-filter-error {
+    color:red;
+    padding:5px 0;
   }
 }

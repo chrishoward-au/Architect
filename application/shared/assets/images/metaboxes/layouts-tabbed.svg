@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 512 626" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g id="Tabbed">
+        <g transform="matrix(1.05748,0,0,1,-1.51139,0)">
+            <rect x="26.296" y="27.148" width="92.516" height="44.852" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(4.97337,0,0,8.75579,-104.485,-144.668)">
+            <rect x="26.296" y="27.148" width="92.516" height="44.852" style="fill:rgb(77,161,179);"/>
+        </g>
+        <g transform="matrix(1.05748,0,0,1,119.732,0)">
+            <rect x="26.296" y="27.148" width="92.516" height="44.852" style="fill:rgb(144,197,208);"/>
+        </g>
+        <g transform="matrix(1.05748,0,0,1,239.482,0)">
+            <rect x="26.296" y="27.148" width="92.516" height="44.852" style="fill:rgb(144,197,208);"/>
+        </g>
+        <g transform="matrix(1.05748,0,0,1,360.77,0)">
+            <rect x="26.296" y="27.148" width="92.516" height="44.852" style="fill:rgb(144,197,208);"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-12.318,50.4394)">
+            <text x="108.334px" y="537.067px" style="font-family:'MyriadPro-Bold';font-size:96px;fill:rgb(64,64,64);">T<tspan x="154.606px " y="537.067px ">a</tspan>bb<tspan x="320.398px " y="537.067px ">e</tspan>d</text>
+        </g>
+    </g>
+</svg>

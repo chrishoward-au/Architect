@@ -26,8 +26,7 @@
       }
       $previous = ( ! empty( $blueprint[ '_blueprints_pager-custom-prev' ] ) ? $blueprint[ '_blueprints_pager-custom-prev' ] : __( 'Previous post link', 'pzarchitect' ) );
       $next     = ( ! empty( $blueprint[ '_blueprints_pager-custom-next' ] ) ? $blueprint[ '_blueprints_pager-custom-next' ] : __( 'Next post link', 'pzarchitect' ) );
-
-      if ( is_home() || is_archive() ) {
+      if ( is_home() || is_archive() || is_search()) {
         if ( $the_query->max_num_pages > 1 ) :
           ?>
           <nav id="<?php echo $location_class; ?>" class="navigation page-nav clearfix" role="navigation">
@@ -61,7 +60,7 @@
       if (!is_object($the_query)) {
         return;
       }
-      if ( is_home() || is_archive() ) {
+      if ( is_home() || is_archive()  || is_search()) {
         $older = ( ! empty( $blueprint[ '_blueprints_pager-custom-prev' ] ) ? $blueprint[ '_blueprints_pager-custom-prev' ] : __( 'Older', 'pzarchitect' ) );
         $newer = ( ! empty( $blueprint[ '_blueprints_pager-custom-next' ] ) ? $blueprint[ '_blueprints_pager-custom-next' ] : __( 'Newer', 'pzarchitect' ) );
         if ( $the_query->max_num_pages > 1 ) :
@@ -73,6 +72,7 @@
               class="nav-next alignright"><?php previous_posts_link( __( $newer . ' <span class="meta-nav">&rarr;</span>', 'pzarchitect' ) ); ?></div>
           </nav>
         <?php
+//TODO: Add new WP style as an option          the_posts_pagination();
         endif;
       } elseif ( is_single() ) {
         $previous = ( ! empty( $blueprint[ '_blueprints_pager-custom-prev' ] ) ? $blueprint[ '_blueprints_pager-custom-prev' ] : __( 'Previous post link', 'pzarchitect' ) );
@@ -98,7 +98,7 @@
         return;
       }
       //     var_dump(is_main_query(),have_posts());
-      if ( is_home() || is_archive() ) {
+      if ( is_home() || is_archive()  || is_search()) {
         if ( $the_query->max_num_pages > 1 ) : ?>
           <nav id="<?php echo $location_class; ?>" class="navigation page-nav clearfix" role="navigation">
 

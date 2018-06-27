@@ -22,4 +22,6 @@ sitemap.xml.gz
 /.idea/workspace.xml
 /.project
 application/config.codekit
+pizazzwp-architect.iml
+config.codekit3
 node_modules

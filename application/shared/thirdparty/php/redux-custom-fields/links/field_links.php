@@ -53,6 +53,13 @@
         $this->field  = $field;
         $this->value  = $value;
 
+        wp_enqueue_style(
+          'redux-field-links-css',
+          plugin_dir_url( __FILE__ ) .'/field_links.css',
+          time(),
+          true
+        );
+
         $defaults    = array(
             'regular'      => true,
             'hover'        => true,
@@ -97,45 +104,48 @@
        */
       public function render()
       {
+        echo '<table class="pzarc-links-table">';
         if ($this->field[ 'regular' ] === true) {
-          echo '<strong>Regular</strong>: <input id="' . $this->field[ 'id' ] . '-regular" name="' . $this->field[ 'name' ] . '[regular]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'regular' ] . '" class="redux-spectrum redux-spectrum-init ' . $this->field[ 'class' ] . '"  type="text" data-default-spectrum="' . $this->field[ 'default' ][ 'regular' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
-          echo __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-regular-deco" name="' . $this->field[ 'name' ] . '[regular-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
+          echo '<tr><td class="pzarc-links-text1"><strong>Regular</strong>:</td><td class="pzarc-links-drop1"><input id="' . $this->field[ 'id' ] . '-regular" name="' . $this->field[ 'name' ] . '[regular]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'regular' ] . '" class="redux-spectrum redux-spectrum-init ' . $this->field[ 'class' ] . '"  type="text" data-default-spectrum="' . $this->field[ 'default' ][ 'regular' ] . '" /></td>';
+          echo '<td class="pzarc-links-text2">'.__('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-regular-deco" name="' . $this->field[ 'name' ] . '[regular-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
           echo '<option  value="Default" ' . (strtolower($this->value[ 'regular-deco' ]) === 'default' ? 'selected' : '') . '>Default</option>';
           echo '<option  value="Inherit" ' . (strtolower($this->value[ 'regular-deco' ]) === 'inherit' ? 'selected' : '') . '>Inherit</option>';
           echo '<option  value="None" ' . (strtolower($this->value[ 'regular-deco' ]) === 'none' ? 'selected' : '') . '>None</option>';
           echo '<option  value="Underline" ' . (strtolower($this->value[ 'regular-deco' ]) === 'underline' ? 'selected' : '') . '>Underline</option>';
-          echo '</select><br>';
+          echo '</select></td></tr>';
         }
 
         if ($this->field[ 'hover' ] === true) {
-          echo '<strong>Hover</strong>: <input id="' . $this->field[ 'id' ] . '-hover" name="' . $this->field[ 'name' ] . '[hover]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'hover' ] . '" class="redux-spectrum redux-spectrum-init ' . $this->field[ 'class' ] . '"  type="text" data-default-spectrum="' . $this->field[ 'default' ][ 'hover' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
-          echo __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-hover-deco" name="' . $this->field[ 'name' ] . '[hover-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
+          echo '<tr><td class="pzarc-links-text1"><strong>Hover</strong>:</td><td class="pzarc-links-drop1"><input id="' . $this->field[ 'id' ] . '-hover" name="' . $this->field[ 'name' ] . '[hover]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'hover' ] . '" class="redux-spectrum redux-spectrum-init ' . $this->field[ 'class' ] . '"  type="text" data-default-spectrum="' . $this->field[ 'default' ][ 'hover' ] . '" /></td>';
+          echo '<td class="pzarc-links-text2">'.__('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-hover-deco" name="' . $this->field[ 'name' ] . '[hover-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
           echo '<option  value="Default" ' . (strtolower($this->value[ 'hover-deco' ]) === 'default' ? 'selected' : '') . '>Default</option>';
           echo '<option  value="Inherit" ' . (strtolower($this->value[ 'hover-deco' ]) === 'inherit' ? 'selected' : '') . '>Inherit</option>';
           echo '<option  value="None" ' . (strtolower($this->value[ 'hover-deco' ]) === 'none' ? 'selected' : '') . '>None</option>';
           echo '<option  value="Underline" ' . (strtolower($this->value[ 'hover-deco' ]) === 'underline' ? 'selected' : '') . '>Underline</option>';
-          echo '</select><br>';
+          echo '</select></td></tr>';
         }
 
         if ($this->field[ 'active' ] === true) {
-          echo '<strong>Active</strong>: <input id="' . $this->field[ 'id' ] . '-active" name="' . $this->field[ 'name' ] . '[active]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'active' ] . '" class="redux-spectrum redux-spectrum-init ' . $this->field[ 'class' ] . '"  type="text" data-default-spectrum="' . $this->field[ 'default' ][ 'active' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
-          echo __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-active-deco" name="' . $this->field[ 'name' ] . '[active-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
+          echo '<tr><td class="pzarc-links-text1"><strong>Active</strong>:</td><td class="pzarc-links-drop1"><input id="' . $this->field[ 'id' ] . '-active" name="' . $this->field[ 'name' ] . '[active]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'active' ] . '" class="redux-spectrum redux-spectrum-init ' . $this->field[ 'class' ] . '"  type="text" data-default-spectrum="' . $this->field[ 'default' ][ 'active' ] . '" /></td>';
+          echo '<td class="pzarc-links-text2">'.__('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-active-deco" name="' . $this->field[ 'name' ] . '[active-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
           echo '<option  value="Default" ' . (strtolower($this->value[ 'active-deco' ]) === 'default' ? 'selected' : '') . '>Default</option>';
           echo '<option  value="Inherit" ' . (strtolower($this->value[ 'active-deco' ]) === 'inherit' ? 'selected' : '') . '>Inherit</option>';
           echo '<option  value="None" ' . (strtolower($this->value[ 'active-deco' ]) === 'none' ? 'selected' : '') . '>None</option>';
           echo '<option  value="Underline" ' . (strtolower($this->value[ 'active-deco' ]) === 'underline' ? 'selected' : '') . '>Underline</option>';
-          echo '</select><br>';
+          echo '</select></td></tr>';
         }
 
         if ($this->field[ 'visited' ] === true) {
-          echo '<strong>Visited</strong>: <input id="' . $this->field[ 'id' ] . '-visited" name="' . $this->field[ 'name' ] . '[visited]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'visited' ] . '" class="redux-spectrum redux-spectrum-init ' . $this->field[ 'class' ] . '"  type="text" data-default-spectrum="' . $this->field[ 'default' ][ 'visited' ] . '" />&nbsp;&nbsp;&nbsp;&nbsp;';
-          echo __('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-visited-deco" name="' . $this->field[ 'name' ] . '[visited-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
+          echo '<tr><td class="pzarc-links-text1"><strong>Visited</strong>:</td><td class="pzarc-links-drop1"><input id="' . $this->field[ 'id' ] . '-visited" name="' . $this->field[ 'name' ] . '[visited]' . $this->field[ 'name_suffix' ] . '" value="' . $this->value[ 'visited' ] . '" class="redux-spectrum redux-spectrum-init ' . $this->field[ 'class' ] . '"  type="text" data-default-spectrum="' . $this->field[ 'default' ][ 'visited' ] . '" /></td>';
+          echo '<td class="pzarc-links-text2">'.__('Underline', 'redux-framework') . '&nbsp;<select id="' . $this->field[ 'id' ] . '-visited-deco" name="' . $this->field[ 'name' ] . '[visited-deco]' . $this->field[ 'name_suffix' ] . '"  class="redux-links ' . $this->field[ 'class' ] . '" style="width:100px;">';
           echo '<option  value="Default" ' . (strtolower($this->value[ 'visited-deco' ]) === 'default' ? 'selected' : '') . '>Default</option>';
           echo '<option  value="Inherit" ' . (strtolower($this->value[ 'visited-deco' ]) === 'inherit' ? 'selected' : '') . '>Inherit</option>';
           echo '<option  value="None" ' . (strtolower($this->value[ 'visited-deco' ]) === 'none' ? 'selected' : '') . '>None</option>';
           echo '<option  value="Underline" ' . (strtolower($this->value[ 'visited-deco' ]) === 'underline' ? 'selected' : '') . '>Underline</option>';
-          echo '</select><br>';
+          echo '</select></td></tr>';
         }
+        echo '</table>';
+
       }
 
       /**

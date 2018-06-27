@@ -10,7 +10,7 @@
 
     function __construct(&$build) {
 
-      $this->build = $build;
+      parent::__construct($build);
       parent::initialise_data();
 
       self::init_data();

@@ -1,12 +1,372 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
 	<meta charset="utf-8"/>
 </head>
 <body>
+
 <h1 id="architectchangehistory">Architect change history</h1>
 
-<h2 id="1.6.0:7-january-2016">1.6.0 : 7-January&#8211;2016</h2>
+<h2 id="notes:">Notes:</h2>
+
+<ul>
+<li>If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com</li>
+</ul>
+
+<h2 id="1.13.0-23june2018">1.13.0 - 23 June 2018</h2>
+
+<ul>
+<li>ADDED: More filter options to Blox block</li>
+<li>CHANGED: Rejigged Blox block menus</li>
+<li>REMOVED: Gutenberg block. Will be a separate plugin until Gutenberg is out of beta</li>
+</ul>
+
+<h2 id="1.12.0">1.12.0</h2>
+
+<ul>
+<li><p>CHANGED: SysInfo now shows WP_MEMORY_LIMIT</p></li>
+<li><p>CHANGED: SysInfo now shows average Blueprint loading times (a hugh time is likely indicative of a slow site)</p></li>
+<li><p>CHANGED: Removed affiliation</p></li>
+<li><p>FIXED: Error in SysInfo PHP Memory Limit</p></li>
+<li><p>FIXED: Masonry broke with v1.11.1</p></li>
+<li><p>FIXED: Problems with grid margins breaking layout wrapping</p></li>
+<li><p>UPGRADED: Isotope to 3.0.6</p></li>
+<li><p>UPGRADED: ImagesLoaded to 4.1.4</p></li>
+<li><p>UPGRADED: Freemius SDK to 2.1.1. Includes GDPR support and compliance</p></li>
+</ul>
+
+<h2 id="1.11.1-2april2018">1.11.1 - 2 April 2018</h2>
+
+<ul>
+<li>ADDED: Error msg if Presets selector can&#8217;t read presets files.</li>
+<li>FIXED: Removed Features tab as it&#8217;s not populated</li>
+<li>FIXED: Changed misleading message saying &#8220;This theme requires Redux&#8221; to &#8220;This plugin requires Redux&#8221;</li>
+<li>FIXED: Strip architect shortcodes in excerpts to prevent loops</li>
+<li>FIXED: Replaced sections array keys with numeric constants due to PHP 7.1.12 notices</li>
+<li>FIXED: Prevent a Blueprint from calling itself when nesting Blueprints</li>
+<li>FIXED: Patch for Freemius where sometimes giving cURL error when activating licence</li>
+<li>CHANGED: Now using class rather than ID when creating Blueprint CSS since Blueprints can be re-used on the same page. You will need to change any custom CSS that was using the ID.</li>
+<li>CHANGED: Blueprint CSS to load as late as possible in head.</li>
+<li>CHANGED: Remove custom fields support from free version</li>
+</ul>
+
+<h2 id="1.11.0-1feb2018">1.11.0 - 1 Feb 2018</h2>
+
+<h3 id="beaverbuilderspecificenhancements">Beaver Builder specific enhancements</h3>
+
+<ul>
+<li>ADDED: Beaver module Any Fields to display any field from any table</li>
+<li>ADDED: Custom version of Beaver Sidebar module can display different widget areas on different devices, or none at all</li>
+<li>ADDED: Custom version of Beaver Maps module that allows you to use any fields</li>
+<li>FIXED: Default content in BB editor would break if no preview. Displays dummy text instead.</li>
+</ul>
+
+<h3 id="other">Other</h3>
+
+<ul>
+<li><p>ADDED: Any field from any table to list of custom fields and link fields</p></li>
+<li><p>ADDED: Option to not use font family in Typography in Blueprints editor. (If you want to manage all font families from CSS)</p></li>
+<li><p>ADDED: Option to not use Google fonts in Typography in Blueprints editor. This can improve loading time of Blueprint editor.</p></li>
+<li><p>ADDED: Option to use caption as image alt text (default is alt text or title if no alt text)</p></li>
+<li><p>ADDED: Option to remove shortcodes from Body text</p></li>
+<li><p>ADDED: Affiliates menu item</p></li>
+<li><p>ADDED: Table prefix to Tools &gt; Sysinfo</p></li>
+<li><p>ADDED: Option to set image quality (compression)</p></li>
+<li><p>ADDED: Option to disable right-click saving and copying of images.</p></li>
+<li><p>ADDED: Option to add copyright to images</p></li>
+<li><p>CHANGED: Account info now shows affiliate info.</p></li>
+<li><p>CHANGED: Image creation now uses Imagick by default if installed, which means it keeps Exif information (unless you use another plugin that has already stripped it out).</p></li>
+<li><p>UPDATED: Freemius SDK to 1.2.4</p></li>
+<li><p>FIXED: Was using an img tag even when no image.</p></li>
+<li><p>FIXED: Was carrying forward image data in the loop</p></li>
+<li><p>FIXED: Showing broken images when no featured image</p></li>
+<li><p>FIXED: Set show_in_rest to false in custom post types (Snippets, Testimonials, Showcases, Blueprints) to ensure they don&#8217;t use Gutenberg editor</p></li>
+<li><p>FIXED: Blueprints in Blueprints using parent Blueprint CSS</p></li>
+<li><p>FIXED: Gutenberg content not displaying in Blueprints in Blueprints</p></li>
+<li><p>FIXED: Gutenberg html comments skewing paragraph counting when forming excerpts by paragraphs</p></li>
+<li><p>FIXED: Tools &gt; Sysinfo always showing Imagick disabled</p></li>
+<li><p>FIXED: Filtering not working on second taxonomy in Masonry</p></li>
+<li><p>FIXED: Focal point not working for non admin users</p></li>
+<li><p>FIXED: Featured video metabox not showing for non admin users</p></li>
+</ul>
+
+<h2 id="1.10.7:24nov2017">1.10.7 : 24 Nov 2017</h2>
+
+<ul>
+<li>ADDED: Image Alt tag will automatically use image title if no Alt tag set</li>
+<li>FIXED: Error on plugins list page on wpms sites</li>
+<li>FIXED: Presets selector stopped working.</li>
+</ul>
+
+<h2 id="1.10.6:22nov2017">1.10.6 : 22 Nov 2017</h2>
+
+<ul>
+<li>ADDED: Changelog link to plugin listing since Freemius doesn&#8217;t yet support displaying changelog</li>
+</ul>
+
+<h2 id="1.10.5:18nov2017">1.10.5 : 18 Nov 2017</h2>
+
+<ul>
+<li>ADDED: Shortcode to use in custom field display to show any field from any table. Usage [arccf table=&#8220;tablename&#8221; field=&#8220;fieldname&#8221;]</li>
+<li>CHANGED: Removed caching of custom field list as was making refreshing it difficult</li>
+<li>FIXED: Read more link not working for pages</li>
+<li>FIXED: Read more links showing when no content</li>
+</ul>
+
+<h2 id="1.10.4:2nov2017">1.10.4 : 2 Nov 2017</h2>
+
+<ul>
+<li><p>ADDED: Option to exclude Snippets from search results</p></li>
+<li><p>FIXED: Page navigation not showing on search results page</p></li>
+<li><p>FIXED: Bug in Freemius code that caused error on EDD shops with Freemius Migration plugin installed</p></li>
+<li><p>FIXED: Couple of errors caused by using empty() on a function in PHP &lt; 5.5</p></li>
+</ul>
+
+<h2 id="1.10.3:23oct2017">1.10.3 : 23 Oct 2017</h2>
+
+<ul>
+<li><p>ADDED: RSS feed URL override to shortcode. Parameter: rssurl</p></li>
+<li><p>ADDED: Blueprint Title override to shortcode. Parameter: title</p></li>
+<li><p>ADDED: Support for custom overrides in Beaver Module. These are entered just like shorcode overrides and will be ignored if not valid.</p></li>
+<li><p>FIXED: RSS exclude tags not working</p></li>
+<li><p>FIXED: RSS hide title not working</p></li>
+<li><p>CHANGED: Removed pageguides until updated</p></li>
+</ul>
+
+<h2 id="1.10.2:20oct2017">1.10.2 : 20 Oct 2017</h2>
+
+<ul>
+<li><p>ADDED: Date filtering. Finally!</p></li>
+<li><p>ADDED: Option to hide empty Blueprints</p></li>
+<li><p>ADDED: Optional message if no content found for a Blueprint</p></li>
+<li><p>FIXED: Default classes not being applied to components in custom post types</p></li>
+<li><p>FIXED: Rounding problem that could cause some grid layouts to wrap around</p></li>
+<li><p>FIXED: Content not showing for RSS feed source.</p></li>
+<li><p>FIXED: Error if number of fields is less than number of columns in tabular</p></li>
+<li><p>FIXED: Author filtering not working!</p></li>
+<li><p>FIXED: Date filtering applied to all Blueprints on the same page</p></li>
+<li><p>UPGRADED: Slick.js v1.8.0</p></li>
+</ul>
+
+<h2 id="1.10.1">1.10.1 =</h2>
+
+<ul>
+<li>FIXED: Old Architect widgets could return an error</li>
+<li>FIXED: WPML overriding CSS for paragraphs affecting layout</li>
+</ul>
+
+<h2 id="1.10.0">1.10.0 =</h2>
+
+<h4 id="beaverbuilderrelatedenhancements:">Beaver Builder related enhancements:</h4>
+
+<ul>
+<li>ADDED: More extensive filtering overrides in the Beaver Architect module</li>
+<li>ADDED: Extensive styling options to Architect Beaver module</li>
+<li>ADDED: Blueprint type to dropdown selector in Widget and Beaver module Blueprint selector</li>
+<li>ADDED: Option to change Blueprint display title to Architect Beaver module</li>
+<li>FIXED: Comments showing with Architect Beaver module when type is posts or page</li>
+<li>REMOVED: Removed Architect page builder. Recommend to use Beaver instead!</li>
+</ul>
+
+<h4 id="contentrelatedenhancements:">Content related enhancements:</h4>
+
+<ul>
+<li>ADDED: RSS Feed as a content source. In Blueprints Source tab</li>
+<li>ADDED: Option to set and use a default Focal Point when no Focal Point set on an image. In Architect &gt; Options</li>
+<li>ADDED: Option to use &#8216;Specific Text, HTML or Shortcodes&#8217; as a custom field source. In Blueprints Custom Fields tab</li>
+<li>ADDED: Option to hide specific category names in meta field category name list. In Blueprints Meta tab</li>
+<li>ADDED: Message field that can be displayed immediately below content. In Blueprints Body/Excerpt tab</li>
+<li>ADDED: Option to insert a shortcode (or basic HTML) after a specific paragraph in body content. Good for inserting advertising! In Blueprints Body/Excerpt tab</li>
+</ul>
+
+<h4 id="miscellaneousenhancements:">Miscellaneous enhancements:</h4>
+
+<ul>
+<li><p>ADDED: Shortcode [arc_hasmedia] Displays icons if post has media. Can be used in meta or custom fields display. Currently identifies galleries, videos, audio playlists and various document links</p></li>
+<li><p>ADDED: Shortcode [arc_debug] Dumps the $wp_query variable and some Blueprint info</p></li>
+<li><p>ADDED: Simple demo mode that outlines Architect Blueprints. Add /?demo to the page URL.</p></li>
+<li><p>ADDED: Message on Help &amp; Support screen prompting crossgrade of Architect licence from Headway.</p></li>
+<li><p>ADDED: Option to name new Blueprints when importing. In Architect &gt; Tools</p></li>
+<li><p>ADDED: Server info, BlogID and DB name to System Info. In Tools &gt; SysInfo</p></li>
+<li><p>CHANGED: Export a Blueprint automatically downloads to a file now</p></li>
+<li><p>CHANGED: Admin backgrounds are now just CSS gradients rather than SVG to save size in the zip</p></li>
+<li><p>CHANGED: Using the &#8220;No field. Use prefix and suffix only&#8221; option for custom field source no longer requires the Link Field attribute enabled.</p></li>
+<li><p>CHANGED: Tech support links to support email address now</p></li>
+<li><p>CHANGED: In Blueprint listings, have now limited the &#8220;Used on&#8221; column to only show the first 15 instances</p></li>
+<li><p>CHANGED: In Blueprint listings, &#8220;Used on&#8221; column&#8217;s data is scrollable when more than 5 items</p></li>
+<li><p>CHANGED: New paint job on the presets selector</p></li>
+<li><p>CHANGED: Hover on panels designer is now blue toned</p></li>
+<li><p>CHANGED: Updated help text on Help &amp; Support screen</p></li>
+<li><p>CHANGED: Flattened defaults for slider nav buttons</p></li>
+<li><p>CHANGED: Combined Rebuild and clear image cache into one option for all caches. In Architect &gt; Tools</p></li>
+<li><p>CHANGED: Default title wrapper is now H2. <strong><em>This MAY affect some existing layouts that style based on the tag rather than class.</em></strong></p></li>
+<li><p>CHANGED: Update info is now on the Help &amp; Support tab, rather than appearing as a message.</p></li>
+<li><p>CHANGED: Changed licensing from EDD to Freemius</p></li>
+<li><p>FIXED: Filler images not working for Featured images</p></li>
+<li><p>FIXED: Category and Tag exclusion only working when inclusion was set too</p></li>
+<li><p>FIXED: Duplication of @media CSS declarations on panels.</p></li>
+<li><p>FIXED: Incorrect email url for support</p></li>
+<li><p>FIXED: Importing Blueprint failed to go to new Blueprint screen. Now provides a link.</p></li>
+<li><p>FIXED: Rebuilding cache was giving a success message even when it failed.</p></li>
+<li><p>FIXED: Blueprint &#8220;none&#8221; not found error on mobile devices</p></li>
+<li><p>FIXED: In Blueprint listings, &#8216;Used on&#8217; column was showing Blueprints as a usage</p></li>
+<li><p>FIXED: Bug in Architect&#8217;s custom post types not showing custom fields.</p></li>
+<li><p>UPGRADED: Isotope to v3.0.4</p></li>
+<li><p>UPGRADED: Mobile Detect to 2.8.5</p></li>
+<li><p>REMOVED: Support contact form as no longer using Freshdesk for support</p></li>
+<li><p>REMOVED: Support forum link as no longer using Freshdesk for support</p></li>
+</ul>
+
+<h2 id="1.9.9:4apr2017">1.9.9 : 4 Apr 2017</h2>
+
+<ul>
+<li>FIXED: Redux 3.6.4 broke parts of the Blueprint designer</li>
+</ul>
+
+<h2 id="1.9.8:26mar2017">1.9.8 : 26 Mar 2017</h2>
+
+<ul>
+<li>ADDED: Shortcode processing option to custom fields</li>
+<li>FIXED: Notices warning on custom field setting Field Type in admin</li>
+<li>FIXED: Set defaults for responsive Title and Content fonts</li>
+</ul>
+
+<h2 id="1.9.7">1.9.7</h2>
+
+<ul>
+<li>FIXED: Missing options when Blox is the active theme</li>
+<li>FIXED: Architect menu was only meant to be available to Admins</li>
+</ul>
+
+<h2 id="1.9.6:7dec2016">1.9.6 : 7 Dec 2016</h2>
+
+<ul>
+<li>FIXED: Incorrect version number causing upgrade info to not go away</li>
+</ul>
+
+<h2 id="1.9.5:30nov2016">1.9.5 : 30 Nov 2016</h2>
+
+<ul>
+<li>ADDED: Option for custom fields that are saved as an array to be displayed in a table by selecting Group. This does not work for ACF repeater fields, as they are stored differently.</li>
+</ul>
+
+<h2 id="1.9.4:15nov2016">1.9.4 : 15 Nov 2016</h2>
+
+<ul>
+<li>CHANGED: Added Blox compatibility</li>
+</ul>
+
+<h2 id="1.9.3:30sep2016">1.9.3 : 30 Sep 2016</h2>
+
+<ul>
+<li>ADDED: Option to set default terms selection in Masonry filtering.</li>
+<li>ADDED: Option in Sources for multiple content types. Using this has limitations, as any filtering or other criteria will apply to all content. For example, if you mix pages and posts, don&#8217;t filter on categories since no pages will be found.</li>
+<li>ADDED: Options to change the slug name that appears in the URL of Architect&#8217;s custom post types - Snippets, Testimonials and Showcases.</li>
+<li>ADDED: Text field for filter labels</li>
+<li>ADDED: Option to display of archive descriptions.</li>
+<li>CHANGED: Blueprint dropdown lists to default to showing content type too.</li>
+<li>CHANGED: Extended Architect name to Architect DIY Kit</li>
+<li>FIXED: Accordions closed styling overridden by Bootstrap styling</li>
+<li>FIXED: Blueprints not showing in dropdown in Architect Beaver module</li>
+<li>FIXED: Filtering and sorting not working when multiple masonry Blueprints on a page.</li>
+<li>FIXED: Masonry losing gutter when filtering</li>
+<li>FIXED: Actions Editor not displaying Blueprints on tablets</li>
+<li>FIXED: Shortcode showing wrong content</li>
+<li>FIXED: Blueprint editor tabs disappeared if /wp-content was moved</li>
+<li>REMOVED: Retina images option as it wasn&#8217;t working properly anymore. Will rebuild it.</li>
+<li>UPDATED: Masonry library, Isotope, to v3.</li>
+<li>UPDATED: Masonry library, Packery, to v2.</li>
+<li>UPDATED: TGM to 2.6.1</li>
+</ul>
+
+<h2 id="1.9.2:15may2016">1.9.2 : 15 May 2016</h2>
+
+<ul>
+<li>ADDED: Column in Blueprint list showing the pages Blueprints are used on. Requires pages to have been viewed since 1.9.2 update.</li>
+<li>CHANGED: Blueprint list now indicates layout type with an icon</li>
+<li>CHANGED: Finally found a way to get the Blueprint CSS to load in the header</li>
+<li>CHANGED: Various code tweaks</li>
+<li>CHANGED: Faster check for online access before using dummy images</li>
+<li>UPDATED: Magnific lightbox popup to v1.1</li>
+<li>FIXED: Slider autoplay going backwards if infinite is off</li>
+<li>FIXED: Hide Revolution Slider metabox on Blueprint editor</li>
+<li>FIXED: Bug in licence activation might fail with an error</li>
+</ul>
+
+<h2 id="1.9.1:25march2016">1.9.1 : 25 March 2016</h2>
+
+<ul>
+<li>FIXED: Removed Whoops debugger</li>
+</ul>
+
+<h2 id="1.9.0:24march2016">1.9.0 : 24 March 2016</h2>
+
+<ul>
+<li>ADDED: Custom field filtering</li>
+<li>ADDED: Custom field sorting</li>
+<li>ADDED: Message on Help and Blueprint listings suggesting upgrading PHP if less than 5.4</li>
+<li>FIXED: Testimonials specified order not working</li>
+<li>FIXED: Masonry filter by message showing Pz when using a PizazzWP tax type.</li>
+</ul>
+
+<h2 id="1.8.2">1.8.2</h2>
+
+<ul>
+<li>ADDED: Message reminding to increase max input vars. This has become necessary as 1.8 added more styling fields - which use a lot of input vars.</li>
+</ul>
+
+<h2 id="1.8.1">1.8.1</h2>
+
+<ul>
+<li>FIXED: Small layout issues in editor screens</li>
+</ul>
+
+<h2 id="1.8.0:25feb2016">1.8.0 : 25 Feb 2016</h2>
+
+<ul>
+<li>CHANGED: Revamped the layout of the Blueprint editor for improved usability</li>
+<li>CHANGED: Defaults are now saved in a WP option to speed things up a little.</li>
+<li>CHANGED: Custom field types now include a text type that will add paragraphs</li>
+<li>FIXED: When updating a Blueprint, it will now go back to the exact same tab</li>
+<li>FIXED: When opening a different Blueprint to the previous one it will open at the main tab.</li>
+<li>FIXED: Missing Max Input Vars message.</li>
+<li>FIXED: PHP Notices in Blueprint editor when styling turned off</li>
+</ul>
+
+<h2 id="1.7.0">1.7.0</h2>
+
+<ul>
+<li>ADDED: Added options for Scaled font sizes for title and content for even better responsive design. Look in Titles &gt; Responsive overrides, and Body/Excerpt &gt; Responsive overrides</li>
+<li>ADDED: Image Carousel preset the same as on the demos site.</li>
+<li>ADDED: Excerpt trimming for Characters, Paragraphs, More tag</li>
+<li>ADDED: Option to remove shortcodes from Excerpts.</li>
+<li>ADDED: Option to link images to a custom link per image. Requires the WP Gallery Custom Links plugin</li>
+<li>ADDED: Option for Blueprint footer text. Can include limited HTML and shortcodes.</li>
+<li>ADDED: Option for showing full content without leaving the page.</li>
+<li>CHANGED: Masonry transition time is now much faster</li>
+<li>CHANGED: Included a link to the importing Blueprints and Presets tutorial</li>
+<li>CHANGED: Small visual changes to Preset Selector</li>
+<li>CHANGED: Tweaked sysinfo</li>
+<li>CHANGED: Updated Slick to 1.5.9</li>
+<li>FIXED: The way custom post types load. Improves Beaver Builder compatibility</li>
+<li>FIXED: Problem if Architect called in a WP loop with Defaults as content source</li>
+<li>FIXED: Rounding of panels margin needed two decimal places (was 0 in changes in 1.6.1)</li>
+<li>FIXED: Actions Editor was showing Blueprints on all pages</li>
+<li>FIXED: Blueprint PHP notice if no images are selected for Gallery content source</li>
+<li>FIXED: Extra quotes mark in div panel opening class</li>
+<li>FIXED: Some Blueprint styling defaults not showing correct in editor</li>
+<li>FIXED: PHP Warning in date display</li>
+</ul>
+
+<h2 id="1.6.1">1.6.1</h2>
+
+<ul>
+<li>FIXED: Minor security issue because of missing index.php</li>
+<li>FIXED: Cache creation could cause a warning if a directory in the cache.</li>
+<li>FIXED: Layouts issues with percentages and calcs in Firefox and Internet Explorer 11.</li>
+</ul>
+
+<h2 id="1.6.0:7-january-2016">1.6.0 : 7-January-2016</h2>
 
 <ul>
 <li>ADDED: Beaver Builder module for selecting a Blueprint to display.</li>
@@ -26,7 +386,7 @@
 <li>FIXED: Sometimes strtotime returns wrong timestamp if there is commas in the date string</li>
 </ul>
 
-<h2 id="1.5.17:24-dec-2015">1.5.17 : 24-Dec&#8211;2015 =</h2>
+<h2 id="1.5.17:24-dec-2015">1.5.17 : 24-Dec-2015 =</h2>
 
 <ul>
 <li>CHANGED: In Options, &#8220;Use Architect styling&#8221; is now always enabled by default. Previously was off for Headway users, but that meant Presets were unstyled.</li>
@@ -163,10 +523,10 @@
 <li>ADDED: Message on Blueprint editor for Headway users about Architect styling.</li>
 <li>ADDED: Option for responsive font sizes on titles (Thanks, Chiara!)</li>
 <li>ADDED: Option to set Dummy content to use your own set of images</li>
-<li><hr /></li>
+<li>&#8212;</li>
 <li>CHANGED: Tidied up and compressed images (using tinypng.com). Saved 300KB in zip file!</li>
 <li>CHANGED: Tightened specificity of panels class to minimize conflicts in nested blueprints (e.g. content blueprint with a shortcode blueprint within)</li>
-<li><hr /></li>
+<li> &#8212;</li>
 <li>FIXED: Masonry sorting on numeric and date custom fields now working</li>
 <li>FIXED: Only first custom taxonomy showing in meta fields</li>
 <li>FIXED: A few bugs and styling in Masonry filtering and sorting.</li>
@@ -207,7 +567,7 @@
 <li>FIXED: Bug where if a WP gallery used in Blueprint content source no longer existed, an error would display</li>
 </ul>
 
-<h2 id="1.4.6:30-august-2015">1.4.6 : 30-August&#8211;2015</h2>
+<h2 id="1.4.6:30-august-2015">1.4.6 : 30-August-2015</h2>
 
 <ul>
 <li>FIXED: Make Header and Footers option doing nothing!</li>
@@ -537,3 +897,4 @@
 
 </body>
 </html>
+

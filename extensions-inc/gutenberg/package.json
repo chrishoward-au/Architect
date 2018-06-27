@@ -1,0 +1,18 @@
+{
+  "name": "pizazzwp-arc-guten-cgb-guten-block",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cgb-scripts start",
+    "build": "cgb-scripts build",
+    "eject": "cgb-scripts eject"
+  },
+  "dependencies": {
+    "cgb-scripts": "1.9.3",
+    "npm": "^6.0.0"
+  },
+  "externals": {
+    "react": "React",
+    "react-dom": "ReactDOM"
+  }
+}
