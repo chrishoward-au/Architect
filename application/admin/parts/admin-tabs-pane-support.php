@@ -12,10 +12,6 @@
                     <div class="arc-info-boxes">
                     <div class="arc-info col1">
                     <h4>' . __('Currently installed version') . ': ' . PZARC_VERSION . '</h4>';
-	if (!$lite) {
-		echo '<p>You can download the latest version from your <a class="pzarc-button-help" href="https://shop.pizazzwp.com/checkout/customer-dashboard/" target="_blank">
-                        customer dashboard</a></p>';
-	}
 	echo '<p>' . __('For more detailed help, visit', 'pzarchitect') . ' <a href="http://architect4wp.com/codex-listings" target="_blank" class="arc-codex">' . __('Architect documentation at architect4wp.com', 'pzarchitect') . '</a></p>
                         <p>' . __('For <strong>technical support</strong>, email us at', 'pzarchitect') . ' <a href="mailto:support@pizazzwp.com" target="_blank" class="arc-codex">' . __('support@pizazzwp.com', 'pzarchitect') . '</a></p>
                     <h3>' . __('Things to try first', 'pzarchitect') . '</h3>

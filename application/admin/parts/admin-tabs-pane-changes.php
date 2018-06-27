@@ -13,6 +13,28 @@
                     <div class="arc-info col1">'.
 wpautop('
 
+<h2 id="1.13.0-23june2018">1.13.0 - 23 June 2018</h2>
+
+<ul>
+<li>ADDED: More filter options to Blox block</li>
+<li>CHANGED: Rejigged Blox block menus</li>
+<li>REMOVED: Gutenberg block. Will be a separate plugin until Gutenberg is out of beta</li>
+</ul>
+
+<h2 id="1.12.0">1.12.0</h2>
+
+<ul>
+<li>CHANGED: SysInfo now shows WP_MEMORY_LIMIT</li>
+<li>CHANGED: SysInfo now shows average Blueprint loading times (a hugh time is likely indicative of a slow site)</li>
+<li>CHANGED: Removed affiliation</li>
+<li>FIXED: Error in SysInfo PHP Memory Limit</li>
+<li>FIXED: Masonry broke with v1.11.1</li>
+<li>FIXED: Problems with grid margins breaking layout wrapping</li>
+<li>UPGRADED: Isotope to 3.0.6</li>
+<li>UPGRADED: ImagesLoaded to 4.1.4</li>
+<li>UPGRADED: Freemius SDK to 2.1.1. Includes GDPR support and compliance</li>
+</ul>
+
 <h2 id="1.11.1-2april2018">1.11.1 - 2 April 2018</h2>
 
 <ul>

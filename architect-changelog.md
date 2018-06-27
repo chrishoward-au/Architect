@@ -3,6 +3,25 @@
 ## Notes:
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
+## 1.13.0 - 23 June 2018
+
+* ADDED: More filter options to Blox block
+* CHANGED: Rejigged Blox block menus
+* REMOVED: Gutenberg block. Will be a separate plugin until Gutenberg is out of beta
+
+## 1.12.0
+* CHANGED: SysInfo now shows WP_MEMORY_LIMIT
+* CHANGED: SysInfo now shows average Blueprint loading times (a hugh time is likely indicative of a slow site)
+* CHANGED: Removed affiliation
+
+* FIXED: Error in SysInfo PHP Memory Limit
+* FIXED: Masonry broke with v1.11.1
+* FIXED: Problems with grid margins breaking layout wrapping
+
+* UPGRADED: Isotope to 3.0.6
+* UPGRADED: ImagesLoaded to 4.1.4
+* UPGRADED: Freemius SDK to 2.1.1. Includes GDPR support and compliance
+
 ## 1.11.1 - 2 April 2018
 * ADDED: Error msg if Presets selector can't read presets files.
 * FIXED: Removed Features tab as it's not populated

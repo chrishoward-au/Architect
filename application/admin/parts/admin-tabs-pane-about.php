@@ -7,7 +7,7 @@
    */
   echo '
     <div class="tabs-pane active" id="quick">';
-      include_once( 'updates/1111.php' );
+      include_once( 'updates/1130.php' );
   echo '<div class="arc-info-boxes">
           <h2>Quick start</h2>
           <div class="arc-info col1">
@@ -50,10 +50,7 @@
             <p>Styling Defaults are very useful. Set these before you get started creating Blueprints to save time setting styling for every Blueprint. </p>
           </div>
           <div class="arc-info col2"><h3><span class="dashicons dashicons-migrate"></span>Actions Editor</h3>
-            <p>If you know the names of the action hooks in your theme, the Actions Editor allows you to hook into them without any coding.</p>
-          </div>
-          <div class="arc-info col2"><h3>Affiliation</h3>
-            <p>Information about joining the Architect affiliates program</p>
+            <p>If you know the names of the action hooks in your theme, the Actions Editor allows you to hook an Architect Blueprint into them without any coding!</p>
           </div>
           <div class="arc-info col2"><h3>Account</h3>
             <p>Check and manage your Architect licence</p>
@@ -61,7 +58,7 @@
           <div class="arc-info col2"><h3>Contact us</h3>
             <p>A built-in form to contact Pizazz support</p>
           </div>
-          <div class="arc-info col2"><h3>>Pricing/Upgrade</h3>
+          <div class="arc-info col2"><h3>Pricing/Upgrade</h3>
             <p>If you want to buy or upgrade Architect</p>
           </div>
         </div>
