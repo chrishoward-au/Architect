@@ -30,7 +30,7 @@
         case 'characters':
           $this->data['excerpt'] = wp_html_excerpt( $post['content'], strlen( $post['content'] ) );
           $cutoff                = min( $this->section["_panels_design_excerpts-word-count"], strlen( $this->data['excerpt'] ) );
-          $this->data['excerpt'] = wp_html_excerpt( $post['content'], $cutoff, pzarc_make_excerpt_more( $this->section,$post ) );
+          $this->data['excerpt'] = wp_html_excerpt( $post['content'], $cutoff, pzarc_make_excerpt_more( $this->section, $post ) );
           break;
 
         case 'paragraphs':
@@ -58,7 +58,7 @@
           $this->data['excerpt'] = implode( ' ', array_slice( explode( ' ', wp_html_excerpt( $post['content'], strlen( $post['content'] ) ) ), 0, $this->section["_panels_design_excerpts-word-count"] ) );
 
           if ( strlen( $this->data['excerpt'] ) < strlen( wp_html_excerpt( $post['content'], strlen( $post['content'] ) ) ) ) {
-            $this->data['excerpt'] .= pzarc_make_excerpt_more( $this->section,$post );
+            $this->data['excerpt'] .= pzarc_make_excerpt_more( $this->section, $post );
           }
 
           break;
@@ -122,10 +122,18 @@
     }
 
     function get_image( &$post ) {
-      $width  = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['width'] );
-      $height = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['height'] );
-      $max_wh = $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_image-max-dimensions'];
-      switch ( $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_settings_image-focal-point'] ) {
+      $width           = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['width'] );
+      $height          = (int) str_replace( 'px', '', $this->section['_panels_design_image-max-dimensions']['height'] );
+      $max_wh          = $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_design_image-max-dimensions'];
+      $cropping_method = $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_settings_image-focal-point'];
+      $focal_point     = explode( ',', pzarc_get_option( 'architect_focal_point_default', '50,10' ) );
+
+      if ( in_array( $cropping_method, array( 'topcentre', 'middlecentre', 'bottomcentre' ) ) ) {
+        $focal_point[0] = 50;
+        $focal_point[1] = array_search( $cropping_method, array( 0 => 'topcentre', 50 => 'middlecentre', 100 => 'bottomcentre' ) );
+      }
+      $crop = $focal_point[0] . 'x' . $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'];
+      switch ( $cropping_method ) {
         case 'scale':
           $wh = 'width="' . $max_wh['width'] . '"';
           break;
@@ -134,16 +142,26 @@
           break;
         default:
         case 'respect':
-        case 'centre':
+        case 'topcentre':
+        case 'middlecentre':
+        case 'bottomcentre':
+        case 'shrink':
         case 'none':
           $wh = 'width="' . $max_wh['width'] . '"';
           $wh .= ' height="' . $max_wh['height'] . '"';
           break;
       }
-      $this->data['image']['image']       = '<img ' . $wh . ' src="' . bfi_thumb( $post['image'], array(
-          'width'  => $width,
-          'height' => $height,
-        ) ) . '" style="max-height:' . $max_wh['height'] . '";>';
+      // Need to cache the image locally.
+      $quality = ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 );
+
+
+      $bfi_thumb                          = bfi_thumb( $post['image'], array(
+          'width'   => $width,
+          'height'  => $height,
+          'quality' => $quality,
+          'crop'    => $crop,
+      ) );
+      $this->data['image']['image']       = '<img ' . $wh . ' src="' . $bfi_thumb . '";>';
       $this->data['image']['original'][0] = $post['image'];
 
     }
@@ -168,10 +186,10 @@
           break;
       }
       $this->data['bgimage']['thumb']     = '<img ' . $wh . ' src="' . bfi_thumb( $post['image'], array(
-          'width'  => $width,
-          'height' => $height,
-          'crop'   => '50x50x' . $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_settings_image-focal-point'],
-        ) ) . '">';
+              'width'  => $width,
+              'height' => $height,
+              'crop'   => '50x50x' . $this->build->blueprint['section_object'][1]->section['section-panel-settings']['_panels_settings_image-focal-point'],
+          ) ) . '">';
       $this->data['image']['original'][0] = $post['image'];
     }
 
