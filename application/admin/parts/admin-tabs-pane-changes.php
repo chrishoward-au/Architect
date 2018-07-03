@@ -13,6 +13,14 @@
                     <div class="arc-info col1">'.
 wpautop('
 
+<h2 id="1.14.0:3july2018">1.14.0: 3 July 2018</h2>
+
+<ul>
+<li>CHANGED: When content source is RSS, source images are now cached</li>
+<li>FIXED: RSS source images not scaling and cropping</li>
+</ul>
+
+
 <h2 id="1.13.0-23june2018">1.13.0 - 23 June 2018</h2>
 
 <ul>

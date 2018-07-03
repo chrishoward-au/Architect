@@ -3,6 +3,10 @@
 ## Notes:
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
+## 1.14.0: 3 July 2018
+* CHANGED: When content source is RSS, source images are now cached
+* FIXED: RSS source images not scaling and cropping
+
 ## 1.13.0 - 23 June 2018
 
 * ADDED: More filter options to Blox block

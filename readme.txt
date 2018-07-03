@@ -89,8 +89,13 @@ TODO: Update shortcode help!
 TODO: ** Debug slideshows *nem
 TODO: Don't upscale images smaller than dimensions.
 TODO: SrcSet
+TODO: Cache external images. e.g RSS
 
-= 1.13.0
+= 1.14.0: 3 July 2018
+* CHANGED: When content source is RSS, source images are now cached
+* FIXED: RSS source images not scaling and cropping
+
+= 1.13.0 : 23 June 2018
 
 * ADDED: More filter options to Blox block
 * CHANGED: Rejigged Blox block menus

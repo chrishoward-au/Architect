@@ -7,11 +7,11 @@
 	 */
 
 	echo'
-	        <h2>Architect 1.13.0</h2>
+	        <h2>Architect 1.14.0</h2>
 
                     <div class="arc-info-boxes">
                     <div class="arc-info col1">
-        <p>This update covers  v1.13.0 and v1.12.0. It contains a few important bug fixes, some library updates and other small changes, and more features for the Architect <a href="https://bloxtheme.com/" target="_blank">Blox</a> block.</p> 
+        <p>This release contains updates for caching of images when content source is RSS. 
         <p>Note: Development of the Architect Gutenberg block has been delayed as the beta status of Gutenberg is causing more problems than anticipated. There is a separate Architect Gutenberg plugin in the meantime, which anyone is welcome to test.</p>
         <p>You can, however, use the Gutenberg Shortcode block to display Architect Blueprints using Gutenberg.</p>
         <p>Checkout the full list of changes in the Changelog tab above.</p>
