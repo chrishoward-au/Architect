@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hook
 Requires at least: 4.0
 Tested up to: 5.0
 Requires PHP: 5.6
-Stable tag: 1.14.0
+Stable tag: 1.15.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -89,7 +89,7 @@ TODO: Update shortcode help!
 TODO: ** Debug slideshows *nem
 TODO: Don't upscale images smaller than dimensions.
 TODO: SrcSet
-TODO: Cache external images. e.g RSS
+TODO: Fix BB module using override to show as 1 if empty
 
 = 1.14.0: 3 July 2018
 * CHANGED: When content source is RSS, source images are now cached
