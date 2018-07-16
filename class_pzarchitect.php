@@ -278,7 +278,7 @@
             if ( file_exists( $filename_path ) ) {
               wp_enqueue_style( 'pzarc_css_blueprint_' . $v['bp'], $filename, FALSE, filemtime( $filename_path ) );
             } else {
-              //how do we tell the developer without an horrid message on the front end?
+              // We should never get here!!
             }
           }
         }

@@ -3211,7 +3211,44 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   ),
                   'default' => 'process',
               ),
-
+//              array(
+//                  'title'   => __( 'More tag processing', 'pzarchitect' ),
+//                  'id'      => $prefix . 'more-tag-in-body',
+//                  'type'    => 'button_set',
+//                  'options' => array(
+//                      'ignore' => __( 'Ignore', 'pzarchitect' ),
+//                      'trim'  => __( 'Trim', 'pzarchitect' ),
+//                  ),
+//                  'default' => 'ignore',
+//                  'subtitle'=>__('This is the manually inserted More tag WP post editor provides','pzarchitect'),
+//                  'hint'          => array( 'content' => '<strong>Ignore</strong>: Default behaviour of all themes. The More tag is ignored.<br><strong>Trim</strong>: No content is displayed after the More tag.' ),
+//              ),
+//              array(
+//                  'title'    => __( 'More tag', 'pzarchitect' ),
+//                  'id'       => $prefix . 'more-tag-text',
+//                  'type'     => 'text',
+//                  'default'  => '<!--more-->',
+//                  'desc'=>__('Normally this should not need to be changed. However, some languages, plugins or themes will use a different tag string. If so, enter it here.','pzarchitect'),
+//                  'required' => array(
+//                      $prefix . 'more-tag-in-body',
+//                      '=',
+//                      'trim',
+//                  ),
+//              ),
+//              array(
+//                  'title'    => __( 'Add read more indicators', 'pzarchitect' ),
+//                  'id'       => $prefix . 'more-indicator',
+//                  'type'     => 'switch',
+//                  'on'       => __( 'Yes', 'pzarchitect' ),
+//                  'off'      => __( 'No', 'pzarchitect' ),
+//                  'default'  => FALSE,
+//                  'subtitle'=>__('Uses the same as for Excerpts (below)','pzarchitect'),
+//                  'required' => array(
+//                      $prefix . 'more-tag-in-body',
+//                      '=',
+//                      'trim',
+//                  ),
+//              ),
 
               array(
                   'id'     => $prefix . 'excerpt-heading',
@@ -3277,7 +3314,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       '=',
                       FALSE,
                   ),
-                  'desc'     => __( 'If using More Tag, this is the maximum number of words to show', 'pzarchitect' ),
+                  'desc'     => __( 'Note: When using More Tag option, this is the maximum number of words that will show when content has no More tag.', 'pzarchitect' ),
               ),
               array(
                   'title'    => __( 'Truncation indicator', 'pzarchitect' ),
@@ -4180,7 +4217,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'       => $prefix . 'image-max-dimensions',
                   'title'    => __( 'Limit image dimensions', 'pzarchitect' ),
                   'type'     => 'dimensions',
-                  'desc'     => __( 'The displayed width of the image is determined by it\'s size in the Content Layout designer. This setting is used limit the size of the image created and used.', 'pzarchitect' ),
+                  'desc'     => __( 'The <strong>displayed width</strong> of the image is determined by its calculated size in the Content Layout designer. However, this is responsive, so the displayed size may be smaller than what dimensions are set here. Therefore, estimate the <strong>maximum</strong> required size when setting this parameter. For example, if you have 3 across on desktop with a page width of 960px (320px each) and 1 across on a phone with a page width of 360px, the maximum width would need to be set at 360px. Setting correctly will limit the size of the image created and used, increasing page load. Thus do not set it unnecessarily high. On the other hand, setting it too low though could cause images to be scaled up and pixelated.', 'pzarchitect' ),
                   'units'    => 'px',
                   'default'  => array(
                       'width'  => '400',

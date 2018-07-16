@@ -91,6 +91,10 @@ TODO: Don't upscale images smaller than dimensions.
 TODO: SrcSet
 TODO: Fix BB module using override to show as 1 if empty
 
+= 1.15.0 :
+
+* FIXED: Read more link not showing when using More tag as Excerpts break.
+
 = 1.14.0: 3 July 2018
 * CHANGED: When content source is RSS, source images are now cached
 * FIXED: RSS source images not scaling and cropping

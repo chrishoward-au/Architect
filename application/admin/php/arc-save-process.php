@@ -25,7 +25,7 @@
     }
     // If get_current_Screen doesn't exist we really are in the wrong place!
     if (!function_exists('get_current_screen') && $postid !== 'all') {
-      return;
+        return;
     }
     $screen = ('all' === $postid ? 'refresh-cache' : get_current_screen());
     /*
@@ -54,11 +54,14 @@
     // new wp_filesystem
     // create file named with id e.g. pzarc-cell-layout-123.css
     // Or should we connect this to the template? Potentially there'll be less panel layouts than templates tho
-
-    if (!empty($screen) && ('all' === $postid || $screen->id == 'arc-panels' || $screen->id == 'arc-blueprints' || $post->post_type === 'arc-panels' || $post->post_type === 'arc-blueprints')) {
+    if (!empty($screen) &&
+        ('all' === $postid
+         || $screen->id == 'arc-panels'
+         || $screen->id == 'arc-blueprints'
+         || $post->post_type === 'arc-panels'
+         || $post->post_type === 'arc-blueprints')) {
 
       $url = wp_nonce_url('post.php?post=' . $postid . '&action=edit', basename(__FILE__));
-
       if (false === ($creds = request_filesystem_credentials($url, '', false, false, null))) {
         return; // stop processing here
       }
@@ -74,7 +77,6 @@
 
 
       $filename = PZARC_CACHE_PATH . '/pzarc_css_cache.css';
-
       wp_mkdir_p(trailingslashit(PZARC_CACHE_PATH));
 
       // Need to create the file contents
@@ -131,7 +133,9 @@
           $blueprints = $pzarc_css_cache[ 'blueprints' ];
         }
         foreach ($blueprints as $k => $v) {
+
           $filename = str_replace(' ','',PZARC_CACHE_PATH . 'pzarc_blueprint_' . $k . '.css');
+
           if (!empty($k) && !$wp_filesystem->put_contents(
                   $filename,
                   $v,

@@ -636,6 +636,11 @@
           $thecontent = strip_shortcodes( $post->post_content );
         }
 
+//        $more_tag_pos = strpos( $thecontent, (empty($this->section['_panels_design_more-tag-text'])?'<!--more-->':$this->section['_panels_design_more-tag-text'] ));
+//        if ( ( $more_tag_pos && !empty( $this->section['_panels_design_more-tag-in-body'] ) && $this->section['_panels_design_more-tag-in-body'] === 'trim' ) && $more_tag_pos ) {
+//          $thecontent = substr($thecontent,0,($more_tag_pos-1));
+//        }
+
         // Insert shortcode if required
         if ( ! empty( $this->section['_panels_design_insert-content-shortcode'] ) ) {
           $thecontent      = wpautop( $thecontent ); // Add paragraph html
@@ -675,6 +680,14 @@
           $the_excerpt = do_shortcode( $the_excerpt );
       }
 
+      $truncation_link = pzarc_make_excerpt_more(
+          array(
+              '_panels_design_readmore-text'=>$this->section['_panels_design_readmore-text'],
+              '_panels_design_readmore-truncation-indicator'=>$this->section['_panels_design_readmore-truncation-indicator']
+          ),
+          $post
+      );
+
       switch ( TRUE ) {
 
         case ! empty( $this->section['_panels_design_manual-excerpts'] ) && ! has_excerpt():
@@ -684,7 +697,7 @@
         // CHARACTERS
         case ! empty( $this->section['_panels_design_excerpts-trim-type'] ) && $this->section['_panels_design_excerpts-trim-type'] === 'characters':
           if ( ! empty( $the_content ) ) {
-            $this->data['excerpt'] = substr( wp_strip_all_tags( $the_content ), 0, $this->section['_panels_design_excerpts-word-count'] ) . pzarc_make_excerpt_more( $this->section, $post );
+            $this->data['excerpt'] = substr( wp_strip_all_tags( $the_content ), 0, $this->section['_panels_design_excerpts-word-count'] ) . $truncation_link;
           } else {
             $this->data['excerpt'] = '<!-- #2 arc no content found -->';
           }
@@ -715,7 +728,7 @@
               $this->data['excerpt'] .= '<p>' . $the_new_paras[ $i - 1 ] . '</p>';
               $i ++;
             }
-            $this->data['excerpt'] = $this->data['excerpt'] . pzarc_make_excerpt_more( $this->section, $post );
+            $this->data['excerpt'] = $this->data['excerpt'] . $truncation_link;
           } else {
             $this->data['excerpt'] = '<!-- #4 arc no content found -->';
           }
@@ -727,7 +740,7 @@
           //
           $the_lot = get_extended( $the_content );
           if ( ! empty( $the_lot['extended'] ) ) {
-            $this->data['excerpt'] = $the_lot['main'];
+            $this->data['excerpt'] = $the_lot['main']. $truncation_link;
           } else {
             $this->data['excerpt'] = $the_excerpt;
           }
@@ -736,13 +749,6 @@
         // WORDS
         case ! empty( $this->section['_panels_design_excerpts-trim-type'] ) && $this->section['_panels_design_excerpts-trim-type'] === 'words':
         default:
-          $truncation_link = pzarc_make_excerpt_more(
-              array(
-                  '_panels_design_readmore-text'=>$this->section['_panels_design_readmore-text'],
-                  '_panels_design_readmore-truncation-indicator'=>$this->section['_panels_design_readmore-truncation-indicator']
-              ),
-              $post
-          );
           $this->data['excerpt'] = wp_trim_words($the_excerpt,$this->section['_panels_design_excerpts-word-count'],$truncation_link);
       }
       $this->data['excerpt'] = apply_filters( 'the_excerpt', $this->data['excerpt'] );
