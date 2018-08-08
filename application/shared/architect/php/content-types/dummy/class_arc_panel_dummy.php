@@ -51,21 +51,21 @@
      * @param $toshow
      * @param $section
      */
-//    public function set_data(&$post, &$toshow, &$section)
-//    {
-//      $this->section = $section;
-//      $this->toshow  = $toshow;
-//      $this->get_title($post);
-//      $this->get_meta($post);
-//      $this->get_content($post);
-//      $this->get_excerpt($post);
-//      //TODO: Really must make these one!
-//      $this->get_image($post);
-//      $this->get_bgimage($post);
-//      // TODO: Should I do custom fields in Dummy?
-////      $this->get_custom($post);
-//      $this->get_miscellanary($post);
-//    }
+    public function set_data(&$post, &$toshow, &$section, $panel_number)
+    {
+      $this->section = $section;
+      $this->toshow  = $toshow;
+      $this->get_title($post);
+      $this->get_meta($post);
+      $this->get_content($post);
+      $this->get_excerpt($post);
+      //TODO: Really must make these one!
+      $this->get_image($post);
+      $this->get_bgimage($post);
+      // TODO: Should I do custom fields in Dummy?
+//      $this->get_custom($post);
+      $this->get_miscellanary($post);
+    }
 
     public function get_miscellanary(&$post) {
       global $_architect_options;
@@ -77,7 +77,6 @@
       $this->data['permalink']   = '#';
       $post_format               = 'standard';
       $this->data ['postformat'] = (empty($post_format) ? 'standard' : $post_format);
-
     }
 
     public function get_title(&$post) {
@@ -148,13 +147,14 @@
             $this->data['image']['image'] = '<img src="' . $imageURL . '">';
             break;
           default:
-            $imageURL                     = 'http://lorempixel.com/' . $image_grey . $width . '/' . $height . '/' . $post['image']['original'];
-            $origimageURL                 = 'http://lorempixel.com/' . $image_grey . (3 * $width) . '/' . (3 * $height) . '/' . $post['image']['original'];
+            $imageURL                     = 'https://loremflickr.com/' . $image_grey . $width . '/' . $height . '/' . $post['image']['original'];
+            $origimageURL                 = 'https://loremflickr.com/' . $image_grey . (3 * $width) . '/' . (3 * $height) . '/' . $post['image']['original'];
             $this->data['image']['image'] = '<img src="' . $imageURL . '">';
         }
 
         $this->data['image']['original'][0] = $origimageURL;
         $this->data['image']['caption']     = $post['image']['caption'];
+
       }
     }
 
@@ -197,11 +197,11 @@
             $this->data['bgimage']['thumb'] = '<img src="' . $imageURL . '" width=' . $width . ' height=' . $height . ' style="width:' . $width . 'px;height:' . $height . 'px;">';
             break;
           case ('dummyimage' === $image_source) :
-            $imageURL                       = 'http://dummyimage.com/' . $width . 'x' . $height . '/' . $bg_colour . '/' . $text_colour;
+            $imageURL                       = 'https://dummyimage.com/' . $width . 'x' . $height . '/' . $bg_colour . '/' . $text_colour;
             $this->data['bgimage']['thumb'] = '<img src="' . $imageURL . '">';
             break;
           default:
-            $imageURL                       = 'http://lorempixel.com/' . $image_grey . $width . '/' . $height . '/' . $post['image']['original'];
+            $imageURL                       = 'https://loremflickr.com/' . $image_grey . $width . '/' . $height . '/' . $post['image']['original'];
             $this->data['bgimage']['thumb'] = '<img src="' . $imageURL . '">';
         }
         $this->data['bgimage']['original'] = $imageURL;

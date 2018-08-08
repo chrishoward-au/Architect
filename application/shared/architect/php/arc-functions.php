@@ -407,8 +407,11 @@
       $pand['meta']         = $blueprints->mb_meta( $_architect['defaults']['panels'], TRUE );
       $pand['features']     = $blueprints->mb_features( $_architect['defaults']['panels'], TRUE );
       $pand['body']         = $blueprints->mb_body_excerpt( $_architect['defaults']['panels'], TRUE );
-      $pand['customfields'] = $blueprints->mb_customfields__premium_only( $_architect['defaults']['panels'], TRUE );
-
+      if ((function_exists('arc_fs') &&  arc_fs()->is__premium_only())  || defined('PZARC_PRO')) {
+        $pand['customfields'] = $blueprints->mb_customfields__premium_only( $_architect['defaults']['panels'], TRUE );
+      } else {
+        $pand['customfields'][0]['sectons'] = array();
+      }
       //     $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
       $_architect['defaults']['panels']['_panels_design']       = $pand['panels'][0]['sections'];
       $_architect['defaults']['panels']['_panels_titles']       = $pand['titles'][0]['sections'];

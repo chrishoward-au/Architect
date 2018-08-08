@@ -430,12 +430,6 @@
                         <a class="pzarc-button-help" href="mailto:support@pizazzwp.com?subject=Architect%20help" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
-                        <a class="pzarc-button-help" href="https://shop.pizazzwp.com/checkout/customer-dashboard/" target="_blank">
-                        <span class="dashicons dashicons-admin-users"></span>
-                        Customer dashboard</a>
-                        <a class="pzarc-button-help" href="https://shop.pizazzwp.com/affiliate-area/" target="_blank">
-                        <span class="dashicons" style="font-size:1.3em">$</span>
-                        Affiliates</a>
                         </div>
 
             ';

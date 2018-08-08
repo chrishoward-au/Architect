@@ -124,7 +124,6 @@
 
 
     public function set_data( &$post, &$toshow, &$section, $panel_number ) {
-
       $this->initialise_data(); // v1.10.8: Ooops! Why hasn't the absence of this raised its ugly head previously!
 
       $this->section      = $section;
@@ -384,7 +383,7 @@
         if ( ! empty( $this->section['_panels_design_caption-alt-text'] ) ) {
           $result                       = preg_replace( '/alt="(.)*"/uiUsm', 'alt="' . $this->data['image']['caption'] . '"', $this->data['image']['image'] );
           $this->data['image']['image'] = $result;
-        } elseif ( ! empty( $this->data['image']['id'] ) && strpos( $this->data['image']['image'], 'alt=""' ) ) {
+        } elseif ( ! empty( $this->data['image']['id'] ) && strpos( $this->data['image']['image'], 'alt=""' ) && isset($image->post_title)) {
           $this->data['image']['image'] = str_replace( 'alt=""', 'alt="' . esc_attr( $image->post_title ) . '"', $this->data['image']['image'] );
         }
 
@@ -393,7 +392,7 @@
       // FILLER: Lorempixel
       // TODO: Should this be an action that is themn called by any things like Dummy
       if ( ( empty( $this->data['image']['image'] ) || ! $thumb_id ) && ! empty( $this->section['_panels_design_use-filler-image-source'] ) && 'none' !== $this->section['_panels_design_use-filler-image-source'] && 'specific' !== $this->section['_panels_design_use-filler-image-source'] ) {
-        $ch = curl_init( 'http://lorempixel.com' );
+        $ch = curl_init( 'https://loremflickr.com' );
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, TRUE );
         $cexec      = curl_exec( $ch );
         $cinfo      = curl_getinfo( $ch );
@@ -417,7 +416,8 @@
           'transport',
         );
         $lorempixel_category = in_array( $this->section['_panels_design_use-filler-image-source'], $cats ) ? $this->section['_panels_design_use-filler-image-source'] : $cats[ rand( 0, count( $cats ) - 1 ) ];
-        $imageURL            = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $lorempixel_category . '/' . rand( 1, 10 );
+        $imageURL            = 'https://loremflickr.com/' . $width . '/' . $height . '/' . $lorempixel_category; // v1.15.0 Lorempixel died
+//        $imageURL            = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $lorempixel_category . '/' . rand( 1, 10 );
 //        $imageURL = 'http://lorempixel.com/' . $image_grey . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
         $this->data['image']['image']    = ! $is_offline ? '<img src="' . $imageURL . '" >' : '';
         $this->data['image']['original'] = ! $is_offline ? array(
@@ -552,7 +552,7 @@
 
       //Use lorempixel
       if ( empty( $this->data['bgimage']['thumb'] ) && ! empty( $this->section['_panels_design_use-filler-image-source'] ) && 'none' !== $this->section['_panels_design_use-filler-image-source'] && 'specific' !== $this->section['_panels_design_use-filler-image-source'] ) {
-        $ch = curl_init( 'http://lorempixel.com' );
+        $ch = curl_init( 'https://loremflickr.com' );
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, TRUE );
         $cexec      = curl_exec( $ch );
         $cinfo      = curl_getinfo( $ch );
@@ -576,7 +576,7 @@
           'transport',
         );
         $lorempixel_category = in_array( $this->section['_panels_design_use-filler-image-source'], $cats ) ? $this->section['_panels_design_use-filler-image-source'] : $cats[ rand( 0, count( $cats ) - 1 ) ];
-        $imageURL            = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $lorempixel_category . '/' . rand( 1, 10 );
+        $imageURL            = 'https://loremflickr.com/' . $width . '/' . $height . '/' . $lorempixel_category . '/' . rand( 1, 10 );
 //        $imageURL = 'http://lorempixel.com/' . $image_grey . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
         $this->data['bgimage']['thumb']  = ! $is_offline ? '<img src="' . $imageURL . '" >' : '';
         $this->data['image']['original'] = ! $is_offline ? array(
@@ -877,7 +877,7 @@
       $this->data['postid']                = get_the_ID();
       $this->data['poststatus']            = get_post_status();
 //      $this->data[ 'posttype' ]    = get_post_type();
-      $this->data['posttype']    = $post->post_type;
+      $this->data['posttype']    = !empty($post)?$post->post_type:'unknown'; // v1.15.0 Happening when post type is users... TODO: Fix for unknown post types
       $this->data['permalink']   = get_the_permalink();
       $post_format               = get_post_format();
       $this->data ['postformat'] = ( empty( $post_format ) ? 'standard' : $post_format );
@@ -1628,7 +1628,7 @@
 
           case 'thumbs':
 
-            $thumb       = '<img src="http://lorempixel.com/' . parent::get_thumbsize( 'w' ) . '/' . parent::get_thumbsize( 'h' ) . '/' . $arc_query[ $j ]['image']['original'] . '" class="arc-nav-thumb" width="' . parent::get_thumbsize( 'w' ) . '" height="' . parent::get_thumbsize( 'h' ) . '">';
+            $thumb       = '<img src="https://loremflickr.com/' . parent::get_thumbsize( 'w' ) . '/' . parent::get_thumbsize( 'h' ) . '/' . $arc_query[ $j ]['image']['original'] . '" class="arc-nav-thumb" width="' . parent::get_thumbsize( 'w' ) . '" height="' . parent::get_thumbsize( 'h' ) . '">';
             $nav_items[] = '<span class="' . $blueprints_navigator . '" title="' . $arc_query[ $j ]['title']['title'] . '">' . $thumb . '</span>';
             break;
 

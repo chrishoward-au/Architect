@@ -163,12 +163,6 @@
                         <a class="pzarc-button-help" href="mailto:support@pizazzwp.com?subject=Architect%20help" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
-                        <a class="pzarc-button-help" href="https://shop.pizazzwp.com/checkout/customer-dashboard/" target="_blank">
-                        <span class="dashicons dashicons-admin-users"></span>
-                        Customer dashboard</a>
-                        <a class="pzarc-button-help" href="https://shop.pizazzwp.com/affiliate-area/" target="_blank">
-                        <span class="dashicons" style="font-size:1.3em">$</span>
-                        Affiliates</a>
                         </div>
           ' .
 
@@ -1170,6 +1164,7 @@
 
       );
 
+//      update_option( 'arcmb_blueprint_design', $metaboxes );
       return $metaboxes;
     }
 
@@ -2702,6 +2697,7 @@
           'sidebar'    => FALSE,
 
       );
+      // update_option( 'arcmb_layout', $metaboxes );
 
       return $metaboxes;
 
@@ -3103,9 +3099,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         <a class="pzarc-button-help" href="mailto:support@pizazzwp.com?subject=Architect%20help" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
-                        <a class="pzarc-button-help" href="https://shop.pizazzwp.com/checkout/customer-dashboard/" target="_blank">
-                        <span class="dashicons dashicons-admin-users"></span>
-                        Customer dashboard</a>
                         </div>
                         <p style="font-size:0.8em;">Architect v' . PZARC_VERSION . '</p>
                         </div>',
@@ -3791,6 +3784,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                             'date'            => __( 'Date', 'pzarchitect' ),
                             'number'          => __( 'Number', 'pzarchitect' ),
                             'embed'           => __( 'Embed URL', 'pzarchitect' ),
+                            // 'array'           => __( 'Array', 'pzarchitect' ), // Gargh! This makes fields in fields we need to prompt to format them.
                             'group'           => __( 'Group', 'pzarchitect' ), // WTF is a group
                             //'acf-repeater' => _('ACF Repeater'pzarchitect),
                         ),

@@ -67,7 +67,7 @@
 //      $cinfo = curl_getinfo($ch);
 //      $is_offline = ($cexec == false || $cinfo['http_code']==302);
 //      curl_close($ch);
-      $is_offline = is_wp_error(wp_remote_head('http://google.com')); // v1.9.2
+      $is_offline = is_wp_error(wp_remote_head('https://loremflickr.com')); // v1.9.2 // v1.15.0 changed to loremflickr as google.com was giving an error.
  //     var_dump($this->build->blueprint);
    //   var_dump(maybe_unserialize(get_option('_architect_defaults')));
       $trim_length = $this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_excerpts-word-count' ];
@@ -93,6 +93,7 @@
         // What if we only returned the cat and pic no?!
 
 
+        $picno =''; // v1.15.0 not used in loremflickr (loermpixel broke)
 
         if (in_array($image_source,$cats)) {
           $dummy_query[ $i ][ 'image' ][ 'original' ] = (!$is_offline)?$image_source . '/' . $picno:'offline';

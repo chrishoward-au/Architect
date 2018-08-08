@@ -91,9 +91,13 @@ TODO: Don't upscale images smaller than dimensions.
 TODO: SrcSet
 TODO: Fix BB module using override to show as 1 if empty
 
-= 1.15.0 :
 
+= 1.15.0 : 8 August 2018
+
+* CHANGED: Switched to loremflickr.com as lorempixel went down
 * FIXED: Read more link not showing when using More tag as Excerpts break.
+* FIXED: Errors in free version calling premium functions when it shouldn't
+* FIXED: Various PHP notices
 
 = 1.14.0: 3 July 2018
 * CHANGED: When content source is RSS, source images are now cached
