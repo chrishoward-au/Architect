@@ -411,6 +411,11 @@
               ),
           ),
       );
+      if (!defined( 'PZARC_PRO' ) || (function_exists('arc_fs') &&  !arc_fs()->is__premium_only())  ){
+        unset( $fields[0]['options']['customfields'] );
+        unset( $fields[0]['targets']['customfields'] );
+      }
+
 
 //      } else {
 //        $fields = array(
@@ -5745,9 +5750,9 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         <span class="pzarc-draggable pzarc-draggable-image" title="Featured image" data-idcode=image style="max-height: 100px; overflow: hidden;"><span><img src="' . PZARC_PLUGIN_APP_URL . '/shared/assets/images/sample-image.jpg" style="max-width:100%;"></span></span>
         <span class="pzarc-draggable pzarc-draggable-meta2 pzarc-draggable-meta" title="Meta info 2" data-idcode=meta2 ><span>Categories - News, Sport</span></span>
         <span class="pzarc-draggable pzarc-draggable-meta3 pzarc-draggable-meta" title="Meta info 3" data-idcode=meta3 ><span>Comments: 27</span></span>
-        <span class="pzarc-draggable pzarc-draggable-custom1 pzarc-draggable-meta" title="Custom field 1" data-idcode=custom1 ><span>Custom content group 1</span></span>
-        <span class="pzarc-draggable pzarc-draggable-custom2 pzarc-draggable-meta" title="Custom field 2" data-idcode=custom2 ><span>Custom content group 2</span></span>
-        <span class="pzarc-draggable pzarc-draggable-custom3 pzarc-draggable-meta" title="Custom field 3" data-idcode=custom3 ><span>Custom content group 3</span></span>
+        <span class="pzarc-draggable pzarc-draggable-custom1 pzarc-draggable-meta arc-pro-only" title="Custom field 1" data-idcode=custom1 ><span>Custom content group 1</span></span>
+        <span class="pzarc-draggable pzarc-draggable-custom2 pzarc-draggable-meta arc-pro-only" title="Custom field 2" data-idcode=custom2 ><span>Custom content group 2</span></span>
+        <span class="pzarc-draggable pzarc-draggable-custom3 pzarc-draggable-meta arc-pro-only" title="Custom field 3" data-idcode=custom3 ><span>Custom content group 3</span></span>
       </div>
     </div>
     <p class="pzarc-states ">Loading</p>

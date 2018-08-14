@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hook
 Requires at least: 4.0
 Tested up to: 5.0
 Requires PHP: 5.6
-Stable tag: 1.15.0
+Stable tag: 1.15.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -90,7 +90,14 @@ TODO: ** Debug slideshows *nem
 TODO: Don't upscale images smaller than dimensions.
 TODO: SrcSet
 TODO: Fix BB module using override to show as 1 if empty
+TODO: Fix content animation demo on demos
 
+= 1.16.0 :
+
+
+= 1.15.1 : 12 August 2018
+* FIXED: Error in Blox when no action options
+* FIXED: Inaccessible features displaying in free version.
 
 = 1.15.0 : 8 August 2018
 

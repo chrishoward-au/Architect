@@ -43,7 +43,7 @@
                       'on'=>'Yes',
                       'off'=>'No',
                       'default'=>false,
-                      'desc' => __('Defaults uses all WordPress default selection conditions. Enable overrides if you want the options in Settings and Filters, and the pagination settings to be applied.','pzarchitect')
+                      'desc' => __('Defaults uses all WordPress default selection conditions. Enable overrides if you want the options in Settings (including Limit Posts) and Filters, and the pagination settings to be applied.','pzarchitect')
                   )
               )
           )

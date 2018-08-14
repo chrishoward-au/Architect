@@ -1,7 +1,7 @@
 //  http://bourbon.io/docs/
 @import "bourbon";
 
-$version: "1.15.0";
+$version: "1.16.0";
 // THIS IS THE SCSS VERSION
 $highlight: #0074a2;
 $border-radius: 3px;
@@ -2375,4 +2375,8 @@ body.arc-beginner {
   .tabs-content {
 //    font-size:14px;
   }
+
+}
+.arc-lite .arc-pro-only{
+  display:none!important;
 }

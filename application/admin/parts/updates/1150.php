@@ -7,7 +7,7 @@
 	 */
 
 	echo'
-	        <h2>Architect 1.15.0</h2>
+	        <h2>Architect 1.15.1</h2>
 
                     <div class="arc-info-boxes">
                     <div class="arc-info col1">

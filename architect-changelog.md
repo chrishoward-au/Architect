@@ -3,6 +3,10 @@
 ## Notes:
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
+## 1.15.1 : 12 August 2018
+* FIXED: Error in Blox when no action options
+* FIXED: Inaccessible features displaying in free version.
+
 ## 1.15.0 : 8 August 2018
 
 * CHANGED: Switched to loremflickr.com as lorempixel went down

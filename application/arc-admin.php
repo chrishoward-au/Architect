@@ -28,7 +28,7 @@
      *
      */
     function init() {
-      if ( ! is_admin()  ) { // 1.11.0 Block only not admin
+      if ( ! is_admin() ) { // 1.11.0 Block only not admin
         return;
       }
 
@@ -126,6 +126,12 @@
         $classes .= ' arc-advanced';
       } else {
         $classes .= ' arc-beginner';
+      }
+
+      if ( ( function_exists( 'arc_fs' ) && arc_fs()->is__premium_only() ) || defined( 'PZARC_PRO' ) ) {
+        $classes .= ' arc-premium';
+      } else {
+        $classes .= ' arc-lite';
       }
 
       return $classes;
@@ -246,9 +252,9 @@
       if ( ! $pzarc_menu ) {
         $pzarc_menu = add_menu_page( 'About Architect', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
         add_submenu_page( 'pzarc', 'Help & Support', '<span class="dashicons dashicons-editor-help size-small"></span>Help & Support', 'manage_options', 'pzarc_support', array(
-                $this,
-                'pzarc_support',
-            ) );
+            $this,
+            'pzarc_support',
+        ) );
 
         global $submenu;
         // Shift those last  to the top
@@ -309,7 +315,7 @@
         $pzarc_css_success = TRUE;
         save_arc_layouts( 'all', NULL, TRUE );
         pzarc_set_defaults();
-        update_option('arc_blueprints',pzarc_get_blueprints(false));
+        update_option( 'arc_blueprints', pzarc_get_blueprints( FALSE ) );
         bfi_flush_image_cache();
         delete_option( 'architect_custom_fields' );
         delete_option( 'architect_timers' );
@@ -472,7 +478,7 @@
  <!--               <button class="tabby-features" data-tab="#features">' . __( 'Features', 'pzarchitect' ) . '</button> -->
                 <button class="tabby-help" data-tab="#help">' . __( 'Support', 'pzarchitect' ) . '</button>
             </div>';
-echo '	<div class="tabby tabs-content">';
+      echo '	<div class="tabby tabs-content">';
       include_once( 'admin/parts/admin-tabs-pane-about.php' );
       include_once( 'admin/parts/admin-tabs-pane-usage.php' );
       include_once( 'admin/parts/admin-tabs-pane-news.php' );
