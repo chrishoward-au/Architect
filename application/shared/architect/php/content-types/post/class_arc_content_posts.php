@@ -83,6 +83,7 @@
                         'id'       => $prefix . 'specific-posts',
                         'type'     => 'text',
                         'subtitle' => __('Enter a comma separated list of post IDs. Be sure to set Order By in Settings to Specified.', 'pzarchitect'),
+                        'desc'=> __('If you wish to display a dropdown of posts here, you can enable that in Options. However, be aware if there are thousands of posts, the Blueprint editor may not load due to out of memory.','pzarchitect')
                     ),
                     array(
                         'title'   => __('Exclude posts', 'pzarchitect'),

@@ -56,8 +56,9 @@
 <?php _e( 'DB name:', 'pzarchitect' ); ?>                <?php echo $wpdb->dbname . "\n"; ?>
 <?php _e( 'Table prefix:', 'pzarchitect' ); ?>           <?php echo $wpdb->prefix . "\n"; ?>
 <?php _e( 'Web Server:', 'pzarchitect' ); ?>             <?php echo $_SERVER[ 'SERVER_SOFTWARE' ] . "\n"; ?>
+<?php if (function_exists('php_uname')) {?>
 <?php _e( 'Server info:', 'pzarchitect' ); ?>            <?php echo php_uname() . "\n"; ?>
-
+<?php } ?>
 <?php _e( 'WordPress URL:', 'pzarchitect' ); ?>          <?php echo get_bloginfo( 'wpurl' ) . "\n"; ?>
 <?php _e( 'Home URL: ', 'pzarchitect' ); ?>              <?php echo get_bloginfo( 'url' ) . "\n"; ?>
 

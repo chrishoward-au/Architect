@@ -26,7 +26,7 @@
       }
 
 
-      if ( !is_admin() || (is_admin() && pzarc_get_post_type() === 'arc-blueprints') ) { // Changed 1.10.0
+      if ( !is_admin() || (is_admin() && in_array(pzarc_get_post_type(),array('arc-blueprints','pz_showcases','pz_testimonials'))) ) { // Changed 1.10.0 // added showcases and testimonials check 1.21.0)
 
         if ( ! isset( $_architect_options['architect_add-content-types']['pz_snippets'] ) || $_architect_options['architect_add-content-types']['pz_snippets'] == 1 ) {
           require_once plugin_dir_path( __FILE__ ) . '/content-types/snippets/class_arc_content_snippets.php';

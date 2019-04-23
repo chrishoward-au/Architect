@@ -3,6 +3,21 @@
 ## Notes:
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
+## 1.17.0
+* FIXED: Beaver Builder Maps and Any Field modules loading field arrays unnecessarily on front end.
+* FIXED: CSS caching problem in Blox since 1.16.0
+* FIXED: Possible warning if php_uname is not available in sysinfo
+* FIXED: Possible notice in Blueprint listing is "Used on" page no longer available.
+* FIXED: Alignment not working in slider navigator.
+* CHANGED: Default option for populating posts dropdown is now off.
+* CHANGED: CSS is now cached in WP Options and loaded in page footer. This allows on the fly regeneration of CSS and reduces problems with file-based CSS not being available on some hosts.
+
+
+## 1.16.0
+* FIXED: Beaver Builder module is not using number of posts to show
+* FIXED: Sometimes CSS hasn't regenerated making for broken layouts
+* FIXED: Clearing cache now clears all files in the Architect cache.
+
 ## 1.15.1 : 12 August 2018
 * FIXED: Error in Blox when no action options
 * FIXED: Inaccessible features displaying in free version.

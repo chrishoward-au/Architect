@@ -536,11 +536,21 @@
       height: auto; }
   .pzarchitect .navpos-top .nav-align-left,
   .pzarchitect .navpos-bottom .nav-align-left {
-    text-align: left;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
     right: initial; }
   .pzarchitect .navpos-top .nav-align-right,
   .pzarchitect .navpos-bottom .nav-align-right {
-    text-align: right;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    left: initial; }
+  .pzarchitect .navpos-top .nav-align-right,
+  .pzarchitect .navpos-bottom .nav-align-right {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
     left: initial; }
   .pzarchitect .bullets .arc-slider-slide-nav-item {
     /* Stylize pagination button: */

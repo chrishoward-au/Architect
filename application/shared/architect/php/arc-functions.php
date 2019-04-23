@@ -48,14 +48,15 @@
    */
   function pzarc_tax_string_list( $tax, $prefix, $suffix, $separator ) {
     $list  = '';
-    $count = count( $tax );
-    $i     = 1;
-    if ( is_array( $tax ) ) {
-      foreach ( $tax as $key => $value ) {
-        $list .= $prefix . $value->slug . $suffix . ( $i ++ == $count ? '' : $separator );
+    if (is_array($tax)) {  // 1.17.0 Sometimes $tax is not an array causing warning. Need to find out when
+      $count = count( $tax );
+      $i     = 1;
+      if ( is_array( $tax ) ) {
+        foreach ( $tax as $key => $value ) {
+          $list .= $prefix . $value->slug . $suffix . ( $i ++ == $count ? '' : $separator );
+        }
       }
     }
-
     return $list;
   }
 
@@ -321,7 +322,7 @@
   }
 
   /**
-   * pzarc_get_defaults
+   * pzarc_set_defaults
    *
    * This doesn't need to return anything because it is populating the global variable
    *
@@ -439,6 +440,7 @@
 
       delete_option( '_architect_defaults' );
       add_option( '_architect_defaults', maybe_serialize( $_architect['defaults']['_blueprints'] ) );
+ //     var_dump(get_option('_architect_defaults'));
       //  Unset the temporary blueprints field
       // ???
       unset( $_architect['defaults']['blueprints'] );
@@ -2425,6 +2427,7 @@
     static function get_table_fields( $table, $inc_table_in_value = FALSE ) {
       global $wpdb;
       $fields   = $wpdb->get_col( "DESC {$table}", 0 );
+//      trigger_error("TABLE FIELDS", E_USER_WARNING);
       $fieldskv = array();
       foreach ( $fields as $v ) {
         $fieldskv[ $table . '/' . $v ] = ( $inc_table_in_value ? $table . '/' : '' ) . $v;
@@ -2604,6 +2607,17 @@
      */
     static function is_bb_active() {
       return ( class_exists( 'FLBuilderModel' ) && ( FLBuilderModel::is_builder_active() || isset( $_GET['fl_builder'] ) ) );
+    }
+
+    static function clear_arc_cache(){
+      // deletes any remaining files in the pzarc cache
+      $cache_files = scandir( PZARC_CACHE_PATH );
+      foreach ( $cache_files as $cache_file ) {
+        if ( ! is_dir( PZARC_CACHE_PATH . '/' . $cache_file ) ) {
+          @unlink( PZARC_CACHE_PATH . '/' . $cache_file );
+        }
+      }
+
     }
 
     /**

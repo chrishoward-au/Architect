@@ -10,12 +10,19 @@
   class arc_query_gallery extends arc_query_generic
   {
 
+//    public function __construct( $build, $criteria ) {
+//      parent::__construct( $build, $criteria );
+//    }
+
     protected function content_filters($source, $overrides)
     {
       if ($source === 'gallery') {
 
         $prefix         = '_content_galleries_';
+        // TODO: problem with gallery source going astray
+//        var_dump($prefix . 'gallery-source', $this->build->blueprint[ $prefix . 'gallery-source' ]);
 //        var_dump($prefix . 'gallery-source', $this->build->blueprint[ $prefix . 'gallery-source' ], $this->build->blueprint);
+//TODO: is this all screwed up!!! We already have gallery source, we want to know more specifically
         $gallery_source = !empty($overrides['ids']) ? 'ids' : $this->build->blueprint[ $prefix . 'gallery-source' ];
         if ($gallery_source === 'galleryplus' || $gallery_source === 'wpgallery') {
           if ($gallery_source === 'galleryplus') {

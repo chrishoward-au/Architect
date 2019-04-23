@@ -482,7 +482,7 @@ if (!class_exists("Redux_Framework_Architect_Options")) {
                                                                      'id' => 'architect_post-specific-id-dropdown',
                                                                      'type' => 'switch',
                                                                      'desc' => __('This will replace post list dropdowns with text fields where you\'ll need to enter specific IDs. This is required if you have 1000s of posts as populating the dropdowns will kill memory and the Blueprint editor won\'t fully load.', 'pzarchitect'),
-                                                                     'default' => false,
+                                                                     'default' => true,
                                                                      'on' => __('Yes', 'pzarchitect'),
                                                                      'off' => __('No', 'pzarchitect')),
                                                                //            array(

@@ -145,7 +145,8 @@
       // Overrides
       $this->build->blueprint['additional_overrides']        = arc_process_overrides( $additional_overrides, $this->build->blueprint );
       $this->build->blueprint['_blueprints_blueprint-title'] = isset( $overrides['title'] ) ? $overrides['title'] : $this->build->blueprint['_blueprints_blueprint-title'];
-      $this->build->blueprint['_blueprints_section-0-panels-per-view'] = isset( $overrides['panels_per_view'] ) ? $overrides['panels_per_view'] : $this->build->blueprint['_blueprints_section-0-panels-per-view'];
+      $this->build->blueprint['_blueprints_section-0-panels-per-view'] = !empty( $overrides['panels_per_view'] ) ? $overrides['panels_per_view'] : $this->build->blueprint['_blueprints_section-0-panels-per-view'];
+      $this->build->blueprint['_content_general_skip'] = !empty( $overrides['_content_general_skip'] ) ? $overrides['_content_general_skip'] : $this->build->blueprint['_content_general_skip'];
 
 
       // Shorthand some vars

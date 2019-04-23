@@ -130,6 +130,7 @@
       /**
        * Specific content filters
        **********************************************************/
+      // $this is used instead self:: so it calls the correct content_filters (not the one in this file)
       $this->content_filters( $source, $overrides );
 
       if ( ! empty( $this->criteria['_content_posts_specific-posts'] ) ) {

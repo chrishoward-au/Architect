@@ -21,6 +21,14 @@
 
   }
 
+  // 1.17.0 - Only run the option call when in the bb editor
+  if ( ArcFun::is_bb_active() ) {
+    $arc_fields_caller = ArcFun::get_all_table_fields_flat();
+  } else {
+    $arc_fields_caller = array();
+  }
+
+
   /**
    * Register the module and its form settings.
    */
@@ -50,7 +58,7 @@
               'preview'     => array(
                 'type' => 'refresh',
               ),
-              'options'=>'ArcFun::get_all_table_fields_flat'
+              'options'=>$arc_fields_caller
             ),
             'height'  => array(
               'type'        => 'text',

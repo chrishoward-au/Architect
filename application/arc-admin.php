@@ -313,6 +313,7 @@
         require_once( PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php' );
         global $pzarc_css_success;
         $pzarc_css_success = TRUE;
+        ArcFun::clear_arc_cache(); // v1.16.0
         save_arc_layouts( 'all', NULL, TRUE );
         pzarc_set_defaults();
         update_option( 'arc_blueprints', pzarc_get_blueprints( FALSE ) );

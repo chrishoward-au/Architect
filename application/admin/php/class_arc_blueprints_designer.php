@@ -147,8 +147,8 @@
       // TODO: How can we make this not load until we want it too?
 
       global $_architect_options;
-      $arc_styling            = ! empty( $_architect_options['architect_enable_styling'] ) ? 'arc-styling-on' : 'arc-styling-off';
-      $presets                = new arcPresetsLoader();
+      $arc_styling = ! empty( $_architect_options['architect_enable_styling'] ) ? 'arc-styling-on' : 'arc-styling-off';
+      $presets     = new arcPresetsLoader();
 
       $presets_array          = $presets->render();
       $presets_html           = $presets_array['html'];
@@ -180,9 +180,8 @@
                 <button class="tabby-masonry" data-tab="#masonry">' . __( 'Masonry', 'pzarchitect' ) . '</button>
                 <button class="tabby-accordion" data-tab="#accordion">' . __( 'Accordion', 'pzarchitect' ) . '</button>
                 <button class="tabby-tabular" data-tab="#tabular">' . __( 'Tabular', 'pzarchitect' ) . '</button>
-                <button class="tabby-custom" data-tab="#import">' . __( 'Import', 'pzarchitect' ) . '</button>'.
-                                (!empty($presets_html['error'])?'
-                <button class="tabby-error" data-tab="#error">' . __( 'Error', 'pzarchitect' ) . '</button>':'').'
+                <button class="tabby-custom" data-tab="#import">' . __( 'Import', 'pzarchitect' ) . '</button>' . ( ! empty( $presets_html['error'] ) ? '
+                <button class="tabby-error" data-tab="#error">' . __( 'Error', 'pzarchitect' ) . '</button>' : '' ) . '
             </div>
 
            <div class="tabby tabs-content container">
@@ -194,9 +193,7 @@
            <div class="tabs-pane" id="tabular">' . $presets_html['table'] . '</div>
            <div class="tabs-pane" id="import">
                 If you have Presets to import, do so in the Architect > Tools page
-           </div>'.
-                                (!empty($presets_html['error'])? '<div class="tabs-pane" id="error">Please contact your server host and adivse them of the following error:<br>:' . $presets_html['error'] . '</div>':'')
-                                .'
+           </div>' . ( ! empty( $presets_html['error'] ) ? '<div class="tabs-pane" id="error">Please contact your server host and adivse them of the following error:<br>:' . $presets_html['error'] . '</div>' : '' ) . '
            </div>
            <div class="footer">
            <p>• All Presets use Dummy Content by default. Please change to the content of your choice after loading the chosen Preset.</p>
@@ -284,7 +281,7 @@
             foreach ( $bp_uses as $k => $v ) {
               if ( ! empty( $post_meta['_blueprints_short-name'][0] ) && $v['bp'] === $post_meta['_blueprints_short-name'][0] ) {
                 $uo_post = get_post( $v['id'] );
-                if ( ! in_array( $uo_post->post_type, array( 'arc-blueprints', 'revision', 'attachment' ) ) ) {
+                if ( isset( $uo_post->post_type ) && ! in_array( $uo_post->post_type, array( 'arc-blueprints', 'revision', 'attachment' ) ) ) {
                   $odd_even = $i % 2 == 0 ? 'even' : 'odd';
                   echo '<p class="rows ' . $odd_even . '">' . ucwords( $uo_post->post_type ) . ' : ' . $uo_post->post_title . '</p>';
                   $i ++;
@@ -411,7 +408,7 @@
               ),
           ),
       );
-      if (!defined( 'PZARC_PRO' ) || (function_exists('arc_fs') &&  !arc_fs()->is__premium_only())  ){
+      if ( ! defined( 'PZARC_PRO' ) || ( function_exists( 'arc_fs' ) && ! arc_fs()->is__premium_only() ) ) {
         unset( $fields[0]['options']['customfields'] );
         unset( $fields[0]['targets']['customfields'] );
       }
@@ -1008,17 +1005,11 @@
                 ),
 
                 // TODO: Add shadows! Or maybe not!
-                pzarc_redux_bg( $prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ] ),
-                pzarc_redux_padding( $prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ] ),
-                pzarc_redux_margin( $prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ] ),
-                pzarc_redux_borders( $prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ] ),
-                pzarc_redux_links( $prefix . $thisSection . $link, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $link ] ),
-                array(
+                pzarc_redux_bg( $prefix . $thisSection . $background, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $background ] ), pzarc_redux_padding( $prefix . $thisSection . $padding, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $padding ] ), pzarc_redux_margin( $prefix . $thisSection . $margin, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $margin ] ), pzarc_redux_borders( $prefix . $thisSection . $border, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $border ] ), pzarc_redux_links( $prefix . $thisSection . $link, $this->defaults ? '' : $_architect[ 'architect_config_' . $thisSection . '-selectors' ], $defaults[ $optprefix . $thisSection . $link ] ), array(
                 'id'     => $prefix . 'blueprint-end-section-blueprint',
                 'type'   => 'section',
                 'indent' => FALSE,
-            ),
-                array(
+            ), array(
                 'title'    => __( 'Blueprint title', 'pzarchitect' ),
                 'id'       => $prefix . 'blueprint-section-blueprint-title-css',
                 'type'     => 'section',
@@ -2702,6 +2693,7 @@
           'sidebar'    => FALSE,
 
       );
+
       // update_option( 'arcmb_layout', $metaboxes );
 
       return $metaboxes;
@@ -2719,6 +2711,7 @@
 
       $content_types      = array();
       $content_post_types = (array) $registry->get( 'post_types' );
+      // why were we here?   var_dump($content_post_types);
       foreach ( $content_post_types as $key => $value ) {
         if ( isset( $value['blueprint-content'] ) ) {
           $content_types[ $value['blueprint-content']['type'] ] = $value['blueprint-content']['name'];
@@ -3209,44 +3202,44 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   ),
                   'default' => 'process',
               ),
-//              array(
-//                  'title'   => __( 'More tag processing', 'pzarchitect' ),
-//                  'id'      => $prefix . 'more-tag-in-body',
-//                  'type'    => 'button_set',
-//                  'options' => array(
-//                      'ignore' => __( 'Ignore', 'pzarchitect' ),
-//                      'trim'  => __( 'Trim', 'pzarchitect' ),
-//                  ),
-//                  'default' => 'ignore',
-//                  'subtitle'=>__('This is the manually inserted More tag WP post editor provides','pzarchitect'),
-//                  'hint'          => array( 'content' => '<strong>Ignore</strong>: Default behaviour of all themes. The More tag is ignored.<br><strong>Trim</strong>: No content is displayed after the More tag.' ),
-//              ),
-//              array(
-//                  'title'    => __( 'More tag', 'pzarchitect' ),
-//                  'id'       => $prefix . 'more-tag-text',
-//                  'type'     => 'text',
-//                  'default'  => '<!--more-->',
-//                  'desc'=>__('Normally this should not need to be changed. However, some languages, plugins or themes will use a different tag string. If so, enter it here.','pzarchitect'),
-//                  'required' => array(
-//                      $prefix . 'more-tag-in-body',
-//                      '=',
-//                      'trim',
-//                  ),
-//              ),
-//              array(
-//                  'title'    => __( 'Add read more indicators', 'pzarchitect' ),
-//                  'id'       => $prefix . 'more-indicator',
-//                  'type'     => 'switch',
-//                  'on'       => __( 'Yes', 'pzarchitect' ),
-//                  'off'      => __( 'No', 'pzarchitect' ),
-//                  'default'  => FALSE,
-//                  'subtitle'=>__('Uses the same as for Excerpts (below)','pzarchitect'),
-//                  'required' => array(
-//                      $prefix . 'more-tag-in-body',
-//                      '=',
-//                      'trim',
-//                  ),
-//              ),
+              //              array(
+              //                  'title'   => __( 'More tag processing', 'pzarchitect' ),
+              //                  'id'      => $prefix . 'more-tag-in-body',
+              //                  'type'    => 'button_set',
+              //                  'options' => array(
+              //                      'ignore' => __( 'Ignore', 'pzarchitect' ),
+              //                      'trim'  => __( 'Trim', 'pzarchitect' ),
+              //                  ),
+              //                  'default' => 'ignore',
+              //                  'subtitle'=>__('This is the manually inserted More tag WP post editor provides','pzarchitect'),
+              //                  'hint'          => array( 'content' => '<strong>Ignore</strong>: Default behaviour of all themes. The More tag is ignored.<br><strong>Trim</strong>: No content is displayed after the More tag.' ),
+              //              ),
+              //              array(
+              //                  'title'    => __( 'More tag', 'pzarchitect' ),
+              //                  'id'       => $prefix . 'more-tag-text',
+              //                  'type'     => 'text',
+              //                  'default'  => '<!--more-->',
+              //                  'desc'=>__('Normally this should not need to be changed. However, some languages, plugins or themes will use a different tag string. If so, enter it here.','pzarchitect'),
+              //                  'required' => array(
+              //                      $prefix . 'more-tag-in-body',
+              //                      '=',
+              //                      'trim',
+              //                  ),
+              //              ),
+              //              array(
+              //                  'title'    => __( 'Add read more indicators', 'pzarchitect' ),
+              //                  'id'       => $prefix . 'more-indicator',
+              //                  'type'     => 'switch',
+              //                  'on'       => __( 'Yes', 'pzarchitect' ),
+              //                  'off'      => __( 'No', 'pzarchitect' ),
+              //                  'default'  => FALSE,
+              //                  'subtitle'=>__('Uses the same as for Excerpts (below)','pzarchitect'),
+              //                  'required' => array(
+              //                      $prefix . 'more-tag-in-body',
+              //                      '=',
+              //                      'trim',
+              //                  ),
+              //              ),
 
               array(
                   'id'     => $prefix . 'excerpt-heading',
@@ -4173,7 +4166,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'subtitle' => __( 'Use a filler image from lorempixel if post has no image.', 'pzarchitect' ),
                   'options'  => array(
                       'none'       => 'None',
-                      'specific'   => 'Custom specific image',
+                      'blank'      => __( 'Blank transparent image', 'pzarchitect' ),
+                      'specific'   => __( 'Custom specific image', 'pzarchitect' ),
                       'lorempixel' => __( 'Random Picture', 'pzarchitect' ),
                       'abstract'   => ucfirst( 'abstract' ),
                       'animals'    => ucfirst( 'animals' ),
@@ -4293,6 +4287,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       'original'        => __( 'Lightbox', 'pzarchitect' ),
                       'url'             => __( 'Specific URL', 'pzarchitect' ),
                       'destination-url' => __( 'Gallery Link URL', 'pzarchitect' ),
+                      'showcase-url'    => __( 'Showcase URL', 'pzarchitect' ),
                   ),
                   'default'  => 'page',
                   'required' => array(
@@ -4301,7 +4296,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       'image',
                   ),
                   'subtitle' => __( 'Set what happens when a viewer clicks on the image', 'pzazrchitect' ),
-                  'desc'     => __( 'Gallery Link URL requires the WP Gallery Custom Links plugin', 'pzarchitect' ),
+                  'desc'     => __( 'Gallery Link URL requires the WP Gallery Custom Links plugin. Showcase URL requires Showcase as content source.', 'pzarchitect' ),
               ),
               array(
                   'title'    => __( 'Use alternate lightbox', 'pzarchitect' ),
@@ -4620,7 +4615,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           'show_title' => FALSE,
           'icon_class' => 'icon-large',
           'icon'       => 'el-icon-adjust-alt',
-          'desc'       => __( 'Available tags are <span class="pzarc-text-highlight">%author%, %email%,   %date%,   %categories%,   %tags%,   %commentslink%,   %editlink%,   %id%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%. Or to display WooCommerce product category, use: %ct:product_cat%', 'pzarchitect' ) . '<br>' . __( 'Allowed HTML tags:', 'pzarchitect' ) . ' p, br, span, strong & em<br><br>' . __( 'Use shortcodes to add custom functions to meta. e.g. [add_to_cart id="%id%"]', 'pzarchitect' ) . '<br>' . __( 'Note: Enclose any author related text in <span class="pzarc-text-highlight">//</span> to hide it when using excluded authors.', 'pzarchitect' ) . '<br>' . __( 'Note: The email address will be encoded to prevent automated harvesting by spammers.', 'pzarchitect' ),
+          'desc'       => __( 'Available tags are <span class="pzarc-text-highlight">%author%, %email%,   %date%,   %categories%,   %tags%,   %commentslink%,   %editlink%,   %id%,   %permalink%</span>. For custom taxonomies, prefix with ct:. e.g. To display the Woo Testimonials category, you would use %ct:testimonial-category%. Or to display WooCommerce product category, use: %ct:product_cat%', 'pzarchitect' ) . '<br>' . __( 'Allowed HTML tags:', 'pzarchitect' ) . ' p, br, span, strong & em<br><br>' . __( 'Use shortcodes to add custom functions to meta. e.g. [add_to_cart id="%id%"]', 'pzarchitect' ) . '<br>' . __( 'Note: Enclose any author related text in <span class="pzarc-text-highlight">//</span> to hide it when using excluded authors.', 'pzarchitect' ) . '<br>' . __( 'Note: The email address will be encoded to prevent automated harvesting by spammers.', 'pzarchitect' ),
           'fields'     => array(// ======================================
                                 // META
                                 // ======================================

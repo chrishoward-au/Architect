@@ -62,7 +62,9 @@
          || $post->post_type === 'arc-blueprints')) {
 
       $url = wp_nonce_url('post.php?post=' . $postid . '&action=edit', basename(__FILE__));
-      if (false === ($creds = request_filesystem_credentials($url, '', false, false, null))) {
+
+      // v1.1.17.0: Added function exists check as sometimes this is called way too early on archive pages. Possibly only in Blox.
+      if (!function_exists('request_filesystem_credentials') || (false === ($creds = request_filesystem_credentials($url, '', false, false, null)))) {
         return; // stop processing here
       }
 
@@ -134,17 +136,22 @@
         }
         foreach ($blueprints as $k => $v) {
 
-          $filename = str_replace(' ','',PZARC_CACHE_PATH . 'pzarc_blueprint_' . $k . '.css');
-
-          if (!empty($k) && !$wp_filesystem->put_contents(
-                  $filename,
-                  $v,
-                  FS_CHMOD_FILE // predefined mode settings for WP files
-              )
-          ) {
-            echo '<p class="error message notice notice-error">Error saving css cache file for Blueprint '.$k.'! Please check the permissions on the WP Uploads folder.</p>';
-            $pzarc_css_success = false;
-          }
+          /* v.1.17.0: Let's try using WP options and writing css to the footer so we don't need to use the filesystem - which is only available in admin
+          * At this rate, we could extend it to automatically grab css at runtime instead of using options even.
+          */
+          update_option('_arc-css_'.$k,$v);
+          /*  **** */
+//          $filename = str_replace(' ','',PZARC_CACHE_PATH . 'pzarc_blueprint_' . $k . '.css');
+//
+//          if (!empty($k) && !$wp_filesystem->put_contents(
+//                  $filename,
+//                  $v,
+//                  FS_CHMOD_FILE // predefined mode settings for WP files
+//              )
+//          ) {
+//            echo '<p class="error message notice notice-error">Error saving css cache file for Blueprint '.$k.'! Please check the permissions on the WP Uploads folder.</p>';
+//            $pzarc_css_success = false;
+//          }
         }
       }
       // update Blueprints option

@@ -83,6 +83,12 @@
                         'default' => '',
                         'description'=>__('Note: If the selection contains sticky posts, these will affect this limit.','pzarchitect')
                       ),
+                      '_content_general_skip'   => array(
+                          'type'    => 'text',
+                          'label'   => __('Skip N posts', 'pzarchitect'),
+                          'default' => '',
+                          'description'=>__('','pzarchitect')
+                      ),
                       'blueprint_title'   => array(
                         'type'    => 'text',
                         'label'   => __('Override Blueprint display title', 'pzarchitect'),
