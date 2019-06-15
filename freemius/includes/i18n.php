@@ -356,7 +356,7 @@
 		'download'                                 => _fs_text( 'Download' ),
 		'filter'                                   => _fs_text( 'Filter' ),
 		'type'                                     => _fs_text( 'Type' ),
-		'all-types'                                => _fs_text( 'All Types' ),
+		'all-field_types'                                => _fs_text( 'All Types' ),
 		'all-requests'                             => _fs_text( 'All Requests' ),
 		#endregion Debug
 

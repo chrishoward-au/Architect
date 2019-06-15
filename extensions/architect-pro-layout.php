@@ -5,8 +5,8 @@
 
     function pzarcpro_load() {
 
-      pzdb( 'pre content types load' );
-      /** Content types */
+      pzdb( 'pre content field_types load' );
+      /** Content field_types */
       require_once plugin_dir_path( __FILE__ ) . '/content-types/gallery/class_arc_content_gallery.php';
       require_once plugin_dir_path( __FILE__ ) . '/content-types/slide/class_arc_content_slide.php';
       require_once plugin_dir_path( __FILE__ ) . '/content-types/nextgen/class_arc_content_nextgen.php';
@@ -19,7 +19,7 @@
       // Animation add on
       require_once plugin_dir_path( __FILE__ ) . '/animation/arc-animation.php';
 
-      /** Create additional post types */
+      /** Create additional post field_types */
       global $_architect_options;
       if ( ! isset( $GLOBALS['_architect_options'] ) ) {
         $GLOBALS['_architect_options'] = get_option( '_architect_options', array() );
@@ -44,7 +44,7 @@
 //          require_once plugin_dir_path( __FILE__ ) . '/content-types/arcgallery/class_arc_content_arcgallery.php';
         }
       }
-      pzdb( 'post content types load' );
+      pzdb( 'post content field_types load' );
 
 
     } // EOF

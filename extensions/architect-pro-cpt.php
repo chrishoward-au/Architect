@@ -5,9 +5,9 @@
 
     function pzarcpro_init_cpt() {
 
-      pzdb( 'pre content types load' );
+      pzdb( 'pre content field_types load' );
 
-      /** Create additional post types */
+      /** Create additional post field_types */
       global $_architect_options;
       if ( ! isset( $GLOBALS['_architect_options'] ) ) {
         $GLOBALS['_architect_options'] = get_option( '_architect_options', array() );
@@ -29,13 +29,13 @@
       if ( ! isset( $_architect_options['architect_add-content-types']['pz_arcgallery'] ) || $_architect_options['architect_add-content-types']['pz_arcgallery'] == 1 ) {
   //      require_once plugin_dir_path( __FILE__ ) . '/content-types/arcgallery/arc-cpt-arcgallery.php';
       }
-      pzdb( 'post content types load' );
+      pzdb( 'post content field_types load' );
 
       // require_once plugin_dir_path( __FILE__ ). '/content-types/rss/class_arc_content_rss.php';
 //  require_once plugin_dir_path( __FILE__ ). '/content-types/widgets/class_arc_content_widgets.php';
-      // Add content types: Testimonials, FAQs, Features, Contacts, Movies, Books, Recipes
+      // Add content field_types: Testimonials, FAQs, Features, Contacts, Movies, Books, Recipes
 
-      /** Nav types? */
+      /** Nav field_types? */
 
 
       //    $registry = arc_Registry::getInstance();

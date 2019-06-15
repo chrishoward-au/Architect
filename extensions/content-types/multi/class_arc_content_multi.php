@@ -31,8 +31,8 @@
           'icon'       => 'el-icon-list',
           'fields'     => array(
             array(
-              'title'   => __( 'Select the post types to display', 'pzarchitect' ),
-              'id'      => $prefix . 'post-types',
+              'title'   => __( 'Select the post field_types to display', 'pzarchitect' ),
+              'id'      => $prefix . 'post-field_types',
               'type'    => 'select',
               'data'    => 'callback',
               'multi'   => true,

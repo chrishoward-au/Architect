@@ -344,6 +344,15 @@ if (!class_exists("Redux_Framework_Architect_Options")) {
                                                                                              'subtitle' => __('Use the stylings you configure for Architect in the Headway/Blox Visual Editor Design Mode.', 'pzarchitect')
 
                                                                ) : null),
+                                                               array('title' => __('Architect Shortcodes dropdown in post editor', 'pzarchitect'),
+                                                                     'id' => 'architect_shortcodes-dropdown',
+                                                                     'type' => 'button_set',
+                                                                     'options' => array('both' => __('Admins and Editors','pzarchitect'),
+                                                                                        'admins' => __('Admins only','pzarchitect'),
+                                                                     ),
+                                                                     'default' => 'both',
+                                                                     'desc'=>__('This is only relevant to the Classic editor','pzarchitect')
+                                                               ),
                                                                array('id' => 'architect_stylings_end-section',
                                                                      'type' => 'section',
                                                                      'indent' => false,),
@@ -427,7 +436,7 @@ if (!class_exists("Redux_Framework_Architect_Options")) {
 //                                                                     'subtitle' => __('', 'pzarchitect')
 //
 //                                                               ),
-                                                               apply_filters('arc-show-content-types',array('title' => __('Additional content types', 'pzarchitect'),
+                                                               apply_filters('arc-show-content-types',array('title' => __('Additional content field_types', 'pzarchitect'),
                                                                      'id' => 'architect_add-content-types',
                                                                      'type' => 'checkbox',
                                                                                                             'multi'=>true,
@@ -442,7 +451,7 @@ if (!class_exists("Redux_Framework_Architect_Options")) {
                                                                      'id' => 'architect_mod-video-fields',
                                                                      'type' => 'checkbox',
                                                                      'multi'=>true,
-                                                                     'subtitle' => __('Add a video field to content types to optionally use as the Feature.', 'pzarchitect'),
+                                                                     'subtitle' => __('Add a video field to content field_types to optionally use as the Feature.', 'pzarchitect'),
                                                                      'options' => array('post' => __('Posts', 'pzarchitect'),
                                                                                         'page' => __('Pages', 'pzarchitect'),
                                                                                         'pz_snippets' => __('Snippets', 'pzarchitect')),

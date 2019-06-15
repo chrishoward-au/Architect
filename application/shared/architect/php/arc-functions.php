@@ -47,8 +47,8 @@
    * @return string
    */
   function pzarc_tax_string_list( $tax, $prefix, $suffix, $separator ) {
-    $list  = '';
-    if (is_array($tax)) {  // 1.17.0 Sometimes $tax is not an array causing warning. Need to find out when
+    $list = '';
+    if ( is_array( $tax ) ) {  // 1.17.0 Sometimes $tax is not an array causing warning. Need to find out when
       $count = count( $tax );
       $i     = 1;
       if ( is_array( $tax ) ) {
@@ -57,6 +57,7 @@
         }
       }
     }
+
     return $list;
   }
 
@@ -369,8 +370,8 @@
       $bpd['design']                                             = $blueprints->mb_blueprint_design( $_architect['defaults']['blueprints'], TRUE );
       $_architect['defaults']['blueprints']['_blueprint_design'] = $bpd['design'][0]['sections'];
 
-      $bpd['types']                                             = $blueprints->mb_layouts( $_architect['defaults']['blueprints'], TRUE );
-      $_architect['defaults']['blueprints']['_blueprint_types'] = $bpd['types'][0]['sections'];
+      $bpd['field_types']                                       = $blueprints->mb_layouts( $_architect['defaults']['blueprints'], TRUE );
+      $_architect['defaults']['blueprints']['_blueprint_types'] = $bpd['field_types'][0]['sections'];
 
       $bpd['source']                                             = $blueprints->mb_sources( $_architect['defaults']['blueprints'], TRUE );
       $_architect['defaults']['blueprints']['_contents_metabox'] = $bpd['source'][0]['sections'];
@@ -402,13 +403,13 @@
       $_architect['defaults']['panels'] = ( ! isset( $_architect['defaults']['panels'] ) ? array() : $_architect['defaults']['panels'] );
 //var_dump($_architect);
 //      $pzarc_panel_general_settings = $blueprints->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ], true);
-      $pand                 = array();
-      $pand['panels']       = $blueprints->mb_panels( $_architect['defaults']['panels'], TRUE );
-      $pand['titles']       = $blueprints->mb_titles( $_architect['defaults']['panels'], TRUE );
-      $pand['meta']         = $blueprints->mb_meta( $_architect['defaults']['panels'], TRUE );
-      $pand['features']     = $blueprints->mb_features( $_architect['defaults']['panels'], TRUE );
-      $pand['body']         = $blueprints->mb_body_excerpt( $_architect['defaults']['panels'], TRUE );
-      if ((function_exists('arc_fs') &&  arc_fs()->is__premium_only())  || defined('PZARC_PRO')) {
+      $pand             = array();
+      $pand['panels']   = $blueprints->mb_panels( $_architect['defaults']['panels'], TRUE );
+      $pand['titles']   = $blueprints->mb_titles( $_architect['defaults']['panels'], TRUE );
+      $pand['meta']     = $blueprints->mb_meta( $_architect['defaults']['panels'], TRUE );
+      $pand['features'] = $blueprints->mb_features( $_architect['defaults']['panels'], TRUE );
+      $pand['body']     = $blueprints->mb_body_excerpt( $_architect['defaults']['panels'], TRUE );
+      if ( ( function_exists( 'arc_fs' ) && arc_fs()->is__premium_only() ) || defined( 'PZARC_PRO' ) ) {
         $pand['customfields'] = $blueprints->mb_customfields__premium_only( $_architect['defaults']['panels'], TRUE );
       } else {
         $pand['customfields'][0]['sectons'] = array();
@@ -440,7 +441,7 @@
 
       delete_option( '_architect_defaults' );
       add_option( '_architect_defaults', maybe_serialize( $_architect['defaults']['_blueprints'] ) );
- //     var_dump(get_option('_architect_defaults'));
+      //     var_dump(get_option('_architect_defaults'));
       //  Unset the temporary blueprints field
       // ???
       unset( $_architect['defaults']['blueprints'] );
@@ -749,7 +750,7 @@
         'posts_per_page' => '-1',
     );
     $blueprints_query = new WP_Query( $query_options );
-    $pzarc_blueprints     = array();
+    $pzarc_blueprints = array();
     while ( $blueprints_query->have_posts() ) {
       $blueprints_query->next_post();
       $the_panel_meta = get_post_meta( $blueprints_query->post->ID );
@@ -812,7 +813,7 @@
 
 //    $pzep_cf_list = $wpdb->get_results(
     ///// NEver select from wp_* as site might not use wp_ prefix
-//        "SELECT meta_key,post_id,wp_posts.post_type FROM wp_postmeta,wp_posts GROUP BY meta_key HAVING ((meta_key NOT LIKE '\_%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'enclosure%') AND (wp_posts.post_type NOT LIKE 'attachment' AND wp_posts.post_type NOT LIKE 'revision' AND wp_posts.post_type NOT LIKE 'acf' AND wp_posts.post_type NOT LIKE 'arc-%' AND wp_posts.post_type NOT LIKE 'nav_menu_item' AND wp_posts.post_type NOT LIKE 'wp-types%')) ORDER BY meta_key"
+//        "SELECT meta_key,post_id,wp_posts.post_type FROM wp_postmeta,wp_posts GROUP BY meta_key HAVING ((meta_key NOT LIKE '\_%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'enclosure%') AND (wp_posts.post_type NOT LIKE 'attachment' AND wp_posts.post_type NOT LIKE 'revision' AND wp_posts.post_type NOT LIKE 'acf' AND wp_posts.post_type NOT LIKE 'arc-%' AND wp_posts.post_type NOT LIKE 'nav_menu_item' AND wp_posts.post_type NOT LIKE 'wp-field_types%')) ORDER BY meta_key"
 //    );
     $exclude_fields   = array(
         'ID',
@@ -1646,7 +1647,7 @@
     update_option( 'pzarc-run-rebuild', FALSE );
     delete_option( 'architect_custom_fields' );
     delete_option( 'arc-blueprint-usage' );
-    update_option('arc_blueprints',pzarc_get_blueprints(false));
+    update_option( 'arc_blueprints', pzarc_get_blueprints( FALSE ) );
 
 
   }
@@ -1924,7 +1925,7 @@
    *
    * @return array|int|null|WP_Error
    */
-  function pzarc_get_terms( $taxonomy = '', $args = array(), $array = TRUE, $use_id=false ) {
+  function pzarc_get_terms( $taxonomy = '', $args = array(), $array = TRUE, $use_id = FALSE ) {
 
     $terms = get_terms( $taxonomy, $args );
     if ( isset( $terms->errors ) ) {
@@ -1933,7 +1934,7 @@
       if ( $array && ! empty( $terms ) ) {
         $term_list = array();
         foreach ( $terms as $k => $v ) {
-          $term_list[ ($use_id?$v->term_id:$v->slug) ] = $v->name;
+          $term_list[ ( $use_id ? $v->term_id : $v->slug ) ] = $v->name;
         }
         $terms = $term_list;
       }
@@ -2426,7 +2427,7 @@
      */
     static function get_table_fields( $table, $inc_table_in_value = FALSE ) {
       global $wpdb;
-      $fields   = $wpdb->get_col( "DESC {$table}", 0 );
+      $fields = $wpdb->get_col( "DESC {$table}", 0 );
 //      trigger_error("TABLE FIELDS", E_USER_WARNING);
       $fieldskv = array();
       foreach ( $fields as $v ) {
@@ -2609,7 +2610,7 @@
       return ( class_exists( 'FLBuilderModel' ) && ( FLBuilderModel::is_builder_active() || isset( $_GET['fl_builder'] ) ) );
     }
 
-    static function clear_arc_cache(){
+    static function clear_arc_cache() {
       // deletes any remaining files in the pzarc cache
       $cache_files = scandir( PZARC_CACHE_PATH );
       foreach ( $cache_files as $cache_file ) {
@@ -2630,8 +2631,8 @@
       return strip_tags( $string, $tags );
     }
 
-    static function enqueue_scripts($layout_type='basic',$blueprint='none') {
-      switch ($layout_type) {
+    static function enqueue_scripts( $layout_type = 'basic', $blueprint = 'none' ) {
+      switch ( $layout_type ) {
         case 'basic':
           break;
         case 'masonry':
@@ -2649,7 +2650,7 @@
      *
      * @return array
      */
-    static function get_blueprint_query_args($blueprint_name){
+    static function get_blueprint_query_args( $blueprint_name ) {
       if ( is_numeric( $blueprint_name ) ) {
         return array(
             'post_type' => 'arc-blueprints',
@@ -2664,6 +2665,66 @@
         );
       }
 
+    }
+
+    /**
+     * @param string $field
+     * @param array  $field_types
+     * @param array  $exclude
+     * @param string $comparison
+     *
+     * @return array
+     *
+     * For
+     *
+     */
+    static function redux_required( $compare_field = '', $all_values = array(), $exclude_values = array(), $comparison = '!=', $inc_empty = TRUE ) {
+      /*
+       * When $comparison is != this effectively works as an OR for the $exclude_values
+       */
+      if ( empty( $compare_field ) || empty( $all_values ) ) {
+        $return = array();
+      } else {
+        if ( $inc_empty ) {
+          $return = array( array( $compare_field, $comparison, '' ) );
+          $i      = 1;
+        } else {
+          $return = array();
+          $i      = 0;
+        }
+        foreach ( $all_values as $k => $v ) {
+          if ( ! in_array( $k, $exclude_values ) ) {
+            $return[ $i ++ ] = array( $compare_field, $comparison, $k );
+          }
+        }
+      }
+
+      return $return;
+    }
+
+    static function field_types( $return_path = FALSE ) {
+      //PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/'
+      $field_types = array(
+          'text'            => array( 'description' => __( 'Text', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'text-with-paras' => array( 'description' => __( 'Text with paragraph breaks', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'wysiwyg'         => array( 'description' => __( 'Formatted text', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'image'           => array( 'description' => __( 'Image', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'date'            => array( 'description' => __( 'Date', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'number'          => array( 'description' => __( 'Number', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'link'            => array( 'description' => __( 'Link (URL)', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'email'           => array( 'description' => __( 'Email', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'embed'           => array( 'description' => __( 'Embed URL', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          // 'array'           => __( 'Array', 'pzarchitect' ), // Gargh! This makes fields in fields we need to prompt to format them.
+          'group'           => array( 'description' => __( 'Group', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'file'            => array( 'description' => __( 'File', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'map'             => array( 'description' => __( 'Map', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),// WTF is a group Is it the aCF group?'path
+          //'acf-repeater' => array('description'=_('ACF Repeater'pzarchitect),'path'=> PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/'),
+      );
+      foreach ( $field_types as $ftk => $ftv ) {
+        $field_types[ $ftk ] = $return_path ? $ftv['path'] : $ftv['description'];
+      }
+
+      return apply_filters( 'arc_cfield_types', $field_types );
     }
 
   }

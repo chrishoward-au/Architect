@@ -565,7 +565,7 @@
       $arc_query_source->build_custom_query_options( $overrides );
 
       $this->arc_query = $arc_query_source->get_custom_query( $overrides );
-      self::replace_wp_query(); // NOTE: This is only activated on pagination. So should only be used by legitimate post types
+      self::replace_wp_query(); // NOTE: This is only activated on pagination. So should only be used by legitimate post field_types
     }
 
     /**
@@ -633,7 +633,7 @@
 //
 //      // TODO Try to get thiks working.
 //      $this->arc_query = new WP_Query($this->arc_query->query_vars);
-//      self::replace_wp_query(); // NOTE: This is only activated on pagination. So should only be used by legitimate post types
+//      self::replace_wp_query(); // NOTE: This is only activated on pagination. So should only be used by legitimate post field_types
     }
 
     // My function to modify the main query object

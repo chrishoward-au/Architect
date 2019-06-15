@@ -252,7 +252,7 @@
           break;
         default:
           // Then it is an array... maybe...
-          // This happens on non-post types, like dummy content type
+          // This happens on non-post field_types, like dummy content type
           // TODO: Make these something more useful!
           $post   = $arc_query[ $this->panel_number - 1 ];
           $postid = 'NoID';

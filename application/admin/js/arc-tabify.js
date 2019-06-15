@@ -20,7 +20,7 @@ jQuery(document).ready(function () {
 
 //  var slugdivs_bpsections = ['#blueprint-section-1', '#blueprint-section-2', '#blueprint-section-3', '#blueprint-pagination', '#blueprint-navigator', '#blueprint-wireframe-preview'];
 //  var slugdivs_bpswitcher = ['#blueprint-settings', '#contents-selection-settings'];
-//  var slugdivs_content = ['#default-filters', '#posts-filters', '#pages-filters', '#galleries-filters', '#slides-filters', '#custom-post-types-filters'];
+//  var slugdivs_content = ['#default-filters', '#posts-filters', '#pages-filters', '#galleries-filters', '#slides-filters', '#custom-post-field_types-filters'];
   var title = 'h3 span';
   var panelsdiv = '.inside';
   var x;

@@ -5,9 +5,9 @@ class File extends \Faker\Provider\Base
 {
 
     /**
-     * MIME types from the apache.org file. Some types are truncated.
+     * MIME field_types from the apache.org file. Some field_types are truncated.
      *
-     * @var array Map of MIME types => file extension(s)
+     * @var array Map of MIME field_types => file extension(s)
      * @link http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
      */
     protected static $mimeTypes = array(

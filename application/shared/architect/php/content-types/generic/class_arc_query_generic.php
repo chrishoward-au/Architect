@@ -41,7 +41,7 @@
 
       }
 
-      // TODO: need to scrape this down to just a generic one for built in post types
+      // TODO: need to scrape this down to just a generic one for built in post field_types
       // Probably should make this extensible
       //build the new query
       $source = $this->build->blueprint['_blueprints_content-source'];

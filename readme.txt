@@ -2,9 +2,9 @@
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
-Tested up to: 5.1.1
+Tested up to: 5.2
 Requires PHP: 5.6
-Stable tag: 1.18.0
+Stable tag: 10.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -102,34 +102,35 @@ TODO: Fix loading and rendering issue with sliders
 TODO: Add page categories option (taxonomy)
 TODO: Check if TGMPA message is breaking admin when Redux needs updating
 TODO: Add option for full size components with options to float content.
-MYPANELS .pzarc-components {
-    height:100%;
-    display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+MYPANELS .pzarc-components {    height:100%;    display: flex;  flex-direction: column;  justify-content: center;}
 TODO: Add font scaling to meta
 TODO: INCLUDE REDUX
 TODO Add image trim to featured images
+TODO: Add method to remove all Blueprint data
+todo: implement object fit for images to fix scaling - see Wangclub
+MYPANELS {    display:flex!important;}
+MYPANELS figure.entry-thumbnail {    max-height:100%;}
+MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    height:100%;}
 
-= 1.18.0 =
+= 10.9 =
+* UPDATED: Changed version numbering to match releases. This is the 109th update so v10.9
 * ADDED: Showcase link a link option for images (of course only relevant if Showcase is source!)
+* ADDED: Option in Blueprints settings to include/exclude hidden custom fields in dropdowns.
+* ADDED: New custom field type: Email
+* ADDED: New custom field type: Link
+* ADDED: New custom field type: File
+* ADDED: New custom field type: Image
+* ADDED: New custom field type: Map
+* ADDED: Admin option to show the "Insert Architect Blueprint" in the post editor for admins only.
+* ADDED: Option to select custom filed source type. Currently support standard WP and Advanced Custom Fields
+* CHANGED: Architect Maps Extend module for Beaver Builder now requires your own Google API key.
 * FIXED: Showcases and Testimonials not displaying extra fields metabox
 * ADDED: Override for Skip N Posts value in the Beaver module
 * UPDATED: Freemius SDK to 2.2.4 - Security update
+
+
 TODO: Inlcude Sudo - but fix nav centeringe
-todo: implement object fit for images to fix scaling - see Wangclub
-MYPANELS {
-    display:flex!important;
-}
-MYPANELS figure.entry-thumbnail {
-    max-height:100%;
-}
-MYPANELS figure.entry-thumbnail img {
-    object-fit:cover;
-    width:100%;
-    height:100%;
-}
+TODO: Include Users post type
 
 = 1.17.0
       // TODO NEED TO CHECK IF ANY BLUEPRINT CSS MISSING AND REGENERATE - since there will be with switch to options

@@ -29,7 +29,7 @@
         add_filter( 'views_edit-arc-blueprints', array( $this, 'blueprints_description', ) );
 
         //       add_action('admin_init',array($this,'admin_init'));
-        // Grab the extra slider types from the registry
+        // Grab the extra slider field_types from the registry
 
         $registry     = arc_Registry::getInstance();
         $slider_types = (array) $registry->get( 'slider_types' );
@@ -567,7 +567,7 @@
                     'height'   => 80,
                     'options'  => $modesx[ (int) ( $i > 0 ) ],
                     'hint'     => array(
-                        'title'   => 'Layout types',
+                        'title'   => 'Layout field_types',
                         'content' => __( '<strong>Grid</strong> is for flat designs like single posts, blog excerpts and magazine grids.<br>
 <br><strong>Masonry</strong> is like Basic but formats for a Pinterest-like design.<br>
 <br><strong>Slider</strong> for making sliders like featured posts, image slideshows etc.<br>
@@ -956,6 +956,15 @@
                     'off'     => 'No',
                     'default' => FALSE,
                 ),
+                // This didn't work coz of flexbox
+                //                array(
+                //                    'title'   => __( 'Insert shortcodes', 'pzarchitect' ),
+                //                    'id'      => $prefix . 'insert-shortcodes',
+                //                    'type'    => 'text',
+                //                    'default' => '',
+                //                    'subtitle'=>__('Insert a shortcode after specified number of posts','pzarchitect'),
+                //                    'desc'=>__('Format is post number to insert after, and shortcode. Comma separate if you want multiple. e.g: 4 myadverts, 8 myotherads','pzarchitect')
+                //                ),
             ),
 
         );
@@ -2966,7 +2975,7 @@ array(
                   'type'     => 'raw',
                   'markdown' => TRUE,
                   'content'  => __( 'With Architect Pro you can enable an extra content type called *Snippets*.
-  These give you a third method of creating content that doesn\'t fit into the post or page types.
+  These give you a third method of creating content that doesn\'t fit into the post or page field_types.
 It came about with my own need to create grids of product features. I didn\'t want to fill up pages or posts, so created Snippets for these small content bites.
 You can use them however you like though, e.g Testimonials, FAQs, Features, Contacts, etc.
                 ', 'pzarchitect' ),
@@ -3659,7 +3668,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
       // Settings
       /**
        * CUSTOM FIELDS
-       * Why are these here even though they are somewhat content related. They're not choosing the content itself. Yes they do limit the usablity of the panel. Partly this came about because of the way WPdoesn't bind custom fields to specific content types.
+       * Why are these here even though they are somewhat content related. They're not choosing the content itself. Yes they do limit the usablity of the panel. Partly this came about because of the way WPdoesn't bind custom fields to specific content field_types.
        */
       $sections[ _amb_customfields ] = array(
           'title'      => __( 'Custom fields general settings', 'pzarchitect' ),
@@ -3688,13 +3697,24 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       'content' => __( 'After selecting upto three custom field groups, you now need to set the total number of custom fields you will be displaying so Architect can create the settings tabs for each one.<br><br><strong>You will need to Publish/Update to see those new tabs.</strong>', 'pzarchitect' ),
                   ),
               ),
+              array(
+                  'title'   => __( 'Exclude hidden fields in dropdowns', 'pzarchitect' ),
+                  'id'      => $prefix . 'excl-hidden-fields',
+                  'type'    => 'button_set',
+                  'default' => 0,
+                  'options' => array(
+                      1 => __( 'Yes', 'pzarchitect' ),
+                      0 => __( 'No', 'pzarchitect' ),
+                  ),
+                  'desc'    => __( 'When you change this, click Publish/Update', 'pzarchitect' ),
+              ),
+
           ),
       );
 
       if ( is_admin() && ! empty( $_GET['post'] ) ) {
 
         $cfcount = ( ! empty( $this->postmeta['_panels_design_custom-fields-count'][0] ) ? $this->postmeta['_panels_design_custom-fields-count'][0] : 0 );
-
 
         if ( $cfcount ) {
 
@@ -3703,7 +3723,15 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               'post_title'    => 'Post Title',
               'specific_code' => 'Specific Text, HTML or Shortcodes',
           ), apply_filters( 'arc_custom_field_list', $this->custom_fields, $this->source ) );
-
+          if ( ! empty( $this->postmeta['_panels_design_excl-hidden-fields'][0] ) ) {
+            $pzarc_custom_fields_tmp = $pzarc_custom_fields;
+            foreach ( $pzarc_custom_fields_tmp as $k => $v ) {
+              if ( substr( $k, 0, 1 ) == '_' ) {
+                unset( $pzarc_custom_fields[ $k ] );
+              }
+            }
+          }
+          $field_types = ArcFun::field_types();
           for ( $i = 1; $i <= $cfcount; $i ++ ) {
 //            if (! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]) && $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]==='tablefield') {
 //              $cfname     = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] : '' );
@@ -3722,6 +3750,13 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 'icon'       => 'el-icon-adjust-alt',
                 'desc'       => __( 'Note: Only fields with content will show on the Blueprint.', 'pzarchitect' ),
                 'fields'     => array(
+                    array(
+                        'title'  => __( 'Field settings', 'pzarchitect' ),
+                        'id'     => $prefix . 'cffield-settings-section-open',
+                        'type'   => 'section',
+                        'indent' => TRUE,
+                    ),
+
                     array(
                         'title'   => __( 'Show in custom field group', 'pzarchitect' ),
                         'id'      => $prefix . 'cfield-' . $i . '-group',
@@ -3773,25 +3808,29 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                     array(
                         'title'   => __( 'Field type', 'pzarchitect' ),
                         'id'      => $prefix . 'cfield-' . $i . '-field-type',
-                        'type'    => 'button_set',
+                        'type'    => 'select',
                         'default' => 'text',
-                        'options' => array(
-                            'text'            => __( 'Text', 'pzarchitect' ),
-                            'text-with-paras' => __( 'Text with paragraph breaks', 'pzarchitect' ),
-                            'image'           => __( 'Image', 'pzarchitect' ),
-                            'date'            => __( 'Date', 'pzarchitect' ),
-                            'number'          => __( 'Number', 'pzarchitect' ),
-                            'embed'           => __( 'Embed URL', 'pzarchitect' ),
-                            // 'array'           => __( 'Array', 'pzarchitect' ), // Gargh! This makes fields in fields we need to prompt to format them.
-                            'group'           => __( 'Group', 'pzarchitect' ), // WTF is a group
-                            //'acf-repeater' => _('ACF Repeater'pzarchitect),
-                        ),
+                        'options' => $field_types,
                         //                        'required' => array(
                         //                            $prefix . 'cfield-' . $i . '-name',
                         //                            '!=',
                         //                            'specific_code',
                         //                        ),
 
+                    ),
+                    array(
+                        'title'    => __( 'Field source', 'pzarchitect' ),
+                        'id'       => $prefix . 'cfield-' . $i . '-field-source',
+                        'type'     => 'button_set',
+                        'default'  => 'wp',
+                        'subtitle' => __( 'Method the custom field was created with', 'pzarchitect' ),
+                        'options'  => array(
+                            'wp'  => __( 'WP', 'pzarchitect' ),
+                            'acf' => __( 'ACF', 'pzarchitect' ),
+                            'wooc' => __( 'WC', 'pzarchitect' ),
+                            //                                                        'toolset' => __( 'Toolset', 'pzarchitect' ),
+                        ),
+                        'desc'     => __( 'WP: A custom field created either in the post editor, or in code using standard WP methods.<br>ACF: A custom field created using Advanced Custom Fields plugin<br>WC: A field created using WooCommerce', 'pzarchitect' ),
                     ),
                     array(
                         'title'    => __( 'Specific Text or Code', 'pzarchitect' ),
@@ -3806,6 +3845,88 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         ),
                     ),
                     array(
+                        'id'     => $prefix . 'cffield-settings-section-close',
+                        'type'   => 'section',
+                        'indent' => FALSE,
+                    ),
+
+                    /*********************************************************************************************
+                     * GENERAL PARAMETERS
+                     */
+                    array(
+                        'title'  => __( 'General settings', 'pzarchitect' ),
+                        'id'     => $prefix . 'cfgeneral-settings-section-open',
+                        'type'   => 'section',
+                        'indent' => TRUE,
+                    ),
+                    array(
+                        'title'    => __( 'Wrapper tag', 'pzarchitect' ),
+                        'id'       => $prefix . 'cfield-' . $i . '-wrapper-tag',
+                        'type'     => 'select',
+                        'default'  => 'div',
+                        'options'  => array(
+                            'div'  => 'div',
+                            'p'    => 'p',
+                            'span' => 'span',
+                            'h1'   => 'h1',
+                            'h2'   => 'h2',
+                            'h3'   => 'h3',
+                            'h4'   => 'h4',
+                            'h5'   => 'h5',
+                            'h6'   => 'h6',
+                        ),
+                        'subtitle' => __( 'Select the wrapper element for this custom field', 'pzarchitect' ),
+
+                    ),
+                    array(
+                        'title'   => __( 'Shortcodes in text fields', 'pzarchitect' ),
+                        'id'      => $prefix . 'process-custom-field-shortcodes',
+                        'type'    => 'button_set',
+                        'options' => array(
+                            'process' => __( 'Process', 'pzarchitect' ),
+                            'remove'  => __( 'Remove', 'pzarchitect' ),
+                        ),
+                        'default' => 'process',
+
+                    ),
+                    array(
+                        'title'    => __( 'Field width (%)', 'pzarchitect' ),
+                        'id'       => $prefix . 'cfield-width',
+                        'type'     => 'spinner',
+                        'default'  => 100,
+                        'min'      => 1,
+                        'max'      => 100,
+                        'step'     => 1,
+                        'subtitle' => __( 'This is the width within the field group', 'pzarchitect' ),
+                    ),
+                    array(
+                        'id'     => $prefix . 'cfgeneral-settings-section-close',
+                        'type'   => 'section',
+                        'indent' => FALSE,
+                    ),
+
+
+                    // THis wasn't being added, plus we know the name of the field
+                    //              array(
+                    //                'id'    => $prefix . 'cfield-' . $i . '-class-name',
+                    //                'title' => __( 'Add class name', 'pzarchitect' ),
+                    //                'type'  => 'text',
+                    //              ),
+                    /*********************************************************************************************
+                     * DATE PARAMETERS
+                     */
+                    array(
+                        'title'    => __( 'Date settings', 'pzarchitect' ),
+                        'id'       => $prefix . 'cfdate-settings-section-open',
+                        'type'     => 'section',
+                        'indent'   => TRUE,
+                        'required' => array(
+                            $prefix . 'cfield-' . $i . '-field-type',
+                            '=',
+                            'date',
+                        ),
+                    ),
+                    array(
                         'id'       => $prefix . 'cfield-' . $i . '-date-format',
                         'title'    => __( 'Date format', 'pzarchitect' ),
                         'type'     => 'text',
@@ -3815,6 +3936,30 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                             $prefix . 'cfield-' . $i . '-field-type',
                             '=',
                             'date',
+                        ),
+                    ),
+                    array(
+                        'id'       => $prefix . 'cfdate-settings-section-close',
+                        'type'     => 'section',
+                        'indent'   => FALSE,
+                        'required' => array(
+                            $prefix . 'cfield-' . $i . '-field-type',
+                            '=',
+                            'date',
+                        ),
+                    ),
+                    /*********************************************************************************************
+                     * NUMERIC PARAMETERS
+                     */
+                    array(
+                        'title'    => __( 'Numeric settings', 'pzarchitect' ),
+                        'id'       => $prefix . 'cfnumeric-settings-section-open',
+                        'type'     => 'section',
+                        'indent'   => TRUE,
+                        'required' => array(
+                            $prefix . 'cfield-' . $i . '-field-type',
+                            '=',
+                            'number',
                         ),
                     ),
                     array(
@@ -3856,42 +4001,97 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         ),
                     ),
                     array(
-                        'title'    => __( 'Wrapper tag', 'pzarchitect' ),
-                        'id'       => $prefix . 'cfield-' . $i . '-wrapper-tag',
-                        'type'     => 'select',
-                        'default'  => 'div',
-                        'options'  => array(
-                            'div'  => 'div',
-                            'p'    => 'p',
-                            'span' => 'span',
-                            'h1'   => 'h1',
-                            'h2'   => 'h2',
-                            'h3'   => 'h3',
-                            'h4'   => 'h4',
-                            'h5'   => 'h5',
-                            'h6'   => 'h6',
+                        'id'       => $prefix . 'cfnumeric-settings-section-close',
+                        'type'     => 'section',
+                        'indent'   => FALSE,
+                        'required' => array(
+                            $prefix . 'cfield-' . $i . '-field-type',
+                            '=',
+                            'number',
                         ),
-                        'subtitle' => __( 'Select the wrapper element for this custom field', 'pzarchitect' ),
+                    ),
+                    /**
+                     * IMAGE SETTINGS
+                     */
+                    array(
+                        'title'    => __( 'Image settings', 'pzarchitect' ),
+                        'id'       => $prefix . 'cfimage-settings-section-open',
+                        'type'     => 'section',
+                        'indent'   => TRUE,
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image' ), '!=' ),
+
+                    ),
+
+                    array(
+                        'title'    => __( 'Image cropping', 'pzarchitect' ),
+                        'id'       => $prefix . 'image-focal-point',
+                        'type'     => 'select',
+                        'default'  => 'respect',
+                        'select2'  => array( 'allowClear' => FALSE ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image' ), '!=' ),
+                        'options'  => array(
+                            'respect'      => __( 'Use focal point', 'pzarchitect' ),
+                            //                      'centre'       => __('Centre focal point', 'pzarchitect'),
+                            //                      'topleft'      => __('Crop to top left', 'pzarchitect'),
+                            'topcentre'    => __( 'Crop to top centre', 'pzarchitect' ),
+                            //                      'topright'     => __('Crop to top right', 'pzarchitect'),
+                            //                      'midleft'      => __('Crop to middle left', 'pzarchitect'),
+                            'midcentre'    => __( 'Crop to middle centre', 'pzarchitect' ),
+                            //                      'midright'     => __('Crop to middle right', 'pzarchitect'),
+                            //                      'bottomleft'   => __('Crop to bottom left', 'pzarchitect'),
+                            'bottomcentre' => __( 'Crop to bottom centre', 'pzarchitect' ),
+                            //                      'bottomright'  => __('Crop to bottom right', 'pzarchitect'),
+                            'scale'        => __( 'Preserve aspect, fit to width. No cropping', 'pzarchitect' ),
+                            'scale_height' => __( 'Preserve aspect, fit to height. No cropping', 'pzarchitect' ),
+                            'shrink'       => __( 'Scale. Fit to width and height. No cropping', 'pzarchitect' ),
+                        ),
+                    ),
+                    array(
+                        'id'            => $prefix . 'image-quality',
+                        'title'         => __( 'Image quality', 'pzarchitect' ),
+                        'type'          => 'slider',
+                        'display_value' => 'label',
+                        'default'       => 82,
+                        'min'           => 1,
+                        'max'           => 100,
+                        'step'          => 1,
+                        'units'         => '%',
+                        'hint'          => array( 'content' => 'Quality to use when processing images' ),
+                        'required'      => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image' ), '!=' ),
 
                     ),
                     array(
-                        'title'   => __( 'Shortcodes in text fields', 'pzarchitect' ),
-                        'id'      => $prefix . 'process-custom-field-shortcodes',
-                        'type'    => 'button_set',
-                        'options' => array(
-                            'process' => __( 'Process', 'pzarchitect' ),
-                            'remove'  => __( 'Remove', 'pzarchitect' ),
+                        'id'       => $prefix . 'image-max-dimensions',
+                        'title'    => __( 'Limit image dimensions (crop/scale to)', 'pzarchitect' ),
+                        'type'     => 'dimensions',
+                        //                        'desc'     => __( 'The <strong>displayed width</strong> of the image is determined by its calculated size in the Content Layout designer. However, this is responsive, so the displayed size may be smaller than what dimensions are set here. Therefore, estimate the <strong>maximum</strong> required size when setting this parameter. For example, if you have 3 across on desktop with a page width of 960px (320px each) and 1 across on a phone with a page width of 360px, the maximum width would need to be set at 360px. Setting correctly will limit the size of the image created and used, increasing page load. Thus do not set it unnecessarily high. On the other hand, setting it too low though could cause images to be scaled up and pixelated.', 'pzarchitect' ),
+                        'units'    => 'px',
+                        'default'  => array(
+                            'width'  => '400',
+                            'height' => '300',
                         ),
-                        'default' => 'process',
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image' ), '!=' ),
+                    ),
+                    array(
+                        'id'       => $prefix . 'cfimage-settings-section-close',
+                        'type'     => 'section',
+                        'indent'   => FALSE,
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image' ), '!=' ),
+                    ),
+
+
+                    /*********************************************************************************************
+                     * LINK PARAMETERS
+                     */
+                    array(
+                        'title'    => __( 'Link settings', 'pzarchitect' ),
+                        'id'       => $prefix . 'cflink-settings-section-open',
+                        'type'     => 'section',
+                        'indent'   => TRUE,
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text', 'image' ), '!=' ),
 
                     ),
 
-                    // THis wasn't being added, plus we know the name of the field
-                    //              array(
-                    //                'id'    => $prefix . 'cfield-' . $i . '-class-name',
-                    //                'title' => __( 'Add class name', 'pzarchitect' ),
-                    //                'type'  => 'text',
-                    //              ),
                     array(
                         'title'    => __( 'Link field', 'pzarchitect' ),
                         'id'       => $prefix . 'cfield-' . $i . '-link-field',
@@ -3901,17 +4101,63 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         //                'args'     => array( 'pzarc_get_custom_fields' ),
                         'options'  => $link_fields,
                         'subtitle' => 'Select a custom field that contains URLs you want to use as the link',
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text', 'image' ), '!=' ),
+
+
                     ),
                     array(
-                        'title'   => __( 'Open link in', 'pzarchitect' ),
-                        'id'      => $prefix . 'cfield-' . $i . '-link-behaviour',
-                        'type'    => 'button_set',
-                        'default' => '_self',
-                        'options' => array(
+                        'title'    => __( 'Link type', 'pzarchitect' ),
+                        'id'       => $prefix . 'link-type',
+                        'type'     => 'button_set',
+                        'options'  => array(
+                            'url'   => __( 'URL', 'pzarchitect' ),
+                            'email' => __( 'Email', 'pzarchitect' ),
+                        ),
+                        'default'  => 'url',
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text', 'image' ), '!=' ),
+
+                    ),
+                    array(
+                        'title'    => __( 'Link text', 'pzarchitect' ),
+                        'id'       => $prefix . 'cfield-' . $i . '-link-text',
+                        'type'     => 'text',
+                        'default'  => '',
+                        'subtitle' => __( 'This will be the same for each link. Use a text field and link field pairing if you want each to be unique.', 'pzarchitect' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'link' ), '!=' ),
+
+
+                    ),
+                    array(
+                        'title'    => __( 'Open links in', 'pzarchitect' ),
+                        'id'       => $prefix . 'cfield-' . $i . '-link-behaviour',
+                        'type'     => 'button_set',
+                        'default'  => '_self',
+                        'options'  => array(
                             '_self'  => __( 'Same tab', 'pzarchitect' ),
                             '_blank' => __( 'New tab', 'pzarchitect' ),
                         ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text', 'link', 'image' ), '!=' ),
+
                     ),
+                    array(
+                        'id'       => $prefix . 'cflink-settings-section-close',
+                        'type'     => 'section',
+                        'indent'   => FALSE,
+                        'required' => array(
+                            ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text', 'link', 'image' ), '!=' ),
+                        ),
+                    ),
+
+                    /*********************************************************************************************
+                     * PREFIX/SUFFIX PARAMETERS
+                     */
+                    array(
+                        'title'  => __( 'Prefix/Suffix settings', 'pzarchitect' ),
+                        'id'     => $prefix . 'cfpresuff-settings-section-open',
+                        'type'   => 'section',
+                        'indent' => TRUE,
+                    ),
+
                     array(
                         'title'   => __( 'Prefix text', 'pzarchitect' ),
                         'id'      => $prefix . 'cfield-' . $i . '-prefix-text',
@@ -3952,6 +4198,12 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'default' => array( 'height' => '32px' ),
                         'units'   => 'px',
                     ),
+                    array(
+                        'id'     => $prefix . 'cfpresuff-settings-section-close',
+                        'type'   => 'section',
+                        'indent' => FALSE,
+                    ),
+
                     //                  array(
                     //                      'title'   => __('Prefix/suffix inside link', 'pzarchitect'),
                     //                      'id'      => $prefix . 'cfield-' . $i . '-ps-in-link',

@@ -558,7 +558,7 @@
 
     <div id="fs_debug_filters">
         <select name="type">
-            <option value="" selected="selected"><?php fs_esc_html_echo_inline( 'All Types', 'all-types' ) ?></option>
+            <option value="" selected="selected"><?php fs_esc_html_echo_inline( 'All Types', 'all-field_types' ) ?></option>
             <option value="warn_error">Warnings & Errors</option>
             <option value="error">Errors</option>
             <option value="warn">Warnings</option>

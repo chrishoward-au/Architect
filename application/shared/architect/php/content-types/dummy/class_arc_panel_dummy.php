@@ -32,7 +32,7 @@
         define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
       }
 
-      // Ideally we want to use Faker, since it has so many more content types, but it needs PHP 5.3.3, so we'll use LoremIpsum class when less that 5.3.3
+      // Ideally we want to use Faker, since it has so many more content field_types, but it needs PHP 5.3.3, so we'll use LoremIpsum class when less that 5.3.3
       if (PHP_VERSION_ID < 50303) {
         $this->isfaker = FALSE;
         require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/LoremIpsum.class/LoremIpsum.class.php');

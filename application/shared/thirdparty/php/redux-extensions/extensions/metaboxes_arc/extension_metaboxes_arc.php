@@ -213,7 +213,7 @@
                         $this->output[ $field['id'] ] = isset( $this->output[ $field['id'] ] ) ? array_merge( $field['output'], $this->output[ $field['id'] ] ) : $field['output'];
                       }
 
-                      // Detect what field types are being used
+                      // Detect what field field_types are being used
                       if ( ! isset( $this->parent->fields[ $field['type'] ][ $field['id'] ] ) ) {
                         $this->parent->fields[ $field['type'] ][ $field['id'] ] = 1;
                       } else {
@@ -511,7 +511,7 @@
 
       } // _enqueue()
 
-      /* Post URLs to IDs function, supports custom post types - borrowed and modified from url_to_postid() in wp-includes/rewrite.php */
+      /* Post URLs to IDs function, supports custom post field_types - borrowed and modified from url_to_postid() in wp-includes/rewrite.php */
       // Taken from http://betterwp.net/wordpress-tips/url_to_postid-for-custom-post-types/
       // Customized to work with non-rewrite URLs
       // Copyright Dovy Paukstys (@dovy) of Redux Framework
@@ -815,7 +815,7 @@
                     $field['class']                                         .= "redux-section-indent-start";
                     $this->boxes[ $key ]['sections'][ $sk ]['fields'][ $k ] = $field;
                   }
-                  // Detect what field types are being used
+                  // Detect what field field_types are being used
                   if ( ! isset( $this->fields[ $field['type'] ][ $field['id'] ] ) ) {
                     $this->parent->fields[ $field['type'] ][ $field['id'] ] = 1;
                   } else {

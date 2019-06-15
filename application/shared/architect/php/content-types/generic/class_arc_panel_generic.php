@@ -10,8 +10,17 @@
     public $arc_query;
     public $panel_number;
     public $_architect;
+    public $cfields;
 
     public function __construct( &$build ) {
+
+      // Load field classes
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/class_arc_custom_fields.php';
+      $field_types = ArcFun::field_types(true);
+      foreach ($field_types as $ftk => $ftpath) {
+        require_once $ftpath.'/class_arc_cft_'.$ftk.'.php';
+      }
+
       // If you create you own construct, remember to include these two lines!
       $this->build = $build;
       pzdb( 'arc_panel_generic before initialise' );
@@ -335,7 +344,7 @@
 
       if ( ! empty( $this->data['image']['id'] ) ) {
         $image = get_post( $thumb_id );
-        // TODO: Add all the focal point stuff to all the post types images and bgimages
+        // TODO: Add all the focal point stuff to all the post field_types images and bgimages
         // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
         // could pass $this->data thru a filter
         /** Get the image */
@@ -766,9 +775,37 @@
 
 
     /**
+     *
+     * Gets all custom field data for the post
+     *
      * @param $post
      */
     public function get_custom( &$post ) {
+
+      //var_Dump(get_the_ID());
+      // class inheritance means i should be asking what type of field is it, then when i get that field,
+      // it will also return all the other generic data too
+      // so... require parent early.
+      // require child early
+      // $child = new child_XXX where XXX - type.
+      // $data= $child->get()
+      // then for extension, require extension early,
+//      $postmeta = apply_filters( 'arc_get_custom_data', get_post_meta( get_the_ID() ) );
+//      $cfcount  = $this->section['_panels_design_custom-fields-count'];
+//      if ($cfcount) {
+//        for ( $i = 1; $i <= $cfcount; $i ++ ) {
+////          $this->cfield         = new arc_custom_fields($i, $this->section, $post,$postmeta );
+//          // the settings come from section
+//          if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-name' ] ) && ! empty( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) ) {
+//            $type =str_replace('-','_','arc_cft_'.$this->section[ '_panels_design_cfield-' . $i . '-field-type' ]);
+//            $cfields[$i] = new $type($i,$this->section,$post,$postmeta);
+//            $this->data['cfield'][$i] = $cfields[$i]->data;
+//          //  var_Dump($this->data['cfield']);
+//          }
+//
+//        }
+//      }
+
       /** CUSTOM FIELDS **/
 //      d($post);
       $postmeta = apply_filters( 'arc_get_custom_data', get_post_meta( get_the_ID() ) );
@@ -779,14 +816,29 @@
           $this->data['cfield'][ $i ]['group']          = $this->section[ '_panels_design_cfield-' . $i . '-group' ];
           $this->data['cfield'][ $i ]['name']           = $this->section[ '_panels_design_cfield-' . $i . '-name' ];
           $this->data['cfield'][ $i ]['field-type']     = $this->section[ '_panels_design_cfield-' . $i . '-field-type' ];
-          $this->data['cfield'][ $i ]['date-format']    = $this->section[ '_panels_design_cfield-' . $i . '-date-format' ];
+          $this->data['cfield'][ $i ]['field-source']     = $this->section[ '_panels_design_cfield-' . $i . '-field-source' ];
           $this->data['cfield'][ $i ]['wrapper-tag']    = $this->section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
           $this->data['cfield'][ $i ]['class-name']     = isset( $this->section[ '_panels_design_cfield-' . $i . '-class-name' ] ) ? $this->section[ '_panels_design_cfield-' . $i . '-class-name' ] : '';
-          $this->data['cfield'][ $i ]['link-field']     = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ]; // This will be populated with thea ctual value later
+
+          // Date settings
+          $this->data['cfield'][ $i ]['date-format']    = $this->section[ '_panels_design_cfield-' . $i . '-date-format' ];
+
+          // Link settings
+          $this->data['cfield'][ $i ]['link-field']     = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ]; // This will be populated with the actual value later
           $this->data['cfield'][ $i ]['link-behaviour'] = isset( $this->section[ '_panels_design_cfield-' . $i . '-link-behaviour' ] ) ? $this->section[ '_panels_design_cfield-' . $i . '-link-behaviour' ] : '_self';
+          $this->data['cfield'][ $i ]['link-text']    = '<span class="pzarc-link-text">' . $this->section[ '_panels_design_cfield-' . $i . '-link-text' ] . '</span>';
+
+          // Numeric settings
           $this->data['cfield'][ $i ]['decimals']       = $this->section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
           $this->data['cfield'][ $i ]['decimal-char']   = $this->section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
           $this->data['cfield'][ $i ]['thousands-sep']  = $this->section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
+
+          // Image settings
+//          $this->data['cfield'][ $i ]['image-quality']       = $this->section[ '_panels_design_cfield-' . $i . '-image-quality' ];
+//          $this->data['cfield'][ $i ]['image-max-dimensions']       = $this->section[ '_panels_design_cfield-' . $i . '-image-max-dimensions' ];
+//          $this->data['cfield'][ $i ]['image-focal-point']       = $this->section[ '_panels_design_cfield-' . $i . '-image-focal-point' ];
+
+          // Prefix/Suffix
           $params                                       = array(
               'width'   => str_replace( $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ]['units'], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ]['width'] ),
               'height'  => str_replace( $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ]['units'], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ]['height'] ),
@@ -797,6 +849,8 @@
           $this->data['cfield'][ $i ]['prefix-image'] = function_exists( 'bfi_thumb' ) ? bfi_thumb( $this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ]['url'], $params ) : $this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ]['url'];
           $this->data['cfield'][ $i ]['suffix-text']  = '<span class="pzarc-suffix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>';
           $this->data['cfield'][ $i ]['suffix-image'] = function_exists( 'bfi_thumb' ) ? bfi_thumb( $this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ]['url'], $params ) : $this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ]['url'];
+
+
 
           // The content itself comes from post meta or post title
 
@@ -887,7 +941,7 @@
       $this->data['postid']                = get_the_ID();
       $this->data['poststatus']            = get_post_status();
 //      $this->data[ 'posttype' ]    = get_post_type();
-      $this->data['posttype']    = ! empty( $post ) ? $post->post_type : 'unknown'; // v1.15.0 Happening when post type is users... TODO: Fix for unknown post types
+      $this->data['posttype']    = ! empty( $post ) ? $post->post_type : 'unknown'; // v1.15.0 Happening when post type is users... TODO: Fix for unknown post field_types
       $this->data['permalink']   = get_the_permalink();
       $post_format               = get_post_format();
       $this->data ['postformat'] = ( empty( $post_format ) ? 'standard' : $post_format );
@@ -1235,6 +1289,15 @@
     }
 
 
+    /**
+     * @param      $component
+     * @param      $content_type
+     * @param      $panel_def
+     * @param      $rsid
+     * @param bool $layout_mode
+     *
+     * @return mixed|void
+     */
     public function render_custom( $component, $content_type, $panel_def, $rsid, $layout_mode = FALSE ) {
 
 
@@ -1250,14 +1313,64 @@
             switch ( $v['field-type'] ) {
 
               case 'image':
-                if ( function_exists( 'bfi_thumb' ) ) {
+//                $content = $this->cfields->render('image') ;
+//                if ( $data['field-source'] = 'acf' ) {
+//                  if ( function_exists( 'get_field' ) ) {
+//                    $acf_image     = get_field( $v['name'] );
+//                    $acf_image_url = $acf_image['url'];
+//                  } elseif ( is_numeric( $v['value'] ) ) {
+//                    $acf_image     = wp_get_attachment_image_src( $v['value'] );
+//                    $acf_image_url = $acf_image[0];
+//                  }
+//                  if ( function_exists( 'bfi_thumb' ) ) {
+//
+//                    $content = '<img src="' . bfi_thumb( $acf_image_url, array(
+//                            'quality' => ( ! empty( $v['image-quality'] ) ? $v['image-quality'] : 82 ),
+//                        ) ) . '">';
+//                  } else {
+//                    $content = '<img src="' . $acf_image_url . '">';
+//                  }
+//                } else {
+//                  if ( function_exists( 'bfi_thumb' ) ) {
+//
+//                    $content = '<img src="' . bfi_thumb( $v['value'], array(
+//                            'quality' => ( ! empty( $v['image-quality'] ) ? $v['image-quality'] : 82 ),
+//                        ) ) . '">';
+//                  } else {
+//                    $content = '<img src="' . $v['value'] . '">';
+//                  }
+//
+//                }
+                    $content = '<img src="' . $v['value'] . '">';
 
-                  $content = '<img src="' . bfi_thumb( $v['value'], array(
-                          'quality' => ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 ),
-                      ) ) . '">';
+                break;
+
+              case 'file':
+                if ( $v['field-source'] = 'acf' ) {
+
+                  $file_url = '';
+                  if ( function_exists( 'get_field' ) ) {
+                    $file     = get_field( $v['name'] );
+                    $file_url = $file['url'];
+                  } elseif ( is_numeric( $v['value'] ) ) {
+                    $file     = wp_get_attachment_image_src( $v['value'] );
+                    $file_url = $file[0];
+                  }
                 } else {
-                  $content = '<img src="' . $v['value'] . '">';
+                  $file_url = $v['value'];
                 }
+                if ( ! empty( $file_url ) ) {
+                  $content = '<a href="' . $file_url . '" class="pzarc-acf-file">' . $v['link-text'] . '</a>';
+                }
+
+                break;
+
+              case 'link':
+                $content = '<a href="' . $v['value'] . '" class="pzarc-link">' . ( ! empty( $v['link-text'] ) ? $v['link-text'] : $v['value'] ) . '</a>';
+                break;
+
+              case 'email':
+                $content = do_shortcode( '[mailto]' . $v['value'] . '[/mailto]' );
                 break;
 
               case 'embed':
@@ -1286,10 +1399,12 @@
                 }
                 break;
 
+              // TODO - Is this an ACF group field?
               case 'group':
                 $content = $v['value'];
                 break;
 
+              // TODO Needs work!
               case 'acf_repeater':
                 $content = $v['value'];
 
@@ -1443,6 +1558,21 @@
 // RESUME: Was doing something here!
 //      d($this->arc_query);
 
+      // This didn't work coz of shortcodes. But could be repurposed to insert a panel
+//      $insert_shortcodes = array();
+//      $shortcodes        = array();
+//      if ( ! empty( $this->build->blueprint['_blueprints_insert-shortcodes'] ) ) {
+//        $insert_shortcodes = explode( ',', $this->build->blueprint['_blueprints_insert-shortcodes'] );
+//        $key               = '';
+//        foreach ( $insert_shortcodes as $v ) {
+//          if ( is_numeric( $v ) ) {
+//            $key = $v;
+//          } elseif ( is_string( $v ) && ! empty( $key ) ) {
+//            $shortcodes[ $key ] = '[' . $v . ']';
+//            $key                = '';
+//          }
+//        }
+//      }
       while ( $this->arc_query->have_posts() && $loopcount ++ < $loopmax ) {
         //  var_dump("You is here");
         $this->arc_query->the_post();
@@ -1451,6 +1581,11 @@
 
         $panels_per_view  = $this->build->blueprint[ '_blueprints_section-' . ( $section_no - 1 ) . '-panels-per-view' ];
         $panels_unlimited = empty( $this->build->blueprint[ '_blueprints_section-' . ( $section_no - 1 ) . '-panels-limited' ] );
+
+//        if ( array_key_exists( $i, $shortcodes ) ) {
+//          echo '<div class="pzarc-inserted-shortcode">'.do_shortcode( $shortcodes[ $i ] ).'</div>';
+//        }
+
         if ( $i ++ >= $panels_per_view && ! $panels_unlimited ) {
           if ( $i !== count( $this->arc_query->posts ) ) {
             break;

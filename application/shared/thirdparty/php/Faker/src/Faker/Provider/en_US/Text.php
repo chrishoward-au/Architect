@@ -3599,7 +3599,7 @@ EOT;
     WARRANTIES OF MERCHANTIBILITY OR FITNESS FOR ANY PURPOSE.
 
     1.F.5.  Some states do not allow disclaimers of certain implied
-    warranties or the exclusion or limitation of certain types of damages.
+    warranties or the exclusion or limitation of certain field_types of damages.
     If any disclaimer or limitation set forth in this agreement violates the
     law of the state applicable to this agreement, the agreement shall be
     interpreted to make the maximum disclaimer or limitation permitted by

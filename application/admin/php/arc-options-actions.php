@@ -281,7 +281,7 @@
                       'default' => '',
                   ),
                   array(
-                      'title'   => __('Page types', 'pzarc'),
+                      'title'   => __('Page field_types', 'pzarc'),
                       'id'      => $prefix . 'pageids',
                       'type'    => 'select',
                       'multi'   => true,

@@ -125,7 +125,7 @@ console.log(arcSlickOptsObj);
 
 
       /** Shouldn't need this now we have asNavFor! */
-      /** No still need it for other types of nav */
+      /** No still need it for other field_types of nav */
       jQuery( arcSlickNav ).find( '.arc-slider-slide-nav-item' ).on( 'click', function ()
       {
         arcSlick.slickGoTo( (jQuery( this ).attr( 'data-index' ) - 1) );

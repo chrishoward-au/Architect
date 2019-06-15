@@ -448,6 +448,10 @@
 .pzarchitect p.wpml-ls-statics-post_translations.wpml-ls {
   clear: none; }
 
+.pzarchitect .pzarc-inserted-shortcode {
+  display: block;
+  width: 100%; }
+
 .pzarchitect {
   /* ===============================================================
     Your custom styles, here you need to specify container's and slide's
@@ -717,3 +721,7 @@ SVG Icons - svgicons.sparkk.fr
 .svg-icon circle {
   stroke: #4691f6;
   stroke-width: 1; }
+
+.xdebug-error {
+  color: black;
+  font-size: 12px; }

@@ -100,3 +100,71 @@
   function pzarc_post_title($atts=array(),$content=null){
     return sanitize_title_with_dashes(get_the_title());
   }
+
+  if (!function_exists('show_external_content')) {
+
+
+    add_shortcode( 'arcexternal', 'show_external_content' );
+
+
+    /**
+     * Get section of an external webpage
+     *
+     * @param [type] $atts
+     * @param [type] $contents
+     *
+     * @return string
+     *
+     * Possible enhancements: Grab multiple sections using multiple classes
+     *
+     *
+     */
+    function show_external_content( $atts = NULL, $contents = NULL ) {
+
+      switch ( TRUE ) {
+        case empty( $atts ):
+          return '<strong>Missing parameters. Require url and class or id</strong>';
+          break;
+        case ! isset( $atts['url'] ):
+          return '<strong>Missing parameters. Requires class or id</strong>';
+          break;
+        case ! isset( $atts['class'] ) && ! isset( $atts['id'] ):
+          return '<strong>Missing parameters. Requires class or id</strong>';
+          break;
+      }
+
+      $ch = curl_init();
+      curl_setopt( $ch, CURLOPT_URL, $atts['url'] );
+      curl_setopt( $ch, CURLOPT_HEADER, FALSE );
+      curl_setopt( $ch, CURLOPT_RETURNTRANSFER, TRUE );
+      curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 300 );
+      curl_setopt( $ch, CURLOPT_TIMEOUT, 300 );
+      $data = curl_exec( $ch );
+      curl_close( $ch );
+
+//var_dump(esc_html($data));
+
+      if ( ! empty( $data ) ) {
+        $matches    = array();
+        $submatches = array();
+        if ( isset( $atts['id'] ) ) {
+          preg_match( '/<div.?id\\s*=\\s*["\']' . $atts['id'] . '["\']\\s*.*>(.*)<\\/div>/uiUsm', $data, $matches );
+        }
+        if ( isset( $atts['class'] ) ) {
+          preg_match( '/<div.?class\\s*=\\s*["\']' . $atts['class'] . '["\']\\s*.*>(.*)<\\/div>/uiUsm', $data, $matches );
+        }
+
+        // This is for the snow cams
+//        preg_match('/<div.?class\\s*=\\s*["\']video-wrap["\']\\s*.*>/uiUsm', $matches[0],$submatches);
+
+        //var_Dump($matches);
+        //var_Dump($submatches);
+
+        return $matches[0];
+//      return  $matches[0].'</div>' ;
+      } else {
+        return 'Unable to load content.';
+      }
+
+    }
+  }

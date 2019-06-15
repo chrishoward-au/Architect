@@ -1824,7 +1824,7 @@ msgstr "Debug Log"
 
 #: templates/debug.php:559
 msgid "All Types"
-msgstr "Tous les types"
+msgstr "Tous les field_types"
 
 #: templates/debug.php:566
 msgid "All Requests"

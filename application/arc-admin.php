@@ -463,7 +463,7 @@
           <li>Custom fields</li>
           <li>Custom fields filtering</li>
           <li>Content animation</li>
-          <li>Access to all content types, including Galleries, Snippets, NextGen, Testimonials and custom post types</li>
+          <li>Access to all content field_types, including Galleries, Snippets, NextGen, Testimonials and custom post field_types</li>
           <li>Lite is also limited to 15 posts per page</li>
           </ul>
         <p style="font-weight:bold;">To get all the extra goodness of Architect, you can purchase it from the <a href="http://shop.pizazzwp.com/downloads/architect/" target="_blank">PizazzWP Shop</a> or just click the <a href="./admin.php?page=pzarc-pricing">Upgrade link</a> in the Architect menu</p>
@@ -761,14 +761,14 @@
    */
   function pzarc_blueprints_order( $query ) {
     /*
-        Set post types.
-        _builtin => true returns WordPress default post types.
-        _builtin => false returns custom registered post types.
+        Set post field_types.
+        _builtin => true returns WordPress default post field_types.
+        _builtin => false returns custom registered post field_types.
     */
     $post_types = get_post_types( array(), 'names' );
     /* The current post type. */
     $post_type = $query->get( 'post_type' );
-    /* Check post types. */
+    /* Check post field_types. */
     if ( in_array( $post_type, $post_types ) && $post_type === 'arc-blueprints' ) {
       /* Post Column: e.g. title */
       if ( $query->get( 'orderby' ) == '' ) {
@@ -787,15 +787,22 @@
 
 
   //http://wpsnipp.com/index.php/functions-php/update-automatically-create-media_buttons-for-shortcode-selection/
-  add_action( 'media_buttons', 'pzarc_add_sc_select', 11 );
+    add_action( 'media_buttons', 'pzarc_add_sc_select', 11 );
 
   /*********************************************
    *
    */
   function pzarc_add_sc_select() {
-
+    global $_architect_options;
+    if ( empty( $_architect_options ) ) {
+      $_architect_options = get_option( '_architect_options' );
+    }
     $screen   = get_current_screen();
-    $user_can = current_user_can( 'edit_others_posts' );
+    if (empty($_architect_options['architect_shortcodes-dropdown']) || $_architect_options['architect_shortcodes-dropdown']=='both') {
+      $user_can = current_user_can( 'edit_others_posts' );
+    } else {
+      $user_can= current_user_can( 'delete_plugins' );
+    }
     if ( $user_can && ( $screen->post_type === 'page' || $screen->post_type === 'post' ) ) {
       $blueprint_list = pzarc_get_posts_in_post_type( 'arc-blueprints', TRUE, FALSE, TRUE );
       echo '&nbsp;<select id="arc-select" class="arc-dropdown" style="font-size:small;"><option>Insert Architect Blueprint</option>';
@@ -932,7 +939,7 @@
 
       // Available shortcode attributes and default values. Required. Array.
       // Attribute model expects 'attr', 'type' and 'label'
-      // Supported field types: text, checkbox, textarea, radio, select, email, url, number, and date.
+      // Supported field field_types: text, checkbox, textarea, radio, select, email, url, number, and date.
       'attrs'         => array(
 
           array(

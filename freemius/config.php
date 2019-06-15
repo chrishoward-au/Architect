@@ -254,7 +254,7 @@
     define( 'WP_FS__OPTIONS_OPTION_NAME', WP_FS___OPTION_PREFIX . 'options' );
 
     /**
-     * Module types
+     * Module field_types
      *
      * @since 1.2.2
      */

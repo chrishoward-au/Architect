@@ -1,6 +1,5 @@
 // Make sure there's no formatting in this
 .pzarchitect {
-
   .disable-save img{
     -moz-user-select: none;
     -webkit-user-select: none;
@@ -416,5 +415,10 @@
   }
   p.wpml-ls-statics-post_translations.wpml-ls {
     clear:none;
+  }
+
+  .pzarc-inserted-shortcode {
+    display:block;
+    width:100%;
   }
 }

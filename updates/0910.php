@@ -27,7 +27,7 @@
 </ol>
 <p>0.9.1 sees three other significant changes:</p>
 <ol>
-<li>The Layout types now include Sliders and Tabbed. Which is why you have to redo those ones with Navigator or Pagination.</li>
+<li>The Layout field_types now include Sliders and Tabbed. Which is why you have to redo those ones with Navigator or Pagination.</li>
 <li>A content source type of NextGEN Galleries has been added</li>
 <li>The content selection has been vastly improved to be much more user friendly</li>
 </ol></u>

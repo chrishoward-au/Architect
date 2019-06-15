@@ -82,7 +82,7 @@
       }
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_blueprint_data.php';
 
-      // Load custom custom types
+      // Load custom custom field_types
       if ( is_admin() ) {
         /// Why is this still here? // 1.10.8
         //      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-panels.php';
@@ -92,8 +92,8 @@
       }
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-blueprints.php';
 
-      // Load all the builtin post types
-      pzdb( 'Load builtin post types' );
+      // Load all the builtin post field_types
+      pzdb( 'Load builtin post field_types' );
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_content_defaults.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/post/class_arc_content_posts.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/page/class_arc_content_pages.php';

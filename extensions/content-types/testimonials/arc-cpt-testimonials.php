@@ -149,7 +149,7 @@
   // function add_custom_types_to_tax( $query ) {
   //   if( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
 
-  //     // Get all your post types
+  //     // Get all your post field_types
   //     $post_types = get_post_types();
 
   //     $query->set( 'post_type', $post_types );

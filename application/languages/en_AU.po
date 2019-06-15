@@ -609,7 +609,7 @@ msgid "Activate Architect Builder on Pages editor"
 msgstr ""
 
 #: ../admin/php/arc-options.php:428
-msgid "Additional content types"
+msgid "Additional content field_types"
 msgstr ""
 
 #: ../admin/php/arc-options.php:433 ../admin/php/arc-options.php:446
@@ -626,7 +626,7 @@ msgid "Feature Video field"
 msgstr ""
 
 #: ../admin/php/arc-options.php:442
-msgid "Add a video field to content types to optionally use as the Feature."
+msgid "Add a video field to content field_types to optionally use as the Feature."
 msgstr ""
 
 #: ../admin/php/arc-options.php:444
@@ -1388,7 +1388,7 @@ msgstr ""
 msgid ""
 "With Architect Pro you can enable an extra content type called *Snippets*.\n"
 "  These give you a third method of creating content that doesn't fit into "
-"the post or page types.\n"
+"the post or page field_types.\n"
 "It came about with my own need to create grids of product features. I didn't "
 "want to fill up pages or posts, so created Snippets for these small content "
 "bites.\n"
