@@ -2410,9 +2410,28 @@
       // Get all tables for current site
       $results  = $wpdb->get_results( "SHOW TABLES LIKE '{$wpdb->prefix}%'" );
       $tableset = array();
+      $exclusions =array(
+          $wpdb->prefix.'hw_',
+          $wpdb->prefix.'bt_',
+          $wpdb->prefix.'cpk_',
+          $wpdb->prefix.'wc_',
+          $wpdb->prefix.'postmeta',
+          $wpdb->prefix.'options',
+          $wpdb->prefix.'term',
+      );
       foreach ( $results as $index => $value ) {
         foreach ( $value as $tablename ) {
-          $tableset[ $tablename ] = $tablename;
+          $toexc = false;
+          foreach ($exclusions as $exclusion) {
+            $len = strlen($exclusion);
+            $toexc = (substr($tablename, 0, $len) === $exclusion);
+            if ($toexc) {
+              break;
+            }
+          }
+          if (!$toexc) {
+            $tableset[ $tablename ] = $tablename;
+          }
         }
       }
 
@@ -2715,9 +2734,11 @@
           'email'           => array( 'description' => __( 'Email', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'embed'           => array( 'description' => __( 'Embed URL', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           // 'array'           => __( 'Array', 'pzarchitect' ), // Gargh! This makes fields in fields we need to prompt to format them.
-          'group'           => array( 'description' => __( 'Group', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'group'           => array( 'description' => __( 'Group', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),// WTF is a group Is it the aCF group?'path
           'file'            => array( 'description' => __( 'File', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
-          'map'             => array( 'description' => __( 'Map', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),// WTF is a group Is it the aCF group?'path
+          'map'             => array( 'description' => __( 'Map', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'multi'             => array( 'description' => __( 'Multi value', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'boolean'             => array( 'description' => __( 'Boolean', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           //'acf-repeater' => array('description'=_('ACF Repeater'pzarchitect),'path'=> PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/'),
       );
       foreach ( $field_types as $ftk => $ftv ) {

@@ -3670,6 +3670,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
        * CUSTOM FIELDS
        * Why are these here even though they are somewhat content related. They're not choosing the content itself. Yes they do limit the usablity of the panel. Partly this came about because of the way WPdoesn't bind custom fields to specific content field_types.
        */
+
+      global $wpdb;
       $sections[ _amb_customfields ] = array(
           'title'      => __( 'Custom fields general settings', 'pzarchitect' ),
           'show_title' => FALSE,
@@ -3708,6 +3710,13 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   ),
                   'desc'    => __( 'When you change this, click Publish/Update', 'pzarchitect' ),
               ),
+              array(
+                  'title'   => __( 'Select tables to include for custom fields', 'pzarchitect' ),
+                  'id'      => $prefix . 'incl-tables',
+                  'type'    => 'checkbox',
+                  'default' => array( $wpdb->prefix . 'posts' => $wpdb->prefix . 'posts' ),
+                  'options' => $this->tableset,
+              ),
 
           ),
       );
@@ -3721,6 +3730,11 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           $pzarc_custom_fields = array_merge( array(
               'use_empty'     => 'No field. Use prefix and suffix only',
               'post_title'    => 'Post Title',
+              'post_content'    => 'Post Content',
+              'post_excerpt'    => 'Post Excerpt',
+              'post_thumbnail'    => 'Post Featured Image',
+              'post_author'    => 'Post Author',
+              'post_date'    => 'Post Date',
               'specific_code' => 'Specific Text, HTML or Shortcodes',
           ), apply_filters( 'arc_custom_field_list', $this->custom_fields, $this->source ) );
           if ( ! empty( $this->postmeta['_panels_design_excl-hidden-fields'][0] ) ) {
@@ -3825,8 +3839,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'default'  => 'wp',
                         'subtitle' => __( 'Method the custom field was created with', 'pzarchitect' ),
                         'options'  => array(
-                            'wp'  => __( 'WP', 'pzarchitect' ),
-                            'acf' => __( 'ACF', 'pzarchitect' ),
+                            'wp'   => __( 'WP', 'pzarchitect' ),
+                            'acf'  => __( 'ACF', 'pzarchitect' ),
                             'wooc' => __( 'WC', 'pzarchitect' ),
                             //                                                        'toolset' => __( 'Toolset', 'pzarchitect' ),
                         ),
@@ -4088,7 +4102,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'id'       => $prefix . 'cflink-settings-section-open',
                         'type'     => 'section',
                         'indent'   => TRUE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text', 'image' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text', 'image','file' ), '!=' ),
 
                     ),
 
@@ -4123,7 +4137,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'type'     => 'text',
                         'default'  => '',
                         'subtitle' => __( 'This will be the same for each link. Use a text field and link field pairing if you want each to be unique.', 'pzarchitect' ),
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'link' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'link','file' ), '!=' ),
 
 
                     ),
@@ -4136,7 +4150,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                             '_self'  => __( 'Same tab', 'pzarchitect' ),
                             '_blank' => __( 'New tab', 'pzarchitect' ),
                         ),
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text', 'link', 'image' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text', 'link', 'image','file' ), '!=' ),
 
                     ),
                     array(
@@ -4146,6 +4160,67 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'required' => array(
                             ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text', 'link', 'image' ), '!=' ),
                         ),
+                    ),
+                    /*********************************************************************************************
+                     * MULTI VALUE PARAMETERS
+                     */
+                    array(
+                        'title'    => __( 'Multi-value settings', 'pzarchitect' ),
+                        'id'       => $prefix . 'cfmulti-settings-section-open',
+                        'type'     => 'section',
+                        'indent'   => TRUE,
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'multi' ), '!=' ),
+
+                    ),
+                    array(
+                        'title'    => __( 'Separator', 'pzarchitect' ),
+                        'id'       => $prefix . 'cfield-' . $i . '-multi-separator',
+                        'type'     => 'text',
+                        'default'  => ', ',
+                        'subtitle' => __( 'Separator between each value', 'pzarchitect' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'multi' ), '!=' ),
+
+                    ),
+
+                    array(
+                        'id'       => $prefix . 'cfmulti-settings-section-close',
+                        'type'     => 'section',
+                        'indent'   => FALSE,
+                            'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'multi' ), '!=' ),
+                    ),
+                    /*********************************************************************************************
+                     * BOOLEAN PARAMETERS
+                     */
+                    array(
+                        'title'    => __( 'Boolean settings', 'pzarchitect' ),
+                        'id'       => $prefix . 'cfboolean-settings-section-open',
+                        'type'     => 'section',
+                        'indent'   => TRUE,
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'boolean' ), '!=' ),
+
+                    ),
+                    array(
+                        'title'    => __( 'True value substitute', 'pzarchitect' ),
+                        'id'       => $prefix . 'cfield-' . $i . '-true-value',
+                        'type'     => 'text',
+                        'default'  => __('Yes','pzarchitect'),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'boolean' ), '!=' ),
+
+                    ),
+                    array(
+                        'title'    => __( 'False value substitute', 'pzarchitect' ),
+                        'id'       => $prefix . 'cfield-' . $i . '-false-value',
+                        'type'     => 'text',
+                        'default'  => __('No','pzarchitect'),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'boolean' ), '!=' ),
+
+                    ),
+
+                    array(
+                        'id'       => $prefix . 'cfboolean-settings-section-close',
+                        'type'     => 'section',
+                        'indent'   => FALSE,
+                            'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'boolean' ), '!=' ),
                     ),
 
                     /*********************************************************************************************

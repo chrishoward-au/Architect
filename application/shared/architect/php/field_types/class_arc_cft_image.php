@@ -6,47 +6,62 @@
    * Purpose:
    */
 
-class arc_cft_image extends arc_custom_fields {
+  class arc_cft_image extends arc_custom_fields {
 
+    function __construct( $i, $section, &$post, &$postmeta ) {
+      parent::__construct( $i, $section, $post, $postmeta );
+      self::get( $i, $section, $post, $postmeta );
+    }
 
-  function get(){
-    // Image settings
-    $this->data ['image-quality']        = $this->section[ '_panels_design_cfield-' . $this->i . '-image-quality' ];
-    $this->data ['image-max-dimensions'] = $this->section[ '_panels_design_cfield-' . $this->i . '-image-max-dimensions' ];
-    $this->data ['image-focal-point']    = $this->section[ '_panels_design_cfield-' . $this->i . '-image-focal-point' ];
+    function get( &$i, &$section, &$post, &$postmeta ) {
+      // Image settings
+      $this->data ['image-quality']        = isset( $section[ '_panels_design_cfield-' . $i . '-image-quality' ] ) ? $section[ '_panels_design_cfield-' . $i . '-image-quality' ] : 85;
+      $this->data ['image-max-dimensions'] = isset( $section[ '_panels_design_cfield-' . $i . '-image-max-dimensions' ] ) ? $section[ '_panels_design_cfield-' . $i . '-image-max-dimensions' ] : array( 'width' => 100, 'height' => 100 );
+      $this->data ['image-focal-point']    = isset( $section[ '_panels_design_cfield-' . $i . '-image-focal-point' ] ) ? $section[ '_panels_design_cfield-' . $i . '-image-focal-point' ] : array( 50, 10 );
+      $width                               = $this->data['image-max-dimensions']['width'];
+      $height                              = $this->data['image-max-dimensions']['height'];
+      $crop                                = is_array( $this->data ['image-focal-point'] ) ? implode( 'x', $this->data ['image-focal-point'] ) : $this->data ['image-focal-point'];
+      $quality                             = ( ! empty( $this->data['image-quality'] ) ? $this->data['image-quality'] : 82 );
 
-  }
-  function render() {
-    $this->content = '';
+      if ( $this->data['field-source'] == 'acf' ) {
+        if ( function_exists( 'get_field' ) ) {
+          $acf_image = get_field( $this->data['name'] );
+          $mage_url  = $acf_image['url'];
+        } elseif ( is_numeric( $this->data['value'] ) ) {
+          $acf_image = wp_get_attachment_image_src( $this->data['value'] );
+          $image_url = $acf_image[0];
+        }
 
-    if ( $data['field-source'] = 'acf' ) {
-      if ( function_exists( 'get_field' ) ) {
-        $acf_image     = get_field( $this->data['name'] );
-        $acf_image_url = $acf_image['url'];
-      } elseif ( is_numeric( $this->data['value'] ) ) {
-        $acf_image     = wp_get_attachment_image_src( $this->data['value'] );
-        $acf_image_url = $acf_image[0];
+      } else {
+        $image_url = $this->data['value'];
       }
+
       if ( function_exists( 'bfi_thumb' ) ) {
 
-        $this->content = '<img src="' . bfi_thumb( $acf_image_url, array(
-                'quality' => ( ! empty( $this->data['image-quality'] ) ? $this->data['image-quality'] : 82 ),
-            ) ) . '">';
+        $this->data['value'] = bfi_thumb( $image_url, array(
+            'width'   => $width,
+            'height'  => $height,
+            'crop'    => $crop,
+            'quality' => $quality,
+        ) );
       } else {
-        $this->content = '<img src="' . $acf_image_url . '">';
-      }
-    } else {
-      if ( function_exists( 'bfi_thumb' ) ) {
-
-        $this->content = '<img src="' . bfi_thumb( $this->data['value'], array(
-                'quality' => ( ! empty( $this->data['image-quality'] ) ? $this->data['image-quality'] : 82 ),
-            ) ) . '">';
-      } else {
-        $this->content = '<img src="' . $this->data['value'] . '">';
+        $this->data['value'] = $image_url;
       }
 
     }
 
-    return $this->content;
+    function render() {
+      $content ='';
+      if (!empty($this->data['value'])) {
+        $width   = $this->data['image-max-dimensions']['width'];
+        $height  = $this->data['image-max-dimensions']['height'];
+        $crop    = is_array( $this->data ['image-focal-point'] ) ? implode( 'x', $this->data ['image-focal-point'] ) : $this->data ['image-focal-point'];
+        $quality = ( ! empty( $this->data['image-quality'] ) ? $this->data['image-quality'] : 82 );
+
+
+        $content = '<img width="' . $width . '" height="' . $height . '" src="' . $this->data['value'] . '" class="attachment-' . $width . 'x' . $height . 'x1x' . $crop . 'x' . $quality . '" alt="">';
+      }
+
+      return $content;
+    }
   }
-}

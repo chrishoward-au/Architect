@@ -782,157 +782,21 @@
      */
     public function get_custom( &$post ) {
 
-      //var_Dump(get_the_ID());
-      // class inheritance means i should be asking what type of field is it, then when i get that field,
-      // it will also return all the other generic data too
-      // so... require parent early.
-      // require child early
-      // $child = new child_XXX where XXX - type.
-      // $data= $child->get()
-      // then for extension, require extension early,
-//      $postmeta = apply_filters( 'arc_get_custom_data', get_post_meta( get_the_ID() ) );
-//      $cfcount  = $this->section['_panels_design_custom-fields-count'];
-//      if ($cfcount) {
-//        for ( $i = 1; $i <= $cfcount; $i ++ ) {
-////          $this->cfield         = new arc_custom_fields($i, $this->section, $post,$postmeta );
-//          // the settings come from section
-//          if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-name' ] ) && ! empty( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) ) {
-//            $type =str_replace('-','_','arc_cft_'.$this->section[ '_panels_design_cfield-' . $i . '-field-type' ]);
-//            $cfields[$i] = new $type($i,$this->section,$post,$postmeta);
-//            $this->data['cfield'][$i] = $cfields[$i]->data;
-//          //  var_Dump($this->data['cfield']);
-//          }
-//
-//        }
-//      }
-
-      /** CUSTOM FIELDS **/
-//      d($post);
       $postmeta = apply_filters( 'arc_get_custom_data', get_post_meta( get_the_ID() ) );
       $cfcount  = $this->section['_panels_design_custom-fields-count'];
-      for ( $i = 1; $i <= $cfcount; $i ++ ) {
-        // the settings come from section
-        if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-name' ] ) ) {
-          $this->data['cfield'][ $i ]['group']          = $this->section[ '_panels_design_cfield-' . $i . '-group' ];
-          $this->data['cfield'][ $i ]['name']           = $this->section[ '_panels_design_cfield-' . $i . '-name' ];
-          $this->data['cfield'][ $i ]['field-type']     = $this->section[ '_panels_design_cfield-' . $i . '-field-type' ];
-          $this->data['cfield'][ $i ]['field-source']     = $this->section[ '_panels_design_cfield-' . $i . '-field-source' ];
-          $this->data['cfield'][ $i ]['wrapper-tag']    = $this->section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
-          $this->data['cfield'][ $i ]['class-name']     = isset( $this->section[ '_panels_design_cfield-' . $i . '-class-name' ] ) ? $this->section[ '_panels_design_cfield-' . $i . '-class-name' ] : '';
-
-          // Date settings
-          $this->data['cfield'][ $i ]['date-format']    = $this->section[ '_panels_design_cfield-' . $i . '-date-format' ];
-
-          // Link settings
-          $this->data['cfield'][ $i ]['link-field']     = $this->section[ '_panels_design_cfield-' . $i . '-link-field' ]; // This will be populated with the actual value later
-          $this->data['cfield'][ $i ]['link-behaviour'] = isset( $this->section[ '_panels_design_cfield-' . $i . '-link-behaviour' ] ) ? $this->section[ '_panels_design_cfield-' . $i . '-link-behaviour' ] : '_self';
-          $this->data['cfield'][ $i ]['link-text']    = '<span class="pzarc-link-text">' . $this->section[ '_panels_design_cfield-' . $i . '-link-text' ] . '</span>';
-
-          // Numeric settings
-          $this->data['cfield'][ $i ]['decimals']       = $this->section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
-          $this->data['cfield'][ $i ]['decimal-char']   = $this->section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
-          $this->data['cfield'][ $i ]['thousands-sep']  = $this->section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
-
-          // Image settings
-//          $this->data['cfield'][ $i ]['image-quality']       = $this->section[ '_panels_design_cfield-' . $i . '-image-quality' ];
-//          $this->data['cfield'][ $i ]['image-max-dimensions']       = $this->section[ '_panels_design_cfield-' . $i . '-image-max-dimensions' ];
-//          $this->data['cfield'][ $i ]['image-focal-point']       = $this->section[ '_panels_design_cfield-' . $i . '-image-focal-point' ];
-
-          // Prefix/Suffix
-          $params                                       = array(
-              'width'   => str_replace( $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ]['units'], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-width' ]['width'] ),
-              'height'  => str_replace( $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ]['units'], '', $this->section[ '_panels_design_cfield-' . $i . '-ps-images-height' ]['height'] ),
-              'quality' => ( ! empty( $this->section['_panels_design_image-quality'] ) ? $this->section['_panels_design_image-quality'] : 82 ),
-          );
-
-          $this->data['cfield'][ $i ]['prefix-text']  = '<span class="pzarc-prefix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>';
-          $this->data['cfield'][ $i ]['prefix-image'] = function_exists( 'bfi_thumb' ) ? bfi_thumb( $this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ]['url'], $params ) : $this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ]['url'];
-          $this->data['cfield'][ $i ]['suffix-text']  = '<span class="pzarc-suffix-text">' . $this->section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>';
-          $this->data['cfield'][ $i ]['suffix-image'] = function_exists( 'bfi_thumb' ) ? bfi_thumb( $this->section[ '_panels_design_cfield-' . $i . '-suffix-image' ]['url'], $params ) : $this->section[ '_panels_design_cfield-' . $i . '-prefix-image' ]['url'];
-
-
-
-          // The content itself comes from post meta or post title
-
-          switch ( $this->section[ '_panels_design_cfield-' . $i . '-name' ] ) {
-            case'post_title':
-              $this->data['cfield'][ $i ]['value'] = $post->post_title;
-              break;
-            case'use_empty':
-              $this->data['cfield'][ $i ]['value'] = '{{empty}}';
-              break;
-            case'specific_code':
-              $this->data['cfield'][ $i ]['value'] = strip_tags( $this->section[ '_panels_design_cfield-' . $i . '-code' ], '<br><p><a><strong><em><ul><ol><li><pre><code><blockquote><h1><h2><h3><h4><h5><h6><img>' );
-              break;
-//           case'tablefield':
-//              $tablefield                          = explode( '___', $this->section[ '_panels_design_cfield-' . $i . '-name-table-field' ] );
-//              $this->data['cfield'][ $i ]['value'] = do_shortcode( '[arccf table="' . $tablefield[0] . '" field="' . $tablefield[1] . '"]' );
-//              break;
-            default:
-              $custom_field = explode( '/', $this->section[ '_panels_design_cfield-' . $i . '-name' ] );
-              if ( count( $custom_field ) == 1 ) {
-                $this->data['cfield'][ $i ]['value'] = ( ! empty( $postmeta[ $custom_field[0] ] ) ? $postmeta[ $custom_field[0] ][0] : NULL );
-              } elseif ( count( $custom_field ) == 2 ) {
-                $this->data['cfield'][ $i ]['value'] = do_shortcode( '[arccf table="' . $custom_field[0] . '" field="' . $custom_field[1] . '"]' );
-              }
-//              $this->data['cfield'][ $i ]['value'] = ( ! empty( $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ] ) ? $postmeta[ $this->section[ '_panels_design_cfield-' . $i . '-name' ] ][0] : NULL );
+      if ( $cfcount ) {
+        for ( $i = 1; $i <= $cfcount; $i ++ ) {
+          // the settings come from section
+          if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-name' ] ) && ! empty( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) ) {
+            $type                       = str_replace( '-', '_', 'arc_cft_' . $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] );
+            $this->cfields[ $i ]              = new $type( $i, $this->section, $post, $postmeta );
+            $this->data['cfield'][ $i ] = $this->cfields[ $i ]->data;
+             // var_Dump($this->data['cfield']);
           }
 
-          // Process field groups
-          if ( is_Array( maybe_unserialize( $this->data['cfield'][ $i ]['value'] ) ) || $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] === 'group' ) {
-            $this->data['cfield'][ $i ]['value'] = maybe_unserialize( $this->data['cfield'][ $i ]['value'] );
-
-            $build_layout = '<table class="arc-group-table">';
-            $headers_done = FALSE;
-
-            foreach ( $this->data['cfield'][ $i ]['value'] as $key => $value ) {
-              $inner_array = maybe_unserialize( $value );
-              if ( is_array( $inner_array ) ) {
-                if ( ! $headers_done ) {
-                  foreach ( $inner_array as $k => $v ) {
-                    $build_layout .= '<th>' . ucwords( str_replace( '_', ' ', str_replace( 'ob_', '', $k ) ) ) . '</th>';
-                    $headers_done = TRUE;
-                  }
-                }
-                $build_layout .= '<tr>';
-                foreach ( $inner_array as $k => $v ) {
-                  $build_layout .= '<td>' . $v . '</td>';
-                }
-                $build_layout .= '</tr>';
-              } else {
-                $build_layout = '<td>' . $value . '</td>';
-              }
-            }
-            $build_layout                        .= '</table>';
-            $this->data['cfield'][ $i ]['value'] = $build_layout;
-          }
-
-          // TODO:Bet this doesn't work!
-          if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] ) ) {
-            $link_field = explode( '/', $this->section[ '_panels_design_cfield-' . $i . '-link-field' ] );
-            if ( count( $link_field ) == 1 ) {
-              $this->data['cfield'][ $i ]['link-field'] = ( ! empty( $postmeta[ $link_field[0] ] ) ? $postmeta[ $link_field[0] ][0] : NULL );
-            } elseif ( count( $link_field ) == 2 ) {
-              $this->data['cfield'][ $i ]['link-field'] = do_shortcode( '[arccf table="' . $link_field[0] . '" field="' . $link_field[1] . '"]' );
-            }
-          }
-
-          if ( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] === 'date' ) {
-            $cfdate                             = is_numeric( $this->data['cfield'][ $i ]['value'] ) ? $this->data['cfield'][ $i ]['value'] : str_replace( ',', ' ', strtotime( $this->data['cfield'][ $i ]['value'] ) ); //convert field value to date
-            $cfdate                             = empty( $cfdate ) ? '000000' : $cfdate;
-            $this->data['cfield'][ $i ]['data'] = "data-sort-date='{$cfdate}'";
-          }
-
-          if ( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] === 'number' ) {
-            $cfnumeric                          = @number_format( $this->data['cfield'][ $i ]['value'], $this->data['cfield'][ $i ]['decimals'], '', '' );
-            $cfnumeric                          = @number_format( $this->data['cfield'][ $i ]['value'], $this->data['cfield'][ $i ]['decimals'], '', '' );
-            $cfnumeric                          = empty( $cfnumeric ) ? '0000' : $cfnumeric;
-            $this->data['cfield'][ $i ]['data'] = "data-sort-numeric='{$cfnumeric}'";
-          }
-          // TODO : Add other attributes
-        }
-        //     var_dump($this->data[ 'cfield' ][ $i ]);
       }
+    }
+
     }
 
     public function get_miscellanary( &$post ) {
@@ -1310,119 +1174,8 @@
 //          $panel_def[$component] = ArcFun::render_custom_field();
 
           if ( $v['group'] === $component && ( ! empty( $v['value'] ) || $v['name'] === 'use_empty' ) ) {
-            switch ( $v['field-type'] ) {
 
-              case 'image':
-//                $content = $this->cfields->render('image') ;
-//                if ( $data['field-source'] = 'acf' ) {
-//                  if ( function_exists( 'get_field' ) ) {
-//                    $acf_image     = get_field( $v['name'] );
-//                    $acf_image_url = $acf_image['url'];
-//                  } elseif ( is_numeric( $v['value'] ) ) {
-//                    $acf_image     = wp_get_attachment_image_src( $v['value'] );
-//                    $acf_image_url = $acf_image[0];
-//                  }
-//                  if ( function_exists( 'bfi_thumb' ) ) {
-//
-//                    $content = '<img src="' . bfi_thumb( $acf_image_url, array(
-//                            'quality' => ( ! empty( $v['image-quality'] ) ? $v['image-quality'] : 82 ),
-//                        ) ) . '">';
-//                  } else {
-//                    $content = '<img src="' . $acf_image_url . '">';
-//                  }
-//                } else {
-//                  if ( function_exists( 'bfi_thumb' ) ) {
-//
-//                    $content = '<img src="' . bfi_thumb( $v['value'], array(
-//                            'quality' => ( ! empty( $v['image-quality'] ) ? $v['image-quality'] : 82 ),
-//                        ) ) . '">';
-//                  } else {
-//                    $content = '<img src="' . $v['value'] . '">';
-//                  }
-//
-//                }
-                    $content = '<img src="' . $v['value'] . '">';
-
-                break;
-
-              case 'file':
-                if ( $v['field-source'] = 'acf' ) {
-
-                  $file_url = '';
-                  if ( function_exists( 'get_field' ) ) {
-                    $file     = get_field( $v['name'] );
-                    $file_url = $file['url'];
-                  } elseif ( is_numeric( $v['value'] ) ) {
-                    $file     = wp_get_attachment_image_src( $v['value'] );
-                    $file_url = $file[0];
-                  }
-                } else {
-                  $file_url = $v['value'];
-                }
-                if ( ! empty( $file_url ) ) {
-                  $content = '<a href="' . $file_url . '" class="pzarc-acf-file">' . $v['link-text'] . '</a>';
-                }
-
-                break;
-
-              case 'link':
-                $content = '<a href="' . $v['value'] . '" class="pzarc-link">' . ( ! empty( $v['link-text'] ) ? $v['link-text'] : $v['value'] ) . '</a>';
-                break;
-
-              case 'email':
-                $content = do_shortcode( '[mailto]' . $v['value'] . '[/mailto]' );
-                break;
-
-              case 'embed':
-                $content = wp_oembed_get( $v['value'] );
-                break;
-
-              case 'date':
-                if ( is_numeric( $v['value'] ) ) {
-                  $content = date( $v['date-format'], $v['value'] );
-                } else {
-                  $content = $v['value'];
-                }
-                $content = '<time datetime="' . $content . '">' . $content . '</time>';
-                break;
-
-              case 'number':
-                $content = @number_format( $v['value'], $v['decimals'], $v['decimal-char'], $v['thousands-sep'] );
-                break;
-
-              case 'text-with-paras':
-                $content = wpautop( $v['value'] );
-                if ( empty( $this->section['_panels_design_process-custom-field-shortcodes'] ) || $this->section['_panels_design_process-custom-field-shortcodes'] === 'process' ) {
-                  $content = do_shortcode( $content );
-                } else {
-                  $content = strip_shortcodes( $content );
-                }
-                break;
-
-              // TODO - Is this an ACF group field?
-              case 'group':
-                $content = $v['value'];
-                break;
-
-              // TODO Needs work!
-              case 'acf_repeater':
-                $content = $v['value'];
-
-                break;
-
-              case 'text':
-              default:
-                $content = $v['value'];
-                if ( empty( $this->section['_panels_design_process-custom-field-shortcodes'] ) || $this->section['_panels_design_process-custom-field-shortcodes'] === 'process' ) {
-                  $content = do_shortcode( $content );
-                } else {
-                  $content = strip_shortcodes( $content );
-                }
-
-                break;
-
-
-            }
+            $content = $this->cfields[$k]->render();
 
             $prefix_image = '';
             $suffix_image = '';
@@ -1481,6 +1234,14 @@
       return self::render_generics( $component, $content_type, $panel_def[ $component ], $layout_mode );
     }
 
+    /**
+     * @param $component
+     * @param $source
+     * @param $line
+     * @param $layout_mode
+     *
+     * @return mixed
+     */
     public function render_generics( $component, $source, $line, $layout_mode ) {
 
       // Devs can plugin here. Filter must return $line value

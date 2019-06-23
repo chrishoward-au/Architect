@@ -8,14 +8,28 @@
 
   class arc_cft_text_with_paras extends arc_custom_fields {
 
-    function __construct($i,$section, &$post) {
-        parent::__construct($i,$section,$post);
-        $this->get();
+    function __construct($i,$section, &$post, &$postmeta) {
+      parent::__construct($i,$section,$post, $postmeta);
+      self::get($i,$section,$post,$postmeta);
     }
-    function get( ) {
 
+    function get(&$i,&$section,&$post,&$postmeta){
+      $content = wpautop( $this->data['value'] );
+      if ( empty( $section['_panels_design_process-custom-field-shortcodes'] ) || $section['_panels_design_process-custom-field-shortcodes'] === 'process' ) {
+        $content = do_shortcode( $content );
+      } else {
+        $content = strip_shortcodes( $content );
+      }
+      $this->data['value']=$content;
     }
 
     function render(){
+      $content = '';
+      if ( ! empty( $this->data['value'] ) ) {
+        $content = $this->data['value'];
+      }
+      return $content;
     }
+
+
   }
