@@ -2408,28 +2408,28 @@
     static function get_tables( $limit = NULL ) {
       global $wpdb;
       // Get all tables for current site
-      $results  = $wpdb->get_results( "SHOW TABLES LIKE '{$wpdb->prefix}%'" );
-      $tableset = array();
-      $exclusions =array(
-          $wpdb->prefix.'hw_',
-          $wpdb->prefix.'bt_',
-          $wpdb->prefix.'cpk_',
-          $wpdb->prefix.'wc_',
-          $wpdb->prefix.'postmeta',
-          $wpdb->prefix.'options',
-          $wpdb->prefix.'term',
+      $results    = $wpdb->get_results( "SHOW TABLES LIKE '{$wpdb->prefix}%'" );
+      $tableset   = array();
+      $exclusions = array(
+          $wpdb->prefix . 'hw_',
+          $wpdb->prefix . 'bt_',
+          $wpdb->prefix . 'cpk_',
+          $wpdb->prefix . 'wc_',
+          $wpdb->prefix . 'postmeta',
+          $wpdb->prefix . 'options',
+          $wpdb->prefix . 'term',
       );
       foreach ( $results as $index => $value ) {
         foreach ( $value as $tablename ) {
-          $toexc = false;
-          foreach ($exclusions as $exclusion) {
-            $len = strlen($exclusion);
-            $toexc = (substr($tablename, 0, $len) === $exclusion);
-            if ($toexc) {
+          $toexc = FALSE;
+          foreach ( $exclusions as $exclusion ) {
+            $len   = strlen( $exclusion );
+            $toexc = ( substr( $tablename, 0, $len ) === $exclusion );
+            if ( $toexc ) {
               break;
             }
           }
-          if (!$toexc) {
+          if ( ! $toexc ) {
             $tableset[ $tablename ] = $tablename;
           }
         }
@@ -2728,6 +2728,7 @@
           'text-with-paras' => array( 'description' => __( 'Text with paragraph breaks', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'wysiwyg'         => array( 'description' => __( 'Formatted text', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'image'           => array( 'description' => __( 'Image', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'gallery'           => array( 'description' => __( 'Gallery', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'date'            => array( 'description' => __( 'Date', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'number'          => array( 'description' => __( 'Number', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'link'            => array( 'description' => __( 'Link (URL)', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
@@ -2737,8 +2738,8 @@
           'group'           => array( 'description' => __( 'Group', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),// WTF is a group Is it the aCF group?'path
           'file'            => array( 'description' => __( 'File', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'map'             => array( 'description' => __( 'Map', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
-          'multi'             => array( 'description' => __( 'Multi value', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
-          'boolean'             => array( 'description' => __( 'Boolean', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'multi'           => array( 'description' => __( 'Multi value', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'boolean'         => array( 'description' => __( 'Boolean', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           //'acf-repeater' => array('description'=_('ACF Repeater'pzarchitect),'path'=> PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/'),
       );
       foreach ( $field_types as $ftk => $ftv ) {
@@ -2746,6 +2747,26 @@
       }
 
       return apply_filters( 'arc_cfield_types', $field_types );
+    }
+
+    static function get_focal_point( $thumb_id) {
+
+//      switch ($type) {
+//        case ( 'post' ):
+          global $post;
+          $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', TRUE );
+          if ( $post->post_type === 'attachment' ) {
+            $thumb_id = $post->ID;
+          }
+          if ( empty( $focal_point ) ) {
+            $focal_point = get_post_meta( get_the_id(), 'pzgp_focal_point', TRUE );
+          }
+          $focal_point = ( empty( $focal_point ) ? explode( ',', pzarc_get_option( 'architect_focal_point_default', '50,10' ) ) : explode( ',', $focal_point ) );
+//          break;
+//        case 'image':
+//          break;
+//      }
+      return ( array( 'thumb_id' => $thumb_id, 'focal_point' => $focal_point ));
     }
 
   }

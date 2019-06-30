@@ -3841,10 +3841,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'options'  => array(
                             'wp'   => __( 'WP', 'pzarchitect' ),
                             'acf'  => __( 'ACF', 'pzarchitect' ),
-                            'wooc' => __( 'WC', 'pzarchitect' ),
+                            'wooc' => __( 'WooC', 'pzarchitect' ),
                             //                                                        'toolset' => __( 'Toolset', 'pzarchitect' ),
                         ),
-                        'desc'     => __( 'WP: A custom field created either in the post editor, or in code using standard WP methods.<br>ACF: A custom field created using Advanced Custom Fields plugin<br>WC: A field created using WooCommerce', 'pzarchitect' ),
+                        'desc'     => __( 'WP: A custom field created either in the post editor, or in code using standard WP methods.<br>ACF: A custom field created using Advanced Custom Fields plugin<br>WooC: A field created using WooCommerce', 'pzarchitect' ),
                     ),
                     array(
                         'title'    => __( 'Specific Text or Code', 'pzarchitect' ),
@@ -3869,7 +3869,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                      */
                     array(
                         'title'  => __( 'General settings', 'pzarchitect' ),
-                        'id'     => $prefix . 'cfgeneral-settings-section-open',
+                        'id'     => $prefix . $i .'cfgeneral-settings-section-open',
                         'type'   => 'section',
                         'indent' => TRUE,
                     ),
@@ -3894,18 +3894,19 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                     ),
                     array(
                         'title'   => __( 'Shortcodes in text fields', 'pzarchitect' ),
-                        'id'      => $prefix . 'process-custom-field-shortcodes',
+                        'id'      => $prefix . 'cfield-' . $i . '-process-custom-field-shortcodes',
                         'type'    => 'button_set',
                         'options' => array(
                             'process' => __( 'Process', 'pzarchitect' ),
                             'remove'  => __( 'Remove', 'pzarchitect' ),
                         ),
                         'default' => 'process',
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text','textarea','wysiwyg' ), '!=' ),
 
                     ),
                     array(
                         'title'    => __( 'Field width (%)', 'pzarchitect' ),
-                        'id'       => $prefix . 'cfield-width',
+                        'id'       => $prefix .'cfield-' . $i . '-cfield-width',
                         'type'     => 'spinner',
                         'default'  => 100,
                         'min'      => 1,
@@ -3914,7 +3915,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'subtitle' => __( 'This is the width within the field group', 'pzarchitect' ),
                     ),
                     array(
-                        'id'     => $prefix . 'cfgeneral-settings-section-close',
+                        'id'     => $prefix . $i.'cfgeneral-settings-section-close',
                         'type'   => 'section',
                         'indent' => FALSE,
                     ),
@@ -3931,7 +3932,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                      */
                     array(
                         'title'    => __( 'Date settings', 'pzarchitect' ),
-                        'id'       => $prefix . 'cfdate-settings-section-open',
+                        'id'       => $prefix . $i.'cfdate-settings-section-open',
                         'type'     => 'section',
                         'indent'   => TRUE,
                         'required' => array(
@@ -3953,7 +3954,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         ),
                     ),
                     array(
-                        'id'       => $prefix . 'cfdate-settings-section-close',
+                        'id'       => $prefix . $i.'cfdate-settings-section-close',
                         'type'     => 'section',
                         'indent'   => FALSE,
                         'required' => array(
@@ -3967,14 +3968,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                      */
                     array(
                         'title'    => __( 'Numeric settings', 'pzarchitect' ),
-                        'id'       => $prefix . 'cfnumeric-settings-section-open',
+                        'id'       => $prefix . $i.'cfnumeric-settings-section-open',
                         'type'     => 'section',
                         'indent'   => TRUE,
-                        'required' => array(
-                            $prefix . 'cfield-' . $i . '-field-type',
-                            '=',
-                            'number',
-                        ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number' ), '!=' ),
                     ),
                     array(
                         'id'            => $prefix . 'cfield-' . $i . '-number-decimals',
@@ -3986,63 +3983,47 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'step'          => 1,
                         'display_value' => 'label',
                         'subtitle'      => __( 'Number of decimal places.', 'pzarchitect' ),
-                        'required'      => array(
-                            $prefix . 'cfield-' . $i . '-field-type',
-                            '=',
-                            'number',
-                        ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number' ), '!=' ),
                     ),
                     array(
                         'id'       => $prefix . 'cfield-' . $i . '-number-decimal-char',
                         'title'    => __( 'Decimal point character', 'pzarchitect' ),
                         'type'     => 'text',
                         'default'  => '.',
-                        'required' => array(
-                            $prefix . 'cfield-' . $i . '-field-type',
-                            '=',
-                            'number',
-                        ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number' ), '!=' ),
                     ),
                     array(
                         'id'       => $prefix . 'cfield-' . $i . '-number-thousands-separator',
                         'title'    => __( 'Thousands separator', 'pzarchitect' ),
                         'type'     => 'text',
                         'default'  => ',',
-                        'required' => array(
-                            $prefix . 'cfield-' . $i . '-field-type',
-                            '=',
-                            'number',
-                        ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number' ), '!=' ),
                     ),
                     array(
-                        'id'       => $prefix . 'cfnumeric-settings-section-close',
+                        'id'       => $prefix . $i .'cfnumeric-settings-section-close',
                         'type'     => 'section',
                         'indent'   => FALSE,
-                        'required' => array(
-                            $prefix . 'cfield-' . $i . '-field-type',
-                            '=',
-                            'number',
-                        ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number' ), '!=' ),
                     ),
                     /**
                      * IMAGE SETTINGS
                      */
                     array(
-                        'title'    => __( 'Image settings', 'pzarchitect' ),
-                        'id'       => $prefix . 'cfimage-settings-section-open',
+                        'title'    => __( 'Image and Gallery settings', 'pzarchitect' ),
+                        'id'       => $prefix . $i.'cfimage-settings-section-open',
                         'type'     => 'section',
                         'indent'   => TRUE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image','gallery' ), '!=' ),
 
                     ),
 
                     array(
                         'title'    => __( 'Image cropping', 'pzarchitect' ),
-                        'id'       => $prefix . 'image-focal-point',
+                        'id'       => $prefix . 'cfield-' . $i . '-image-focal-point',
                         'type'     => 'select',
                         'default'  => 'respect',
                         'select2'  => array( 'allowClear' => FALSE ),
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image','gallery' ), '!=' ),
                         'options'  => array(
                             'respect'      => __( 'Use focal point', 'pzarchitect' ),
                             //                      'centre'       => __('Centre focal point', 'pzarchitect'),
@@ -4061,7 +4042,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         ),
                     ),
                     array(
-                        'id'            => $prefix . 'image-quality',
+                        'id'            => $prefix . 'cfield-' . $i . '-image-quality',
                         'title'         => __( 'Image quality', 'pzarchitect' ),
                         'type'          => 'slider',
                         'display_value' => 'label',
@@ -4071,11 +4052,11 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'step'          => 1,
                         'units'         => '%',
                         'hint'          => array( 'content' => 'Quality to use when processing images' ),
-                        'required'      => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image' ), '!=' ),
+                        'required'      => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image','gallery' ), '!=' ),
 
                     ),
                     array(
-                        'id'       => $prefix . 'image-max-dimensions',
+                        'id'       => $prefix . 'cfield-' . $i . '-image-max-dimensions',
                         'title'    => __( 'Limit image dimensions (crop/scale to)', 'pzarchitect' ),
                         'type'     => 'dimensions',
                         //                        'desc'     => __( 'The <strong>displayed width</strong> of the image is determined by its calculated size in the Content Layout designer. However, this is responsive, so the displayed size may be smaller than what dimensions are set here. Therefore, estimate the <strong>maximum</strong> required size when setting this parameter. For example, if you have 3 across on desktop with a page width of 960px (320px each) and 1 across on a phone with a page width of 360px, the maximum width would need to be set at 360px. Setting correctly will limit the size of the image created and used, increasing page load. Thus do not set it unnecessarily high. On the other hand, setting it too low though could cause images to be scaled up and pixelated.', 'pzarchitect' ),
@@ -4084,13 +4065,13 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                             'width'  => '400',
                             'height' => '300',
                         ),
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image','gallery' ), '!=' ),
                     ),
                     array(
-                        'id'       => $prefix . 'cfimage-settings-section-close',
+                        'id'       => $prefix . $i.'cfimage-settings-section-close',
                         'type'     => 'section',
                         'indent'   => FALSE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image','gallery' ), '!=' ),
                     ),
 
 
@@ -4099,10 +4080,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                      */
                     array(
                         'title'    => __( 'Link settings', 'pzarchitect' ),
-                        'id'       => $prefix . 'cflink-settings-section-open',
+                        'id'       => $prefix . $i.'cflink-settings-section-open',
                         'type'     => 'section',
                         'indent'   => TRUE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text', 'image','file' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text', 'image','file','link','email' ), '!=' ),
 
                     ),
 
@@ -4114,21 +4095,20 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         //                'data'     => 'callback',
                         //                'args'     => array( 'pzarc_get_custom_fields' ),
                         'options'  => $link_fields,
-                        'subtitle' => 'Select a custom field that contains URLs you want to use as the link',
+                        'subtitle' => __('Select a custom field that contains URLs you want to use as the link for the selected text, file or image field','pzarchitect'),
                         'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text', 'image' ), '!=' ),
-
-
                     ),
                     array(
                         'title'    => __( 'Link type', 'pzarchitect' ),
-                        'id'       => $prefix . 'link-type',
+                        'id'       => $prefix . 'cfield-' . $i . '-link-type',
                         'type'     => 'button_set',
                         'options'  => array(
                             'url'   => __( 'URL', 'pzarchitect' ),
                             'email' => __( 'Email', 'pzarchitect' ),
                         ),
                         'default'  => 'url',
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'text', 'image' ), '!=' ),
+                        'desc'=>__('Note: Emails will be automatically obfuscated.','pzarchitect'),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'link','email' ), '!=' ),
 
                     ),
                     array(
@@ -4154,7 +4134,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
                     ),
                     array(
-                        'id'       => $prefix . 'cflink-settings-section-close',
+                        'id'       => $prefix . $i.'cflink-settings-section-close',
                         'type'     => 'section',
                         'indent'   => FALSE,
                         'required' => array(
@@ -4166,7 +4146,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                      */
                     array(
                         'title'    => __( 'Multi-value settings', 'pzarchitect' ),
-                        'id'       => $prefix . 'cfmulti-settings-section-open',
+                        'id'       => $prefix . $i.'cfmulti-settings-section-open',
                         'type'     => 'section',
                         'indent'   => TRUE,
                         'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'multi' ), '!=' ),
@@ -4183,7 +4163,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                     ),
 
                     array(
-                        'id'       => $prefix . 'cfmulti-settings-section-close',
+                        'id'       => $prefix . $i.'cfmulti-settings-section-close',
                         'type'     => 'section',
                         'indent'   => FALSE,
                             'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'multi' ), '!=' ),
@@ -4193,7 +4173,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                      */
                     array(
                         'title'    => __( 'Boolean settings', 'pzarchitect' ),
-                        'id'       => $prefix . 'cfboolean-settings-section-open',
+                        'id'       => $prefix . $i.'cfboolean-settings-section-open',
                         'type'     => 'section',
                         'indent'   => TRUE,
                         'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'boolean' ), '!=' ),
@@ -4217,7 +4197,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                     ),
 
                     array(
-                        'id'       => $prefix . 'cfboolean-settings-section-close',
+                        'id'       => $prefix . $i.'cfboolean-settings-section-close',
                         'type'     => 'section',
                         'indent'   => FALSE,
                             'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'boolean' ), '!=' ),
@@ -4228,7 +4208,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                      */
                     array(
                         'title'  => __( 'Prefix/Suffix settings', 'pzarchitect' ),
-                        'id'     => $prefix . 'cfpresuff-settings-section-open',
+                        'id'     => $prefix . $i.'cfpresuff-settings-section-open',
                         'type'   => 'section',
                         'indent' => TRUE,
                     ),
@@ -4274,7 +4254,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'units'   => 'px',
                     ),
                     array(
-                        'id'     => $prefix . 'cfpresuff-settings-section-close',
+                        'id'     => $prefix . $i.'cfpresuff-settings-section-close',
                         'type'   => 'section',
                         'indent' => FALSE,
                     ),

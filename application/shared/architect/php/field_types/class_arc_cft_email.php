@@ -20,7 +20,7 @@
     function render() {
       $content = '';
       if ( ! empty( $this->data['value'] ) ) {
-        $content = do_shortcode( '[mailto]' . $this->data['value'] . '[/mailto]' );
+        $content = do_shortcode( '[pzmailto ' . $this->data['value'] . ']'. $this->data['value'] .'[/pzmailto]' );
       }
       return $content;
     }

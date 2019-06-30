@@ -20,7 +20,11 @@
     function render(){
       $content = '';
       if ( ! empty( $this->data['value'] ) ) {
-        $content = wp_oembed_get( $this->data['value'] );
+        if ($this->data['field-source']=='acf') {
+          $content = $this->data['value'];
+        } else {
+          $content = wp_oembed_get( $this->data['value'] );
+        }
       }
       return $content;
     }

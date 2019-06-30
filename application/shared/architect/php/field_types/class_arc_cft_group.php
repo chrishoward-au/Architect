@@ -14,13 +14,40 @@
     }
 
     function get(&$i,&$section,&$post,&$postmeta){
+      // TODO: ACF
+      $this->data['value']=$this->data['value']; // For consistency and probably got to change it anyways
 
     }
 
     function render(){
       $content = '';
       if ( ! empty( $this->data['value'] ) ) {
-        $content = $this->data['value'];
+        if ( is_Array( maybe_unserialize( $this->data ['value'] ) )) {
+          $this->data ['value'] = maybe_unserialize( $this->data ['value'] );
+
+          $content = '<table class="arc-group-table">';
+          $headers_done = FALSE;
+
+          foreach ( $this->data ['value'] as $key => $value ) {
+            $inner_array = maybe_unserialize( $value );
+            if ( is_array( $inner_array ) ) {
+              if ( ! $headers_done ) {
+                foreach ( $inner_array as $k => $v ) {
+                  $content .= '<th>' . ucwords( str_replace( '_', ' ', str_replace( 'ob_', '', $k ) ) ) . '</th>';
+                  $headers_done = TRUE;
+                }
+              }
+              $content .= '<tr>';
+              foreach ( $inner_array as $k => $v ) {
+                $content .= '<td>' . $v . '</td>';
+              }
+              $content .= '</tr>';
+            } else {
+              $content = '<td>' . $value . '</td>';
+            }
+          }
+          $content         .= '</table>';
+        }
 
       }
       return $content;

@@ -8,13 +8,14 @@
 
   class arc_custom_fields {
 
-    public $data = array();
+    public $data = array('value'=>'');
+    public $meta=array();
 
     function __construct( $i, $section, &$post, &$postmeta ) {
-      self::get($i,$section,$post,$postmeta);
+      self::get( $i, $section, $post, $postmeta );
     }
 
-    public function get(&$i,&$section,&$post,&$postmeta) {
+    public function get( &$i, &$section, &$post, &$postmeta ) {
       /** CUSTOM FIELDS **/
       $this->data ['group']        = $section[ '_panels_design_cfield-' . $i . '-group' ];
       $this->data ['name']         = $section[ '_panels_design_cfield-' . $i . '-name' ];
@@ -35,14 +36,22 @@
           'quality' => ( ! empty( $section['_panels_design_image-quality'] ) ? $section['_panels_design_image-quality'] : 82 ),
       );
 
-      $this->data ['prefix-text']  = '<span class="pzarc-prefix-text">' . $section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>';
+      $this->data ['prefix-text']  = !empty($section[ '_panels_design_cfield-' . $i . '-prefix-text' ] )?'<span class="pzarc-prefix-text">' . $section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>':'';
       $this->data ['prefix-image'] = function_exists( 'bfi_thumb' ) ? bfi_thumb( $section[ '_panels_design_cfield-' . $i . '-prefix-image' ]['url'], $params ) : $section[ '_panels_design_cfield-' . $i . '-prefix-image' ]['url'];
-      $this->data ['suffix-text']  = '<span class="pzarc-suffix-text">' . $section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>';
+      $this->data ['suffix-text']  = !empty($section[ '_panels_design_cfield-' . $i . '-suffix-text' ])?'<span class="pzarc-suffix-text">' . $section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>':'';
       $this->data ['suffix-image'] = function_exists( 'bfi_thumb' ) ? bfi_thumb( $section[ '_panels_design_cfield-' . $i . '-suffix-image' ]['url'], $params ) : $section[ '_panels_design_cfield-' . $i . '-prefix-image' ]['url'];
 
+      // Get link field if set
+      if ( ! empty( $section[ '_panels_design_cfield-' . $i . '-link-field' ] ) ) {
+        $link_field = explode( '/', $section[ '_panels_design_cfield-' . $i . '-link-field' ] );
+        if ( count( $link_field ) == 1 ) {
+          $this->data ['link-field'] = ( ! empty( $postmeta[ $link_field[0] ] ) ? $postmeta[ $link_field[0] ][0] : NULL );
+        } elseif ( count( $link_field ) == 2 ) {
+          $this->data ['link-field'] = do_shortcode( '[arccf table="' . $link_field[0] . '" field="' . $link_field[1] . '"]' );
+        }
+      }
 
-      // The content itself comes from post meta or post title
-
+      // Get the content
       switch ( $section[ '_panels_design_cfield-' . $i . '-name' ] ) {
         case'post_title':
           $this->data ['value'] = $post->post_title;
@@ -54,7 +63,7 @@
           $this->data ['value'] = $post->post_content;
           break;
         case'post_thumbnail':
-          $this->data ['value'] = get_the_post_thumbnail_url($post->ID,'full');
+          $this->data ['value'] = get_post_thumbnail_id(  $post->ID);
           break;
         case'post_date':
           $this->data ['value'] = $post->post_date;
@@ -75,52 +84,13 @@
         default:
           $custom_field = explode( '/', $section[ '_panels_design_cfield-' . $i . '-name' ] );
           if ( count( $custom_field ) == 1 ) {
-            $this->data ['value'] = ( ! empty( $postmeta[ $custom_field[0] ] ) ? $postmeta[ $custom_field[0] ][0] : NULL );
+            $func                = 'arc_get_field_' . $this->data['field-source'];
+            $this->data['value'] = $func( $custom_field[0], $postmeta );
           } elseif ( count( $custom_field ) == 2 ) {
             $this->data ['value'] = do_shortcode( '[arccf table="' . $custom_field[0] . '" field="' . $custom_field[1] . '"]' );
           }
-//              $this->data ['value'] = ( ! empty( $postmeta[ $section[ '_panels_design_cfield-' . $i . '-name' ] ] ) ? $postmeta[ $section[ '_panels_design_cfield-' . $i . '-name' ] ][0] : NULL );
       }
 
-      // Process field groups
-      if ( is_Array( maybe_unserialize( $this->data ['value'] ) ) || $section[ '_panels_design_cfield-' . $i . '-field-type' ] === 'group' ) {
-        $this->data ['value'] = maybe_unserialize( $this->data ['value'] );
-
-        $build_layout = '<table class="arc-group-table">';
-        $headers_done = FALSE;
-
-        foreach ( $this->data ['value'] as $key => $value ) {
-          $inner_array = maybe_unserialize( $value );
-          if ( is_array( $inner_array ) ) {
-            if ( ! $headers_done ) {
-              foreach ( $inner_array as $k => $v ) {
-                $build_layout .= '<th>' . ucwords( str_replace( '_', ' ', str_replace( 'ob_', '', $k ) ) ) . '</th>';
-                $headers_done = TRUE;
-              }
-            }
-            $build_layout .= '<tr>';
-            foreach ( $inner_array as $k => $v ) {
-              $build_layout .= '<td>' . $v . '</td>';
-            }
-            $build_layout .= '</tr>';
-          } else {
-            $build_layout = '<td>' . $value . '</td>';
-          }
-        }
-        $build_layout         .= '</table>';
-        $this->data ['value'] = $build_layout;
-      }
-
-      // TODO:Bet this doesn't work!
-      // What's it even for?!
-      if ( ! empty( $section[ '_panels_design_cfield-' . $i . '-link-field' ] ) ) {
-        $link_field = explode( '/', $section[ '_panels_design_cfield-' . $i . '-link-field' ] );
-        if ( count( $link_field ) == 1 ) {
-          $this->data ['link-field'] = ( ! empty( $postmeta[ $link_field[0] ] ) ? $postmeta[ $link_field[0] ][0] : NULL );
-        } elseif ( count( $link_field ) == 2 ) {
-          $this->data ['link-field'] = do_shortcode( '[arccf table="' . $link_field[0] . '" field="' . $link_field[1] . '"]' );
-        }
-      }
 
 
       // TODO : Add other attributes
@@ -129,4 +99,26 @@
     public function render() {
 
     }
+  }
+
+  /****
+   * functions
+   */
+  function arc_get_field_wp( $arc_field_name, &$postmeta ) {
+
+    return ( ! empty( $postmeta[ $arc_field_name ] ) ? $postmeta[ $arc_field_name ][0] : NULL );
+  }
+
+  function arc_get_field_wooc( $arc_field_name, &$postmeta ) {
+    return ( ! empty( $postmeta[ $arc_field_name ] ) ? $postmeta[ $arc_field_name ][0] : NULL );
+  }
+
+  function arc_get_field_acf( $arc_field_name, &$postmeta ) {
+    $arc_field_val = '';
+    if ( ! empty( $arc_field_name ) && function_exists( 'get_field' ) ) {
+      $arc_field_val = get_field( $arc_field_name );
+    }
+
+    return $arc_field_val;
+
   }

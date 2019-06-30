@@ -15,6 +15,22 @@
 
     function get(&$i,&$section,&$post,&$postmeta){
       // add fields for true value and false value
+      $field_val = '';
+      if ( $this->data['field-source'] = 'acf' ) {
+        if ( function_exists( 'get_field' ) ) {
+          $file     = get_field( $this->data['name'] );
+          $file_url = $file['url'];
+        } elseif ( is_numeric( $this->data['value'] ) ) {
+          $file     = wp_get_attachment_image_src( $this->data['value'] );
+          $file_url = $file[0];
+        }
+      }
+
+      if($this->data['value']) {
+        $this->data['value']=$section[ '_panels_design_cfield-' . $i . '-true-value' ];
+      } else {
+        $this->data['value']=$section[ '_panels_design_cfield-' . $i . '-false-value' ];
+      }
 
     }
 

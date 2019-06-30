@@ -15,11 +15,11 @@
 
     function get(&$i,&$section,&$post,&$postmeta){
       // Numeric settings
-      $this->data ['decimals']      = $section[ '_panels_design_cfield-' . $this->i . '-number-decimals' ];
-      $this->data ['decimal-char']  = $section[ '_panels_design_cfield-' . $this->i . '-number-decimal-char' ];
-      $this->data ['thousands-sep'] = $section[ '_panels_design_cfield-' . $this->i . '-number-thousands-separator' ];
+      $this->data ['decimals']      = $section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
+      $this->data ['decimal-char']  = $section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
+      $this->data ['thousands-sep'] = $section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
 
-      if ( $section[ '_panels_design_cfield-' . $this->i . '-field-type' ] === 'number' ) {
+      if ( $section[ '_panels_design_cfield-' . $i . '-field-type' ] === 'number' ) {
     //    $cfnumeric           = @number_format( $this->data ['value'], $this->data ['decimals'], '', '' );
         $cfnumeric           = @number_format( $this->data ['value'], $this->data ['decimals'], '', '' );
         $cfnumeric           = empty( $cfnumeric ) ? '0000' : $cfnumeric;

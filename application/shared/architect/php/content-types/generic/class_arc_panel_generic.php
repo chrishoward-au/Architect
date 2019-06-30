@@ -486,16 +486,21 @@
     public function get_bgimage( &$post ) {
 
       $thumb_id    = get_post_thumbnail_id();
-      $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', TRUE );
-      if ( $post->post_type === 'attachment' ) {
-        $thumb_id = $post->ID;
-      }
-      $this->data['image']['id'] = $thumb_id;
-      // If the post is already passing the attachment,the above won't work so we need to use the post id
-      if ( empty( $focal_point ) ) {
-        $focal_point = get_post_meta( get_the_id(), 'pzgp_focal_point', TRUE );
-      }
-      $focal_point = ( empty( $focal_point ) ? explode( ',', pzarc_get_option( 'architect_focal_point_default', '50,10' ) ) : explode( ',', $focal_point ) );
+//      $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', TRUE );
+//      if ( $post->post_type === 'attachment' ) {
+//        $thumb_id = $post->ID;
+//      }
+//      $this->data['image']['id'] = $thumb_id;
+//      // If the post is already passing the attachment,the above won't work so we need to use the post id
+//      if ( empty( $focal_point ) ) {
+//        $focal_point = get_post_meta( get_the_id(), 'pzgp_focal_point', TRUE );
+//      }
+//      $focal_point = ( empty( $focal_point ) ? explode( ',', pzarc_get_option( 'architect_focal_point_default', '50,10' ) ) : explode( ',', $focal_point ) );
+
+      // v10.9
+      $fp = ArcFun::get_focal_point($thumb_id);
+      $focal_point = $fp['focal_point'];
+      $this->data['image']['id'] = $fp['thumb_id'];
 
       $showbgimage = ( has_post_thumbnail() && $this->section['_panels_design_feature-location'] === 'fill' && ( $this->section['_panels_design_components-position'] == 'top' || $this->section['_panels_design_components-position'] == 'left' ) ) || ( $this->section['_panels_design_feature-location'] === 'fill' && ( $this->section['_panels_design_components-position'] == 'bottom' || $this->section['_panels_design_components-position'] == 'right' ) );
       // Need to setup for break points.
@@ -790,6 +795,7 @@
           if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-name' ] ) && ! empty( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) ) {
             $type                       = str_replace( '-', '_', 'arc_cft_' . $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] );
             $this->cfields[ $i ]              = new $type( $i, $this->section, $post, $postmeta );
+   //         var_dump($this->data['value']);
             $this->data['cfield'][ $i ] = $this->cfields[ $i ]->data;
              // var_Dump($this->data['cfield']);
           }
@@ -1175,7 +1181,7 @@
 
           if ( $v['group'] === $component && ( ! empty( $v['value'] ) || $v['name'] === 'use_empty' ) ) {
 
-            $content = $this->cfields[$k]->render();
+            $content = '<div class="arc-cfield-'.$v['field-type'].'">'.$this->cfields[$k]->render().'</div>';
 
             $prefix_image = '';
             $suffix_image = '';
