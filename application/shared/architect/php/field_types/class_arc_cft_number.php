@@ -14,6 +14,7 @@
     }
 
     function get(&$i,&$section,&$post,&$postmeta){
+      // TODO: Process ACF settings e.g. prepend text
       // Numeric settings
       $this->data ['decimals']      = $section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
       $this->data ['decimal-char']  = $section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];

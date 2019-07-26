@@ -18,8 +18,11 @@
       $this->data ['image-quality']        = isset( $section[ '_panels_design_cfield-' . $i . '-image-quality' ] ) ? $section[ '_panels_design_cfield-' . $i . '-image-quality' ] : 85;
       $this->data ['image-max-dimensions'] = isset( $section[ '_panels_design_cfield-' . $i . '-image-max-dimensions' ] ) ? $section[ '_panels_design_cfield-' . $i . '-image-max-dimensions' ] : array( 'width' => 100, 'height' => 100 );
       $this->data ['image-focal-point']    = isset( $section[ '_panels_design_cfield-' . $i . '-image-focal-point' ] ) ? $section[ '_panels_design_cfield-' . $i . '-image-focal-point' ] : array( 50, 10 );
+
       $this->meta['width']  = intval( $this->data['image-max-dimensions']['width'] );
       $this->meta['height'] = intval( $this->data['image-max-dimensions']['height'] );
+      $this->meta['quality'] = ( ! empty( $this->data['image-quality'] ) ? $this->data['image-quality'] : 82 );
+      $this->meta['crop']    = $this->meta['width'].'x'.$this->meta['height'];
 
       // TODO: Add fields for image size, show caption,
       // when not ACF!

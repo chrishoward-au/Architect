@@ -355,11 +355,12 @@
       }
 
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_architect_public.php';
-      require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php' );
-      add_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
-      add_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6 );
-      add_filter( 'image_downsize', 'bfi_image_downsize', 1, 3 );
-
+     // require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php' );
+      if (function_exists('bfi_thumb')) {
+        add_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
+        add_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6 );
+        add_filter( 'image_downsize', 'bfi_image_downsize', 1, 3 );
+      }
       $architect = new Architect_Public( $blueprint, $is_shortcode, $device );
 
       // If no errors, let's go!

@@ -121,6 +121,11 @@ MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    hei
 * ADDED: New custom field type: File
 * ADDED: New custom field type: Image
 * ADDED: New custom field type: Map
+* ADDED: New custom field type: Repeater
+* ADDED: New custom field type: Group
+* ADDED: New custom field type: Multi value ???
+* ADDED: New custom field type: Gallery
+* ADDED: Money prefix/suffix to Number field
 * ADDED: Admin option to show the "Insert Architect Blueprint" in the post editor for admins only.
 * ADDED: Option to select custom filed source type. Currently support standard WP and Advanced Custom Fields
 * CHANGED: Architect Maps Extend module for Beaver Builder now requires your own Google API key.

@@ -18,11 +18,15 @@
       $this->data ['image-quality']        = isset( $section[ '_panels_design_cfield-' . $i . '-image-quality' ] ) ? $section[ '_panels_design_cfield-' . $i . '-image-quality' ] : 85;
       $this->data ['image-max-dimensions'] = isset( $section[ '_panels_design_cfield-' . $i . '-image-max-dimensions' ] ) ? $section[ '_panels_design_cfield-' . $i . '-image-max-dimensions' ] : array( 'width' => 100, 'height' => 100 );
       $this->data ['image-focal-point']    = isset( $section[ '_panels_design_cfield-' . $i . '-image-focal-point' ] ) ? $section[ '_panels_design_cfield-' . $i . '-image-focal-point' ] : array( 50, 10 );
+      $this->meta['width']  = intval( $this->data['image-max-dimensions']['width'] );
+      $this->meta['height'] = intval( $this->data['image-max-dimensions']['height'] );
+      $this->meta['quality'] = ( ! empty( $this->data['image-quality'] ) ? $this->data['image-quality'] : 82 );
+      $this->meta['crop']    = $this->meta['width'].'x'.$this->meta['height'];
 
       $image_url = $this->data['value'];
 
       $image_id = '';
-      if ( $this->data['field-source'] == 'acf' ) {
+      if ( $this->data['field-source'] == 'acf' && function_exists('get_field_object')) {
 
         switch ( TRUE ) {
           case( is_Array( $this->data['value'] ) ):
@@ -43,14 +47,10 @@
             $image_url = '';
         }
       }
-
+//var_dump($image_url,$image_id);
       if ( function_exists( 'bfi_thumb' ) ) {
         $focal_point           = $image_id ? ArcFun::get_focal_point( $image_id ) : array( 'focal_point' => array( 50, 10 ) );
-        $this->meta['width']   = intval( $this->data['image-max-dimensions']['width'] );
-        $this->meta['height']  = intval( $this->data['image-max-dimensions']['height'] );
-        $this->meta['quality'] = ( ! empty( $this->data['image-quality'] ) ? $this->data['image-quality'] : 82 );
         $this->meta['crop']    = (int) intval( $focal_point['focal_point'][0] ) . 'x' . (int) $focal_point['focal_point'][1] . 'x' . $this->data ['image-focal-point'];
-
 
         $this->data['value'] = bfi_thumb( $image_url, array(
             'width'   => $this->meta['width'],

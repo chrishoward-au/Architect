@@ -1354,11 +1354,11 @@
    * @param $source
    * @param $keys
    * @param $value
-   * @param $parentClass
+   * @param $parent_class
    *
    * @return mixed|string
    */
-  function pzarc_get_styling( $source, $keys, $value, $parentClass ) {
+  function pzarc_get_styling( $source, $keys, $value, $parent_class, $pkeys_classes = '' ) {
 
     // generate correct whosit
     $pzarc_func = 'pzarc_style_' . $keys['style'];
@@ -1366,7 +1366,7 @@
     foreach ( $keys['classes'] as $class_str ) {
       $class_arr = explode( ',', $class_str );
       foreach ( $class_arr as $class ) {
-        $pzarc_css .= ( function_exists( $pzarc_func ) ? call_user_func( $pzarc_func, $parentClass . ' ' . $class, $value ) : '' );
+        $pzarc_css .= ( function_exists( $pzarc_func ) ? call_user_func( $pzarc_func, $parent_class . ' ' . $class, $value ) : '' );
         if ( $pzarc_func == 'pzarc_style_padding' ) {
           //     var_dump($pzarc_css);
         }
@@ -2650,6 +2650,30 @@
       return strip_tags( $string, $tags );
     }
 
+    /**
+     * @param $date
+     *
+     * @return mixed
+     *
+     *  Purpose: Fix problems with / and , in dates for strtotime
+     */
+    static function fix_date( $date, $format ) {
+      $checks = array( 'd/m/', 'dd/mm/', 'd/mm/', 'dd/m/' );
+      $found  = 0;
+      $return = $date;
+      foreach ( $checks as $check ) {
+        $found += (int) strpos( $check, str_replace( 'y', '', strtolower( $format ) ) );
+      }
+
+      if ( $found && strpos( $date, '/' ) ) {
+        $return = str_replace( '/', '-', str_replace( ',', ' ', $date ) );
+      } else {
+        $return = str_replace( ',', ' ', $date );
+      }
+
+      return $return;
+    }
+
     static function enqueue_scripts( $layout_type = 'basic', $blueprint = 'none' ) {
       switch ( $layout_type ) {
         case 'basic':
@@ -2660,6 +2684,14 @@
           wp_enqueue_script( 'js-isotope-packery' );
           wp_enqueue_script( 'js-front-isotope' );
           break;
+        case 'accordion':
+          wp_enqueue_script( 'js-jquery-collapse' );
+          break;
+        case 'table':
+          wp_enqueue_script( 'js-datatables' );
+          wp_enqueue_style( 'css-datatables' );
+          break;
+
 
       }
     }
@@ -2728,19 +2760,19 @@
           'text-with-paras' => array( 'description' => __( 'Text with paragraph breaks', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'wysiwyg'         => array( 'description' => __( 'Formatted text', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'image'           => array( 'description' => __( 'Image', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
-          'gallery'           => array( 'description' => __( 'Gallery', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'gallery'         => array( 'description' => __( 'Gallery', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'date'            => array( 'description' => __( 'Date', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'number'          => array( 'description' => __( 'Number', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'link'            => array( 'description' => __( 'Link (URL)', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'email'           => array( 'description' => __( 'Email', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'embed'           => array( 'description' => __( 'Embed URL', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           // 'array'           => __( 'Array', 'pzarchitect' ), // Gargh! This makes fields in fields we need to prompt to format them.
-          'group'           => array( 'description' => __( 'Group', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),// WTF is a group Is it the aCF group?'path
           'file'            => array( 'description' => __( 'File', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'map'             => array( 'description' => __( 'Map', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'multi'           => array( 'description' => __( 'Multi value', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'boolean'         => array( 'description' => __( 'Boolean', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
-          //'acf-repeater' => array('description'=_('ACF Repeater'pzarchitect),'path'=> PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/'),
+          'repeater'        => array( 'description' => __( 'Repeater','pzarchitect'),'path'=> PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/'),
+          'group'           => array( 'description' => __( 'Group', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),// WTF is a group Is it the aCF group?'path
       );
       foreach ( $field_types as $ftk => $ftv ) {
         $field_types[ $ftk ] = $return_path ? $ftv['path'] : $ftv['description'];
@@ -2749,24 +2781,24 @@
       return apply_filters( 'arc_cfield_types', $field_types );
     }
 
-    static function get_focal_point( $thumb_id) {
+    static function get_focal_point( $thumb_id ) {
 
 //      switch ($type) {
 //        case ( 'post' ):
-          global $post;
-          $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', TRUE );
-          if ( $post->post_type === 'attachment' ) {
-            $thumb_id = $post->ID;
-          }
-          if ( empty( $focal_point ) ) {
-            $focal_point = get_post_meta( get_the_id(), 'pzgp_focal_point', TRUE );
-          }
-          $focal_point = ( empty( $focal_point ) ? explode( ',', pzarc_get_option( 'architect_focal_point_default', '50,10' ) ) : explode( ',', $focal_point ) );
+      global $post;
+      $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', TRUE );
+      if ( $post->post_type === 'attachment' ) {
+        $thumb_id = $post->ID;
+      }
+      if ( empty( $focal_point ) ) {
+        $focal_point = get_post_meta( get_the_id(), 'pzgp_focal_point', TRUE );
+      }
+      $focal_point = ( empty( $focal_point ) ? explode( ',', pzarc_get_option( 'architect_focal_point_default', '50,10' ) ) : explode( ',', $focal_point ) );
 //          break;
 //        case 'image':
 //          break;
 //      }
-      return ( array( 'thumb_id' => $thumb_id, 'focal_point' => $focal_point ));
+      return ( array( 'thumb_id' => $thumb_id, 'focal_point' => $focal_point ) );
     }
 
   }

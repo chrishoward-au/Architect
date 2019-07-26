@@ -1181,7 +1181,12 @@
 
           if ( $v['group'] === $component && ( ! empty( $v['value'] ) || $v['name'] === 'use_empty' ) ) {
 
-            $content = '<div class="arc-cfield-'.$v['field-type'].'">'.$this->cfields[$k]->render().'</div>';
+            $acf_class= !empty($this->cfields[$k]->meta['acf_settings']['wrapper']['class'])?$this->cfields[$k]->meta['acf_settings']['wrapper']['class']:'';
+            $acf_id= !empty($this->cfields[$k]->meta['acf_settings']['wrapper']['id'])?$this->cfields[$k]->meta['acf_settings']['wrapper']['id']:'';
+            $acf_width= !empty($this->cfields[$k]->meta['acf_settings']['wrapper']['width'])?'width:'.$this->cfields[$k]->meta['acf_settings']['wrapper']['width'].'%;':'';
+            $acf_style= !empty($acf_width)?'display:block;'.$acf_width:'';
+
+            $content = '<div id="'.$acf_id.'" class="arc-cfield arc-cfield-'.$v['field-type'].' '.$acf_class.'" style="'.$acf_style.'">'.$this->cfields[$k]->render().'</div>';
 
             $prefix_image = '';
             $suffix_image = '';

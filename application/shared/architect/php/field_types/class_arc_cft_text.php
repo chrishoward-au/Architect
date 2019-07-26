@@ -15,17 +15,20 @@
 
     function get(&$i,&$section,&$post,&$postmeta){
 
+      if (is_string($this->data['value'])){
+
       if ( empty( $section['_panels_design_process-custom-field-shortcodes'] ) || $section['_panels_design_process-custom-field-shortcodes'] === 'process' ) {
         $this->data['value'] = do_shortcode( $this->data['value'] );
       } else {
         $this->data['value'] = strip_shortcodes( $this->data['value'] );
+      }
       }
 
     }
 
     function render() {
       $content = '';
-      if ( ! empty( $this->data['value'] ) ) {
+      if ( ! empty( $this->data['value'] ) && is_string($this->data['value'])) {
         $content = $this->data['value'];
       }
       return $content;

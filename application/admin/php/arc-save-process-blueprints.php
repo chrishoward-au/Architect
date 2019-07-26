@@ -280,12 +280,11 @@
    * @return string
    */
   function pzarc_create_panels_css( &$pzarc_panels, $pzarc_contents ) {
-
     global $_architect;
     global $_architect_options;
     pzdb( 'create panel css top' );
     $nl = "\n";
-//var_dump($pzarc_panels);
+var_dump($pzarc_panels);
     // Step thru each field looking for ones to format
 //    $specificity_class = '#pzarc-blueprint_' . $pzarc_panels['_blueprints_short-name']; /// Dang! This doesn't work with blueprints in blueprints. 1.10.8
 //    $sections_class    = $specificity_class . '  .pzarc-sections  .pzarc-section_' . ($i + 1); // Removed > coz breaks new masonry features v1.9.3
@@ -322,7 +321,6 @@
       if ( strpos( $key, '_panel' ) === FALSE ) {
         continue;
       }
-
       /**
        * Panels settings and design
        */
@@ -654,7 +652,7 @@
             case ( isset( $_architect[ 'architect_config_' . $pkeys['id'] . '-selectors' ] ) ) :
               $pkeys['classes'] = ( is_array( $_architect[ 'architect_config_' . $pkeys['id'] . '-selectors' ] ) ? $_architect[ 'architect_config_' . $pkeys['id'] . '-selectors' ] : array( '0' => $_architect[ 'architect_config_' . $pkeys['id'] . '-selectors' ] ) );
               $pzarc_contents   .= pzarc_get_styling( 'panel', $pkeys, $value, $class_prefix . ' ', $pkeys['classes'] );
-              //   var_dump($pkeys,pzarc_get_styling( 'panel', $pkeys, $value, $class_prefix . ' ', $pkeys[ 'classes' ] ));
+              //  var_dump($pkeys,pzarc_get_styling( 'panel', $pkeys, $value, $class_prefix . ' ', $pkeys[ 'classes' ] ));
               break;
             case ( $pkeys['id'] === 'custom' ) :
               $pzarc_contents .= str_replace( array( 'MYBLUEPRINT', 'MYPANELS' ), $class_prefix, $value );
@@ -662,6 +660,11 @@
           }
           //        }
           break;
+
+          case (strpos($key,'_panels_design_cfield')===0)  :
+            var_dump($key);
+
+            break;
       }
     }
 

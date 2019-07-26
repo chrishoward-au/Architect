@@ -8,8 +8,8 @@
 
   class arc_custom_fields {
 
-    public $data = array('value'=>'');
-    public $meta=array();
+    public $data = array( 'value' => '' );
+    public $meta = array();
 
     function __construct( $i, $section, &$post, &$postmeta ) {
       self::get( $i, $section, $post, $postmeta );
@@ -24,6 +24,10 @@
       $this->data ['wrapper-tag']  = $section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
       $this->data ['class-name']   = isset( $section[ '_panels_design_cfield-' . $i . '-class-name' ] ) ? $section[ '_panels_design_cfield-' . $i . '-class-name' ] : '';
 
+      // Date settings
+      $this->data['date-format'] = $section[ '_panels_design_cfield-' . $i . '-date-format' ];
+      $this->data['use-acf-date-format'] = !(empty($section[ '_panels_design_cfield-' . $i . '-use-acf-date-format' ])||$section[ '_panels_design_cfield-' . $i . '-use-acf-date-format' ]=='no');
+
       // Link settings
       $this->data ['link-field']     = $section[ '_panels_design_cfield-' . $i . '-link-field' ]; // This will be populated with the actual value later
       $this->data ['link-behaviour'] = isset( $section[ '_panels_design_cfield-' . $i . '-link-behaviour' ] ) ? $section[ '_panels_design_cfield-' . $i . '-link-behaviour' ] : '_self';
@@ -36,9 +40,9 @@
           'quality' => ( ! empty( $section['_panels_design_image-quality'] ) ? $section['_panels_design_image-quality'] : 82 ),
       );
 
-      $this->data ['prefix-text']  = !empty($section[ '_panels_design_cfield-' . $i . '-prefix-text' ] )?'<span class="pzarc-prefix-text">' . $section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>':'';
+      $this->data ['prefix-text']  = ! empty( $section[ '_panels_design_cfield-' . $i . '-prefix-text' ] ) ? '<span class="pzarc-prefix-text">' . $section[ '_panels_design_cfield-' . $i . '-prefix-text' ] . '</span>' : '';
       $this->data ['prefix-image'] = function_exists( 'bfi_thumb' ) ? bfi_thumb( $section[ '_panels_design_cfield-' . $i . '-prefix-image' ]['url'], $params ) : $section[ '_panels_design_cfield-' . $i . '-prefix-image' ]['url'];
-      $this->data ['suffix-text']  = !empty($section[ '_panels_design_cfield-' . $i . '-suffix-text' ])?'<span class="pzarc-suffix-text">' . $section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>':'';
+      $this->data ['suffix-text']  = ! empty( $section[ '_panels_design_cfield-' . $i . '-suffix-text' ] ) ? '<span class="pzarc-suffix-text">' . $section[ '_panels_design_cfield-' . $i . '-suffix-text' ] . '</span>' : '';
       $this->data ['suffix-image'] = function_exists( 'bfi_thumb' ) ? bfi_thumb( $section[ '_panels_design_cfield-' . $i . '-suffix-image' ]['url'], $params ) : $section[ '_panels_design_cfield-' . $i . '-prefix-image' ]['url'];
 
       // Get link field if set
@@ -63,7 +67,7 @@
           $this->data ['value'] = $post->post_content;
           break;
         case'post_thumbnail':
-          $this->data ['value'] = get_post_thumbnail_id(  $post->ID);
+          $this->data ['value'] = get_post_thumbnail_id( $post->ID );
           break;
         case'post_date':
           $this->data ['value'] = $post->post_date;
@@ -84,13 +88,12 @@
         default:
           $custom_field = explode( '/', $section[ '_panels_design_cfield-' . $i . '-name' ] );
           if ( count( $custom_field ) == 1 ) {
-            $func                = 'arc_get_field_' . $this->data['field-source'];
-            $this->data['value'] = $func( $custom_field[0], $postmeta );
+            $func = 'arc_get_field_' . $this->data['field-source'];
+            $this->$func( $custom_field[0], $postmeta );
           } elseif ( count( $custom_field ) == 2 ) {
             $this->data ['value'] = do_shortcode( '[arccf table="' . $custom_field[0] . '" field="' . $custom_field[1] . '"]' );
           }
       }
-
 
 
       // TODO : Add other attributes
@@ -99,26 +102,29 @@
     public function render() {
 
     }
-  }
 
-  /****
-   * functions
-   */
-  function arc_get_field_wp( $arc_field_name, &$postmeta ) {
+    /****
+     * functions
+     */
+    function arc_get_field_wp( $arc_field_name, &$postmeta ) {
 
-    return ( ! empty( $postmeta[ $arc_field_name ] ) ? $postmeta[ $arc_field_name ][0] : NULL );
-  }
-
-  function arc_get_field_wooc( $arc_field_name, &$postmeta ) {
-    return ( ! empty( $postmeta[ $arc_field_name ] ) ? $postmeta[ $arc_field_name ][0] : NULL );
-  }
-
-  function arc_get_field_acf( $arc_field_name, &$postmeta ) {
-    $arc_field_val = '';
-    if ( ! empty( $arc_field_name ) && function_exists( 'get_field' ) ) {
-      $arc_field_val = get_field( $arc_field_name );
+      $this->data['value'] = ( ! empty( $postmeta[ $arc_field_name ] ) ? $postmeta[ $arc_field_name ][0] : NULL );
     }
 
-    return $arc_field_val;
+    function arc_get_field_wooc( $arc_field_name, &$postmeta ) {
+      $this->data['value'] = ( ! empty( $postmeta[ $arc_field_name ] ) ? $postmeta[ $arc_field_name ][0] : NULL );
+    }
+
+    function arc_get_field_acf( $arc_field_name, &$postmeta ) {
+//        var_dump(get_field_object($arc_field_name));
+
+      if ( ! empty( $arc_field_name ) && function_exists( 'get_field' ) ) {
+        $this->data['value']        = get_field( $arc_field_name );
+        $this->meta['acf_settings'] = get_field_object( $this->data['name'] );
+        $this->meta['raw_value']= get_field($arc_field_name,false,false);
+      }
+
+    }
 
   }
+
