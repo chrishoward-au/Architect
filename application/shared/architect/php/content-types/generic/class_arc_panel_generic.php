@@ -15,11 +15,10 @@
     public function __construct( &$build ) {
 
       // Load field classes
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/class_arc_cft.php';
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/class_arc_cft_base.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/arc_cft_base.php';
       $field_types = ArcFun::field_types( TRUE );
       foreach ( $field_types as $ftk => $ftpath ) {
-        require_once $ftpath . '/class_arc_cft_' . $ftk . '.php';
+        require_once $ftpath . '/arc_cft_' . $ftk . '.php';
       }
 
       // If you create you own construct, remember to include these two lines!
@@ -794,20 +793,10 @@
         for ( $i = 1; $i <= $cfcount; $i ++ ) {
           // the settings come from section
           if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-name' ] ) && ! empty( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) ) {
-            switch ( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) {
-              case 'repeater':
-                $this->cfields[ $i ] = new arc_cft_repeater( $i, $this->section, $post, $postmeta );
-                break;
-              default:
-//                $base                = new arc_cft_base( $i, $this->section, $post, $postmeta );
-//                var_dump($base);
-                $type                = str_replace( '-', '_', 'arc_cft_' . $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] );
-                $this->cfields[ $i ] = new $type( $i, $this->section, $post, $postmeta );
-            }
-            var_dump( $this->cfields[ $i ] );
-            //         var_dump($this->data['value']);
-            $this->data['cfield'][ $i ] = $this->cfields[ $i ]->data;
-            // var_Dump($this->data['cfield']);
+            $this->data['cfield'][ $i ] = arc_cft_base_get( $i, $this->section, $post, $postmeta, NULL );
+//            var_dump($this->data['cfield'][ $i ]);
+            $type                       = str_replace( '-', '_', 'arc_cft_' . $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) . '_get';
+            $this->data['cfield'][ $i ] = $type( $i, $this->section, $post, $postmeta, $this->data['cfield'][ $i ] );
           }
 
         }
@@ -1176,7 +1165,7 @@
      * @param      $rsid
      * @param bool $layout_mode
      *
-     * @return mixed|void
+     * @return mixed
      */
     public function render_custom( $component, $content_type, $panel_def, $rsid, $layout_mode = FALSE ) {
 
@@ -1186,33 +1175,34 @@
         $panel_def_cfield = $panel_def['cfield'];
         $build_field      = '';
         $i                = 1;
+        // var_dump($this->data['cfield']);
+        var_dump( count( $this->data['cfield'] ) );
         foreach ( $this->data['cfield'] as $k => $v ) {
 //          $panel_def[$component] = ArcFun::render_custom_field();
 
-          if ( $v['group'] === $component && ( ! empty( $v['value'] ) || $v['name'] === 'use_empty' ) ) {
+          if ( $v['data']['group'] === $component && ( ! empty( $v['data']['value'] ) || $v['data']['name'] === 'use_empty' ) ) {
 
-            $acf_class = ! empty( $this->cfields[ $k ]->meta['acf_settings']['wrapper']['class'] ) ? $this->cfields[ $k ]->meta['acf_settings']['wrapper']['class'] : '';
-            $acf_id    = ! empty( $this->cfields[ $k ]->meta['acf_settings']['wrapper']['id'] ) ? $this->cfields[ $k ]->meta['acf_settings']['wrapper']['id'] : '';
-            $acf_width = ! empty( $this->cfields[ $k ]->meta['acf_settings']['wrapper']['width'] ) ? 'width:' . $this->cfields[ $k ]->meta['acf_settings']['wrapper']['width'] . '%;' : '';
+            $acf_class = ! empty( $v['meta']['acf_settings']['wrapper']['class'] ) ? $v['meta']['acf_settings']['wrapper']['class'] : '';
+            $acf_id    = ! empty( $v['meta']['acf_settings']['wrapper']['id'] ) ? $v['meta']['acf_settings']['wrapper']['id'] : '';
+            $acf_width = ! empty( $v['meta']['acf_settings']['wrapper']['width'] ) ? 'width:' . $v['meta']['acf_settings']['wrapper']['width'] . '%;' : '';
             $acf_style = ! empty( $acf_width ) ? 'display:block;' . $acf_width : '';
 
-            $render = $this->cfields[ $k ]->render();
 
-            $content = '<div id="' . $acf_id . '" class="arc-cfield arc-cfield-' . $v['field-type'] . ' ' . $acf_class . '" style="' . $acf_style . '">' . $render . '</div>';
+            $content = '<div id="' . $acf_id . '" class="arc-cfield arc-cfield-' . $v['field-type'] . ' ' . $acf_class . '" style="' . $acf_style . '">' . $v['data']['value'] . '</div>';
 
             $prefix_image = '';
             $suffix_image = '';
-            if ( ! empty( $v['prefix-image'] ) ) {
+            if ( ! empty( $v['data']['prefix-image'] ) ) {
               $prefix_image = '<img src="' . $v['prefix-image'] . '" class="pzarc-presuff-image prefix-image">';
             }
-            if ( ! empty( $v['suffix-image'] ) ) {
-              $suffix_image = '<img src="' . $v['suffix-image'] . '" class="pzarc-presuff-image suffix-image">';
+            if ( ! empty( $v['data']['suffix-image'] ) ) {
+              $suffix_image = '<img src="' . $v['data']['suffix-image'] . '" class="pzarc-presuff-image suffix-image">';
             }
 
 
-            $content = $prefix_image . $v['prefix-text'] . $content . $v['suffix-text'] . $suffix_image;
-            if ( ! empty( $v['link-field'] ) ) {
-              $content = '<a href="' . $v['link-field'] . '" target="' . $v['link-behaviour'] . '" rel="noopener">' . $content . '</a>';
+            $content = $prefix_image . $v['data']['prefix-text'] . $content . $v['data']['suffix-text'] . $suffix_image;
+            if ( ! empty( $v['data']['link-field'] ) ) {
+              $content = '<a href="' . $v['data']['link-field'] . '" target="' . $v['data']['link-behaviour'] . '" rel="noopener">' . $content . '</a>';
             }
 
             // Not sure why this limitation was set. Removed in 1.10.0
@@ -1226,12 +1216,12 @@
 //            }
 
             // TODO: Should apply filters here?
-            $panel_def_cfield = str_replace( '{{cfieldwrapper}}', $v['wrapper-tag'], $panel_def_cfield );
+            $panel_def_cfield = str_replace( '{{cfieldwrapper}}', $v['data']['wrapper-tag'], $panel_def_cfield );
             $panel_def_cfield = str_replace( '{{cfieldcontent}}', $content, $panel_def_cfield );
-            $panel_def_cfield = str_replace( '{{cfieldname}}', $v['name'], $panel_def_cfield );
+            $panel_def_cfield = str_replace( '{{cfieldname}}', $v['data']['name'], $panel_def_cfield );
             $panel_def_cfield = str_replace( '{{cfieldnumber}}', $k, $panel_def_cfield );
-            if ( ! empty( $v['data'] ) ) {
-              $panel_def_cfield = str_replace( '{{cfielddata}}', $v['data'], $panel_def_cfield );
+            if ( ! empty( $v['data']['data'] ) ) {
+              $panel_def_cfield = str_replace( '{{cfielddata}}', $v['data']['data'], $panel_def_cfield );
             }
 
             $build_field .= $panel_def_cfield;

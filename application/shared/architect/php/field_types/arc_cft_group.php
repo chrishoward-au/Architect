@@ -6,29 +6,20 @@
    * Purpose:
    */
 
-  class arc_cft_group extends arc_cft {
 
-    function __construct($i,$section, &$post, &$postmeta) {
-      // parent::__construct($i,$section,$post, $postmeta);
-      self::get($i,$section,$post,$postmeta);
-    }
-
-    function get(&$i,&$section,&$post,&$postmeta){
+    function arc_cft_group_get(&$i,&$section,&$post,&$postmeta,$data){
       // TODO: ACF
-      $this->data['value']=$this->data['value']; // For consistency and probably got to change it anyways
+//      $data['data']['value']=$data['data']['value']; // For consistency and probably got to change it anyways
 
-    }
-
-    function render(){
       $content = '';
-      if ( ! empty( $this->data['value'] ) ) {
-        if ( is_Array( maybe_unserialize( $this->data ['value'] ) )) {
-          $this->data ['value'] = maybe_unserialize( $this->data ['value'] );
+      if ( ! empty( $data['data']['value'] ) ) {
+        if ( is_Array( maybe_unserialize( $data ['value'] ) )) {
+          $data ['value'] = maybe_unserialize( $data ['value'] );
 
           $content = '<table class="arc-group-table">';
           $headers_done = FALSE;
 
-          foreach ( $this->data ['value'] as $key => $value ) {
+          foreach ( $data ['value'] as $key => $value ) {
             $inner_array = maybe_unserialize( $value );
             if ( is_array( $inner_array ) ) {
               if ( ! $headers_done ) {
@@ -50,8 +41,9 @@
         }
 
       }
-      return $content;
+      $data['data']['value'] = $content;
+      return $data;
     }
 
 
-  }
+
