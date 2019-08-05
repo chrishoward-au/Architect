@@ -10,7 +10,6 @@
 
 
     function __construct( $i, $section, &$post, &$postmeta ) {
-      parent::__construct( $i, $section, $post, $postmeta );
       self::get( $i, $section, $post, $postmeta );
     }
 

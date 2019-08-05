@@ -6,7 +6,7 @@
    * Purpose:
    */
 
-  class arc_cft_map extends arc_custom_fields {
+  class arc_cft_map extends arc_cft {
 
     function __construct( $i, $section, &$post, &$postmeta ) {
       parent::__construct( $i, $section, $post, $postmeta );

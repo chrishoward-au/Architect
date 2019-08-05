@@ -15,10 +15,11 @@
     public function __construct( &$build ) {
 
       // Load field classes
-      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/class_arc_custom_fields.php';
-      $field_types = ArcFun::field_types(true);
-      foreach ($field_types as $ftk => $ftpath) {
-        require_once $ftpath.'/class_arc_cft_'.$ftk.'.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/class_arc_cft.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/class_arc_cft_base.php';
+      $field_types = ArcFun::field_types( TRUE );
+      foreach ( $field_types as $ftk => $ftpath ) {
+        require_once $ftpath . '/class_arc_cft_' . $ftk . '.php';
       }
 
       // If you create you own construct, remember to include these two lines!
@@ -485,7 +486,7 @@
      */
     public function get_bgimage( &$post ) {
 
-      $thumb_id    = get_post_thumbnail_id();
+      $thumb_id = get_post_thumbnail_id();
 //      $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', TRUE );
 //      if ( $post->post_type === 'attachment' ) {
 //        $thumb_id = $post->ID;
@@ -498,8 +499,8 @@
 //      $focal_point = ( empty( $focal_point ) ? explode( ',', pzarc_get_option( 'architect_focal_point_default', '50,10' ) ) : explode( ',', $focal_point ) );
 
       // v10.9
-      $fp = ArcFun::get_focal_point($thumb_id);
-      $focal_point = $fp['focal_point'];
+      $fp                        = ArcFun::get_focal_point( $thumb_id );
+      $focal_point               = $fp['focal_point'];
       $this->data['image']['id'] = $fp['thumb_id'];
 
       $showbgimage = ( has_post_thumbnail() && $this->section['_panels_design_feature-location'] === 'fill' && ( $this->section['_panels_design_components-position'] == 'top' || $this->section['_panels_design_components-position'] == 'left' ) ) || ( $this->section['_panels_design_feature-location'] === 'fill' && ( $this->section['_panels_design_components-position'] == 'bottom' || $this->section['_panels_design_components-position'] == 'right' ) );
@@ -793,15 +794,24 @@
         for ( $i = 1; $i <= $cfcount; $i ++ ) {
           // the settings come from section
           if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-name' ] ) && ! empty( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) ) {
-            $type                       = str_replace( '-', '_', 'arc_cft_' . $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] );
-            $this->cfields[ $i ]              = new $type( $i, $this->section, $post, $postmeta );
-   //         var_dump($this->data['value']);
+            switch ( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) {
+              case 'repeater':
+                $this->cfields[ $i ] = new arc_cft_repeater( $i, $this->section, $post, $postmeta );
+                break;
+              default:
+//                $base                = new arc_cft_base( $i, $this->section, $post, $postmeta );
+//                var_dump($base);
+                $type                = str_replace( '-', '_', 'arc_cft_' . $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] );
+                $this->cfields[ $i ] = new $type( $i, $this->section, $post, $postmeta );
+            }
+            var_dump( $this->cfields[ $i ] );
+            //         var_dump($this->data['value']);
             $this->data['cfield'][ $i ] = $this->cfields[ $i ]->data;
-             // var_Dump($this->data['cfield']);
+            // var_Dump($this->data['cfield']);
           }
 
+        }
       }
-    }
 
     }
 
@@ -1181,12 +1191,14 @@
 
           if ( $v['group'] === $component && ( ! empty( $v['value'] ) || $v['name'] === 'use_empty' ) ) {
 
-            $acf_class= !empty($this->cfields[$k]->meta['acf_settings']['wrapper']['class'])?$this->cfields[$k]->meta['acf_settings']['wrapper']['class']:'';
-            $acf_id= !empty($this->cfields[$k]->meta['acf_settings']['wrapper']['id'])?$this->cfields[$k]->meta['acf_settings']['wrapper']['id']:'';
-            $acf_width= !empty($this->cfields[$k]->meta['acf_settings']['wrapper']['width'])?'width:'.$this->cfields[$k]->meta['acf_settings']['wrapper']['width'].'%;':'';
-            $acf_style= !empty($acf_width)?'display:block;'.$acf_width:'';
+            $acf_class = ! empty( $this->cfields[ $k ]->meta['acf_settings']['wrapper']['class'] ) ? $this->cfields[ $k ]->meta['acf_settings']['wrapper']['class'] : '';
+            $acf_id    = ! empty( $this->cfields[ $k ]->meta['acf_settings']['wrapper']['id'] ) ? $this->cfields[ $k ]->meta['acf_settings']['wrapper']['id'] : '';
+            $acf_width = ! empty( $this->cfields[ $k ]->meta['acf_settings']['wrapper']['width'] ) ? 'width:' . $this->cfields[ $k ]->meta['acf_settings']['wrapper']['width'] . '%;' : '';
+            $acf_style = ! empty( $acf_width ) ? 'display:block;' . $acf_width : '';
 
-            $content = '<div id="'.$acf_id.'" class="arc-cfield arc-cfield-'.$v['field-type'].' '.$acf_class.'" style="'.$acf_style.'">'.$this->cfields[$k]->render().'</div>';
+            $render = $this->cfields[ $k ]->render();
+
+            $content = '<div id="' . $acf_id . '" class="arc-cfield arc-cfield-' . $v['field-type'] . ' ' . $acf_class . '" style="' . $acf_style . '">' . $render . '</div>';
 
             $prefix_image = '';
             $suffix_image = '';

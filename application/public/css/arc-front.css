@@ -464,9 +464,7 @@
   width: 100%; }
 
 .pzarchitect .arc-cfield-repeater.acf-layout-block .repeater-row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex; }
+  display: block; }
   .pzarchitect .arc-cfield-repeater.acf-layout-block .repeater-row .subfield {
     display: block; }
 
@@ -503,9 +501,6 @@
   display: flex; }
   .pzarchitect .arc-cfield-repeater.acf-layout-row .repeater-row .subfield {
     display: inline-block; }
-
-.pzarchitect .arc-cfield-repeater .subfield-repeater_number {
-  text-align: right; }
 
 .pzarchitect {
   /* ===============================================================

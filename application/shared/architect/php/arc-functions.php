@@ -2801,4 +2801,42 @@
       return ( array( 'thumb_id' => $thumb_id, 'focal_point' => $focal_point ) );
     }
 
+    static function get_number_field(&$i,&$section,$data){
+      // TODO: Process ACF settings e.g. prepend text
+      // Numeric settings
+      $meta['prefix']='';
+      $meta['suffix']='';
+      if ( $data['field-source'] == 'acf' ) {
+        $field_object=get_field_object($data['name']);
+        $meta['prefix']=$field_object['prepend'];
+        $meta['suffix']=$field_object['append'];
+      }
+      $data ['decimals']      = $section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
+      $data ['decimal-char']  = $section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
+      $data ['thousands-sep'] = $section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
+
+      if ( $section[ '_panels_design_cfield-' . $i . '-field-type' ] === 'number' ) {
+        //    $cfnumeric           = @number_format( $data ['value'], $data ['decimals'], '', '' );
+        $cfnumeric           = @number_format( $data ['value'], $data ['decimals'], '', '' );
+        $cfnumeric           = empty( $cfnumeric ) ? '0000' : $cfnumeric;
+        $data ['data'] = "data-sort-numeric='{$cfnumeric}'";
+      }
+
+      $content = '';
+      if ( ! empty( $data['value'] ) ) {
+        $content = $meta['prefix'].@number_format( $data['value'], $data['decimals'], $data['decimal-char'], $data['thousands-sep'] ).$meta['suffix'];
+      }
+
+      return $content;
+    }
+
+    static function get_field_type($type){
+      $return = $type;
+      switch ($type){
+        case 'date_picker':
+          $return='date';
+      }
+      return $return;
+    }
+
   }

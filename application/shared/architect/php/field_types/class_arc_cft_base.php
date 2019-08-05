@@ -6,10 +6,8 @@
    * Purpose:
    */
 
-  class arc_custom_fields {
+  class arc_cft_base extends arc_cft {
 
-    public $data = array( 'value' => '' );
-    public $meta = array();
 
     function __construct( $i, $section, &$post, &$postmeta ) {
       self::get( $i, $section, $post, $postmeta );
@@ -25,8 +23,8 @@
       $this->data ['class-name']   = isset( $section[ '_panels_design_cfield-' . $i . '-class-name' ] ) ? $section[ '_panels_design_cfield-' . $i . '-class-name' ] : '';
 
       // Date settings
-      $this->data['date-format'] = $section[ '_panels_design_cfield-' . $i . '-date-format' ];
-      $this->data['use-acf-date-format'] = !(empty($section[ '_panels_design_cfield-' . $i . '-use-acf-date-format' ])||$section[ '_panels_design_cfield-' . $i . '-use-acf-date-format' ]=='no');
+      $this->data['date-format']         = $section[ '_panels_design_cfield-' . $i . '-date-format' ];
+      $this->data['use-acf-date-format'] = ! ( empty( $section[ '_panels_design_cfield-' . $i . '-use-acf-date-format' ] ) || $section[ '_panels_design_cfield-' . $i . '-use-acf-date-format' ] == 'no' );
 
       // Link settings
       $this->data ['link-field']     = $section[ '_panels_design_cfield-' . $i . '-link-field' ]; // This will be populated with the actual value later
@@ -95,7 +93,6 @@
           }
       }
 
-
       // TODO : Add other attributes
     }
 
@@ -103,28 +100,4 @@
 
     }
 
-    /****
-     * functions
-     */
-    function arc_get_field_wp( $arc_field_name, &$postmeta ) {
-
-      $this->data['value'] = ( ! empty( $postmeta[ $arc_field_name ] ) ? $postmeta[ $arc_field_name ][0] : NULL );
-    }
-
-    function arc_get_field_wooc( $arc_field_name, &$postmeta ) {
-      $this->data['value'] = ( ! empty( $postmeta[ $arc_field_name ] ) ? $postmeta[ $arc_field_name ][0] : NULL );
-    }
-
-    function arc_get_field_acf( $arc_field_name, &$postmeta ) {
-//        var_dump(get_field_object($arc_field_name));
-
-      if ( ! empty( $arc_field_name ) && function_exists( 'get_field' ) ) {
-        $this->data['value']        = get_field( $arc_field_name );
-        $this->meta['acf_settings'] = get_field_object( $this->data['name'] );
-        $this->meta['raw_value']= get_field($arc_field_name,false,false);
-      }
-
-    }
-
   }
-

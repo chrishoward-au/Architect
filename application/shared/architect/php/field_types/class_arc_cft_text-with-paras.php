@@ -6,10 +6,10 @@
    * Purpose:
    */
 
-  class arc_cft_text_with_paras extends arc_custom_fields {
+  class arc_cft_text_with_paras extends arc_cft {
 
     function __construct($i,$section, &$post, &$postmeta) {
-      parent::__construct($i,$section,$post, $postmeta);
+      // parent::__construct($i,$section,$post, $postmeta);
       self::get($i,$section,$post,$postmeta);
     }
 

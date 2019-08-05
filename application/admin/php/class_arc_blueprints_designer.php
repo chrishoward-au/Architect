@@ -3934,6 +3934,31 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                     //                'type'  => 'text',
                     //              ),
                     /*********************************************************************************************
+                     * REPEATER AND GROUP PARAMETERS
+                     */
+                    array(
+                        'title'    => __( 'Repeater and Group settings', 'pzarchitect' ),
+                        'id'       => $prefix . $i . 'cfrepeater-settings-section-open',
+                        'type'     => 'section',
+                        'indent'   => TRUE,
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'repeater','group' ), '!=' ),
+
+                    ),
+                    array(
+                        'title'    => __( '', 'pzarchitect' ),
+                        'id'       => $prefix . 'help-usingg-repeaters-groups',
+                        'type'     => 'raw',
+                        'markdown' => FALSE,
+                        'content'  => '<p style="background:#eee;padding:10px;">'.__( '<b>Using Repeater and Group fields</b><br>Currently only ACF Repeater and Group fields are supported. When using these, no custom options are available for sub-fields.', 'pzarchitect' ).'</p>',
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'repeater','group' ), '!=' ),
+                    ),
+                    array(
+                        'id'       => $prefix . $i . 'cfrepeater-settings-section-close',
+                        'type'     => 'section',
+                        'indent'   => FALSE,
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'repeater','group' ), '!=' ),
+                    ),
+                    /*********************************************************************************************
                      * DATE PARAMETERS
                      */
                     array(
@@ -4033,7 +4058,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'id'       => $prefix . 'cfield-' . $i . '-number-money-prefix',
                         'title'    => __( 'Money prefix', 'pzarchitect' ),
                         'type'     => 'text',
-                        'default'  => '$',
+                        'default'  => '',
+                        'subtitle'=> __('Include if this is a money field','pzarchitect'),
                         'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number','repeater','group' ), '!=' ),
                     ),
                     array(
@@ -4057,7 +4083,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'id'       => $prefix . $i . 'cfimage-settings-section-open',
                         'type'     => 'section',
                         'indent'   => TRUE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image', 'gallery' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image', 'gallery','repeater','group' ), '!=' ),
 
                     ),
 
@@ -4067,7 +4093,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'type'     => 'select',
                         'default'  => 'respect',
                         'select2'  => array( 'allowClear' => FALSE ),
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image', 'gallery' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image', 'gallery','repeater','group' ), '!=' ),
                         'options'  => array(
                             'respect'      => __( 'Use focal point', 'pzarchitect' ),
                             //                      'centre'       => __('Centre focal point', 'pzarchitect'),
@@ -4211,31 +4237,6 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'type'     => 'section',
                         'indent'   => FALSE,
                         'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'multi' ), '!=' ),
-                    ),
-                    /*********************************************************************************************
-                     * REPEATER AND GROUP PARAMETERS
-                     */
-                    array(
-                        'title'    => __( 'Repeater and Group settings', 'pzarchitect' ),
-                        'id'       => $prefix . $i . 'cfrepeater-settings-section-open',
-                        'type'     => 'section',
-                        'indent'   => TRUE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'repeater','group' ), '!=' ),
-
-                    ),
-                    array(
-                        'title'    => __( '', 'pzarchitect' ),
-                        'id'       => $prefix . 'help-usingg-repeaters-groups',
-                        'type'     => 'raw',
-                        'markdown' => FALSE,
-                        'content'  => '<p style="background:#eee;padding:10px;">'.__( '<b>Using Repeater and Group fields</b><br>Currently only ACF Repeater and Group fields are supported. When using these, no custom options are available for sub-fields.', 'pzarchitect' ).'</p>',
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'repeater','group' ), '!=' ),
-                    ),
-                    array(
-                        'id'       => $prefix . $i . 'cfrepeater-settings-section-close',
-                        'type'     => 'section',
-                        'indent'   => FALSE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'repeater','group' ), '!=' ),
                     ),
                     /*********************************************************************************************
                      * MAPS PARAMETERS
