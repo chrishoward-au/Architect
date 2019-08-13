@@ -40,7 +40,7 @@
           $image_url = '';
       }
     }
-//var_dump($image_url,$image_id);
+// var_dump($image_url,$image_id);
     if ( function_exists( 'bfi_thumb' ) ) {
       $focal_point  = $image_id ? ArcFun::get_focal_point( $image_id ) : array( 'focal_point' => array( 50, 10 ) );
       $data['meta']['crop'] = (int) intval( $focal_point['focal_point'][0] ) . 'x' . (int) $focal_point['focal_point'][1] . 'x' . $data['data']['image-focal-point'];
@@ -55,9 +55,14 @@
       $data['data']['value'] = $image_url;
     }
 
+//    var_dump($data['data']['value']);
     // TODO:neeed to get alt text
-    if ( ! empty( $data['data']['value'] ) ) {
+    if ( ! empty( $data['data']['value'] ) && is_string($data['data']['value'])) {
       $data['data']['value'] = '<img width="' . $data['meta']['width'] . '" height="' . $data['meta']['height'] . '" src="' . $data['data']['value'] . '" class="attachment-' . $data['meta']['width'] . 'x' . $data['meta']['height'] . 'x1x' . $data['meta']['crop'] . 'x' . $data['meta']['quality'] . '" alt="">';
+    } elseif (! empty( $data['data']['value']['url'] )){
+      $data['data']['image_data']=$data['data']['value'];
+      $data['data']['value'] = '<img width="' . $data['meta']['width'] . '" height="' . $data['meta']['height'] . '" src="' . $data['data']['value']['url'] . '" class="attachment-' . $data['meta']['width'] . 'x' . $data['meta']['height'] . 'x1x' . $data['meta']['crop'] . 'x' . $data['meta']['quality'] . '" alt="">';
+
     }
     return $data;
   }

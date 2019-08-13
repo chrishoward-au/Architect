@@ -8,6 +8,7 @@
 
   function arc_cft_base_get( &$i, &$section, &$post, &$postmeta, $data ) {
     /** CUSTOM FIELDS **/
+
     $data['data']['group']        = $section[ '_panels_design_cfield-' . $i . '-group' ];
     $data['data']['name']         = $section[ '_panels_design_cfield-' . $i . '-name' ];
     $data['data']['field-type']   = $section[ '_panels_design_cfield-' . $i . '-field-type' ];
@@ -22,7 +23,7 @@
     // Link settings
     $data['data']['link-field']     = $section[ '_panels_design_cfield-' . $i . '-link-field' ]; // This will be populated with the actual value later
     $data['data']['link-behaviour'] = isset( $section[ '_panels_design_cfield-' . $i . '-link-behaviour' ] ) ? $section[ '_panels_design_cfield-' . $i . '-link-behaviour' ] : '_self';
-    $data['data']['link-text']      = '<span class="pzarc-link-text">' . $section[ '_panels_design_cfield-' . $i . '-link-text' ] . '</span>';
+    $data['data']['link-text']      = !empty($section[ '_panels_design_cfield-' . $i . '-link-text' ])?$section[ '_panels_design_cfield-' . $i . '-link-text' ]:'';
 
     // Prefix/Suffix
     $params = array(
@@ -80,13 +81,12 @@
         $custom_field = explode( '/', $section[ '_panels_design_cfield-' . $i . '-name' ] );
         if ( count( $custom_field ) == 1 ) {
           $func = 'arc_get_field_' . $data['data']['field-source'];
-          $val = $func( $custom_field[0], $postmeta, $data );
-          $data = $val;
+          $data = $func( $custom_field[0], $postmeta, $data );
         } elseif ( count( $custom_field ) == 2 ) {
           $data['data']['value'] = do_shortcode( '[arccf table="' . $custom_field[0] . '" field="' . $custom_field[1] . '"]' );
         }
     }
-
+//var_dump($data);
     // TODO : Add other attributes
     return $data;
   }
@@ -95,12 +95,15 @@
    * functions
    */
   function arc_get_field_wp( $arc_field_name, &$postmeta,$data ) {
-
-    return array('data'=>( ! empty( $postmeta[ $arc_field_name ] ) ? $postmeta[ $arc_field_name ][0] : NULL ),'meta'=>null);
+    $data['data']['value']= ! empty( $postmeta[ $arc_field_name ] ) ? $postmeta[ $arc_field_name ][0] : NULL ;
+    $data['meta']=array('acf_settings'=>__('Not an ACF field','pzarchitect'),'raw_value'=>null);
+    return $data;
   }
 
   function arc_get_field_wooc( $arc_field_name, &$postmeta,$data ) {
-    return array('data'=>( ! empty( $postmeta[ $arc_field_name ] ) ? $postmeta[ $arc_field_name ][0] : NULL ),'meta'=>null);
+    $data['data']['value']= ! empty( $postmeta[ $arc_field_name ] ) ? $postmeta[ $arc_field_name ][0] : NULL ;
+    $data['meta']=array('acf_settings'=>__('Not an ACF field','pzarchitect'),'raw_value'=>null);
+    return $data;
   }
 
   function arc_get_field_acf( $arc_field_name, &$postmeta,$data,$subfield=false ) {

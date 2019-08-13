@@ -22,6 +22,7 @@
         'link-field'          => $parent_data['data']['link-field'],
         'link-behaviour'      => $parent_data['data']['link-behaviour'],
         'link-text'           => $parent_data['data']['link-text'],
+        'field-source'        => $section[ '_panels_design_cfield-' . $i . '-field-source' ],
     );
 
     if ( $data['data']['field-source'] == 'acf' ) {

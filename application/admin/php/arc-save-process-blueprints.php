@@ -284,7 +284,7 @@
     global $_architect_options;
     pzdb( 'create panel css top' );
     $nl = "\n";
-var_dump($pzarc_panels);
+// // var_dump($pzarc_panels);
     // Step thru each field looking for ones to format
 //    $specificity_class = '#pzarc-blueprint_' . $pzarc_panels['_blueprints_short-name']; /// Dang! This doesn't work with blueprints in blueprints. 1.10.8
 //    $sections_class    = $specificity_class . '  .pzarc-sections  .pzarc-section_' . ($i + 1); // Removed > coz breaks new masonry features v1.9.3
@@ -662,7 +662,7 @@ var_dump($pzarc_panels);
           break;
 
           case (strpos($key,'_panels_design_cfield')===0)  :
-            var_dump($key);
+            //// var_dump($key);
 
             break;
       }

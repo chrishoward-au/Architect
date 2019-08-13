@@ -794,9 +794,10 @@
           // the settings come from section
           if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-name' ] ) && ! empty( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) ) {
             $this->data['cfield'][ $i ] = arc_cft_base_get( $i, $this->section, $post, $postmeta, NULL );
-//            var_dump($this->data['cfield'][ $i ]);
-            $type                       = str_replace( '-', '_', 'arc_cft_' . $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) . '_get';
-            $this->data['cfield'][ $i ] = $type( $i, $this->section, $post, $postmeta, $this->data['cfield'][ $i ] );
+          //  var_dump($this->data['cfield'][ $i ]);
+            $func                       = str_replace( '-', '_', 'arc_cft_' . $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) . '_get';
+          // var_Dump($func);
+            $this->data['cfield'][ $i ] = $func( $i, $this->section, $post, $postmeta, $this->data['cfield'][ $i ] );
           }
 
         }
@@ -1176,7 +1177,6 @@
         $build_field      = '';
         $i                = 1;
         // var_dump($this->data['cfield']);
-        var_dump( count( $this->data['cfield'] ) );
         foreach ( $this->data['cfield'] as $k => $v ) {
 //          $panel_def[$component] = ArcFun::render_custom_field();
 
@@ -1188,7 +1188,7 @@
             $acf_style = ! empty( $acf_width ) ? 'display:block;' . $acf_width : '';
 
 
-            $content = '<div id="' . $acf_id . '" class="arc-cfield arc-cfield-' . $v['field-type'] . ' ' . $acf_class . '" style="' . $acf_style . '">' . $v['data']['value'] . '</div>';
+            $content = '<div id="' . $acf_id . '" class="arc-cfield arc-cfield-' . $v['data']['field-type'] . ' ' . $acf_class . '" style="' . $acf_style . '">' . $v['data']['value'] . '</div>';
 
             $prefix_image = '';
             $suffix_image = '';

@@ -39,7 +39,7 @@
           }
         }
       }
-      var_dump($data);
+ //     var_dump($data);
       $content = '';
       if ( $data['data']['field-source'] == 'acf' && $data['meta']['is_address'] != 'yes' ) {
 

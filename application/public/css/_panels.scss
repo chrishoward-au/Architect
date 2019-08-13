@@ -467,9 +467,11 @@
         display: table-row;
         overflow: auto;
         border-top:1px;
-
         &.odd {
-          background:#eee;
+          background:#e9e9e9;
+        }
+        &.even {
+          background:#f9f9f9;
         }
         .subfield {
           display: table-cell;

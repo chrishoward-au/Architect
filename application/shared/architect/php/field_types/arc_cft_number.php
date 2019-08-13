@@ -12,6 +12,8 @@
       // Numeric settings
       $prefix='';
       $suffix='';
+    //  var_dump($data);
+
       if ( $data['data']['field-source'] == 'acf' ) {
         $field_object=get_field_object($data['data']['name']);
         $prefix=$field_object['prepend'];

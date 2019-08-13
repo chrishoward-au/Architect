@@ -3966,11 +3966,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'id'       => $prefix . $i . 'cfdate-settings-section-open',
                         'type'     => 'section',
                         'indent'   => TRUE,
-                        'required' => array(
-                            $prefix . 'cfield-' . $i . '-field-type',
-                            '=',
-                            'date',
-                        ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'date','repeater','group' ), '!=' ),
                     ),
 
                     array(
@@ -3995,28 +3991,13 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'type'     => 'text',
                         'default'  => 'l, F j, Y g:i a',
                         'desc'     => __( 'Visit here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect' ),
-                        'required' => array(
-                            array(
-                                $prefix . 'cfield-' . $i . '-field-type',
-                                '=',
-                                'date',
-                            ),
-                            array(
-                                $prefix . 'cfield-' . $i . '-use-acf-date-format',
-                                '!=',
-                                'yes',
-                            ),
-                        ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'date','repeater','group' ), '!=' ),
                     ),
                     array(
                         'id'       => $prefix . $i . 'cfdate-settings-section-close',
                         'type'     => 'section',
                         'indent'   => FALSE,
-                        'required' => array(
-                            $prefix . 'cfield-' . $i . '-field-type',
-                            '=',
-                            'date',
-                        ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'date','repeater','group' ), '!=' ),
                     ),
                     /*********************************************************************************************
                      * NUMERIC PARAMETERS

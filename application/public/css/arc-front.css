@@ -487,7 +487,9 @@
     overflow: auto;
     border-top: 1px; }
     .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-row.odd {
-      background: #eee; }
+      background: #e9e9e9; }
+    .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-row.even {
+      background: #f9f9f9; }
     .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-row .subfield {
       display: table-cell;
       border-left: solid 1px #999;

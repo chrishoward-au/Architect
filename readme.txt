@@ -105,6 +105,8 @@ TODO: Add option for full size components with options to float content.
 MYPANELS .pzarc-components {    height:100%;    display: flex;  flex-direction: column;  justify-content: center;}
 TODO: Add font scaling to meta
 TODO: INCLUDE REDUX
+TODO: Inlcude Sudo - but fix nav centeringe
+TODO: Include Users post type
 TODO Add image trim to featured images
 TODO: Add method to remove all Blueprint data
 todo: implement object fit for images to fix scaling - see Wangclub
@@ -126,20 +128,17 @@ MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    hei
 * ADDED: New custom field type: Multi value ???
 * ADDED: New custom field type: Gallery
 * ADDED: Money prefix/suffix to Number field
-* ADDED: Admin option to show the "Insert Architect Blueprint" in the post editor for admins only.
-* ADDED: Option to select custom filed source type. Currently support standard WP and Advanced Custom Fields
-* CHANGED: Architect Maps Extend module for Beaver Builder now requires your own Google API key.
+* ADDED: Admin option to show the "Insert Architect Blueprint" button in the post editor to admins only.
+* ADDED: Option to select custom field source type. Currently support standard WP and Advanced Custom Fields
+* CHANGED: Architect Maps Extend module for Beaver Builder now requires your own Google API key because of Google's changes.
 * FIXED: Showcases and Testimonials not displaying extra fields metabox
 * ADDED: Override for Skip N Posts value in the Beaver module
 * UPDATED: Freemius SDK to 2.2.4 - Security update
+** TODO: Setup defaault repeater row layouts, fix table selector for custom fields, fix don't show hidden fields, add a THISCUSTOMFIELD CSS tag
 
 
-TODO: Inlcude Sudo - but fix nav centeringe
-TODO: Include Users post type
 
 = 1.17.0
-      // TODO NEED TO CHECK IF ANY BLUEPRINT CSS MISSING AND REGENERATE - since there will be with switch to options
-
 * FIXED: Beaver Builder Maps and Any Field modules loading field arrays unnecessarily on front end.
 * FIXED: CSS caching problem in Blox since 1.16.0
 * FIXED: Possible warning if php_uname is not available in sysinfo
