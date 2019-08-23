@@ -134,7 +134,11 @@ MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    hei
 * FIXED: Showcases and Testimonials not displaying extra fields metabox
 * ADDED: Override for Skip N Posts value in the Beaver module
 * UPDATED: Freemius SDK to 2.2.4 - Security update
-** TODO: Setup defaault repeater row layouts, fix table selector for custom fields, fix don't show hidden fields, add a THISCUSTOMFIELD CSS tag
+** TODO: Setup defaault repeater row layouts,
+** TODO fix table selector for custom fields,
+** TODO fix don't show hidden fields
+** TODO add a THISCUSTOMFIELD CSS tag and custom CSS field
+**  TODO: Add a warning if in lite mode and Blueprint is using Pro features.
 
 
 
