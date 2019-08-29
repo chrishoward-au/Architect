@@ -646,8 +646,13 @@
 
           switch ( TRUE ) {
             case ( strpos( $pkeys['id'], 'entry-customfield-' ) === 0 ) :
-              $pkeys['classes'] = array( '0' => '.' . $pkeys['id'] );
-              $pzarc_contents   .= pzarc_get_styling( 'panel', $pkeys, $value, $class_prefix . ' ', $pkeys['classes'] );
+              if ( $pkeys['style'] === 'customcss' ) {
+                $pzarc_contents .= pzarc_style_custom_css( 'THISFIELD', $class_prefix . ' .' . $pkeys['id'], $value );
+              } else {
+                $pkeys['classes'] = array( '0' => '.' . $pkeys['id'] );
+                $pzarc_contents   .= pzarc_get_styling( 'panel', $pkeys, $value, $class_prefix . ' ', $pkeys['classes'] );
+
+              }
               break;
             case ( isset( $_architect[ 'architect_config_' . $pkeys['id'] . '-selectors' ] ) ) :
               $pkeys['classes'] = ( is_array( $_architect[ 'architect_config_' . $pkeys['id'] . '-selectors' ] ) ? $_architect[ 'architect_config_' . $pkeys['id'] . '-selectors' ] : array( '0' => $_architect[ 'architect_config_' . $pkeys['id'] . '-selectors' ] ) );
@@ -661,13 +666,12 @@
           //        }
           break;
 
-          case (strpos($key,'_panels_design_cfield')===0)  :
-            //// var_dump($key);
+        case ( strpos( $key, '_panels_design_cfield' ) === 0 )  :
+          //// var_dump($key);
 
-            break;
+          break;
       }
     }
-
 
     // TODO: Why is using bgimages here??
     // TODO: Extend this for multiple breakpoints

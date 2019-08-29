@@ -113,6 +113,8 @@ todo: implement object fit for images to fix scaling - see Wangclub
 MYPANELS {    display:flex!important;}
 MYPANELS figure.entry-thumbnail {    max-height:100%;}
 MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    height:100%;}
+** TODO: Add a warning if in lite mode and Blueprint is using Pro features.
+
 
 = 10.9 =
 * UPDATED: Changed version numbering to match releases. This is the 109th update so v10.9
@@ -125,22 +127,18 @@ MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    hei
 * ADDED: New custom field type: Map
 * ADDED: New custom field type: Repeater
 * ADDED: New custom field type: Group
-* ADDED: New custom field type: Multi value ???
+* ADDED: New custom field type: Multi value ??? TODO
 * ADDED: New custom field type: Gallery
 * ADDED: Money prefix/suffix to Number field
 * ADDED: Admin option to show the "Insert Architect Blueprint" button in the post editor to admins only.
 * ADDED: Option to select custom field source type. Currently support standard WP and Advanced Custom Fields
+* ADDED: Custom CSS field to custom fields styling
 * CHANGED: Architect Maps Extend module for Beaver Builder now requires your own Google API key because of Google's changes.
 * FIXED: Showcases and Testimonials not displaying extra fields metabox
 * ADDED: Override for Skip N Posts value in the Beaver module
 * UPDATED: Freemius SDK to 2.2.4 - Security update
-** TODO: Setup defaault repeater row layouts,
-** TODO fix table selector for custom fields,
-** TODO fix don't show hidden fields
-** TODO add a THISCUSTOMFIELD CSS tag and custom CSS field
-**  TODO: Add a warning if in lite mode and Blueprint is using Pro features.
-
-
+** TODO: Setup defaault repeater row layouts
+** TODO: Test Group and multi-value fields - taxonomies?
 
 = 1.17.0
 * FIXED: Beaver Builder Maps and Any Field modules loading field arrays unnecessarily on front end.

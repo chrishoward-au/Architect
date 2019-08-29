@@ -244,6 +244,26 @@
 
   }
 
+  /**
+   * @param        $id
+   * @param null   $selectors
+   * @param array  $defaults
+   * @param string $subtitle
+   *
+   * @return array
+   */
+  function pzarc_redux_custom_css($id,$selectors=null,$defaults=array(),$subtitle=''){
+    return array(
+        'id'      => $id,
+        'type'     => 'ace_editor',
+        'title'    => __( 'Custom CSS', 'pzarchitect' ),
+        'mode'     => 'css',
+        'options'  => array( 'minLines' => 25 ),
+        'default'  => $defaults,
+        'subtitle' => __( $subtitle, 'pzarchitect' ),
+    );
+  }
+
 //  function pzarc_get_taxterms($pzarc_taxes = null) {
 //    global $pzarc_masonry_filter_taxes,$tax_slug;
 //    var_dump($pzarc_masonry_filter_taxes,$tax_slug);
@@ -1306,6 +1326,17 @@
     $value = trim( $value );
 
     return ( ! empty( $value ) ? $class . $value : NULL );
+  }
+
+  /**
+   * @param $arc_needle
+   * @param $arc_replace
+   * @param $arc_haystack
+   *
+   * @return mixed
+   */
+  function pzarc_style_custom_css($arc_needle,$arc_replace,$arc_haystack){
+    return str_replace($arc_needle,$arc_replace,$arc_haystack);
   }
 
   if ( ! function_exists( 'pzifempty' ) ) {

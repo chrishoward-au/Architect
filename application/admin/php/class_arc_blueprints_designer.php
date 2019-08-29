@@ -27,7 +27,7 @@
         add_filter( 'manage_arc-blueprints_posts_columns', array( $this, 'add_blueprint_columns', ) );
         add_action( 'manage_arc-blueprints_posts_custom_column', array( $this, 'add_blueprint_column_content', ), 10, 2 );
         add_filter( 'views_edit-arc-blueprints', array( $this, 'blueprints_description', ) );
-        add_filter( 'arc_custom_field_list', 'arc_add_to_custom_fields',10,2 );
+        add_filter( 'arc_custom_field_list', 'arc_add_to_custom_fields', 10, 2 );
 
         //       add_action('admin_init',array($this,'admin_init'));
         // Grab the extra slider field_types from the registry
@@ -1978,7 +1978,7 @@
               '[data-order]' => __( 'Date', 'pzarchitect' ),
               '.author'      => __( 'Author', 'pzarchitect' ),
           ),
-      ), $this->custom_fields  ) );
+      ), $this->custom_fields ) );
 //      global $pzarc_masonry_filter_taxes;
       //     var_dump( $_GET, $this->postmeta);
       if ( is_admin() && ! empty( $_GET['post'] ) && ! empty( $this->postmeta[ $prefix . 'masonry-filtering' ] ) ) {
@@ -3747,7 +3747,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               'specific_code'  => 'Specific Text, HTML or Shortcodes',
           );
 
-          $pzarc_custom_fields =  apply_filters( 'arc_custom_field_list', $pzarc_custom_fields,  $this->custom_fields);
+          $pzarc_custom_fields = apply_filters( 'arc_custom_field_list', $pzarc_custom_fields, $this->custom_fields );
 
 //          ), apply_filters( 'arc_custom_field_list', $this->custom_fields, $this->source ) ); ass about with user fields. todo fix there
 
@@ -3779,7 +3779,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 //            if (! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]) && $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]==='tablefield') {
 //              $cfname     = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] : '' );
 //            } else {
-            $cfname = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] : '' );
+            $cfname = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] ) ? ': <span style="color:maroon;">' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] . '</span>' : '' );
 //            }
 
 //            $cftable = ( ! empty( $this->postmeta['_panels_design_cfield-'.$i.'-name-table'][0] ) ? $this->postmeta['_panels_design_cfield-'.$i.'-name-table'][0] : 'none' );
@@ -3789,7 +3789,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 //            if ( isset( $pzarc_custom_fields['User Fields'] ) ) {
 //              $link_fields = array_merge( array( 'Custom Fields' => $pzarc_custom_fields['Other Custom Fields'], 'User Fields' => $pzarc_custom_fields['User Fields'] ), $tablesfields );
 //            } else {
-              $link_fields = array_merge( $pzarc_custom_fields, $tablesfields );
+            $link_fields = array_merge( $pzarc_custom_fields, $tablesfields );
 //            }
             $all_fields                         = array_merge( $pzarc_custom_fields, $tablesfields );
             $sections[ _amb_customfields . $i ] = array(
@@ -3875,10 +3875,10 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'options'  => array(
                             'wp'   => __( 'WP', 'pzarchitect' ),
                             'acf'  => __( 'ACF', 'pzarchitect' ),
-                            'wooc' => __( 'WooC', 'pzarchitect' ),
+//                            'wooc' => __( 'WooC', 'pzarchitect' ),
                             //                                                        'toolset' => __( 'Toolset', 'pzarchitect' ),
                         ),
-                        'desc'     => __( 'WP: A custom field created either in the post editor, or in code using standard WP methods.<br>ACF: A custom field created using Advanced Custom Fields plugin<br>WooC: A field created using WooCommerce', 'pzarchitect' ),
+                        'desc'     => __( 'WP: A custom field created either in the post editor, or in code using standard WP methods.<br>ACF: A custom field created using Advanced Custom Fields plugin', 'pzarchitect' ),
                     ),
                     array(
                         'title'    => __( 'Specific Text or Code', 'pzarchitect' ),
@@ -4436,6 +4436,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $margin     = '-margin';
         $background = '-background';
         $border     = '-borders';
+        $custom = '-customcss';
 
         $stylingSections = array();
         $optprefix       = 'architect_config_';
@@ -4445,7 +4446,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 //            if (! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]) && $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0]==='tablefield') {
 //              $cfname     = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name-table-field' ][0] : '' );
 //            } else {
-            $cfname = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] ) ? ': <br>' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] : '' );
+            $cfname = ' custom field ' . $i . ( ! empty( $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] ) ? ': <span style="color:navy">' . $this->postmeta[ '_panels_design_cfield-' . $i . '-name' ][0] . '</span>' : '' );
 //            }
             $sections[ _amb_styling_customfields . $i ] = array(
                 'title'      => 'Styling ' . $cfname,
@@ -4453,8 +4454,16 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 'icon_class' => 'icon-large',
                 'icon'       => 'el-icon-brush',
                 'desc'       => 'Class: .entry-customfield-' . $i,
-                'fields'     => pzarc_fields( pzarc_redux_font( $prefix . 'entry-customfield-' . $i . '' . $font, array( '.entry-customfield-' . $i . '' ) ), pzarc_redux_bg( $prefix . 'entry-customfield-' . $i . '' . $font . $background, array( '.entry-customfield-' . $i . '' ) ), pzarc_redux_padding( $prefix . 'entry-customfield-' . $i . '' . $font . $padding, array( '.entry-customfield-' . $i . '' ) ), pzarc_redux_margin( $prefix . 'entry-customfield-' . $i . '' . $font . $margin, array( '.entry-customfield-' . $i . '' ), NULL, 'tb' ), pzarc_redux_borders( $prefix . 'entry-customfield-' . $i . '' . $border, array( '.entry-customfield-' . $i . '' ) ), pzarc_redux_links( $prefix . 'entry-customfield-' . $i . '' . $font . $link, array( '.entry-customfield-' . $i . ' a' ) ) ),
-            );
+                'fields'     => pzarc_fields(
+                    pzarc_redux_font( $prefix . 'entry-customfield-' . $i . '' . $font, array( '.entry-customfield-' . $i . '' ) ),
+                    pzarc_redux_bg( $prefix . 'entry-customfield-' . $i . '' . $font . $background, array( '.entry-customfield-' . $i . '' ) ),
+                    pzarc_redux_padding( $prefix . 'entry-customfield-' . $i . '' . $font . $padding, array( '.entry-customfield-' . $i . '' ) ),
+                    pzarc_redux_margin( $prefix . 'entry-customfield-' . $i . '' . $font . $margin, array( '.entry-customfield-' . $i . '' ), NULL, 'tb' ),
+                    pzarc_redux_borders( $prefix . 'entry-customfield-' . $i . '' . $border, array( '.entry-customfield-' . $i . '' ) ),
+                    pzarc_redux_links( $prefix . 'entry-customfield-' . $i . '' . $font . $link, array( '.entry-customfield-' . $i . ' a' ) ),
+                    pzarc_redux_custom_css( $prefix . 'entry-customfield-' . $i . '' . $custom , '','', 'As a shorthand, you can prefix your CSS class with THISFIELD and Architect will substitute the correct class. e.g. THISFIELD {border-radius:5px;}' )
+                )
+             );
           }
         }
       }
