@@ -578,7 +578,7 @@
                 }
               }
             }
-            //END ADDITION                        
+            //END ADDITION
 
             //print_r($GLOBALS['wp_post_types']);
             //if (isset($GLOBALS['wp_post_types']['acme_product']))
@@ -1146,9 +1146,9 @@
                         $this->meta[ $this->post_id ][ $field['id'] ] = "";
                       }
 
-//print_r($this->options_defaults[$field['id']]);s
+//print_r($this->options_defaults[$field['id']]);
 //print_r($this->options[$field['id']]);
-                      //print_r($this->meta[$this->post_id][$field['id']]);
+//                      print_r($this->meta[$this->post_id][$field['id']]);
 
                       $this->parent->_field_input( $field, $this->meta[ $this->post_id ][ $field['id'] ] );
                       echo '</td></tr>';

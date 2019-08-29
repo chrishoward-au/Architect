@@ -27,6 +27,7 @@
         add_filter( 'manage_arc-blueprints_posts_columns', array( $this, 'add_blueprint_columns', ) );
         add_action( 'manage_arc-blueprints_posts_custom_column', array( $this, 'add_blueprint_column_content', ), 10, 2 );
         add_filter( 'views_edit-arc-blueprints', array( $this, 'blueprints_description', ) );
+        add_filter( 'arc_custom_field_list', 'arc_add_to_custom_fields',10,2 );
 
         //       add_action('admin_init',array($this,'admin_init'));
         // Grab the extra slider field_types from the registry
@@ -64,7 +65,7 @@
           // 1.8.1 Attempting to reduce calls to get custom fields. Generally this should work, but may occasionally miss some fields.
           $this->custom_fields = get_option( 'architect_custom_fields' );
           if ( empty( $this->custom_fields ) || ( ( isset( $_GET['post_type'] ) && $_GET['post_type'] === 'arc-blueprints' ) ) ) {
-            $this->custom_fields = pzarc_get_custom_fields();
+            $this->custom_fields = ArcFun::get_custom_fields();
             update_option( 'architect_custom_fields', $this->custom_fields );
 //          var_dump('Custom fields updated');
           }
@@ -1977,7 +1978,7 @@
               '[data-order]' => __( 'Date', 'pzarchitect' ),
               '.author'      => __( 'Author', 'pzarchitect' ),
           ),
-      ), array( 'Custom Fields' => $this->custom_fields ) ) );
+      ), $this->custom_fields  ) );
 //      global $pzarc_masonry_filter_taxes;
       //     var_dump( $_GET, $this->postmeta);
       if ( is_admin() && ! empty( $_GET['post'] ) && ! empty( $this->postmeta[ $prefix . 'masonry-filtering' ] ) ) {
@@ -3671,6 +3672,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
        * Why are these here even though they are somewhat content related. They're not choosing the content itself. Yes they do limit the usablity of the panel. Partly this came about because of the way WPdoesn't bind custom fields to specific content field_types.
        */
 
+
       global $wpdb;
       $sections[ _amb_customfields ] = array(
           'title'      => __( 'Custom fields general settings', 'pzarchitect' ),
@@ -3713,7 +3715,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               array(
                   'title'   => __( 'Select tables to include for custom fields', 'pzarchitect' ),
                   'id'      => $prefix . 'incl-tables',
-                  'type'    => 'checkbox',
+                  'type'    => 'select',
+                  'multi'   => TRUE,
                   'default' => array( $wpdb->prefix . 'posts' => $wpdb->prefix . 'posts' ),
                   'options' => $this->tableset,
               ),
@@ -3733,7 +3736,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           $background = '-background';
           $border     = '-borders';
 
-          $pzarc_custom_fields = array_merge( array(
+          $pzarc_custom_fields = array(
               'use_empty'      => 'No field. Use prefix and suffix only',
               'post_title'     => 'Post Title',
               'post_content'   => 'Post Content',
@@ -3742,14 +3745,34 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               'post_author'    => 'Post Author',
               'post_date'      => 'Post Date',
               'specific_code'  => 'Specific Text, HTML or Shortcodes',
-          ), apply_filters( 'arc_custom_field_list', $this->custom_fields, $this->source ) );
+          );
+
+          $pzarc_custom_fields =  apply_filters( 'arc_custom_field_list', $pzarc_custom_fields,  $this->custom_fields);
+
+//          ), apply_filters( 'arc_custom_field_list', $this->custom_fields, $this->source ) ); ass about with user fields. todo fix there
+
           if ( ! empty( $this->postmeta['_panels_design_excl-hidden-fields'][0] ) ) {
-            $pzarc_custom_fields_tmp = $pzarc_custom_fields;
+            $pzarc_custom_fields_tmp = $pzarc_custom_fields['Other Custom Fields'];
+
             foreach ( $pzarc_custom_fields_tmp as $k => $v ) {
-              if ( substr( $k, 0, 1 ) == '_' ) {
-                unset( $pzarc_custom_fields[ $k ] );
+              if ( strpos( $k, '_' ) === 0 ) {
+                unset( $pzarc_custom_fields['Other Custom Fields'][ $k ] );
               }
             }
+          }
+
+          // Remove table fields user doesn't want to show
+          $incl_table_fields = maybe_unserialize( $this->postmeta['_panels_design_incl-tables'][0] );
+//          $tablesfields = $this->tablesfields;
+//          foreach ($incl_table_fields as $kf => $vf){
+//            if (empty($vf)){
+//              unset($tablesfields[$kf]);
+//            }
+//          }
+          // Method if using select for incl_tables field
+          $tablesfields = array();
+          foreach ( $incl_table_fields as $kf => $vf ) {
+            $tablesfields[ $vf ] = $this->tablesfields[ $vf ];
           }
           $field_types = ArcFun::field_types();
           for ( $i = 1; $i <= $cfcount; $i ++ ) {
@@ -3762,8 +3785,13 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 //            $cftable = ( ! empty( $this->postmeta['_panels_design_cfield-'.$i.'-name-table'][0] ) ? $this->postmeta['_panels_design_cfield-'.$i.'-name-table'][0] : 'none' );
 //            $cftablefields = $cftable=='none' ? array('none'=>__('Select a table','pzarchitect')):$this->tablesfields[$cftable];
 
-            $link_fields                        = array_merge( array( 'Custom fields' => $this->custom_fields ), $this->tablesfields );
-            $all_fields                         = array_merge( $pzarc_custom_fields, $this->tablesfields );
+            // User fields come from the user extension
+//            if ( isset( $pzarc_custom_fields['User Fields'] ) ) {
+//              $link_fields = array_merge( array( 'Custom Fields' => $pzarc_custom_fields['Other Custom Fields'], 'User Fields' => $pzarc_custom_fields['User Fields'] ), $tablesfields );
+//            } else {
+              $link_fields = array_merge( $pzarc_custom_fields, $tablesfields );
+//            }
+            $all_fields                         = array_merge( $pzarc_custom_fields, $tablesfields );
             $sections[ _amb_customfields . $i ] = array(
                 'title'      => 'Settings ' . $cfname,
                 'icon_class' => 'icon-large',
@@ -3941,7 +3969,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'id'       => $prefix . $i . 'cfrepeater-settings-section-open',
                         'type'     => 'section',
                         'indent'   => TRUE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'repeater','group' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'repeater', 'group' ), '!=' ),
 
                     ),
                     array(
@@ -3949,14 +3977,14 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'id'       => $prefix . 'help-usingg-repeaters-groups',
                         'type'     => 'raw',
                         'markdown' => FALSE,
-                        'content'  => '<p style="background:#eee;padding:10px;">'.__( '<b>Using Repeater and Group fields</b><br>Currently only ACF Repeater and Group fields are supported. When using these, no custom options are available for sub-fields.', 'pzarchitect' ).'</p>',
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'repeater','group' ), '!=' ),
+                        'content'  => '<p style="background:#eee;padding:10px;">' . __( '<b>Using Repeater and Group fields</b><br>Currently only ACF Repeater and Group fields are supported. When using these, no custom options are available for sub-fields.', 'pzarchitect' ) . '</p>',
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'repeater', 'group' ), '!=' ),
                     ),
                     array(
                         'id'       => $prefix . $i . 'cfrepeater-settings-section-close',
                         'type'     => 'section',
                         'indent'   => FALSE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'repeater','group' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'repeater', 'group' ), '!=' ),
                     ),
                     /*********************************************************************************************
                      * DATE PARAMETERS
@@ -3966,7 +3994,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'id'       => $prefix . $i . 'cfdate-settings-section-open',
                         'type'     => 'section',
                         'indent'   => TRUE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'date','repeater','group' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'date', 'repeater', 'group' ), '!=' ),
                     ),
 
                     array(
@@ -3991,13 +4019,13 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'type'     => 'text',
                         'default'  => 'l, F j, Y g:i a',
                         'desc'     => __( 'Visit here for information on <a href="http://codex.wordpress.org/Formatting_Date_and_Time" target=_blank>formatting date and time</a>', 'pzarchitect' ),
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'date','repeater','group' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'date', 'repeater', 'group' ), '!=' ),
                     ),
                     array(
                         'id'       => $prefix . $i . 'cfdate-settings-section-close',
                         'type'     => 'section',
                         'indent'   => FALSE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'date','repeater','group' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'date', 'repeater', 'group' ), '!=' ),
                     ),
                     /*********************************************************************************************
                      * NUMERIC PARAMETERS
@@ -4007,7 +4035,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'id'       => $prefix . $i . 'cfnumeric-settings-section-open',
                         'type'     => 'section',
                         'indent'   => TRUE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number','repeater','group' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number', 'repeater', 'group' ), '!=' ),
                     ),
                     array(
                         'id'            => $prefix . 'cfield-' . $i . '-number-decimals',
@@ -4019,42 +4047,42 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'step'          => 1,
                         'display_value' => 'label',
                         'subtitle'      => __( 'Number of decimal places.', 'pzarchitect' ),
-                        'required'      => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number','repeater','group' ), '!=' ),
+                        'required'      => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number', 'repeater', 'group' ), '!=' ),
                     ),
                     array(
                         'id'       => $prefix . 'cfield-' . $i . '-number-decimal-char',
                         'title'    => __( 'Decimal point character', 'pzarchitect' ),
                         'type'     => 'text',
                         'default'  => '.',
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number','repeater','group' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number', 'repeater', 'group' ), '!=' ),
                     ),
                     array(
                         'id'       => $prefix . 'cfield-' . $i . '-number-thousands-separator',
                         'title'    => __( 'Thousands separator', 'pzarchitect' ),
                         'type'     => 'text',
                         'default'  => ',',
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number','repeater','group' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number', 'repeater', 'group' ), '!=' ),
                     ),
                     array(
                         'id'       => $prefix . 'cfield-' . $i . '-number-money-prefix',
                         'title'    => __( 'Money prefix', 'pzarchitect' ),
                         'type'     => 'text',
                         'default'  => '',
-                        'subtitle'=> __('Include if this is a money field','pzarchitect'),
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number','repeater','group' ), '!=' ),
+                        'subtitle' => __( 'Include if this is a money field', 'pzarchitect' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number', 'repeater', 'group' ), '!=' ),
                     ),
                     array(
                         'id'       => $prefix . 'cfield-' . $i . '-number-money-suffix',
                         'title'    => __( 'Money suffix', 'pzarchitect' ),
                         'type'     => 'text',
                         'default'  => '',
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number','repeater','group' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number', 'repeater', 'group' ), '!=' ),
                     ),
                     array(
                         'id'       => $prefix . $i . 'cfnumeric-settings-section-close',
                         'type'     => 'section',
                         'indent'   => FALSE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number','repeater','group' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'number', 'repeater', 'group' ), '!=' ),
                     ),
                     /**
                      * IMAGE SETTINGS
@@ -4064,7 +4092,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'id'       => $prefix . $i . 'cfimage-settings-section-open',
                         'type'     => 'section',
                         'indent'   => TRUE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image', 'gallery','repeater','group' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image', 'gallery', 'repeater', 'group' ), '!=' ),
 
                     ),
 
@@ -4074,7 +4102,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'type'     => 'select',
                         'default'  => 'respect',
                         'select2'  => array( 'allowClear' => FALSE ),
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image', 'gallery','repeater','group' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image', 'gallery', 'repeater', 'group' ), '!=' ),
                         'options'  => array(
                             'respect'      => __( 'Use focal point', 'pzarchitect' ),
                             //                      'centre'       => __('Centre focal point', 'pzarchitect'),
@@ -4103,7 +4131,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'step'          => 1,
                         'units'         => '%',
                         'hint'          => array( 'content' => 'Quality to use when processing images' ),
-                        'required'      => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image', 'gallery','repeater' ), '!=' ),
+                        'required'      => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image', 'gallery', 'repeater' ), '!=' ),
 
                     ),
                     array(
@@ -4116,13 +4144,13 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                             'width'  => '400',
                             'height' => '300',
                         ),
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image', 'gallery','repeater' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image', 'gallery', 'repeater' ), '!=' ),
                     ),
                     array(
                         'id'       => $prefix . $i . 'cfimage-settings-section-close',
                         'type'     => 'section',
                         'indent'   => FALSE,
-                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image', 'gallery','repeater' ), '!=' ),
+                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'image', 'gallery', 'repeater' ), '!=' ),
                     ),
 
 
@@ -4235,7 +4263,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'id'       => $prefix . 'help-usinggmaps',
                         'type'     => 'raw',
                         'markdown' => FALSE,
-                        'content'  => '<p style="background:#eee;padding:10px;">'.__( '<b>Using Google Maps</b><br>Instructions for using Google Maps advanced custom fields can be found <a href="https://www.advancedcustomfields.com/resources/google-map/#google-map%20api" target=_blank>here</a>. It is technical and requires adding code to your site.', 'pzarchitect' ).'</p>',
+                        'content'  => '<p style="background:#eee;padding:10px;">' . __( '<b>Using Google Maps</b><br>Instructions for using Google Maps advanced custom fields can be found <a href="https://www.advancedcustomfields.com/resources/google-map/#google-map%20api" target=_blank>here</a>. It is technical and requires adding code to your site.', 'pzarchitect' ) . '</p>',
                         'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'map' ), '!=' ),
                     ),
                     array(
