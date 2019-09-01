@@ -792,11 +792,11 @@
       if ( $cfcount ) {
         for ( $i = 1; $i <= $cfcount; $i ++ ) {
           // the settings come from section
-          if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-name' ] ) && ! empty( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) ) {
+          if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-name' ] ) && ! empty( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] && $this->section[ '_panels_design_cfield-' . $i . '-name' ] != 'not_used' ) ) {
             $this->data['cfield'][ $i ] = arc_cft_base_get( $i, $this->section, $post, $postmeta, NULL );
-          //  var_dump($this->data['cfield'][ $i ]);
-            $func                       = str_replace( '-', '_', 'arc_cft_' . $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) . '_get';
-          // var_Dump($func);
+            //  var_dump($this->data['cfield'][ $i ]);
+            $func = str_replace( '-', '_', 'arc_cft_' . $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) . '_get';
+            // var_Dump($func);
             $this->data['cfield'][ $i ] = $func( $i, $this->section, $post, $postmeta, $this->data['cfield'][ $i ] );
           }
 
@@ -1180,7 +1180,7 @@
         foreach ( $this->data['cfield'] as $k => $v ) {
 //          $panel_def[$component] = ArcFun::render_custom_field();
 
-          if ( $v['data']['group'] === $component && ( ! empty( $v['data']['value'] ) || $v['data']['name'] === 'use_empty' ) ) {
+          if ( $v['data']['group'] === $component && ( ! empty( $v['data']['value'] ) || $v['data']['name'] === 'use_empty' ) & $v['data']['name'] != 'not_used') {
 
             $acf_class = ! empty( $v['meta']['acf_settings']['wrapper']['class'] ) ? $v['meta']['acf_settings']['wrapper']['class'] : '';
             $acf_id    = ! empty( $v['meta']['acf_settings']['wrapper']['id'] ) ? $v['meta']['acf_settings']['wrapper']['id'] : '';

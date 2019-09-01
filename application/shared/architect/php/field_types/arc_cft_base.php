@@ -9,7 +9,6 @@
   function arc_cft_base_get( &$i, &$section, &$post, &$postmeta, $data ) {
     /** CUSTOM FIELDS **/
 
-    $acf_fields = ArcFun::get_acf_fields('list');
 
     $data['data']['group']        = $section[ '_panels_design_cfield-' . $i . '-group' ];
     $data['data']['name']         = $section[ '_panels_design_cfield-' . $i . '-name' ];

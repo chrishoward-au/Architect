@@ -3737,14 +3737,15 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           $border     = '-borders';
 
           $pzarc_custom_fields = array(
-              'use_empty'      => 'No field. Use prefix and suffix only',
-              'post_title'     => 'Post Title',
-              'post_content'   => 'Post Content',
-              'post_excerpt'   => 'Post Excerpt',
-              'post_thumbnail' => 'Post Featured Image',
-              'post_author'    => 'Post Author',
-              'post_date'      => 'Post Date',
-              'specific_code'  => 'Specific Text, HTML or Shortcodes',
+              'not_used'       => __( 'Not used', 'pzarchitect' ),
+              'use_empty'      => __('No field. Use prefix and suffix only','pzarchitect'),
+              'post_title'     => __('Post Title','pzarchitect'),
+              'post_content'   => __('Post Content','pzarchitect'),
+              'post_excerpt'   => __('Post Excerpt','pzarchitect'),
+              'post_thumbnail' => __('Post Featured Image','pzarchitect'),
+              'post_author'    => __('Post Author','pzarchitect'),
+              'post_date'      => __('Post Date','pzarchitect'),
+              'specific_code'  => __('Specific Text, HTML or Shortcodes','pzarchitect'),
           );
 
           $pzarc_custom_fields = apply_filters( 'arc_custom_field_list', $pzarc_custom_fields, $this->custom_fields );
@@ -3820,7 +3821,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'title'    => __( 'Field name or content source', 'pzarchitect' ),
                         'id'       => $prefix . 'cfield-' . $i . '-name',
                         'type'     => 'select',
-                        'default'  => '',
+                        'default'  => 'not_used',
                         //                lightbox     => 'callback',
                         //                'args'     => array( 'pzarc_get_custom_fields' ),
                         'options'  => $all_fields,
@@ -3873,9 +3874,9 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'default'  => 'wp',
                         'subtitle' => __( 'Method the custom field was created with', 'pzarchitect' ),
                         'options'  => array(
-                            'wp'   => __( 'WP', 'pzarchitect' ),
-                            'acf'  => __( 'ACF', 'pzarchitect' ),
-//                            'wooc' => __( 'WooC', 'pzarchitect' ),
+                            'wp'  => __( 'WP', 'pzarchitect' ),
+                            'acf' => __( 'ACF', 'pzarchitect' ),
+                            //                            'wooc' => __( 'WooC', 'pzarchitect' ),
                             //                                                        'toolset' => __( 'Toolset', 'pzarchitect' ),
                         ),
                         'desc'     => __( 'WP: A custom field created either in the post editor, or in code using standard WP methods.<br>ACF: A custom field created using Advanced Custom Fields plugin', 'pzarchitect' ),
@@ -4436,7 +4437,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
         $margin     = '-margin';
         $background = '-background';
         $border     = '-borders';
-        $custom = '-customcss';
+        $custom     = '-customcss';
 
         $stylingSections = array();
         $optprefix       = 'architect_config_';
@@ -4454,16 +4455,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 'icon_class' => 'icon-large',
                 'icon'       => 'el-icon-brush',
                 'desc'       => 'Class: .entry-customfield-' . $i,
-                'fields'     => pzarc_fields(
-                    pzarc_redux_font( $prefix . 'entry-customfield-' . $i . '' . $font, array( '.entry-customfield-' . $i . '' ) ),
-                    pzarc_redux_bg( $prefix . 'entry-customfield-' . $i . '' . $font . $background, array( '.entry-customfield-' . $i . '' ) ),
-                    pzarc_redux_padding( $prefix . 'entry-customfield-' . $i . '' . $font . $padding, array( '.entry-customfield-' . $i . '' ) ),
-                    pzarc_redux_margin( $prefix . 'entry-customfield-' . $i . '' . $font . $margin, array( '.entry-customfield-' . $i . '' ), NULL, 'tb' ),
-                    pzarc_redux_borders( $prefix . 'entry-customfield-' . $i . '' . $border, array( '.entry-customfield-' . $i . '' ) ),
-                    pzarc_redux_links( $prefix . 'entry-customfield-' . $i . '' . $font . $link, array( '.entry-customfield-' . $i . ' a' ) ),
-                    pzarc_redux_custom_css( $prefix . 'entry-customfield-' . $i . '' . $custom , '','', 'As a shorthand, you can prefix your CSS class with THISFIELD and Architect will substitute the correct class. e.g. THISFIELD {border-radius:5px;}' )
-                )
-             );
+                'fields'     => pzarc_fields( pzarc_redux_font( $prefix . 'entry-customfield-' . $i . '' . $font, array( '.entry-customfield-' . $i . '' ) ), pzarc_redux_bg( $prefix . 'entry-customfield-' . $i . '' . $font . $background, array( '.entry-customfield-' . $i . '' ) ), pzarc_redux_padding( $prefix . 'entry-customfield-' . $i . '' . $font . $padding, array( '.entry-customfield-' . $i . '' ) ), pzarc_redux_margin( $prefix . 'entry-customfield-' . $i . '' . $font . $margin, array( '.entry-customfield-' . $i . '' ), NULL, 'tb' ), pzarc_redux_borders( $prefix . 'entry-customfield-' . $i . '' . $border, array( '.entry-customfield-' . $i . '' ) ), pzarc_redux_links( $prefix . 'entry-customfield-' . $i . '' . $font . $link, array( '.entry-customfield-' . $i . ' a' ) ), pzarc_redux_custom_css( $prefix . 'entry-customfield-' . $i . '' . $custom, '', '', 'As a shorthand, you can prefix your CSS class with THISFIELD and Architect will substitute the correct class. e.g. THISFIELD {border-radius:5px;}' ) ),
+            );
           }
         }
       }

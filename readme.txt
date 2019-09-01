@@ -126,13 +126,14 @@ MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    hei
 * ADDED: New custom field type: Image
 * ADDED: New custom field type: Map
 * ADDED: New custom field type: Repeater
-* ADDED: New custom field type: Group
+* ADDED: New custom field type: Group TODO
 * ADDED: New custom field type: Multi value ??? TODO
 * ADDED: New custom field type: Gallery
 * ADDED: Money prefix/suffix to Number field
 * ADDED: Admin option to show the "Insert Architect Blueprint" button in the post editor to admins only.
 * ADDED: Option to select custom field source type. Currently support standard WP and Advanced Custom Fields
 * ADDED: Custom CSS field to custom fields styling
+* ADDED: Not Used option to custom fields
 * CHANGED: Architect Maps Extend module for Beaver Builder now requires your own Google API key because of Google's changes.
 * FIXED: Showcases and Testimonials not displaying extra fields metabox
 * ADDED: Override for Skip N Posts value in the Beaver module
