@@ -118,7 +118,7 @@ MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    hei
 
 = 10.9 =
 * UPDATED: Changed version numbering to match releases. This is the 109th update so v10.9
-* ADDED: Showcase link a link option for images (of course only relevant if Showcase is source!)
+* ADDED: Showcase link option for images (of course only relevant if Showcase is source!)
 * ADDED: Option in Blueprints settings to include/exclude hidden custom fields in dropdowns.
 * ADDED: New custom field type: Email
 * ADDED: New custom field type: Link
@@ -134,9 +134,9 @@ MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    hei
 * ADDED: Option to select custom field source type. Currently support standard WP and Advanced Custom Fields
 * ADDED: Custom CSS field to custom fields styling
 * ADDED: Not Used option to custom fields
+* ADDED: Override for Skip N Posts value in the Beaver module
 * CHANGED: Architect Maps Extend module for Beaver Builder now requires your own Google API key because of Google's changes.
 * FIXED: Showcases and Testimonials not displaying extra fields metabox
-* ADDED: Override for Skip N Posts value in the Beaver module
 * UPDATED: Freemius SDK to 2.2.4 - Security update
 ** TODO: Setup defaault repeater row layouts
 ** TODO: Test Group and multi-value fields - taxonomies?

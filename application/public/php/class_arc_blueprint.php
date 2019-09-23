@@ -22,6 +22,7 @@
 			$this->name = str_replace( array( '\'', '\"' ), '', $name );
 
   		self::get_blueprint();
+
 			$this->blueprint['parent-page-url'] = get_the_permalink();
 			$this->blueprint['device']          = $device;
 			if ( empty( $this->blueprint['err_msg'] ) ) {
@@ -73,6 +74,7 @@
 			$bp              = get_posts( $meta_query_args );
 			$blueprint_query = NULL;
 			if ( isset( $bp[0] ) ) {
+//			  var_dump(get_post_meta( $bp[0]->ID));
 				$this->bp = pzarc_flatten_wpinfo( get_post_meta( $bp[0]->ID ) );
 				// Do we need this still? Yes! Because Redux doesn't store defaults
 				// True excludes styling

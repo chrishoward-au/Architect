@@ -134,7 +134,6 @@
 
     public function set_data( &$post, &$toshow, &$section, $panel_number ) {
       $this->initialise_data(); // v1.10.8: Ooops! Why hasn't the absence of this raised its ugly head previously!
-
       $this->section      = $section;
       $this->toshow       = $toshow;
       $this->panel_number = $panel_number;

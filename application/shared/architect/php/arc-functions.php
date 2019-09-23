@@ -252,9 +252,9 @@
    *
    * @return array
    */
-  function pzarc_redux_custom_css($id,$selectors=null,$defaults=array(),$subtitle=''){
+  function pzarc_redux_custom_css( $id, $selectors = NULL, $defaults = array(), $subtitle = '' ) {
     return array(
-        'id'      => $id,
+        'id'       => $id,
         'type'     => 'ace_editor',
         'title'    => __( 'Custom CSS', 'pzarchitect' ),
         'mode'     => 'css',
@@ -1335,8 +1335,8 @@
    *
    * @return mixed
    */
-  function pzarc_style_custom_css($arc_needle,$arc_replace,$arc_haystack){
-    return str_replace($arc_needle,$arc_replace,$arc_haystack);
+  function pzarc_style_custom_css( $arc_needle, $arc_replace, $arc_haystack ) {
+    return str_replace( $arc_needle, $arc_replace, $arc_haystack );
   }
 
   if ( ! function_exists( 'pzifempty' ) ) {
@@ -2578,6 +2578,16 @@
     }
 
     /**
+     * @param $array
+     * @param $key
+     *
+     * @return bool
+     */
+    static function is_last( $array, $key ) {
+      return ( $array[ $key ] == end($array) );
+    }
+
+    /**
      * @param $date
      *
      * @return mixed
@@ -2841,7 +2851,7 @@
         );
 
         if ( $acf_parent != 'field_group' ) {
-          $acf_fields_list[ $acf_parent_name . ':' . $vf->post_excerpt ] = $acf_parent_desc . ' : ' . $vf->post_title ;
+          $acf_fields_list[ $acf_parent_name . ':' . $vf->post_excerpt ] = $acf_parent_desc . ' : ' . $vf->post_title;
         } else {
           $acf_fields_list[ $vf->post_excerpt ] = $vf->post_title;
 
@@ -3018,10 +3028,10 @@
 
       }
 
-      ksort($pzarc_custom_fields);
+      ksort( $pzarc_custom_fields );
 
       $acf_fields = ArcFun::get_acf_fields( 'list' );
-      ksort($acf_fields);
+      ksort( $acf_fields );
 
       if ( ! empty( $acf_fields ) ) {
         foreach ( $acf_fields as $k => $v ) {

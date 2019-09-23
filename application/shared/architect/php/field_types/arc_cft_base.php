@@ -9,7 +9,6 @@
   function arc_cft_base_get( &$i, &$section, &$post, &$postmeta, $data ) {
     /** CUSTOM FIELDS **/
 
-
     $data['data']['group']        = $section[ '_panels_design_cfield-' . $i . '-group' ];
     $data['data']['name']         = $section[ '_panels_design_cfield-' . $i . '-name' ];
     $data['data']['field-type']   = $section[ '_panels_design_cfield-' . $i . '-field-type' ];

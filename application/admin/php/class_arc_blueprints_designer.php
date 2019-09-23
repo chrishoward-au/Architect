@@ -80,6 +80,7 @@
           foreach ( $this->tableset as $table ) {
             $this->tablesfields[ $table ] = ArcFun::get_table_fields( $table );
           }
+
         }
 
       }
@@ -3715,7 +3716,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               array(
                   'title'   => __( 'Select tables to include for custom fields', 'pzarchitect' ),
                   'id'      => $prefix . 'incl-tables',
-                  'type'    => 'select',
+                  'type'    => 'button_set',
                   'multi'   => TRUE,
                   'default' => array( $wpdb->prefix . 'posts' => $wpdb->prefix . 'posts' ),
                   'options' => $this->tableset,
@@ -4241,7 +4242,23 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'multi' ), '!=' ),
 
                     ),
+                    array(
+                        'title'    => __( 'Source', 'pzarchitect' ),
+                        'id'       => $prefix . 'cfield-' . $i . '-multi-source',
+                        'type'     => 'select',
+                        'default'  => '',
+                        'data'     => 'callback',
+                        'args'     => array( 'pzarc_get_taxonomies_ctb' ), // Callback is used because custom taxonomies not loaded when this code loads
+                        'subtitle' => __( 'If a taxonomy is the source, select it, otherwise leave it blank and the data value will be used.', 'pzarchitect' ),
+//                        'required' => ArcFun::redux_required( $prefix . 'cfield-' . $i . '-field-type', $field_types, array( 'multi' ), '!=' ),
+                        'required' => array(
+                            $prefix . 'cfield-' . $i . '-field-source',
+                            '!=',
+                            'acf',
+                        ),
 
+                    ),
+// TODO: Add field sort by (key,label, unsorted)
                     array(
                         'id'       => $prefix . $i . 'cfmulti-settings-section-close',
                         'type'     => 'section',
