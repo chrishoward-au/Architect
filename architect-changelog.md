@@ -3,7 +3,34 @@
 ## Notes:
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
-## 1.17.0
+## 10.9 : 27 Sept 2019 
+* ==========================================================================================
+* ADDED: ***** HEAPS MORE SUPPORT FOR ADVANCED CUSTOM FIELDS *****
+* UPDATED: Changed version numbering to match releases. This is the 109th update so v10.9
+* ==========================================================================================
+* ADDED: New custom field type: Email
+* ADDED: New custom field type: Link
+* ADDED: New custom field type: File
+* ADDED: New custom field type: Image
+* ADDED: New custom field type: Map
+* ADDED: New custom field type: Repeater
+* ADDED: New custom field type: Group
+* ADDED: New custom field type: Multi value (e.g. multi-select, checkbox, taxonomy)
+* ADDED: New custom field type: Gallery
+* ADDED: Money prefix/suffix to Number field
+* ADDED: Option to choose from which tables to list other table fields
+* ADDED: Showcase link option for images (of course only relevant if Showcase is source!)
+* ADDED: Option in Blueprints settings to include/exclude hidden custom fields in dropdowns.
+* ADDED: Admin option to show the "Insert Architect Blueprint" button in the post editor to admins only.
+* ADDED: Option to select custom field source type. Currently support standard WP and Advanced Custom Fields
+* ADDED: Custom CSS field to custom fields styling
+* ADDED: "Not Used" option to custom fields
+* ADDED: Override for Skip N Posts value in the Beaver module
+* CHANGED: Architect Maps Extend module for Beaver Builder now requires your own Google API key because of Google's changes.
+* FIXED: Showcases and Testimonials not displaying extra fields metabox
+* UPDATED: Freemius SDK to 2.2.4 - Security update
+
+## 1.17.0 : 2 Feb 2019
 * FIXED: Beaver Builder Maps and Any Field modules loading field arrays unnecessarily on front end.
 * FIXED: CSS caching problem in Blox since 1.16.0
 * FIXED: Possible warning if php_uname is not available in sysinfo

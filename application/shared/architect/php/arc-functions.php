@@ -2584,7 +2584,7 @@
      * @return bool
      */
     static function is_last( $array, $key ) {
-      return ( $array[ $key ] == end($array) );
+      return ( $array[ $key ] == end( $array ) );
     }
 
     /**
@@ -2851,9 +2851,11 @@
         );
 
         if ( $acf_parent != 'field_group' ) {
-          $acf_fields_list[ $acf_parent_name . ':' . $vf->post_excerpt ] = $acf_parent_desc . ' : ' . $vf->post_title;
+          $acf_parent_type                                               = strtoupper(substr( $acf_parent, 0, 1 )) . ' sub: ';
+          $acf_fields_list[ $acf_parent_name . ':' . $vf->post_excerpt ] = $acf_parent_desc . ' : ' . $vf->post_title . ' (' . $acf_parent_type . str_replace( '_', ' ', $fsettings['type'] ) . ')';
         } else {
-          $acf_fields_list[ $vf->post_excerpt ] = $vf->post_title;
+
+          $acf_fields_list[ $vf->post_excerpt ] = $vf->post_title . ' (' . str_replace( '_', ' ', $fsettings['type'] ) . ')';
 
         }
       }

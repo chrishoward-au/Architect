@@ -473,7 +473,7 @@
       echo ' <div class="tabby tabs">
                 <button class="tabby-quick first active" data-tab="#quick">' . __( 'Getting started', 'pzarchitect' ) . '</button>
                 <button class="tabby-how" data-tab="#how">' . __( 'Usage', 'pzarchitect' ) . '</button>
-                <button class="tabby-latest" data-tab="#latest">' . __( 'Latest news', 'pzarchitect' ) . '</button>
+<!--                <button class="tabby-latest" data-tab="#latest">' . __( 'Latest news', 'pzarchitect' ) . '</button> -->
                 <button class="tabby-changes" data-tab="#changes">' . __( 'Changelog', 'pzarchitect' ) . '</button>
                 <button class="tabby-shout" data-tab="#shout">' . __( 'Shoutouts', 'pzarchitect' ) . '</button>
  <!--               <button class="tabby-features" data-tab="#features">' . __( 'Features', 'pzarchitect' ) . '</button> -->
@@ -482,7 +482,7 @@
       echo '	<div class="tabby tabs-content">';
       include_once( 'admin/parts/admin-tabs-pane-about.php' );
       include_once( 'admin/parts/admin-tabs-pane-usage.php' );
-      include_once( 'admin/parts/admin-tabs-pane-news.php' );
+//      include_once( 'admin/parts/admin-tabs-pane-news.php' );
       include_once( 'admin/parts/admin-tabs-pane-changes.php' );
       include_once( 'admin/parts/admin-tabs-pane-shoutout.php' );
 //      include_once( 'admin/parts/admin-tabs-pane-features.php' );

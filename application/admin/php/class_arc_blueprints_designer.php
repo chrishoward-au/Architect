@@ -64,6 +64,7 @@
 
           // 1.8.1 Attempting to reduce calls to get custom fields. Generally this should work, but may occasionally miss some fields.
           $this->custom_fields = get_option( 'architect_custom_fields' );
+
           if ( empty( $this->custom_fields ) || ( ( isset( $_GET['post_type'] ) && $_GET['post_type'] === 'arc-blueprints' ) ) ) {
             $this->custom_fields = ArcFun::get_custom_fields();
             update_option( 'architect_custom_fields', $this->custom_fields );
@@ -3751,6 +3752,14 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
 
           $pzarc_custom_fields = apply_filters( 'arc_custom_field_list', $pzarc_custom_fields, $this->custom_fields );
 
+          if (isset($pzarc_custom_fields['Advanced Custom Fields'])) {
+            $pzarc_custom_fields_tmp = $pzarc_custom_fields['Advanced Custom Fields'];
+            foreach ( $pzarc_custom_fields_tmp as $k => $v ) {
+              if ( strpos( $v, ' : ' ) > 0 && strpos( $v, '(R sub:' ) > 0) {
+                unset( $pzarc_custom_fields['Advanced Custom Fields'][ $k ] );
+              }
+            }
+          }
 //          ), apply_filters( 'arc_custom_field_list', $this->custom_fields, $this->source ) ); ass about with user fields. todo fix there
 
           if ( ! empty( $this->postmeta['_panels_design_excl-hidden-fields'][0] ) ) {
@@ -3762,7 +3771,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
               }
             }
           }
-
+          unset($pzarc_custom_fields_tmp);
           // Remove table fields user doesn't want to show
           $incl_table_fields = maybe_unserialize( $this->postmeta['_panels_design_incl-tables'][0] );
 //          $tablesfields = $this->tablesfields;
@@ -3798,7 +3807,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                 'title'      => 'Settings ' . $cfname,
                 'icon_class' => 'icon-large',
                 'icon'       => 'el-icon-adjust-alt',
-                'desc'       => __( 'Note: Only fields with content will show on the Blueprint.', 'pzarchitect' ),
+                'desc'       => __( 'Note: Only fields with content will show on the Blueprint.<br>Note: Fields must be available to the viewed post type to show content.', 'pzarchitect' ),
                 'fields'     => array(
                     array(
                         'title'  => __( 'Field settings', 'pzarchitect' ),
@@ -3826,8 +3835,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                         //                lightbox     => 'callback',
                         //                'args'     => array( 'pzarc_get_custom_fields' ),
                         'options'  => $all_fields,
-                        'subtitle' => __( 'If a custom field is not shown in the dropdown, it is either because it has no data yet or the custom field list cache needs clearing. Go to Architect > Tools and clear the caches.', 'pzarchitect' ),
-                        'desc'     => __( 'Type to search names. List includes custom fields and <strong>any field from any table</strong><br>Note: Fields must be available to the viewed post type to show content.', 'pzarchitect' ),
+                        'subtitle' => __( 'If a custom field is not shown in the dropdown, it is either because it has no data yet or the custom field list cache needs clearing. Go to Architect > Blueprints and re-open this Blueprint.', 'pzarchitect' ),
+                        'desc'     => __( 'Type to search names. List includes custom fields and <strong>any field from any table</strong><br><b>Repeater subfields</b> are not shown but will be displayed according to settings below when the repeater parent is selected.', 'pzarchitect' ),
                     ),
                     //                array(
                     //                  'title'    => __( 'Select a table', 'pzarchitect' ),
@@ -3856,7 +3865,7 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                     //
                     //                ),
                     array(
-                        'title'   => __( 'Field type', 'pzarchitect' ),
+                        'title'   => __( 'Display the field as type', 'pzarchitect' ),
                         'id'      => $prefix . 'cfield-' . $i . '-field-type',
                         'type'    => 'select',
                         'default' => 'text',
