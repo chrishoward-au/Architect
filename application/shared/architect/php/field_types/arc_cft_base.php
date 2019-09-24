@@ -109,12 +109,14 @@
   }
 
   function arc_get_field_acf( $arc_field_name, &$postmeta, $data, $subfield = FALSE ) {
-    if ( ! empty( $arc_field_name ) && function_exists( 'get_field' ) ) {
-      if ( $subfield ) {
+    if ( ! empty( $arc_field_name ) && function_exists( 'get_field') ) {
+      if ( $subfield === true) {
         $data['data']['value']        = get_sub_field( $arc_field_name );
         $data['meta']['acf_settings'] = get_sub_field_object( $arc_field_name );
         $data['meta']['raw_value']    = get_sub_field( $arc_field_name, FALSE );
 
+      } elseif ($subfield == 'group'){
+//        var_Dump($arc_field_name,$data);
       } else {
         $data['data']['value']        = get_field( $arc_field_name );
         $data['meta']['acf_settings'] = get_field_object( $arc_field_name );

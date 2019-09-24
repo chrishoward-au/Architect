@@ -463,44 +463,81 @@
   display: block;
   width: 100%; }
 
+.pzarchitect .arc-cfield-group.acf-layout-block .group-row,
+.pzarchitect .arc-cfield-group.acf-layout-block .repeater-row,
+.pzarchitect .arc-cfield-repeater.acf-layout-block .group-row,
 .pzarchitect .arc-cfield-repeater.acf-layout-block .repeater-row {
   display: block; }
+  .pzarchitect .arc-cfield-group.acf-layout-block .group-row .subfield,
+  .pzarchitect .arc-cfield-group.acf-layout-block .repeater-row .subfield,
+  .pzarchitect .arc-cfield-repeater.acf-layout-block .group-row .subfield,
   .pzarchitect .arc-cfield-repeater.acf-layout-block .repeater-row .subfield {
     display: block; }
 
+.pzarchitect .arc-cfield-group.acf-layout-table,
 .pzarchitect .arc-cfield-repeater.acf-layout-table {
   display: table;
   width: 100%;
   border: solid 1px #999; }
+  .pzarchitect .arc-cfield-group.acf-layout-table .group-header,
+  .pzarchitect .arc-cfield-group.acf-layout-table .repeater-header,
+  .pzarchitect .arc-cfield-repeater.acf-layout-table .group-header,
   .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-header {
     display: table-header-group;
     font-weight: bold;
     background: #ccc; }
+    .pzarchitect .arc-cfield-group.acf-layout-table .group-header .header-cell,
+    .pzarchitect .arc-cfield-group.acf-layout-table .repeater-header .header-cell,
+    .pzarchitect .arc-cfield-repeater.acf-layout-table .group-header .header-cell,
     .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-header .header-cell {
       display: table-cell;
       padding: 1rem;
       border-left: 1px solid #999; }
+      .pzarchitect .arc-cfield-group.acf-layout-table .group-header .header-cell:first-child,
+      .pzarchitect .arc-cfield-group.acf-layout-table .repeater-header .header-cell:first-child,
+      .pzarchitect .arc-cfield-repeater.acf-layout-table .group-header .header-cell:first-child,
       .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-header .header-cell:first-child {
         border-left: none; }
+  .pzarchitect .arc-cfield-group.acf-layout-table .group-row,
+  .pzarchitect .arc-cfield-group.acf-layout-table .repeater-row,
+  .pzarchitect .arc-cfield-repeater.acf-layout-table .group-row,
   .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-row {
     display: table-row;
     overflow: auto;
     border-top: 1px; }
+    .pzarchitect .arc-cfield-group.acf-layout-table .group-row.odd,
+    .pzarchitect .arc-cfield-group.acf-layout-table .repeater-row.odd,
+    .pzarchitect .arc-cfield-repeater.acf-layout-table .group-row.odd,
     .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-row.odd {
       background: #e9e9e9; }
+    .pzarchitect .arc-cfield-group.acf-layout-table .group-row.even,
+    .pzarchitect .arc-cfield-group.acf-layout-table .repeater-row.even,
+    .pzarchitect .arc-cfield-repeater.acf-layout-table .group-row.even,
     .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-row.even {
       background: #f9f9f9; }
+    .pzarchitect .arc-cfield-group.acf-layout-table .group-row .subfield,
+    .pzarchitect .arc-cfield-group.acf-layout-table .repeater-row .subfield,
+    .pzarchitect .arc-cfield-repeater.acf-layout-table .group-row .subfield,
     .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-row .subfield {
       display: table-cell;
       border-left: solid 1px #999;
       padding: 1rem; }
+      .pzarchitect .arc-cfield-group.acf-layout-table .group-row .subfield.first-cell,
+      .pzarchitect .arc-cfield-group.acf-layout-table .repeater-row .subfield.first-cell,
+      .pzarchitect .arc-cfield-repeater.acf-layout-table .group-row .subfield.first-cell,
       .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-row .subfield.first-cell {
         border-left: none; }
 
+.pzarchitect .arc-cfield-group.acf-layout-row .group-row,
+.pzarchitect .arc-cfield-group.acf-layout-row .repeater-row,
+.pzarchitect .arc-cfield-repeater.acf-layout-row .group-row,
 .pzarchitect .arc-cfield-repeater.acf-layout-row .repeater-row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex; }
+  .pzarchitect .arc-cfield-group.acf-layout-row .group-row .subfield,
+  .pzarchitect .arc-cfield-group.acf-layout-row .repeater-row .subfield,
+  .pzarchitect .arc-cfield-repeater.acf-layout-row .group-row .subfield,
   .pzarchitect .arc-cfield-repeater.acf-layout-row .repeater-row .subfield {
     display: inline-block; }
 

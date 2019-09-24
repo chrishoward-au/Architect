@@ -127,7 +127,7 @@ MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    hei
 * ADDED: New custom field type: Map
 * ADDED: New custom field type: Repeater
 * ADDED: New custom field type: Group TODO
-* ADDED: New custom field type: Multi value ??? TODO
+* ADDED: New custom field type: Multi value (e.g. multi-select, checkbox, taxonomy)
 * ADDED: New custom field type: Gallery
 * ADDED: Money prefix/suffix to Number field
 * ADDED: Admin option to show the "Insert Architect Blueprint" button in the post editor to admins only.
@@ -138,8 +138,6 @@ MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    hei
 * CHANGED: Architect Maps Extend module for Beaver Builder now requires your own Google API key because of Google's changes.
 * FIXED: Showcases and Testimonials not displaying extra fields metabox
 * UPDATED: Freemius SDK to 2.2.4 - Security update
-** TODO: Setup defaault repeater row layouts
-** TODO: Test Group and multi-value fields - taxonomies?
 
 = 1.17.0
 * FIXED: Beaver Builder Maps and Any Field modules loading field arrays unnecessarily on front end.

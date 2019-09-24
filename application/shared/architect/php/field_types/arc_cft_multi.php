@@ -9,7 +9,6 @@
 
   function arc_cft_multi_get( &$i, &$section, &$post, &$postmeta, $data ) {
     $arc_data_values = array();
-    var_dump( $data );
     if ( $data['data']['field-source'] == 'acf' ) {
       switch ( $data['meta']['acf_settings']['type'] ) {
         case 'taxonomy':
@@ -79,7 +78,6 @@
     ksort( $arc_data_values );
     $content       = '';
     $arc_separator = $section[ '_panels_design_cfield-' . $i . '-multi-separator' ];
-    var_dump( $arc_data_values );
     if ( ! empty( $arc_data_values ) ) {
       foreach ( $arc_data_values as $k => $v ) {
         // add fields for html tag, separator, prefix, and suffix

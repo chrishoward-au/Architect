@@ -436,8 +436,10 @@
     display:block;
     width:100%;
   }
+  .arc-cfield-group,
   .arc-cfield-repeater {
     &.acf-layout-block {
+      .group-row,
       .repeater-row {
         display: block;
         .subfield {
@@ -450,6 +452,7 @@
       display:table;
       width:100%;
       border:solid 1px #999;
+      .group-header,
       .repeater-header{
         display:table-header-group;
         font-weight:bold;
@@ -463,6 +466,7 @@
           }
         }
       }
+      .group-row,
       .repeater-row {
         display: table-row;
         overflow: auto;
@@ -484,6 +488,7 @@
       }
     }
     &.acf-layout-row {
+      .group-row,
       .repeater-row {
         display: flex;
         .subfield {
