@@ -355,7 +355,6 @@
             'quality'   => $quality,
             'text'      => ( $copyright['array'] && in_array( 'featured', $this->section['_panels_settings_image-copyright-add'] ) ? $copyright['array'] : '' ),
         ) );
-//var_Dump($image_src);
         $this->data['image']['image'] = '<img width="' . $width . '" height="' . $height . '" src="' . $image_src[0] . '" class="attachment-' . $width . 'x' . $height . 'x1x' . (int) $focal_point[0] . 'x' . (int) $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'] . '" alt="">';
 
         // TODO: Add image sizes for each device
@@ -484,7 +483,7 @@
      */
     public function get_bgimage( &$post ) {
 
-      $thumb_id = get_post_thumbnail_id();
+      $thumb_id = get_post_thumbnail_id($post);
 //      $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', TRUE );
 //      if ( $post->post_type === 'attachment' ) {
 //        $thumb_id = $post->ID;
@@ -500,7 +499,6 @@
       $fp                        = ArcFun::get_focal_point( $thumb_id );
       $focal_point               = $fp['focal_point'];
       $this->data['image']['id'] = $fp['thumb_id'];
-
       $showbgimage = ( has_post_thumbnail() && $this->section['_panels_design_feature-location'] === 'fill' && ( $this->section['_panels_design_components-position'] == 'top' || $this->section['_panels_design_components-position'] == 'left' ) ) || ( $this->section['_panels_design_feature-location'] === 'fill' && ( $this->section['_panels_design_components-position'] == 'bottom' || $this->section['_panels_design_components-position'] == 'right' ) );
       // Need to setup for break points.
 
@@ -533,14 +531,25 @@
 
       // Need to grab image again because it uses different dimensions for the bgimge
       $image_src = wp_get_attachment_image_src( $thumb_id, array(
-          $width,
-          $height,
-          'bfi_thumb' => TRUE,
-          'crop'      => $crop,
-          'quality'   => $quality,
-          'text'      => ( $copyright['array'] && in_array( 'featured', $this->section['_panels_settings_image-copyright-add'] ) ? $copyright['array'] : '' ),
-      ) );
-//var_Dump($image_src,$copyright);
+              $width,
+              $height,
+              'bfi_thumb' => TRUE,
+              'crop'      => $crop,
+              'quality'   => $quality,
+              'text'      => ( $copyright['array'] && in_array( 'featured', $this->section['_panels_settings_image-copyright-add'] ) ? $copyright['array'] : '' ),
+          ) );
+//      $image_srcset = wp_get_attachment_image_srcset( $thumb_id, array(
+//          $width,
+//          $height) );
+//
+//      var_Dump( $image_srcset);
+//      var_Dump(bfi_thumb(array(
+//          $width,
+//          $height,
+//          'crop'      => $crop,
+//          'quality'   => $quality,
+//          'text'      => ( $copyright['array'] && in_array( 'featured', $this->section['_panels_settings_image-copyright-add'] ) ? $copyright['array'] : '' ),
+//      )) );
       $this->data['bgimage']['thumb'] = '<img width="' . $width . '" height="' . $height . '" src="' . $image_src[0] . '" class="attachment-' . $width . 'x' . $height . 'x1x' . (int) $focal_point[0] . 'x' . (int) $focal_point[1] . 'x' . $this->section['_panels_settings_image-focal-point'] . '" alt="">';
 
       // TODO: Add image sizes for each device
@@ -793,7 +802,7 @@
           // the settings come from section
           if ( ! empty( $this->section[ '_panels_design_cfield-' . $i . '-name' ] ) && ! empty( $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] && $this->section[ '_panels_design_cfield-' . $i . '-name' ] != 'not_used' ) ) {
             $this->data['cfield'][ $i ] = arc_cft_base_get( $i, $this->section, $post, $postmeta, NULL );
-            //  var_dump($this->data['cfield'][ $i ]);
+            //var_dump($this->data['cfield'][ $i ]);
             $func = str_replace( '-', '_', 'arc_cft_' . $this->section[ '_panels_design_cfield-' . $i . '-field-type' ] ) . '_get';
             // var_Dump($func);
             $this->data['cfield'][ $i ] = $func( $i, $this->section, $post, $postmeta, $this->data['cfield'][ $i ] );
@@ -1179,7 +1188,7 @@
         foreach ( $this->data['cfield'] as $k => $v ) {
 //          $panel_def[$component] = ArcFun::render_custom_field();
 
-          if ( $v['data']['group'] === $component && ( ! empty( $v['data']['value'] ) || $v['data']['name'] === 'use_empty' ) & $v['data']['name'] != 'not_used') {
+          if ( $v['data']['group'] === $component && ( ! empty( $v['data']['value'] ) || $v['data']['name'] === 'use_empty' ) & $v['data']['name'] != 'not_used' ) {
 
             $acf_class = ! empty( $v['meta']['acf_settings']['wrapper']['class'] ) ? $v['meta']['acf_settings']['wrapper']['class'] : '';
             $acf_id    = ! empty( $v['meta']['acf_settings']['wrapper']['id'] ) ? $v['meta']['acf_settings']['wrapper']['id'] : '';
@@ -1187,7 +1196,9 @@
             $acf_style = ! empty( $acf_width ) ? 'display:block;' . $acf_width : '';
 
 
-            $content = '<div id="' . $acf_id . '" class="arc-cfield arc-cfield-' . $v['data']['field-type'] . ' ' . $acf_class . '" style="' . $acf_style . '">' . $v['data']['value'] . '</div>';
+            // Can't put a div in a p or hn tag. Changed to span.
+
+            $content = '<span id="' . $acf_id . '" class="arc-cfield arc-cfield-' . $v['data']['field-type'] . ' ' . $acf_class . ( $acf_style ? '" style="' . $acf_style : '' ) . '">' . $v['data']['value'] . '</span>';
 
             $prefix_image = '';
             $suffix_image = '';

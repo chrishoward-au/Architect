@@ -18,6 +18,7 @@
 <h4 style="color:#069;font-size:15px;">Improved custom field support</h4>
 <p><b>Secondly, custom field support has been greatly improved</b>, and especially Advanced Custom Fields.</p>
 <p><b>New custom field types: Email, Link, File, Image, Map, ACF Repeater, ACF Group, Multivalue (e.g taxonomies, checkboxes), ACF Gallery</b></p>
+<p>Click here for a demo of the <a href="https://demos.architect4wp.com/acf-fields/" target="_blank">custom fields</a>.</p>
 <p>Other changes include:</p>
 <ul>
 <li>ADDED: Option to choose from which tables to list other table fields</li>

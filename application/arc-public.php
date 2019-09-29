@@ -355,7 +355,7 @@
       }
 
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_architect_public.php';
-     // require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php' );
+     require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php' );
       if (function_exists('bfi_thumb')) {
         add_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
         add_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6 );

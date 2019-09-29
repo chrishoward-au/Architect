@@ -2706,7 +2706,7 @@
           // 'array'           => __( 'Array', 'pzarchitect' ), // Gargh! This makes fields in fields we need to prompt to format them.
           'file'            => array( 'description' => __( 'File', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'map'             => array( 'description' => __( 'Map', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
-          'multi'           => array( 'description' => __( 'Multi value', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'multi'           => array( 'description' => __( 'Multi value (Taxonomies, multiselect, checkboxes, radio)', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'boolean'         => array( 'description' => __( 'Boolean', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'repeater'        => array( 'description' => __( 'Repeater', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
           'group'           => array( 'description' => __( 'Group', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),// WTF is a group Is it the aCF group?'path

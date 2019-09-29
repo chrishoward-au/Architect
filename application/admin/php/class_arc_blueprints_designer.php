@@ -3719,7 +3719,8 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   'id'      => $prefix . 'incl-tables',
                   'type'    => 'button_set',
                   'multi'   => TRUE,
-                  'default' => array( $wpdb->prefix . 'posts' => $wpdb->prefix . 'posts' ),
+                  'default' => array(),
+//                  'default' => array( $wpdb->prefix . 'posts' => $wpdb->prefix . 'posts' ),
                   'options' => $this->tableset,
               ),
 
@@ -3773,17 +3774,21 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
           }
           unset($pzarc_custom_fields_tmp);
           // Remove table fields user doesn't want to show
-          $incl_table_fields = maybe_unserialize( $this->postmeta['_panels_design_incl-tables'][0] );
+          $tablesfields = array();
+          if (!empty($this->postmeta['_panels_design_incl-tables'][0])) {
+            $incl_table_fields = maybe_unserialize( $this->postmeta['_panels_design_incl-tables'][0] );
 //          $tablesfields = $this->tablesfields;
 //          foreach ($incl_table_fields as $kf => $vf){
 //            if (empty($vf)){
 //              unset($tablesfields[$kf]);
 //            }
 //          }
-          // Method if using select for incl_tables field
-          $tablesfields = array();
-          foreach ( $incl_table_fields as $kf => $vf ) {
-            $tablesfields[ $vf ] = $this->tablesfields[ $vf ];
+            // Method if using select for incl_tables field
+            if ( is_array( $incl_table_fields ) ) {
+              foreach ( $incl_table_fields as $kf => $vf ) {
+                $tablesfields[ $vf ] = $this->tablesfields[ $vf ];
+              }
+            }
           }
           $field_types = ArcFun::field_types();
           for ( $i = 1; $i <= $cfcount; $i ++ ) {

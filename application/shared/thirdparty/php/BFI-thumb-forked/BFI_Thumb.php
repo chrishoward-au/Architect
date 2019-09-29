@@ -711,7 +711,7 @@
       // Y = crop Y position
       // F = focal point
 
-//      var_Dump($payload, $orig_w, $orig_h, $dest_w, $dest_h, $crop);
+//     var_Dump($payload, $orig_w, $orig_h, $dest_w, $dest_h, $crop);
       if ( is_string( $crop ) ) {
         $crop = explode( 'x', $crop );
         // Check if defaults needed

@@ -29,34 +29,43 @@
               break;
           }
           break;
+
         case 'select':
+        case 'radio':
         case 'checkbox':
-          switch ( $data['meta']['acf_settings']['return_format'] ) {
-            case 'value':
-              foreach ( $data['data']['value'] as $dk => $dv ) {
-                $arc_data_values[ $dv ] = $data['meta']['acf_settings']['choices'][ $dv ];
-              }
-              break;
-            case 'label':
-              foreach ( $data['data']['value'] as $dk => $dv ) {
-                if ( ( $array_search = array_search( $dv, $data['meta']['acf_settings']['choices'] ) ) ) {
-                  $arc_data_values[ $array_search ] = $dv;
+          if ( ! empty( $data['data']['value'] ) ) {
+            if ( ! is_array( $data['data']['value'] ) || $data['meta']['acf_settings']['type']=='radio') {
+              $data['data']['value'] = array( $data['data']['value'] );
+            }
+            switch ( $data['meta']['acf_settings']['return_format'] ) {
+              case 'value':
+                foreach ( $data['data']['value'] as $dk => $dv ) {
+                  $arc_data_values[ $dv ] = $data['meta']['acf_settings']['choices'][ $dv ];
                 }
-              }
-              break;
-            case 'array':
-              foreach ( $data['data']['value'] as $dk => $dv ) {
-                $arc_data_values[ $dv['value'] ] = $dv['label'];
-              }
-              break;
+                break;
+              case 'label':
+                foreach ( $data['data']['value'] as $dk => $dv ) {
+                  if ( ( $array_search = array_search( $dv, $data['meta']['acf_settings']['choices'] ) ) ) {
+                    $arc_data_values[ $array_search ] = $dv;
+                  }
+                }
+                break;
+              case 'array':
+                foreach ( $data['data']['value'] as $dk => $dv ) {
+                  $arc_data_values[ $dv['value'] ] = $dv['label'];
+                }
+                break;
+            }
           }
           break;
+
         default:
           $arc_data_values = NULL; // None of the other ACF fields support multivalues
 
       }
     } else {
       $arc_data_values_temp = maybe_unserialize( $data['data']['value'] );
+      $arc_data_values_temp = !is_array($arc_data_values_temp)?array($data['data']['value']):$arc_data_values_temp;
       if ( ! empty( $section[ '_panels_design_cfield-' . $i . '-multi-source' ] ) ) {
         $arc_data_terms = get_terms( $section[ '_panels_design_cfield-' . $i . '-multi-source' ] );
         foreach ( $arc_data_terms as $dk => $dv ) {

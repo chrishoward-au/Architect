@@ -9,12 +9,17 @@
   function arc_cft_base_get( &$i, &$section, &$post, &$postmeta, $data ) {
     /** CUSTOM FIELDS **/
 
-    $data['data']['group']        = $section[ '_panels_design_cfield-' . $i . '-group' ];
+    // Get the field info into the data variable for ease of use
+    $data['data']['group']        = empty($section[ '_panels_design_cfield-' . $i . '-group' ])?'custom1':$section[ '_panels_design_cfield-' . $i . '-group' ];
     $data['data']['name']         = $section[ '_panels_design_cfield-' . $i . '-name' ];
     $data['data']['field-type']   = $section[ '_panels_design_cfield-' . $i . '-field-type' ];
-    $data['data']['field-source'] = $section[ '_panels_design_cfield-' . $i . '-field-source' ];
-    $data['data']['wrapper-tag']  = $section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
+    $data['data']['field-source'] = empty($section[ '_panels_design_cfield-' . $i . '-field-source' ])?'wp':$section[ '_panels_design_cfield-' . $i . '-field-source' ];
+    $data['data']['wrapper-tag']  = empty($section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ])?'div':$section[ '_panels_design_cfield-' . $i . '-wrapper-tag' ];
     $data['data']['class-name']   = isset( $section[ '_panels_design_cfield-' . $i . '-class-name' ] ) ? $section[ '_panels_design_cfield-' . $i . '-class-name' ] : '';
+
+    // Not used yet as other field sources will complicate things
+    // $custom_fields = get_option( 'architect_custom_fields' );
+    // $data['data']['likely_acf']=  array_key_exists($section[ '_panels_design_cfield-' . $i . '-name' ],$custom_fields['Advanced Custom Fields']);
 
     // Date settings
     $data['data']['date-format']         = $section[ '_panels_design_cfield-' . $i . '-date-format' ];
