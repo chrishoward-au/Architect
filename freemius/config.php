@@ -204,7 +204,7 @@
     #--------------------------------------------------------------------------------
 
     if ( ! defined( 'WP_FS__API_ADDRESS_LOCALHOST' ) ) {
-        define( 'WP_FS__API_ADDRESS_LOCALHOST', 'http://api.freemius:8080' );
+        define( 'WP_FS__API_ADDRESS_LOCALHOST', 'http://api.freemius-local.com:8080' );
     }
     if ( ! defined( 'WP_FS__API_SANDBOX_ADDRESS_LOCALHOST' ) ) {
         define( 'WP_FS__API_SANDBOX_ADDRESS_LOCALHOST', 'http://sandbox-api.freemius:8080' );
@@ -254,7 +254,7 @@
     define( 'WP_FS__OPTIONS_OPTION_NAME', WP_FS___OPTION_PREFIX . 'options' );
 
     /**
-     * Module field_types
+     * Module types
      *
      * @since 1.2.2
      */
@@ -351,8 +351,8 @@
      */
     if ( ! defined( 'WP_FS__IS_NETWORK_ADMIN' ) ) {
         define( 'WP_FS__IS_NETWORK_ADMIN',
-            is_network_admin() ||
-            ( is_multisite() &&
+            is_multisite() &&
+            ( is_network_admin() ||
               ( ( defined( 'DOING_AJAX' ) && DOING_AJAX &&
                   ( isset( $_REQUEST['_fs_network_admin'] ) /*||
                     ( ! empty( $_REQUEST['action'] ) && 'delete-plugin' === $_REQUEST['action'] )*/ )
