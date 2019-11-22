@@ -3044,7 +3044,8 @@
             case strpos( $k, ':' ):
               $field = explode( ':', $k );
               foreach ( $pzarc_custom_fields as $kc => $vc ) {
-                if ( strpos( $kc, $field[0] ) === 0 && strpos( $kc, $field[1] ) > count( $field[0] ) + 2 ) {
+
+                if ( strpos( $kc, $field[0] ) === 0 && strpos( $kc, $field[1] ) > strlen( $field[0] ) + 2 ) {
                   unset( $pzarc_custom_fields[ $kc ] );
                 }
               }

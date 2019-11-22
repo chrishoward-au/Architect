@@ -3,6 +3,9 @@
 ## Notes:
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
+## 11.0 : 25 Oct 2019
+* UPDATED: Freemius SDK to 2.3.1. This is an important update due to a conflict with Freemius in WP5.2
+
 ## 10.9 : 27 Sept 2019 
 * ==========================================================================================
 * ADDED: ***** HEAPS MORE SUPPORT FOR ADVANCED CUSTOM FIELDS *****

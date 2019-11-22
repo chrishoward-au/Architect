@@ -7,7 +7,7 @@
    */
   echo '
     <div class="tabs-pane active" id="quick">';
-      include_once( 'updates/109.php' );
+      include_once( 'updates/110.php' );
   echo '<div class="arc-info-boxes">
           <h2>Quick start</h2>
           <div class="arc-info col1">

@@ -2,9 +2,9 @@
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
-Tested up to: 5.2
+Tested up to: 5.3
 Requires PHP: 5.6
-Stable tag: 10.9
+Stable tag: 11.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -115,6 +115,13 @@ MYPANELS figure.entry-thumbnail {    max-height:100%;}
 MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    height:100%;}
 ** TODO: Add a warning if in lite mode and Blueprint is using Pro features.
 TODO: Prepare for Redux 4.
+
+= 11.1
+* FIXED: Hack to prevent error triggered by older TGMPA used by MyThemeShop on its Install Plugins page
+* FIXED: Various minor bugs
+
+= 11.0 : 25 Oct 2019
+* UPDATED: Freemius SDK to 2.3.1. This is an important update due to a conflict with Freemius in WP5.2
 
 = 10.9 : 26 Sept 2019 =
 * ==========================================================================================

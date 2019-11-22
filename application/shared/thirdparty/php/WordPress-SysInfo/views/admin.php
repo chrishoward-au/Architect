@@ -104,11 +104,11 @@ WP_POST_REVISIONS:      <?php echo defined( 'WP_POST_REVISIONS' ) ? WP_POST_REVI
 <?php echo "\n=============\n\r"; ?>
 <?php _e( 'Number of Blueprints:', 'pzarchitect' ); ?>   <?php echo count($blueprints) . "\n"; ?>
 <?php _e( 'Styling enabled:', 'pzarchitect' ); ?>        <?php echo ( ! empty( $_architect_options[ 'architect_enable_styling' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
-<?php _e( 'All custom fields:', 'pzarchitect' ); ?>      <?php echo ( ! empty( $_architect_options[ 'architect_exclude_hidden_custom' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
+<?php _e( 'Exclude hidden custom fields:', 'pzarchitect' ); ?>      <?php echo ( ! empty( $_architect_options[ 'architect_exclude_hidden_custom' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
 <?php _e( 'Animation enabled:', 'pzarchitect' ); ?>      <?php echo ( ! empty( $_architect_options[ 'architect_animation-enable' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
 <?php _e( 'Beta enabled:', 'pzarchitect' ); ?>           <?php echo ( ! empty( $_architect_options[ 'architect_beta_features' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
 <?php //_e( 'Total Blueprint displays:', 'pzarchitect' ); ?><?php //echo $architect_timers['runs'] . "\n"; ?>
-<?php _e( 'Average time to display Blueprints:', 'pzarchitect' ); ?>   <?php echo round($architect_timers['avg_time'],2) . "\n"; ?>
+<?php _e( 'Average time to display Blueprints:', 'pzarchitect' ); ?>   <?php echo round($architect_timers['avg_time'],2) . "s\n"; ?>
 
 <?php _e( 'ACTIVE THEME:', 'pzarchitect' ); ?>
 <?php echo "\n=============\n\r"; ?>
