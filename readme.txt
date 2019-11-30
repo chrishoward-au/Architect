@@ -46,6 +46,7 @@ There are several ways to display Architect Blueprints.
 * Widget
 * Headway Block
 * Blox Block
+* Padma Block
 * Beaver module
 * Action hooks (Insert a hook in your theme page template, then hook Architect to it)
 * Actions editor (Built into Architect, all you have to know is the name of the hook you want to use)
@@ -117,6 +118,8 @@ MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    hei
 TODO: Prepare for Redux 4.
 
 = 11.1
+* ADDED: Support for Padma theme
+* FIXED: Using Filler Image now returns a different image for each post
 * FIXED: Hack to prevent error triggered by older TGMPA used by MyThemeShop on its Install Plugins page
 * FIXED: Various minor bugs
 

@@ -35,7 +35,7 @@
           <div class="arc-info col2"><h3><span class="dashicons dashicons-welcome-widgets-menus"></span>Blueprints</h3>
             <p>Blueprints is where you create and manage the content layouts.</p>
             <p> These can take any of the six basic forms: Grid, Slider, Tabbed, Tabular, Masonry and Accordion.</p>
-            <p>Blueprints can be displayed using Widgets; Shortcodes; Headway blocks; Blox blocks; Template tags; Action Hooks; or the Architect Beaver Builder module</p>
+            <p>Blueprints can be displayed using Widgets; Shortcodes; Headway blocks; Blox blocks; Padma blocks; Template tags; Action Hooks; or the Architect Beaver Builder module</p>
           </div>
           <div class="arc-info col2"><h3><span class="dashicons dashicons-hammer"></span>Tools</h3>
             <p>The Tools menu provides methods for clearing the Architect CSS cache and the Architect image cache.</p>

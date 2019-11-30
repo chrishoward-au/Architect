@@ -46,6 +46,10 @@
                     <h3>' . __('Blox Block', 'pzarchitect') . '</h3>
                     Add the Architect Blox blocks in the <em>Blox Visual Editor</em>
                     </div>
+                    <div class="arc-info col1">
+                    <h3>' . __('Padma Block', 'pzarchitect') . '</h3>
+                    Add the Architect Padma blocks in the <em>Padma Visual Editor</em>
+                    </div>
 
                     <div class="arc-info col1">
                     <h3>' . __('Action Hooks', 'pzarchitect') . '</h3>

@@ -68,6 +68,7 @@
       add_action( 'init', array( $this, 'init' ) );
       add_action( 'after_setup_theme', array( $this, 'register_architect_headway_block' ) );
       add_action( 'after_setup_theme', array( $this, 'register_architect_blox_block' ) );
+      add_action( 'after_setup_theme', array( $this, 'register_architect_padma_block' ) );
 
       add_action( "redux/options/_architect/saved", 'pzarc_set_defaults', 20, 2 );
 
@@ -172,6 +173,16 @@
         require( 'extensions-inc/blox/admin/arc-blox-block-options.php' );
 
         return blox_register_block( 'BloxArchitectBlock', PZARC_PLUGIN_URL . '/extensions-inc/blox/admin' );
+      }
+    }
+
+    public function register_architect_padma_block() {
+
+      if ( class_exists( 'PadmaDisplay' ) ) {
+        require( 'extensions-inc/padma/public/arc-padma-block-display.php' );
+        require( 'extensions-inc/padma/admin/arc-padma-block-options.php' );
+
+        return padma_register_block( 'PadmaArchitectBlock', PZARC_PLUGIN_URL . '/extensions-inc/padma/admin' );
       }
     }
 
@@ -373,7 +384,7 @@
 
       $pzarc_status = pzarc_status();
 
-      // There is no Blox licencing so don't need to check for that
+      // There is no Blox or Padma licencing so don't need to check for that
       if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' ) && ( $pzarc_status == FALSE || $pzarc_status !== 'valid' ) ) {
         if ( is_multisite() ) {
           $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
