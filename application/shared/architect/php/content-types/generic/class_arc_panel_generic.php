@@ -195,13 +195,17 @@
         $this->data['title']['title'] = "Beaver Builder editor - no preview";
       } else {
 
-        $is_hw      = class_exists( 'HeadwayLayoutOption' );
-        $is_blox    = class_exists( 'BloxLayoutOption' );
-        $alt_title  = '';
-        $hw_title   = $is_hw ? ( TRUE == ( $alt_title = HeadwayLayoutOption::get( $post->ID, 'alternate-title', FALSE, TRUE ) ) ) : FALSE;
-        $blox_title = $is_blox ? ( TRUE == ( $alt_title = BloxLayoutOption::get( $post->ID, 'alternate-title', FALSE, TRUE ) ) ) : FALSE;
 
-        if ( ( $is_hw || $is_blox ) && ! empty( $this->section['_panels_design_alternate-titles'] ) && ( $hw_title || $blox_title ) ) {
+        $is_hw       = class_exists( 'HeadwayLayoutOption' );
+        $is_blox     = class_exists( 'BloxLayoutOption' );
+        $is_padma    = class_exists( 'PadmaLayoutOption' );
+
+        $alt_title   = '';
+        $hw_title    = $is_hw ? ( TRUE == ( $alt_title = HeadwayLayoutOption::get( $post->ID, 'alternate-title', FALSE, TRUE ) ) ) : FALSE;
+        $blox_title  = $is_blox ? ( TRUE == ( $alt_title = BloxLayoutOption::get( $post->ID, 'alternate-title', FALSE, TRUE ) ) ) : FALSE;
+        $padma_title = $is_padma ? ( TRUE == ( $alt_title = PadmaLayoutOption::get( $post->ID, 'alternate-title', FALSE, TRUE ) ) ) : FALSE;
+
+        if ( ( $is_hw || $is_blox || $is_padma) && ! empty( $this->section['_panels_design_alternate-titles'] ) && ( $hw_title || $blox_title || $padma_title) ) {
           $this->data['title']['title'] = $alt_title;
         } else {
           $this->data['title']['title'] = get_the_title();
@@ -347,7 +351,7 @@
         // Easiest to do via a reusable function or all this stuff could be done once!!!!!!!!!
         // could pass $this->data thru a filter
         /** Get the image */
-        $image_src = wp_get_attachment_image_src( $thumb_id, array(
+        $image_src                    = wp_get_attachment_image_src( $thumb_id, array(
             $width,
             $height,
             'bfi_thumb' => TRUE,
@@ -406,7 +410,6 @@
         $is_offline = ( $cexec == FALSE || $cinfo['http_code'] == 302 );
         curl_close( $ch );
 
-
         $cats                = array(
             'abstract',
             'animals',
@@ -423,7 +426,7 @@
             'transport',
         );
         $lorempixel_category = in_array( $this->section['_panels_design_use-filler-image-source'], $cats ) ? $this->section['_panels_design_use-filler-image-source'] : $cats[ rand( 0, count( $cats ) - 1 ) ];
-        $imageURL            = 'https://loremflickr.com/' . $width . '/' . $height . '/' . $lorempixel_category; // v1.15.0 Lorempixel died
+        $imageURL            = 'https://loremflickr.com/' . $width . '/' . $height . '/' . $lorempixel_category.'?random='.random_int(1,999999); // v1.15.0 Lorempixel died // v11.1 Added random to get unique images
 //        $imageURL            = 'http://lorempixel.com/' . $width . '/' . $height . '/' . $lorempixel_category . '/' . rand( 1, 10 );
 //        $imageURL = 'http://lorempixel.com/' . $image_grey . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
         $this->data['image']['image']    = ! $is_offline ? '<img src="' . $imageURL . '" >' : '';
@@ -483,7 +486,7 @@
      */
     public function get_bgimage( &$post ) {
 
-      $thumb_id = get_post_thumbnail_id($post);
+      $thumb_id = get_post_thumbnail_id( $post );
 //      $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', TRUE );
 //      if ( $post->post_type === 'attachment' ) {
 //        $thumb_id = $post->ID;
@@ -499,7 +502,7 @@
       $fp                        = ArcFun::get_focal_point( $thumb_id );
       $focal_point               = $fp['focal_point'];
       $this->data['image']['id'] = $fp['thumb_id'];
-      $showbgimage = ( has_post_thumbnail() && $this->section['_panels_design_feature-location'] === 'fill' && ( $this->section['_panels_design_components-position'] == 'top' || $this->section['_panels_design_components-position'] == 'left' ) ) || ( $this->section['_panels_design_feature-location'] === 'fill' && ( $this->section['_panels_design_components-position'] == 'bottom' || $this->section['_panels_design_components-position'] == 'right' ) );
+      $showbgimage               = ( has_post_thumbnail() && $this->section['_panels_design_feature-location'] === 'fill' && ( $this->section['_panels_design_components-position'] == 'top' || $this->section['_panels_design_components-position'] == 'left' ) ) || ( $this->section['_panels_design_feature-location'] === 'fill' && ( $this->section['_panels_design_components-position'] == 'bottom' || $this->section['_panels_design_components-position'] == 'right' ) );
       // Need to setup for break points.
 
       // TODO: data-imagesrcs ="1,2,3", data-breakpoints="1,2,3". Then use js to change src.
@@ -531,13 +534,13 @@
 
       // Need to grab image again because it uses different dimensions for the bgimge
       $image_src = wp_get_attachment_image_src( $thumb_id, array(
-              $width,
-              $height,
-              'bfi_thumb' => TRUE,
-              'crop'      => $crop,
-              'quality'   => $quality,
-              'text'      => ( $copyright['array'] && in_array( 'featured', $this->section['_panels_settings_image-copyright-add'] ) ? $copyright['array'] : '' ),
-          ) );
+          $width,
+          $height,
+          'bfi_thumb' => TRUE,
+          'crop'      => $crop,
+          'quality'   => $quality,
+          'text'      => ( $copyright['array'] && in_array( 'featured', $this->section['_panels_settings_image-copyright-add'] ) ? $copyright['array'] : '' ),
+      ) );
 //      $image_srcset = wp_get_attachment_image_srcset( $thumb_id, array(
 //          $width,
 //          $height) );
@@ -611,7 +614,7 @@
             'transport',
         );
         $lorempixel_category = in_array( $this->section['_panels_design_use-filler-image-source'], $cats ) ? $this->section['_panels_design_use-filler-image-source'] : $cats[ rand( 0, count( $cats ) - 1 ) ];
-        $imageURL            = 'https://loremflickr.com/' . $width . '/' . $height . '/' . $lorempixel_category . '/' . rand( 1, 10 );
+        $imageURL            = 'https://loremflickr.com/' . $width . '/' . $height . '/' . $lorempixel_category  .'?random='.random_int(1,999999); // v11.1 Added random to get unique images
 //        $imageURL = 'http://lorempixel.com/' . $image_grey . $width . '/' . $height . '/' . $post[ 'image' ][ 'original' ];
         $this->data['bgimage']['thumb']  = ! $is_offline ? '<img src="' . $imageURL . '" >' : '';
         $this->data['image']['original'] = ! $is_offline ? array(

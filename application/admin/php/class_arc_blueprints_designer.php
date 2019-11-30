@@ -1117,7 +1117,7 @@
                   'id'       => $prefix . 'help-usingbp-styling-tabs',
                   'type'     => 'raw',
                   'markdown' => FALSE,
-                  'content'  => __( 'If you are using <strong>Headway</strong> or<strong>Blox</strong>, the Architect styling tabs are off by default. They can be enabled in Architect > Options > Use Architect Styling. Styling applied in the Headway/Blox Visual Editor will still be used, but the Architect styling will take precedence.', 'pzarchitect' ),
+                  'content'  => __( 'If you are using <strong>Headway</strong> or<strong>Blox</strong> or <strong>Padma</strong>, the Architect styling tabs are off by default. They can be enabled in Architect > Options > Use Architect Styling. Styling applied in the Headway/Blox/Padma Visual Editor will still be used, but the Architect styling will take precedence.', 'pzarchitect' ),
               ),
               array(
                   'title'    => __( 'Enabling animation tab', 'pzarchitect' ),
@@ -3048,13 +3048,14 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
       $current_theme = wp_get_theme();
       $is_hw         = ( ( $current_theme->get( 'Name' ) == 'Headway' || $current_theme->get( 'Name' ) == 'Headway Base' || $current_theme->get( 'Template' ) == 'headway' ) );
       $is_blox       = ( ( $current_theme->get( 'Name' ) === 'Blox' || $current_theme->get( 'Template' ) == 'blox' ) );
+      $is_padma       = ( ( $current_theme->get( 'Name' ) === 'Padma' || $current_theme->get( 'Template' ) == 'padma' ) );
 
       if ( ! $_architect_options['architect_enable_styling'] ) {
         $sections['_general_bp']['fields'][] = array(
             'id'    => $prefix . 'headway-styling-message',
             'title' => __( 'Architect Styling', 'pzarchitect' ),
             'type'  => 'info',
-            'desc'  => __( 'Architect Styling is turned off. You can still style Blueprints using custom CSS, or in the Headway/Blox Visual Editor if that is your theme. You can re-enable it in <em>Architect</em> > <em>Options</em> > <em>Use Architect Styling</em>. Note: Architect styling will take precedence.', 'pzarchitect' ),
+            'desc'  => __( 'Architect Styling is turned off. You can still style Blueprints using custom CSS, or in the Headway/Blox/Padma Visual Editor if that is your theme. You can re-enable it in <em>Architect</em> > <em>Options</em> > <em>Use Architect Styling</em>. Note: Architect styling will take precedence.', 'pzarchitect' ),
         );
       }
       if ( ! $animation_state ) {
@@ -5913,14 +5914,14 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                   /// can't set defaults on checkboxes!
               ),
               array(
-                  'title'    => __( 'Use Headway/Blox alternate titles', 'pzarchitect' ),
-                  'subtitle' => __( 'Headway/Blox theme only', 'pzarchitect' ),
+                  'title'    => __( 'Use Headway/Blox/Padma alternate titles', 'pzarchitect' ),
+                  'subtitle' => __( 'Headway/Blox/Padma theme only', 'pzarchitect' ),
                   'id'       => $prefix . 'alternate-titles',
                   'type'     => 'switch',
                   'on'       => __( 'Yes', 'pzarchitect' ),
                   'off'      => __( 'No', 'pzarchitect' ),
                   'default'  => TRUE,
-                  'hint'     => array( 'content' => __( 'If enabled, this will display the Headway/Blox alternative title if set. Note: If you change from Headway/Blox to another theme, this may still be displayed.', 'pzarchitect' ) ),
+                  'hint'     => array( 'content' => __( 'If enabled, this will display the Headway/Blox/Padma alternative title if set. Note: If you change from Headway/Blox/Padma to another theme, this may still be displayed.', 'pzarchitect' ) ),
 
                   /// can't set defaults on checkboxes!
               ),
