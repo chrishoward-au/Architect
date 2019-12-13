@@ -301,14 +301,7 @@
           }
           break;
         case 'layout-type':
-          $layout_imgs = array(
-              'basic'     => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-grid.svg' ),
-              'slider'    => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-slider.svg' ),
-              'tabbed'    => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabbed.svg' ),
-              'masonry'   => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-masonry.svg' ),
-              'table'     => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabular.svg' ),
-              'accordion' => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.svg' ),
-          );
+          $layout_imgs = ArcFun::get_layout_images();
 
           if ( ! empty( $post_meta['_blueprints_section-0-layout-mode'][0] ) ) {
             $layout_type = ( $post_meta['_blueprints_section-0-layout-mode'][0] );

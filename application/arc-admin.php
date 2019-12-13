@@ -16,6 +16,7 @@
       global $arc_presets_data;
 //      add_action('plugins_loaded', array($this, 'init'));
       add_action( 'plugins_loaded', array( $this, 'init' ) );
+      add_action('wp_loaded',array($this,'late_load'));
 
       if ( ( function_exists( 'arc_fs' ) && ! arc_fs()->is__premium_only() ) || ! function_exists( 'arc_fs' ) ) {
         add_action( 'after_setup_theme', 'pzarc_initiate_updater' );
@@ -84,6 +85,10 @@
         require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-options-styling.php';
         require_once PZARC_PLUGIN_APP_PATH . 'admin/php/arc-options.php';
       }
+    }
+
+    function late_load(){
+      update_option('arc_taxonomies',maybe_serialize(pzarc_get_taxonomies(FALSE,FALSE)));
     }
 
     /*********************************************
@@ -314,7 +319,8 @@
         global $pzarc_css_success;
         $pzarc_css_success = TRUE;
         ArcFun::clear_arc_cache(); // v1.16.0
-        save_arc_layouts( 'all', NULL, TRUE );
+        //save_arc_layouts( 'all', NULL, TRUE );
+        ArcFun::resave_all_blueprints();
         pzarc_set_defaults();
         update_option( 'arc_blueprints', pzarc_get_blueprints( FALSE ) );
         bfi_flush_image_cache();
@@ -393,7 +399,17 @@
           }
         }
       }
-      echo '</div><!--end table-->
+      echo '
+      <h3>Debugging info</h3>';
+      if ( isset( $_POST['cleararcdebug'] ) && check_admin_referer( 'clear-arc-debug' ) ) {
+        update_option('arc_errors','');
+      }
+      echo '<form action="admin.php?page=pzarc_tools" method="post">';
+      echo  '<div class="arc-debugging-info">'.str_replace(PZARC_PLUGIN_PATH,'Architect/',get_option('arc_errors')).'</div>';
+      wp_nonce_field( 'clear-arc-debug' );
+      echo '<button class="button-primary" style="min-width:100px;" type="submit" name="cleararcdebug" value="' . __( 'Clear Debug Info' ) . '">' . __( 'Clear debug info' ) . '</button>
+        </form>';
+        echo '</div><!--end table-->
 			</div>
       ';
     }
@@ -929,7 +945,6 @@
      */
     $pzarc_blueprints = array_merge( array( 'none' => 'Select Blueprint' ), pzarc_get_blueprints(), array( 'show-none' => 'DO NOT SHOW ANY BLUEPRINT' ) );
     shortcode_ui_register_for_shortcode( 'architectsc', array(
-
       // Display label. String. Required.
       'label'         => __( 'Architect Blueprint', 'pzarchitect' ),
       // Icon/attachment for shortcode. Optional. src or dashicons-$icon. Defaults to carrot.

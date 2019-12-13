@@ -356,11 +356,9 @@
 
       /** Specific IDs */
       if ( ! empty( $overrides['post__in'] ) ) {
-
-        $this->query_options['post__in']       = explode( ',', $overrides['post__in'] );
+        $this->query_options['post__in']       = ! is_array($overrides['post__in']) ? explode( ',', $overrides['post__in'] ):$overrides['post__in'];
         $this->query_options['posts_per_page'] = count( $this->query_options['post__in'] );
       }
-
       /** Include categories */
       if ( ! empty( $overrides['category__in'] ) ) {
         $this->query_options['category__in'] = ! is_array( $overrides['category__in'] ) ? explode( ',', $overrides['category__in'] ) : $overrides['category__in'];

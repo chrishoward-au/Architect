@@ -118,10 +118,12 @@ MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    hei
 TODO: Prepare for Redux 4.
 
 = 11.1
-* ADDED: Support for Padma theme
+* ADDED: Architect Gutenberg block!
+* ADDED: Architect block for Padma theme // TODO to finish
 * FIXED: Using Filler Image now returns a different image for each post
 * FIXED: Hack to prevent error triggered by older TGMPA used by MyThemeShop on its Install Plugins page
 * FIXED: Various minor bugs
+* FIXED: Finally made Tools > Clear actually resave all Blueprints
 
 = 11.0 : 25 Oct 2019
 * UPDATED: Freemius SDK to 2.3.1. This is an important update due to a conflict with Freemius in WP5.2

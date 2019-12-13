@@ -13,6 +13,7 @@
       define( 'PZARC_PLUGIN_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
       define( 'PZARC_PLUGIN_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
       define( 'PZARC_PLUGIN_FILE', __FILE__ );
+      define( 'SITE_PLUGIN_PATH', str_replace( '/pizazzwp-architect', '', plugin_dir_path( __DIR__ ) ) );
 
       require_once PZARC_PLUGIN_PATH . '/application/shared/architect/php/arc-constants.php';
       pzdb( 'after dependency check' );
@@ -107,9 +108,6 @@
       // Load Beaver modules
       require_once PZARC_PLUGIN_PATH . '/extensions-inc/beaver-builder/fl-custom-module-architect.php';
       require_once PZARC_PLUGIN_PATH . '/extensions-inc/beaver-architect-modules-2.0/fl-architect-modules-bb2.php';
-
-      // Load Gutenberg
-      //  require_once PZARC_PLUGIN_PATH . '/gutenberg/architect-generic/plugin.php';
 
 
       // Pro
@@ -398,7 +396,7 @@
 
       if ( ( ! empty( $hw_opts['license-status-architect'] ) && $hw_opts['license-status-architect'] == 'valid' ) || ( $pzarc_status !== FALSE && $pzarc_status == 'valid' ) ) {
         define( 'PZARC_PRO', TRUE );
-        @include PZARC_PLUGIN_PATH . '/extensions/architect-pro-layout.php';
+        @include PZARC_PLUGIN_PATH . '/extensions/architect-pro-load-extensions.php';
       }
 
       switch ( TRUE ) {

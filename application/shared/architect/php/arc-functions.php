@@ -16,7 +16,7 @@
     /**
      * [pzdebug description]
      *
-     * @param  string $value ='' [description]
+     * @param string $value ='' [description]
      *
      * @return [type]           [description]
      */
@@ -829,7 +829,7 @@
     $array_out = array();
     if ( ! empty( $array_in ) ) {
       foreach ( $array_in as $key => $value ) {
-        if ( $key == '_edit_lock' || $key == '_edit_last' || strpos( $key, $strip ) !== FALSE ) {
+        if ( $key == '_edit_lock' || $key == '_edit_last' || ( $strip && strpos( $key, (string) $strip ) !== FALSE ) ) {  // v11.1 Fix for PHP 7.3 strpos changes
           continue;
         }
         if ( is_array( $value ) ) {
@@ -1463,8 +1463,7 @@
 
       /*
          * get all current post terms ad set them to the new post draft
-         */
-//      $taxonomies = get_object_taxonomies($pre->post_type); // returns array of taxonomy names for post type, ex array("category", "post_tag");
+         */ //      $taxonomies = get_object_taxonomies($pre->post_type); // returns array of taxonomy names for post type, ex array("category", "post_tag");
 //      foreach ($taxonomies as $taxonomy) {
 //        $post_terms = wp_get_object_terms($preset_name, $taxonomy, array('fields' => 'slugs'));
 //        wp_set_object_terms($new_post_id, $post_terms, $taxonomy, false);
@@ -2332,6 +2331,10 @@
       return $post->post_title;
     }
 
+    static function get_blueprint_shortname( $post_id ) {
+      return get_post_meta( $post_id, '_blueprints_short-name', TRUE );
+    }
+
     static function get_tables( $limit = NULL ) {
       global $wpdb;
       // Get all tables for current site
@@ -2851,7 +2854,7 @@
         );
 
         if ( $acf_parent != 'field_group' ) {
-          $acf_parent_type                                               = strtoupper(substr( $acf_parent, 0, 1 )) . ' sub: ';
+          $acf_parent_type                                               = strtoupper( substr( $acf_parent, 0, 1 ) ) . ' sub: ';
           $acf_fields_list[ $acf_parent_name . ':' . $vf->post_excerpt ] = $acf_parent_desc . ' : ' . $vf->post_title . ' (' . $acf_parent_type . str_replace( '_', ' ', $fsettings['type'] ) . ')';
         } else {
 
@@ -3062,4 +3065,49 @@
       return $custom_fields;
     }
 
+    static function get_layout_images() {
+      $layout_imgs = array(
+          'basic'     => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-grid.svg' ),
+          'slider'    => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-slider.svg' ),
+          'tabbed'    => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabbed.svg' ),
+          'masonry'   => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-masonry.svg' ),
+          'table'     => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabular.svg' ),
+          'accordion' => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.svg' ),
+      );
+
+      return $layout_imgs;
+    }
+
+    static function message( $msg ) {
+      switch ( $msg ) {
+        case 'none':
+          echo 'Please select a default Blueprint';
+          break;
+        default:
+
+      }
+    }
+
+    static function resave_all_blueprints() {
+      $my_posts = get_posts( array( 'post_type' => 'arc-blueprints', 'numberposts' => - 1 ) );
+
+      foreach ( $my_posts as $my_post ):
+
+        wp_update_post( $my_post );
+
+      endforeach;
+
+    }
+
+    static function save_debug( $name, $var, $clear = FALSE ) {
+      ob_start();
+      echo $name;
+      var_dump( $var );
+      $output = ob_get_contents();
+      ob_end_clean();
+
+      $errors = $clear ? '' : get_option( 'arc_errors' )."\n";
+      update_option( 'arc_errors', $errors . $output );
+
+    }
   }
