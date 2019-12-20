@@ -22,6 +22,15 @@
                       <p>' . __('<em>ids</em> are the specific post, page etc IDs and are used to override the defined selection for the Blueprint', 'pzarchitect') . '</p>
                     </div>
 
+                    <div class="arc-info col1">
+                    <h3>' . __('Gutenberg Block', 'pzarchitect') . '</h3>
+                    Add the Architect Gutenberg blocks directly in posts and pages
+                    </div>
+
+                    <div class="arc-info col1">
+                    <h3>' . __('Beaver Builder', 'pzarchitect') . '</h3>
+                      <p>In the Beaver Builder page builder, drag and drop the Architect module to your page.</p>
+                    </div>
 
                     <div class="arc-info col1">
                     <h3>' . __('Template tag', 'pzarchitect') . '</h3>
@@ -46,11 +55,12 @@
                     <h3>' . __('Blox Block', 'pzarchitect') . '</h3>
                     Add the Architect Blox blocks in the <em>Blox Visual Editor</em>
                     </div>
+                    
                     <div class="arc-info col1">
                     <h3>' . __('Padma Block', 'pzarchitect') . '</h3>
                     Add the Architect Padma blocks in the <em>Padma Visual Editor</em>
                     </div>
-
+                    
                     <div class="arc-info col1">
                     <h3>' . __('Action Hooks', 'pzarchitect') . '</h3>
                     <p>If your theme had action hooks, you can hook specific Blueprints to them in your functions.php with the following base code:</p>
@@ -85,10 +95,6 @@ add_action(\'init\',\'gs_init\');
                     </div>
 
 
-                    <div class="arc-info col1">
-                    <h3>' . __('Beaver Builder', 'pzarchitect') . '</h3>
-                      <p>In the Beaver Builder page builder, drag and drop the Architect module to your page.</p>
-                    </div>
                 </div>
                 </div>
 

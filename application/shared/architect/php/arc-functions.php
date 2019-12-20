@@ -3099,15 +3099,17 @@
 
     }
 
-    static function save_debug( $name, $var, $clear = FALSE ) {
+    static function save_debug( $name, $var, $file, $line, $clear = FALSE ) {
       ob_start();
-      echo $name;
+      echo '<pre><b style="font-size:13px;margin:0;">' . $name . '</b></pre>';
+      echo '<pre>' . $file . ' : ' . $line . '</pre>';
       var_dump( $var );
+      echo '<hr>';
       $output = ob_get_contents();
       ob_end_clean();
-
-      $errors = $clear ? '' : get_option( 'arc_errors' )."\n";
-      update_option( 'arc_errors', $errors . $output );
-
+      $output = str_replace( __FILE__ . ':3106:', '', $output );
+      $output = str_replace( PZARC_PLUGIN_PATH, 'Architect/', $output );
+      $debug  = $clear ? '' : get_option( 'arc_debug' ) . "\n";
+      update_option( 'arc_debug', $debug . $output );
     }
   }

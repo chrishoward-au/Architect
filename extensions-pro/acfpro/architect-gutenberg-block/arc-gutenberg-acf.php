@@ -20,7 +20,7 @@
       acf_register_block( array(
           'name'            => 'pzarchitect',
           'title'           => 'Architect',
-          'description'     => 'Architect Gutenberg' . __( 'block', 'pzarchitect' ),
+          'description'     => 'Architect Gutenberg ' . __( 'block', 'pzarchitect' ),
           //          'render_callback' => 'pzarc_acf_block_render_callback',
           'category'        => 'layout',
           'supports'        => array( 'align' => FALSE, 'html' => FALSE, 'edit' => TRUE ),
@@ -155,9 +155,9 @@ NzowMIPXBDEAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAAElFTkSuQmCC" />
         }
         $title .= ' (' . ucfirst( $pzarc_data['source'] ) . ' : ' . ucfirst( $pzarc_data['layout_type'] ) . ')';
         break;
-      case 'specific_ids':
-        $title = strtoupper( $post->post_type ) . ' : ' . $title;
-        break;
+//      case 'specific_ids':
+//        $title = strtoupper( $post->post_type ) . ' : ' . $title;
+//        break;
     }
 
     return $title;
@@ -167,7 +167,7 @@ NzowMIPXBDEAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAAElFTkSuQmCC" />
   add_filter( 'acf/fields/post_object/result/name=default_blueprint', 'pzarc_post_object_result', 10, 4 );
   add_filter( 'acf/fields/post_object/result/name=tablet_blueprint', 'pzarc_post_object_result', 10, 4 );
   add_filter( 'acf/fields/post_object/result/name=phone_blueprint', 'pzarc_post_object_result', 10, 4 );
-  add_filter( 'acf/fields/post_object/result/name=specific_ids', 'pzarc_post_object_result', 10, 4 );
+//  add_filter( 'acf/fields/post_object/result/name=specific_ids', 'pzarc_post_object_result', 10, 4 );
 
   function pzarc_post_object_query( $args, $field, $post_id ) {
 
@@ -179,14 +179,16 @@ NzowMIPXBDEAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAAElFTkSuQmCC" />
         // only show published Blueprints
         $args['post_status'] = 'publish';
         break;
-      case 'specific_ids':
-        $arc_blueprint_data1 =  get_field( $field['value'] ) ;
-        $arc_blueprint_data2 =  get_field( 'default_blueprint' ) ;
-        $arc_blueprint_data3 = get_the_excerpt( $post_id ) ;
-
-        ArcFun::save_debug( '$arc_blueprint_data1', $arc_blueprint_data1 );
-        ArcFun::save_debug( '$arc_blueprint_data2', $arc_blueprint_data2 );
-        ArcFun::save_debug( '$arc_blueprint_data3', $arc_blueprint_data3 );
+//      case 'specific_ids':
+//        ArcFun::save_debug('post types',get_post_types(),__FILE__,__LINE__);
+//        $args['post_type']=array('post','page','codex','product','pz_snippets','pz_testimonials','pz_showcases');
+//        //        $arc_blueprint_data1 =  get_field( $field['value'] ) ;
+////        $arc_blueprint_data2 =  get_field( 'default_blueprint' ) ;
+////        $arc_blueprint_data3 = get_the_excerpt( $post_id ) ;
+////
+//        ArcFun::save_debug( '$block', $block,__FILE__,__LINE__ );
+//        ArcFun::save_debug( '$arc_blueprint_data2', $arc_blueprint_data2,__FILE__,__LINE__ );
+//        ArcFun::save_debug( '$arc_blueprint_data3', $arc_blueprint_data3,__FILE__,__LINE__ );
         //doesn't work!! :(
         // Of course not! Specific IDs are all posts, so each one is not going to have the necessary data
         //$args['post_type'] = $arc_blueprint_data['source'];
@@ -202,15 +204,15 @@ NzowMIPXBDEAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAAElFTkSuQmCC" />
   add_filter( 'acf/fields/post_object/query/name=default_blueprint', 'pzarc_post_object_query', 10, 3 );
   add_filter( 'acf/fields/post_object/query/name=tablet_blueprint', 'pzarc_post_object_query', 10, 3 );
   add_filter( 'acf/fields/post_object/query/name=phone_blueprint', 'pzarc_post_object_query', 10, 3 );
-  add_filter( 'acf/fields/post_object/query/name=specific_ids', 'pzarc_post_object_query', 10, 3 );
+//  add_filter( 'acf/fields/post_object/query/name=specific_ids', 'pzarc_post_object_query', 10, 3 );
 
   function my_taxonomy_query( $args, $field, $post_id ) {
-    $args['taxonomy'] = get_field( 'taxonomies' );
-    ArcFun::save_debug( '$args', $args);
-    ArcFun::save_debug( '$field', $field );
-    ArcFun::save_debug( '$post_id', $post_id );
+    $args['taxonomy'] = get_field( 'taxonomies' ); // Doesn't work. Isn't able to see that field
+//    ArcFun::save_debug( '$args', $args,__FILE__,__LINE__);
+//    ArcFun::save_debug( '$field', $field,__FILE__,__LINE__ );
+//    ArcFun::save_debug( '$post_id', $post_id,__FILE__,__LINE__ );
 
     return $args;
   }
 
-  add_filter( 'acf/fields/taxonomy/query/name=terms_select', 'my_taxonomy_query', 10, 3 );
+//  add_filter( 'acf/fields/taxonomy/query/name=terms_select', 'my_taxonomy_query', 10, 3 );

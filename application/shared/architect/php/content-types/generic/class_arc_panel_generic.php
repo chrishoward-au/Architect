@@ -541,6 +541,7 @@
           'quality'   => $quality,
           'text'      => ( $copyright['array'] && in_array( 'featured', $this->section['_panels_settings_image-copyright-add'] ) ? $copyright['array'] : '' ),
       ) );
+      // TODO: Use srcset
 //      $image_srcset = wp_get_attachment_image_srcset( $thumb_id, array(
 //          $width,
 //          $height) );

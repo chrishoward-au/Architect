@@ -2,9 +2,9 @@
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
 Requires at least: 4.0
-Tested up to: 5.3
+Tested up to: 5.3.2
 Requires PHP: 5.6
-Stable tag: 11.0
+Stable tag: 11.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -116,14 +116,16 @@ MYPANELS figure.entry-thumbnail {    max-height:100%;}
 MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    height:100%;}
 ** TODO: Add a warning if in lite mode and Blueprint is using Pro features.
 TODO: Prepare for Redux 4.
+TODO: Check if Gallery source still works correctly
 
 = 11.1
 * ADDED: Architect Gutenberg block!
-* ADDED: Architect block for Padma theme // TODO to finish
+* ADDED: Architect block for Padma theme
 * FIXED: Using Filler Image now returns a different image for each post
 * FIXED: Hack to prevent error triggered by older TGMPA used by MyThemeShop on its Install Plugins page
 * FIXED: Various minor bugs
 * FIXED: Finally made Tools > Clear actually resave all Blueprints
+* FIXED: CSS specificity issue affect fixed width panels justification
 
 = 11.0 : 25 Oct 2019
 * UPDATED: Freemius SDK to 2.3.1. This is an important update due to a conflict with Freemius in WP5.2

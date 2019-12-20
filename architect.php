@@ -21,7 +21,7 @@
 	/**
 	 * REMEMBER TO UPDATE VERSION IN arc-admin.scss
 	 */
-	define( 'PZARC_VERSION', '11.0' );
+	define( 'PZARC_VERSION', '11.1' );
   if ( ! function_exists( 'arc_fs' ) ) {
 
 

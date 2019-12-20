@@ -35,7 +35,7 @@
 
       $pzarc_main = array(
           'shortname'   => $arc_default_raw['_blueprints_short-name'][0],
-          'layout_type' => ArcFun::basic2grid( $arc_default_raw['_blueprints_section-0-layout-mode'][0] ),
+          'layout_type' =>  empty($arc_default_raw['_blueprints_section-0-layout-mode'][0]) || $arc_default_raw['_blueprints_section-0-layout-mode'][0]=='basic'?'grid':$arc_default_raw['_blueprints_section-0-layout-mode'][0] ,
           'source' => empty( $arc_default_raw['_blueprints_content-source'][0] )  ? 'default' : $arc_default_raw['_blueprints_content-source'][0],
       );
       // update the post, which calls save_post again

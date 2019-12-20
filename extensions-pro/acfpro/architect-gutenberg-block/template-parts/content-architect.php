@@ -5,7 +5,6 @@
    * This is the template that displays the Architect Blueprint block.
    */
 
-
   if ( empty( get_field( 'default_blueprint' ) ) ) {
     if ( is_admin() ) {
       ?>

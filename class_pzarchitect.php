@@ -69,7 +69,7 @@
       add_action( 'init', array( $this, 'init' ) );
       add_action( 'after_setup_theme', array( $this, 'register_architect_headway_block' ) );
       add_action( 'after_setup_theme', array( $this, 'register_architect_blox_block' ) );
-      add_action( 'after_setup_theme', array( $this, 'register_architect_padma_block' ) );
+//      add_action( 'after_setup_theme', array( $this, 'register_architect_padma_block' ) );
 
       add_action( "redux/options/_architect/saved", 'pzarc_set_defaults', 20, 2 );
 
@@ -109,6 +109,9 @@
       require_once PZARC_PLUGIN_PATH . '/extensions-inc/beaver-builder/fl-custom-module-architect.php';
       require_once PZARC_PLUGIN_PATH . '/extensions-inc/beaver-architect-modules-2.0/fl-architect-modules-bb2.php';
 
+      // Load Padma (their way)
+      require_once PZARC_PLUGIN_PATH.'/extensions-inc/padma/padma-architect-support.php';
+
 
       // Pro
       pzdb( 'before architect pro' );
@@ -142,7 +145,7 @@
 
       // TODO: Is this still used??
       if ( defined( 'PZARC_PRO' ) && PZARC_PRO ) {
-        @include PZARC_PLUGIN_PATH . '/extensions/architect-pro-cpt.php';
+        @include PZARC_PLUGIN_PATH . '/extensions-pro/architect-pro-cpt.php';
       }
       if ( ! is_admin() && isset( $_GET['arcbp'] ) ) {
         // This needs to be an action/filter after header...
@@ -174,15 +177,15 @@
       }
     }
 
-    public function register_architect_padma_block() {
-
-      if ( class_exists( 'PadmaDisplay' ) ) {
-        require( 'extensions-inc/padma/public/arc-padma-block-display.php' );
-        require( 'extensions-inc/padma/admin/arc-padma-block-options.php' );
-
-        return padma_register_block( 'PadmaArchitectBlock', PZARC_PLUGIN_URL . '/extensions-inc/padma/admin' );
-      }
-    }
+//    public function register_architect_padma_block() {
+//
+//      if ( class_exists( 'PadmaDisplay' ) ) {
+//        require( 'extensions-inc/padma/public/arc-padma-block-display.php' );
+//        require( 'extensions-inc/padma/admin/arc-padma-block-options.php' );
+//
+//        return padma_register_block( 'PadmaArchitectBlock', PZARC_PLUGIN_URL . '/extensions-inc/padma/admin' );
+//      }
+//    }
 
     /**
      * Fired when the plugin is activated.
@@ -396,7 +399,7 @@
 
       if ( ( ! empty( $hw_opts['license-status-architect'] ) && $hw_opts['license-status-architect'] == 'valid' ) || ( $pzarc_status !== FALSE && $pzarc_status == 'valid' ) ) {
         define( 'PZARC_PRO', TRUE );
-        @include PZARC_PLUGIN_PATH . '/extensions/architect-pro-load-extensions.php';
+        @include PZARC_PLUGIN_PATH . '/extensions-pro/architect-pro-load-extensions.php';
       }
 
       switch ( TRUE ) {

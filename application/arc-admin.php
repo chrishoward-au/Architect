@@ -399,16 +399,22 @@
           }
         }
       }
-      echo '
-      <h3>Debugging info</h3>';
-      if ( isset( $_POST['cleararcdebug'] ) && check_admin_referer( 'clear-arc-debug' ) ) {
-        update_option('arc_errors','');
-      }
-      echo '<form action="admin.php?page=pzarc_tools" method="post">';
-      echo  '<div class="arc-debugging-info">'.str_replace(PZARC_PLUGIN_PATH,'Architect/',get_option('arc_errors')).'</div>';
-      wp_nonce_field( 'clear-arc-debug' );
-      echo '<button class="button-primary" style="min-width:100px;" type="submit" name="cleararcdebug" value="' . __( 'Clear Debug Info' ) . '">' . __( 'Clear debug info' ) . '</button>
+      if ( ( isset( $_GET['debug'] ) && is_admin() ) ) {
+        echo '<h3>Debugging info</h3>';
+        if ( isset( $_POST['cleararcdebug'] ) && check_admin_referer( 'clear-arc-debug' ) ) {
+          update_option( 'arc_debug', '' );
+        }
+        echo '<form action="admin.php?page=pzarc_tools&debug" method="post">';
+        echo '<div class="arc-debugging-info">' .  get_option( 'arc_debug' )  . '</div>';
+        wp_nonce_field( 'clear-arc-debug' );
+        echo '<button class="button-primary" style="min-width:100px;" type="submit" name="cleararcdebug" value="' . __( 'Clear Debug Info' ) . '">' . __( 'Clear debug info' ) . '</button>
         </form>';
+      } else{
+//        echo '<p style="font-size:11px;font-style:italic;">Debugging disabled.</p>';
+      }
+      if ( isset( $_POST['cleararcdebug'] ) && check_admin_referer( 'clear-arc-debug' ) ) {
+        update_option( 'arc_debug', '' );
+      }
         echo '</div><!--end table-->
 			</div>
       ';

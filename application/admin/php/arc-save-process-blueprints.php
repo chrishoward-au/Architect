@@ -27,8 +27,8 @@
     global $pzarc_fontface;
     $pzarc_fontface = '';
 
-    $pzarc_bp_css[ $i ] = pzarc_process_bp_sections( $pzarc_blueprints, $i, $nl, $_architect_options );
-    $specificity_class  = '.pzarc-blueprint_' . $pzarc_blueprints['_blueprints_short-name']; // v1.11.1 Changed to class from ID
+    $specificity_class = '.pzarchitect .pzarc-blueprint_' . $pzarc_blueprints['_blueprints_short-name']; // v1.11.1 Changed to class from ID. //v11.1 Added .pzarchitect to increase specificity
+    $pzarc_bp_css[ $i ] = pzarc_process_bp_sections( $pzarc_blueprints, $i, $nl, $_architect_options,$specificity_class );
     $pzarc_contents     .= $pzarc_bp_css[ $i ];
 
 
@@ -133,10 +133,10 @@
    * @return string
    *
    *   */
-  function pzarc_process_bp_sections( &$pzarc_blueprints, $i, $nl, &$_architect_options ) {
+  function pzarc_process_bp_sections( &$pzarc_blueprints, $i, $nl, &$_architect_options,$specificity_class ) {
 
     //$specificity_class = '#pzarc-blueprint_' . $pzarc_blueprints['_blueprints_short-name']; /// Dang! This doesn't work with blueprints in blueprints. 1.10.8 // v1.11.1 Changed to class from ID
-    $specificity_class = '.pzarc-blueprint_' . $pzarc_blueprints['_blueprints_short-name']; /// Dang! This doesn't work with blueprints in blueprints. 1.10.8 // v1.11.1 Changed to class from ID // v1.12.0 actually changed! Need to see if it breaks stuff
+    // $specificity_class = '.pzarchitect .pzarc-blueprint_' . $pzarc_blueprints['_blueprints_short-name']; /// Dang! This doesn't work with blueprints in blueprints. 1.10.8 // v1.11.1 Changed to class from ID // v1.12.0 actually changed! Need to see if it breaks stuff // v11.1:  Changed to single creation of this var
     $sections_class    = $specificity_class . '  .pzarc-sections  .pzarc-section_' . ( $i + 1 ); // Removed > coz breaks new masonry features v1.9.3
     $panels_class      = $sections_class . ' .pzarc-panel.pzarc-panel_' . $pzarc_blueprints['_blueprints_short-name']; // More specific 1.10.8
     $pzarc_mediaq_css  = '';

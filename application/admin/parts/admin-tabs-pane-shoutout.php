@@ -17,6 +17,8 @@
                     <ul class="shoutout">
                         <li><a href="http://reduxframework.com" target=_blank alt="Redux Options Framework">Redux Options Framework</a>
                         </li>
+                        <li><a href="https://www.advancedcustomfields.com/" target=_blank alt="Advanced Custom Fields">Advanced Custom Fields</a>
+                        </li>
                         <li><a href="https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate" target="_blank">Tom McPharlin\'s WP Plugin Boilerplate</a>
                         </li>
                         <li><a href="http://kenwheeler.github.io/slick/" target="_blank">Slick JS</a>

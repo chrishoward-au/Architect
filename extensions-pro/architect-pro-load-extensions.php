@@ -52,12 +52,12 @@
     /** Load ACF PRO - but only in premium per ACF requirements*/
     // Include the ACF PRO plugin if required.
     if ( ! class_exists( 'acf_pro' ) ) {
-      include_once( PZARC_PLUGIN_PATH . '/extensions/acfpro/acf/acf.php' );
+      include_once( PZARC_PLUGIN_PATH . '/extensions-pro/acfpro/acf/acf.php' );
 
       // Customize the url setting to fix incorrect asset URLs.
       add_filter( 'acf/settings/url', 'pzarc_acf_settings_url' );
       function pzarc_acf_settings_url( $url ) {
-        return PZARC_PLUGIN_URL . '/extensions/acfpro/acf/';
+        return PZARC_PLUGIN_URL . '/extensions-pro/acfpro/acf/';
       }
 
 
@@ -74,7 +74,7 @@
 
     /** Load Gutenberg */
     if ( class_exists( 'acf_pro' ) ) {
-      require_once PZARC_PLUGIN_PATH . '/extensions/acfpro/architect-gutenberg-block/arc-gutenberg-acf.php';
+      require_once PZARC_PLUGIN_PATH . '/extensions-pro/acfpro/architect-gutenberg-block/arc-gutenberg-acf.php';
     }
 
   }
