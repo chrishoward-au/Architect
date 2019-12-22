@@ -2044,9 +2044,18 @@ li.arc-message {
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
+    max-height:250px;
 
     .grids {
     }
+
+    .tabs-pane {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      max-height: 230px;
+      overflow: auto;
+    }
+
 
     span {
       display: inline-block;
@@ -2534,13 +2543,16 @@ body.arc-beginner {
     color: #676767;
   }
 }
-  .arc-debugging-info {
-    border:solid 1px #aaa;
-    border-radius: 3px;
-    background: #fff;
-    padding:15px;
-    margin-bottom: 10px;
-    small {
-      white-space: pre-wrap;
-    }
+
+.arc-debugging-info {
+  border: solid 1px #aaa;
+  border-radius: 3px;
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+
+  small {
+    white-space: pre-wrap;
   }
+}
+

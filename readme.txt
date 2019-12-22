@@ -118,10 +118,14 @@ MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    hei
 TODO: Prepare for Redux 4.
 TODO: Check if Gallery source still works correctly
 
-= 11.1
+= 11.1 : 22 Dec 2019
 * ADDED: Architect Gutenberg block!
 * ADDED: Architect block for Padma theme
-* FIXED: Using Filler Image now returns a different image for each post
+* ADDED: Setting to vertically centre panel content when feature outside components.
+* ADDED: Settings for maximum and minimum number of paragraphs when using Dummy as the the source
+* ADDED: Two new modern grid Blueprint Presets.
+* CHANGED: Presets selector to vertical scroll.
+* FIXED: Using Filler Image and Dummy content now returns a different image for each post
 * FIXED: Hack to prevent error triggered by older TGMPA used by MyThemeShop on its Install Plugins page
 * FIXED: Various minor bugs
 * FIXED: Finally made Tools > Clear actually resave all Blueprints

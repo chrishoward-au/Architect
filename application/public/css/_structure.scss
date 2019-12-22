@@ -71,6 +71,14 @@
     &.js-isotope {
 
     }
+    &.featcomp-float-left,
+    &.featcomp-float-right,
+    {
+      .pzarc-panel {
+        flex-direction:row;
+      }
+    }
+
   }
 
   //TODO: These two need to go into stylings defaults

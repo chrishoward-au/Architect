@@ -71,14 +71,16 @@
  //     var_dump($this->build->blueprint);
    //   var_dump(maybe_unserialize(get_option('_architect_defaults')));
       $trim_length = $this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_excerpts-word-count' ];
+      $max_paragraphs = !empty($this->build->blueprint[ '_content_dummy_max-paragraphs' ])?$this->build->blueprint[ '_content_dummy_max-paragraphs' ]:6;
+      $min_paragraphs = !empty($this->build->blueprint[ '_content_dummy_min-paragraphs' ])?$this->build->blueprint[ '_content_dummy_min-paragraphs' ]:1;
       $image_source = empty($this->build->blueprint[ '_content_dummy_image-source' ])?'lorempixel':$this->build->blueprint[ '_content_dummy_image-source' ];
       $readmore = $this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_readmore-truncation-indicator' ].' <a href="#" class="moretag readmore">'.$this->build->blueprint[ 'section_object' ][ 1 ]->section[ 'section-panel-settings' ][ '_panels_design_readmore-text' ].'</a>';
       $no_per_page = ($this->query_options[ 'posts_per_page' ] < 1 ? $this->build->blueprint[ '_content_dummy_dummy-record-count' ] : $this->query_options[ 'posts_per_page' ]);
       for ($i = 0; $i < $no_per_page; $i++) {
-        $picno = rand(1, 10);
+        $picno = rand(1, 9999);
 
         $dummy_query[ $i ][ 'title' ][ 'title' ] = ($this->isfaker ? $this->faker->sentence() : ucfirst($this->generator->getContent(rand(3, 8), 'plain', false)));
-        $pcount = rand(1,6);
+        $pcount = rand($min_paragraphs,$max_paragraphs);
         $paragraphs = '';
         if ($this->isfaker) {
           for ($x=0;$x<$pcount;$x++) {
@@ -93,13 +95,11 @@
         // What if we only returned the cat and pic no?!
 
 
-        $picno =''; // v1.15.0 not used in loremflickr (loermpixel broke)
-
         if (in_array($image_source,$cats)) {
-          $dummy_query[ $i ][ 'image' ][ 'original' ] = (!$is_offline)?$image_source . '/' . $picno:'offline';
+          $dummy_query[ $i ][ 'image' ][ 'original' ] = (!$is_offline)?$image_source . '/?random=' . $picno:'offline';
 
         } else {
-          $dummy_query[ $i ][ 'image' ][ 'original' ] = (!$is_offline)?$cats[ $j ] . '/' . $picno:'offline';
+          $dummy_query[ $i ][ 'image' ][ 'original' ] = (!$is_offline)?$cats[ $j ] . '/?random=' . $picno:'offline';
 
         }
         $dummy_query[ $i ][ 'image' ][ 'caption' ]        = ($this->isfaker ? $this->faker->sentence() : 'caption');

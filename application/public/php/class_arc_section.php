@@ -152,8 +152,10 @@
         $slider = apply_filters( 'arc-set-slider-data', $slider, $this->blueprint );
 
       }
+      $feat_comp = ' featcomp-'.$this->section['section-panel-settings']['_panels_design_feature-location'].'-'.$this->section['section-panel-settings']['_panels_design_components-position'];
+
       echo '<' . ( 'table' !== $this->layout_mode ? 'div' : 'table' ) . ' id="' . $this->rsid . '"
-       class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-' . $this->panel_name . ' ' . $slider[ 'class' ] . '"' . $isotope . $accordion . ' ' . $slider[ 'data' ] . '>';
+       class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-' . $this->panel_name . ' ' . $slider[ 'class' ].$feat_comp . '"' . $isotope . $accordion . ' ' . $slider[ 'data' ] . '>';
 
       // Table heading stuff
       if ( 'table' === $this->layout_mode ) {

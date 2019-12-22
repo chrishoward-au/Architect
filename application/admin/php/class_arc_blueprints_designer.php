@@ -177,8 +177,8 @@
           <div class="arc-presets-selector closed">
            <h2 class="heading closed">Architect Blueprints: Preset selector</h2>
            <div class="tabby tabs">
-                <button class="tabby-sliders first active" data-tab="#sliders">' . __( 'Sliders', 'pzarchitect' ) . '</button>
-                <button class="tabby-grids" data-tab="#grids" >' . __( 'Grids', 'pzarchitect' ) . '</button>
+                <button class="tabby-grids first active" data-tab="#grids" >' . __( 'Grids', 'pzarchitect' ) . '</button>
+                <button class="tabby-sliders" data-tab="#sliders">' . __( 'Sliders', 'pzarchitect' ) . '</button>
                 <button class="tabby-tabbed" data-tab="#tabbed">' . __( 'Tabbed', 'pzarchitect' ) . '</button>
                 <button class="tabby-masonry" data-tab="#masonry">' . __( 'Masonry', 'pzarchitect' ) . '</button>
                 <button class="tabby-accordion" data-tab="#accordion">' . __( 'Accordion', 'pzarchitect' ) . '</button>
@@ -188,8 +188,8 @@
             </div>
 
            <div class="tabby tabs-content container">
-           <div class="tabs-pane active" id="sliders">' . $presets_html['slider'] . '</div>
-           <div class="tabs-pane" id="grids">' . $presets_html['basic'] . '</div>
+           <div class="tabs-pane active" id="grids">' . $presets_html['basic'] . '</div>
+           <div class="tabs-pane" id="sliders">' . $presets_html['slider'] . '</div>
            <div class="tabs-pane" id="tabbed">' . $presets_html['tabbed'] . '</div>
            <div class="tabs-pane" id="masonry">' . $presets_html['masonry'] . '</div>
            <div class="tabs-pane" id="accordion">' . $presets_html['accordion'] . '</div>
@@ -5452,6 +5452,40 @@ You can use them however you like though, e.g Testimonials, FAQs, Features, Cont
                       'default' => __( 'Default', 'pzarchitect' ),
                       'left'    => __( 'Left', 'pzarchitect' ),
                       'right'   => __( 'Right', 'pzarchitect' ),
+                  ),
+              ),
+              array(
+                  'title'   => __( 'Vertically centre', 'pzarchitect' ),
+                  'id'      => $prefix . 'vertically-centre',
+                  'type'    => 'switch',
+                  'on'      => __( 'Yes', 'pzarchitect' ),
+                  'off'     => __( 'No', 'pzarchitect' ),
+                  'default' => FALSE,
+                  'required' => array(
+                      array(
+                          $prefix . 'feature-location',
+                          '!=',
+                          'fill',
+                      ),
+                      array(
+                          $prefix . 'feature-location',
+                          '!=',
+                          'components',
+                      ),
+                      array(
+                          $prefix . 'components-position',
+                          '!=',
+                          'top',
+                      ),
+                      array(
+                          $prefix . 'components-position',
+                          '!=',
+                          'bottom',
+                      ),
+                  ),
+                  'hint'    => array(
+                      'title'   => __( 'Vertically centre', 'pzarchitect' ),
+                      'content' => __( 'Align content vertically. Most useful when panel has text components on one side and an image on the other', 'pzarchitect' ),
                   ),
               ),
               array(

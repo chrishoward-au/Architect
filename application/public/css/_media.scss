@@ -1,0 +1,21 @@
+// As media queries need the breakpoints, media queries are constructed in save process
+
+// This is a hack that needs to be incorporated into code
+@media (max-width: 960px) {
+  .pzarc-section {
+    &.featcomp-float-left,
+    &.featcomp-float-right,
+    {
+      .pzarc-panel {
+        &.odd-panel,
+        &.even-panel {
+          flex-direction: column!important; // This is needed coz not in code!
+        }
+        .entry-thumbnail,
+        .pzarc-components {
+          width:100% !important;
+        }
+      }
+    }
+  }
+}

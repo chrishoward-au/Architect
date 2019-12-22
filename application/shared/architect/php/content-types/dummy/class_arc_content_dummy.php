@@ -44,6 +44,25 @@
                       'subtitle' => __('Number of dummy records to simulate', 'pzarchitect'),
                   ),
                   array(
+                      'title'    => __('Maximum paragraphs', 'pzarchitect'),
+                      'id'       => $prefix . 'max-paragraphs',
+                      'type'     => 'spinner',
+                      'default'  => 6,
+                      'step'     => 1,
+                      'min'      => 1,
+                      'max'      => 99,
+                      'subtitle' => __('Maximum number of paragraphs in generated text','pzarchitect')
+                  ),
+                  array(
+                      'title'    => __('Minimum paragraphs', 'pzarchitect'),
+                      'id'       => $prefix . 'min-paragraphs',
+                      'type'     => 'spinner',
+                      'default'  => 1,
+                      'step'     => 1,
+                      'min'      => 1,
+                      'max'      => 99,
+                  ),
+                  array(
                       'title'   => __('Dummy image type', 'pzarchitect'),
                       'id'      => $prefix . 'image-source',
                       'type'    => 'select',

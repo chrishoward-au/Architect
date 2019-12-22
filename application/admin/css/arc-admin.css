@@ -1648,7 +1648,13 @@ li.arc-message .arc-presets-link {
             box-sizing: border-box;
     overflow-x: auto;
     overflow-y: hidden;
-    white-space: nowrap; }
+    white-space: nowrap;
+    max-height: 250px; }
+    .arc-presets-selector .container .tabs-pane {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      max-height: 230px;
+      overflow: auto; }
     .arc-presets-selector .container span {
       display: inline-block;
       text-align: center;

@@ -122,6 +122,7 @@
 
     return apply_filters( 'arc_blueprint_css', $pzarc_contents );
   }
+  // End function: pzarc_create_blueprint_css
 
 
   /**
@@ -295,6 +296,15 @@
     // DANGER WILL ROBINSON!
     // json_decode on different enviroments converts UTF-8 data in different ways. I end up getting on of values '240.00' locally and '240' on production - massive dissaster. Morover if conversion fails string get's returned as NULL
     // http://stackoverflow.com/questions/1869091/convert-array-to-object-php
+
+    /** DEFAULT PANEL SETTINGS */
+    $pzarc_contents.= $class_prefix .' {display:flex;flex-direction:row;justify-content:space-between;}';
+//    $pzarc_contents.= $class_prefix .' .pzarc-components {display:grid;}';
+//    $pzarc_contents.= $class_prefix .' .pzarc-components .entry-header {grid-area:header;}';
+//    $pzarc_contents.= $class_prefix .' .pzarc-components .entry-thumbnail {grid-area:thumb;}';
+//    $pzarc_contents.= $class_prefix .' .pzarc-components .entry-content {grid-area:content;}';
+//    $pzarc_contents.= $class_prefix .' .pzarc-components .entry-excerpt {grid-area:excerpt;}';
+//    $pzarc_contents.= $class_prefix .' .pzarc-components .entry-meta {grid-area:meta;}';
 
     $toshow      = json_decode( $pzarc_panels['_panels_design_preview'], TRUE );
     $sum_to_show = 0;
@@ -566,7 +576,7 @@
          *    PANELS FEATURE LOCATION
          *********************************************************/
 
-        case ( $key == '_panels_design_feature-location' ):
+         case ( $key == '_panels_design_feature-location' ):
 
           if ( $value === 'content-left' || $value === 'content-right' ) {
 
@@ -576,6 +586,7 @@
             } else {
               $twidth = $pzarc_panels['_panels_design_thumb-width'] - ( str_replace( '%', '', $pzarc_panels['_panels_design_image-spacing']['margin-left'] ) + str_replace( '%', '', $pzarc_panels['_panels_design_image-spacing']['margin-right'] ) ) . '%;';
             }
+
             $float          = ( $value === 'content-left' ) ? 'left' : 'right';
             $pzarc_contents .= $class_prefix . ' .in-content-thumb {width:' . $twidth . $margins . '}' . $nl;
 
@@ -594,26 +605,37 @@
           }
 
           if ( $value === 'fill' ) {
-
+              // nothig yet
           }
 
           if ( $value === 'float' ) {
             if ( $pzarc_panels['_panels_design_alternate-feature-position'] === 'on' ) {
               switch ( $pzarc_panels['_panels_design_components-position'] ) {
                 case 'left':
-                  $pzarc_contents .= $class_prefix . '.even-panel .entry-thumbnail {float:left;}' . $nl;
+//                  $pzarc_contents .= $class_prefix . '.even-panel .entry-thumbnail {float:left;}' . $nl;
+                    $pzarc_contents.= $class_prefix .'.even-panel {flex-direction:row;}';
+                    $pzarc_contents.= $class_prefix .'.odd-panel {flex-direction:row-reverse;}';
                   break;
                 case 'right':
-                  $pzarc_contents .= $class_prefix . '.even-panel .entry-thumbnail {float:right;}' . $nl;
-                  $pzarc_contents .= $class_prefix . '.even-panel .pzarc-components {float:left;}' . $nl;
+//                  $pzarc_contents .= $class_prefix . '.even-panel .entry-thumbnail {float:right;}' . $nl;
+//                  $pzarc_contents .= $class_prefix . '.even-panel .pzarc-components {float:left;}' . $nl;
+                  $pzarc_contents.= $class_prefix .'.even-panel {flex-direction:row-reverse;}';
+                  $pzarc_contents.= $class_prefix .'.odd-panel {flex-direction:row;}';
                   break;
               }
 
-            } else {
+
+            }
+            /**
+             * Vertically centre
+             */
+            if (!empty($pzarc_panels['_panels_design_vertically-centre' ])) {
+              $pzarc_contents .= $class_prefix . ' {align-items:center;}';
             }
 
           }
           break;
+
 
         /********************************************************
          *    PANELS COMPONENTS POSITION

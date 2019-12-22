@@ -77,6 +77,11 @@
         flex-direction: row;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap; }
+  .pzarchitect .pzarc-section.featcomp-float-left .pzarc-panel, .pzarchitect .pzarc-section.featcomp-float-right .pzarc-panel {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row; }
 
 .pzarchitect h2.pzarc-page-title {
   font-size: 1.5em;
@@ -302,7 +307,7 @@
   .pzarchitect .pzarc-panel .entry-customfieldgroup {
     display: block;
     float: left; }
-  .pzarchitect .pzarc-panel .vertical-content {
+  .pzarchitect .pzarc-panel x.vertical-content {
     top: 0;
     bottom: 0;
     height: 100%; }
@@ -814,3 +819,14 @@ SVG Icons - svgicons.sparkk.fr
 .xdebug-error {
   color: black;
   font-size: 12px; }
+
+@media (max-width: 960px) {
+  .pzarc-section.featcomp-float-left .pzarc-panel.odd-panel, .pzarc-section.featcomp-float-left .pzarc-panel.even-panel, .pzarc-section.featcomp-float-right .pzarc-panel.odd-panel, .pzarc-section.featcomp-float-right .pzarc-panel.even-panel {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important; }
+  .pzarc-section.featcomp-float-left .pzarc-panel .entry-thumbnail,
+  .pzarc-section.featcomp-float-left .pzarc-panel .pzarc-components, .pzarc-section.featcomp-float-right .pzarc-panel .entry-thumbnail,
+  .pzarc-section.featcomp-float-right .pzarc-panel .pzarc-components {
+    width: 100% !important; } }
