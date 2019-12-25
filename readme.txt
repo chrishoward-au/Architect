@@ -81,12 +81,7 @@ No. We don't delete any of your data. In the future a method will be provided fo
 
 For support, please send an email to support@pizazzwp.com
 
-== Changelog ==
-
-= Notes =
-* If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
-* If Blueprints editor fails to render, go to options and turn on option to prevent post lookup lists loading.
-
+== todo ==
 TODO: Update shortcode help!
 TODO: ** Debug slideshows *nem
 TODO: Don't upscale images smaller than dimensions. *nem
@@ -117,6 +112,12 @@ MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    hei
 ** TODO: Add a warning if in lite mode and Blueprint is using Pro features.
 TODO: Prepare for Redux 4.
 TODO: Check if Gallery source still works correctly
+
+== Changelog ==
+
+= Notes =
+* If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
+* If Blueprints editor fails to render, go to options and turn on option to prevent post lookup lists loading.
 
 = 11.1 : 22 Dec 2019
 * ADDED: Architect Gutenberg block!

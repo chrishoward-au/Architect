@@ -2050,10 +2050,13 @@ li.arc-message {
     }
 
     .tabs-pane {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      display: none;
+      grid-template-columns: repeat(5, 1fr);
       max-height: 230px;
       overflow: auto;
+      &.active {
+        display:grid;
+      }
     }
 
 

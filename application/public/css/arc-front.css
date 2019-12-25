@@ -78,10 +78,16 @@
     -ms-flex-wrap: wrap;
         flex-wrap: wrap; }
   .pzarchitect .pzarc-section.featcomp-float-left .pzarc-panel, .pzarchitect .pzarc-section.featcomp-float-right .pzarc-panel {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
-            flex-direction: row; }
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between; }
 
 .pzarchitect h2.pzarc-page-title {
   font-size: 1.5em;

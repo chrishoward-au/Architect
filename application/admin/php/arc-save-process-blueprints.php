@@ -298,7 +298,7 @@
     // http://stackoverflow.com/questions/1869091/convert-array-to-object-php
 
     /** DEFAULT PANEL SETTINGS */
-    $pzarc_contents.= $class_prefix .' {display:flex;flex-direction:row;justify-content:space-between;}';
+//    $pzarc_contents.= $class_prefix .' {display:flex;flex-direction:row;justify-content:space-between;}';
 //    $pzarc_contents.= $class_prefix .' .pzarc-components {display:grid;}';
 //    $pzarc_contents.= $class_prefix .' .pzarc-components .entry-header {grid-area:header;}';
 //    $pzarc_contents.= $class_prefix .' .pzarc-components .entry-thumbnail {grid-area:thumb;}';

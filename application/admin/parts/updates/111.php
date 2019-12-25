@@ -20,7 +20,7 @@
       <ul>
         <li>ADDED: new setting to vertically centre panel when feature outside the components and either left or right of the components. This makes 2019 style layouts easier.</li>
         <li>ADDED: Settings for maximum and minimum number of paragraphs when using Dummy as the the source</li>
-        <li>ADDED: Two new modern grid Blueprint Presets: <em>2019 style alternating</em> and <em>Alternating Glossy magazine excerpts</em> </li>
+        <li>ADDED: Two new modern grid Blueprint Presets: <a href="https://demos.architect4wp.com/layouts/modern-alternating/" target="_blank"><em>2019 style alternating</em></a> and <a href="https://demos.architect4wp.com/layouts/alternating-feature/" target="_blank"> <em>Alternating Glossy magazine excerpts</em></a> </li>
         <li>CHANGED: Presets selector to vertical scroll.</li>
         <li>FIXED: Using Filler Image and Dummy content now returns a different image for each post</li>
       </ul>

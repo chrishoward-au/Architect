@@ -71,11 +71,14 @@
     &.js-isotope {
 
     }
+
     &.featcomp-float-left,
     &.featcomp-float-right,
     {
       .pzarc-panel {
+        display:flex;
         flex-direction:row;
+        justify-content:space-between;
       }
     }
 
