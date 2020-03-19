@@ -62,9 +62,9 @@
               array(
                   'key' => 'field_5de794c3c85f3',
                   'label' => 'Tablet Blueprint',
+                  'instructions'=>'(Optional)',
                   'name' => 'tablet_blueprint',
                   'type' => 'post_object',
-                  'instructions' => '',
                   'required' => 0,
                   'conditional_logic' => 0,
                   'wrapper' => array(
@@ -84,9 +84,9 @@
               array(
                   'key' => 'field_5de794efc85f4',
                   'label' => 'Phone Blueprint',
+                  'instructions'=>'(Optional)',
                   'name' => 'phone_blueprint',
                   'type' => 'post_object',
-                  'instructions' => '',
                   'required' => 0,
                   'conditional_logic' => 0,
                   'wrapper' => array(

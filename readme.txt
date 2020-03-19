@@ -119,6 +119,11 @@ TODO: Check if Gallery source still works correctly
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 * If Blueprints editor fails to render, go to options and turn on option to prevent post lookup lists loading.
 
+
+= 11.2 :
+* FIXED: "Optional" label missing from tablet and phone selector in GB block.
+* FIXED: Documentation now clarifies GB block is premium version only
+
 = 11.1 : 22 Dec 2019
 * ADDED: Architect Gutenberg block!
 * ADDED: Architect block for Padma theme
