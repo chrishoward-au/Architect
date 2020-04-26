@@ -12,11 +12,10 @@
     function __construct() {
       /*
        * Create the layouts custom post type
-       */
-      global $arc_presets_data;
+       */ global $arc_presets_data;
 //      add_action('plugins_loaded', array($this, 'init'));
       add_action( 'plugins_loaded', array( $this, 'init' ) );
-      add_action('wp_loaded',array($this,'late_load'));
+      add_action( 'wp_loaded', array( $this, 'late_load' ) );
 
       if ( ( function_exists( 'arc_fs' ) && ! arc_fs()->is__premium_only() ) || ! function_exists( 'arc_fs' ) ) {
         add_action( 'after_setup_theme', 'pzarc_initiate_updater' );
@@ -41,6 +40,15 @@
         require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/WordPress-SysInfo/sysinfo.php' );
       }
 
+      // v11.2
+      // Option to re-enable ACF blocking WP customfields in post editor
+      global $_architect_options;
+      //var_Dump(  ! empty( $_architect_options['architect_acf_wp_custom_fields'] ));
+      if ( ! empty( $_architect_options['architect_acf_wp_custom_fields'] ) ) {
+        add_filter( 'acf/settings/remove_wp_meta_box', '__return_true' );
+      } else {
+        add_filter( 'acf/settings/remove_wp_meta_box', '__return_false' );
+      }
       if ( ! ( class_exists( 'ReduxFramework' ) || class_exists( 'ReduxFrameworkPlugin' ) ) ) {
         add_action( 'admin_notices', array( $this, 'missing_redux_admin_notice' ) );
 
@@ -87,8 +95,8 @@
       }
     }
 
-    function late_load(){
-      update_option('arc_taxonomies',maybe_serialize(pzarc_get_taxonomies(FALSE,FALSE)));
+    function late_load() {
+      update_option( 'arc_taxonomies', maybe_serialize( pzarc_get_taxonomies( FALSE, FALSE ) ) );
     }
 
     /*********************************************
@@ -405,17 +413,17 @@
           update_option( 'arc_debug', '' );
         }
         echo '<form action="admin.php?page=pzarc_tools&debug" method="post">';
-        echo '<div class="arc-debugging-info">' .  get_option( 'arc_debug' )  . '</div>';
+        echo '<div class="arc-debugging-info">' . get_option( 'arc_debug' ) . '</div>';
         wp_nonce_field( 'clear-arc-debug' );
         echo '<button class="button-primary" style="min-width:100px;" type="submit" name="cleararcdebug" value="' . __( 'Clear Debug Info' ) . '">' . __( 'Clear debug info' ) . '</button>
         </form>';
-      } else{
+      } else {
 //        echo '<p style="font-size:11px;font-style:italic;">Debugging disabled.</p>';
       }
       if ( isset( $_POST['cleararcdebug'] ) && check_admin_referer( 'clear-arc-debug' ) ) {
         update_option( 'arc_debug', '' );
       }
-        echo '</div><!--end table-->
+      echo '</div><!--end table-->
 			</div>
       ';
     }
@@ -809,7 +817,7 @@
 
 
   //http://wpsnipp.com/index.php/functions-php/update-automatically-create-media_buttons-for-shortcode-selection/
-    add_action( 'media_buttons', 'pzarc_add_sc_select', 11 );
+  add_action( 'media_buttons', 'pzarc_add_sc_select', 11 );
 
   /*********************************************
    *
@@ -819,11 +827,11 @@
     if ( empty( $_architect_options ) ) {
       $_architect_options = get_option( '_architect_options' );
     }
-    $screen   = get_current_screen();
-    if (empty($_architect_options['architect_shortcodes-dropdown']) || $_architect_options['architect_shortcodes-dropdown']=='both') {
+    $screen = get_current_screen();
+    if ( empty( $_architect_options['architect_shortcodes-dropdown'] ) || $_architect_options['architect_shortcodes-dropdown'] == 'both' ) {
       $user_can = current_user_can( 'edit_others_posts' );
     } else {
-      $user_can= current_user_can( 'delete_plugins' );
+      $user_can = current_user_can( 'delete_plugins' );
     }
     if ( $user_can && ( $screen->post_type === 'page' || $screen->post_type === 'post' ) ) {
       $blueprint_list = pzarc_get_posts_in_post_type( 'arc-blueprints', TRUE, FALSE, TRUE );

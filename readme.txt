@@ -4,7 +4,7 @@ Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hook
 Requires at least: 4.0
 Tested up to: 5.3.2
 Requires PHP: 5.6
-Stable tag: 11.1
+Stable tag: 11.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -120,7 +120,10 @@ TODO: Check if Gallery source still works correctly
 * If Blueprints editor fails to render, go to options and turn on option to prevent post lookup lists loading.
 
 
-= 11.2 :
+= 11.2 : 26 April 2020
+* CHANGED: Re-enabled WP custom fields metabox in post edit that is hidden by Advanced Custom Fields v5.6
+* ADDED: Option to enable ACF hiding WP custom fields. See under Architect > Options
+* UPDATED: Built-in ACF to v5.8.9
 * FIXED: "Optional" label missing from tablet and phone selector in GB block.
 * FIXED: Documentation now clarifies GB block is premium version only
 

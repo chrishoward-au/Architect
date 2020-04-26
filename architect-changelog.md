@@ -3,6 +3,13 @@
 ## Notes:
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 
+## 11.2 : 26 April 2020
+* CHANGED: Re-enabled WP custom fields metabox in post edit that is hidden by Advanced Custom Fields v5.6
+* ADDED: Option to enable ACF hiding WP custom fields. See under Architect > Options
+* UPDATED: Built-in ACF to v5.8.9
+* FIXED: "Optional" label missing from tablet and phone selector in GB block.
+* FIXED: Documentation now clarifies GB block is premium version only
+
 ## 11.1 : 22 Dec 2019
 * ADDED: Architect Gutenberg block!
 * ADDED: Architect block for Padma theme

@@ -264,8 +264,7 @@
 
         $sampleHTML = '';
         if ( file_exists( dirname( __FILE__ ) . '/info-html.html' ) ) {
-          /** @global WP_Filesystem_Direct $wp_filesystem */
-          global $wp_filesystem;
+          /** @global WP_Filesystem_Direct $wp_filesystem */ global $wp_filesystem;
           if ( empty( $wp_filesystem ) ) {
             require_once( ABSPATH . '/wp-admin/includes/file.php' );
             WP_Filesystem();
@@ -283,8 +282,8 @@
         }
 
 
-        $is_hw   = ( ( $current_theme->get( 'Name' ) == 'Headway' || $current_theme->get( 'Name' ) == 'Headway Base' || $current_theme->get( 'Template' ) == 'headway' ) );
-        $is_blox = ( ( $current_theme->get( 'Name' ) === 'Blox Theme' || $current_theme->get( 'Template' ) == 'bloxtheme' ) );
+        $is_hw    = ( ( $current_theme->get( 'Name' ) == 'Headway' || $current_theme->get( 'Name' ) == 'Headway Base' || $current_theme->get( 'Template' ) == 'headway' ) );
+        $is_blox  = ( ( $current_theme->get( 'Name' ) === 'Blox Theme' || $current_theme->get( 'Template' ) == 'bloxtheme' ) );
         $is_padma = ( ( $current_theme->get( 'Name' ) === 'Padma Theme' || $current_theme->get( 'Template' ) == 'padmatheme' ) );
 
         $this->sections[ _amb_options_general ]    = array(
@@ -339,7 +338,7 @@
                     'type'     => 'text',
                     'default'  => '50,10',
                 ),
-                ( ( $is_hw || $is_blox || $is_padma) ? array(
+                ( ( $is_hw || $is_blox || $is_padma ) ? array(
                     'title'    => __( 'Add Headway/Blox/Padma Content Block class', 'pzarchitect' ),
                     'id'       => 'architect_hw-content-class',
                     'type'     => 'switch',
@@ -389,6 +388,15 @@
                     'default' => FALSE,
                     'on'      => __( 'Yes', 'pzarchitect' ),
                     'off'     => __( 'No', 'pzarchitect' ),
+                ),
+                array(
+                    'title'    => __( 'Allow ACF to disable WP custom fields in post editor', 'pzarchitect' ),
+                    'id'       => 'architect_acf_wp_custom_fields',
+                    'type'     => 'switch',
+                    'subtitle' => __( 'Since ACF v5.6, it disables the custom fields metabox in the post editor. Architect overrides this. Set this to Yes if you wish to re-enable it.', 'pzarchitect' ),
+                    'default'  => FALSE,
+                    'on'       => __( 'Yes', 'pzarchitect' ),
+                    'off'      => __( 'No', 'pzarchitect' ),
                 ),
                 array(
                     'title'    => __( 'Enable admin background image', 'pzarchitect' ),
@@ -478,21 +486,21 @@
                 //
                 //                                                               ),
                 apply_filters( 'arc-show-content-types', array(
-                        'title'   => __( 'Additional content field_types', 'pzarchitect' ),
-                        'id'      => 'architect_add-content-types',
-                        'type'    => 'checkbox',
-                        'multi'   => TRUE,
-                        'options' => array(
-                            'pz_snippets'     => __( 'Snippets', 'pzarchitect' ),
-                            'pz_testimonials' => __( 'Testimonials', 'pzarchitect' ),
-                            'pz_showcases'    => __( 'Showcases', 'pzarchitect' ),
-                        ),
-                        'default' => array(
-                            'pz_testimonials' => 0,
-                            'pz_snippets'     => 1,
-                            'pz_showcases'    => 0,
-                        ),
-                    ) ),
+                    'title'   => __( 'Additional content field_types', 'pzarchitect' ),
+                    'id'      => 'architect_add-content-types',
+                    'type'    => 'checkbox',
+                    'multi'   => TRUE,
+                    'options' => array(
+                        'pz_snippets'     => __( 'Snippets', 'pzarchitect' ),
+                        'pz_testimonials' => __( 'Testimonials', 'pzarchitect' ),
+                        'pz_showcases'    => __( 'Showcases', 'pzarchitect' ),
+                    ),
+                    'default' => array(
+                        'pz_testimonials' => 0,
+                        'pz_snippets'     => 1,
+                        'pz_showcases'    => 0,
+                    ),
+                ) ),
                 array(
                     'title'    => __( 'Featured Video field', 'pzarchitect' ),
                     'id'       => 'architect_mod-video-fields',
