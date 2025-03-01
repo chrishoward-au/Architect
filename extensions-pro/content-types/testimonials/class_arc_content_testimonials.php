@@ -13,7 +13,7 @@
   class arc_content_testimonials  extends arc_set_data// Singleton
   {
 
-    protected function __construct()
+     function __construct()
     {
 
       $registry = arc_Registry::getInstance();
@@ -55,9 +55,9 @@
     {
     }
 
-    private function __wakeup()
-    {
-    }
+//    private function __wakeup()
+//    {
+//    }
 
     function pzarc_add_testimonials_metaboxes($metaboxes)
     {
@@ -106,4 +106,4 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_testimonials::getInstance('arc_content_testimonials');
+  new arc_content_testimonials('arc_content_testimonials');

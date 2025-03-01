@@ -213,7 +213,8 @@
       /** META */
       if ($this->toshow['meta1']['show'] || $this->toshow['meta2']['show'] || $this->toshow['meta3']['show']) {
         $this->data['meta']['datetime']        = $post['meta']['datetime'];
-        $this->data['meta']['fdatetime']       = date_i18n(strip_tags($this->section['_panels_design_meta-date-format']), str_replace(',', ' ', strtotime($post['meta']['fdatetime'])));
+        // $this->data['meta']['fdatetime']       = date_i18n(strip_tags($this->section['_panels_design_meta-date-format']), str_replace(',', ' ', strtotime($post['meta']['fdatetime'])));
+        $this->data['meta']['fdatetime']       = wp_date(strip_tags($this->section['_panels_design_meta-date-format']), str_replace(',', ' ', strtotime($post['meta']['fdatetime']))); //v11.3
         $this->data['meta']['categorieslinks'] = $post['meta']['categorieslinks'];
         $this->data['meta']['categories']      = $post['meta']['categories'];
         $this->data['meta']['tagslinks']       = $post['meta']['tagslinks'];

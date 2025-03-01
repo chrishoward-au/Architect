@@ -10,7 +10,7 @@
   class arc_content_generic extends arc_set_data
   {
 
-    protected function __construct()
+     function __construct()
     {
 
       $registry = arc_Registry::getInstance();

@@ -1,4 +1,6 @@
 @charset "UTF-8";
+/* stylelint-disable order/properties-alphabetical-order */
+/* stylelint-enable */
 .message.error.highlight {
   background: #fee; }
 
@@ -25,8 +27,7 @@ li.arc-message {
 #pzarc-custom-pzarc_layout-cell-preview {
   width: 452px;
   border-radius: 3px 3px 0 0;
-  -webkit-box-shadow: 0 0 10px #aaa;
-          box-shadow: 0 0 10px #aaa;
+  box-shadow: 0 0 10px #aaa;
   margin-bottom: 10px; }
 
 body span.pzarc-shortname {
@@ -86,8 +87,7 @@ div.pzarc-dragsource {
   padding: 0px;
   border: #bbb solid 1px;
   height: 300px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   overflow: auto;
   width: 452px;
   position: relative;
@@ -96,8 +96,7 @@ div.pzarc-dragsource {
 .pzarc-content-area {
   position: absolute;
   background: rgba(16, 32, 64, 0.25);
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
+  box-sizing: border-box; }
 
 .pzgp-cell-image-behind {
   position: absolute;
@@ -110,8 +109,7 @@ div.pzarc-dragsource {
 /* */
 .pzarc_cell {
   float: left;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   background: #bbb;
   padding: 10px;
   width: 100%;
@@ -121,8 +119,7 @@ div.pzarc-dragsource {
 .pzarc_cell_header,
 .pzarc_cell_footer {
   width: 100%;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   clear: both; }
 
 .pzarc_cell_header {
@@ -135,8 +132,7 @@ div.pzarc-dragsource {
 .pzarc_cell_left_col,
 .pzarc_cell_footer_left {
   float: left;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   width: 49%;
   background: #fff;
   border: solid 1px #ddd; }
@@ -145,16 +141,14 @@ div.pzarc-dragsource {
 .pzarc_cell_right_col,
 .pzarc_cell_footer_right {
   float: right;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   width: 49%;
   background: #fff;
   border: solid 1px #ddd; }
 
 .pzarc_cell_columns {
   width: 100%;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   clear: both;
   margin: 10px 0; }
 
@@ -263,11 +257,9 @@ ul#pzarc-meta-nav.vertical {
 .pzarc_options {
   width: 98%;
   overflow: auto;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   background: #fff;
-  -webkit-box-shadow: 3px 3px 4px #ccc;
-          box-shadow: 3px 3px 4px #ccc;
+  box-shadow: 3px 3px 4px #ccc;
   border-radius: 3px;
   min-height: 410px !important;
   margin: 0 5px 5px 0; }
@@ -283,8 +275,7 @@ ul#pzarc-meta-nav.vertical {
   border: solid 1px #ddd;
   margin: 20px 10px 10px 10px;
   display: block;
-  -webkit-box-shadow: 0px 0px 3px #aaa;
-          box-shadow: 0px 0px 3px #aaa; }
+  box-shadow: 0px 0px 3px #aaa; }
 
 /* Need to make this only for my form! */
 #wpbody-content {
@@ -316,8 +307,7 @@ ul#pzarc-meta-nav.vertical {
 
 /* Metabox tabs */
 img.pzarc-layout-images {
-  -webkit-box-shadow: 0 0 5px #aaa;
-          box-shadow: 0 0 5px #aaa;
+  box-shadow: 0 0 5px #aaa;
   margin-right: 20px;
   margin-left: 5px; }
 
@@ -338,8 +328,7 @@ ul.pzarc-meta-nav li.pzarc-meta-tab-title.ui-state-active {
 li.pzarc-meta-tab-title a {
   text-decoration: none;
   background: #fff;
-  -webkit-box-shadow: 3px 3px 4px #ccc;
-          box-shadow: 3px 3px 4px #ccc;
+  box-shadow: 3px 3px 4px #ccc;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px; }
 
@@ -606,8 +595,7 @@ select#_pzarc_layout-show-cmb-field-0 {
 /* This is all the sections preview */
 .pzarc-sections {
   padding: 5px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   overflow: hidden; }
 
 .pzarc-sections .pzarc-section-cell {
@@ -616,8 +604,7 @@ select#_pzarc_layout-show-cmb-field-0 {
   margin: 0 0 10px 0;
   /* Remember to remove space between divs to stop inline-block space issue */
   display: inline-block;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   color: #222;
   overflow: visible;
   padding: 5px;
@@ -676,7 +663,6 @@ body.arc-bgimage.arc-bg-green #wpwrap {
   background: #DCE35B;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-gradient(linear, left top, left bottom, from(#DCE35B), to(#45B649));
   background: linear-gradient(to bottom, #DCE35B, #45B649);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
 
@@ -685,7 +671,6 @@ body.arc-bgimage.arc-bg-ocean-blue #wpwrap {
   background: #43C6AC;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-gradient(linear, left bottom, left top, from(#191654), to(#43C6AC));
   background: linear-gradient(to top, #191654, #43C6AC);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
 
@@ -694,7 +679,6 @@ body.arc-bgimage.arc-bg-orange-green #wpwrap {
   background: #c21500;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-gradient(linear, left top, left bottom, from(#ffc500), to(#c21500));
   background: linear-gradient(to bottom, #ffc500, #c21500);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
 
@@ -703,18 +687,15 @@ body.arc-bgimage.arc-bg-pink #wpwrap {
   background: #C6426E;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-gradient(linear, left top, left bottom, from(#C6426E), to(#642B73));
   background: linear-gradient(to bottom, #C6426E, #642B73);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
 
 body.arc-bgimage.arc-bg-malibu-beach #wpwrap {
   background-size: cover;
-  background-image: -webkit-gradient(linear, left top, right top, from(#4facfe), to(#00f2fe));
   background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%); }
 
 body.arc-bgimage.arc-bg-morpheous-den #wpwrap {
   background-size: cover;
-  background-image: -webkit-gradient(linear, left bottom, left top, from(#30cfd0), to(#330867));
   background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); }
 
 body.arc-bgimage.arc-bg-dusty-grass #wpwrap {
@@ -723,7 +704,6 @@ body.arc-bgimage.arc-bg-dusty-grass #wpwrap {
 
 body.arc-bgimage.arc-bg-mixed-hopes #wpwrap {
   background-size: cover;
-  background-image: -webkit-gradient(linear, left bottom, left top, from(#c471f5), to(#fa71cd));
   background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%); }
 
 body.arc-bgimage.arc-bg- #wpwrap {
@@ -940,8 +920,7 @@ body.admin-color-midnight .metabox-holder h3.redux-section-title {
 #redux-_architect-metabox-blueprint_tabs_blueprints .redux-main {
   padding: 0;
   border: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   background: none; }
 
 .redux-multi-text li:first-child a.redux-multi-text-remove {
@@ -953,8 +932,7 @@ input[readonly]:hover,
 input[readonly]:active {
   border: none;
   background: #eee;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   width: 90%; }
 
 body.post-type-arc-panels .ui-button,
@@ -1007,7 +985,7 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3 {
   opacity: 1; }
 
 #adminmenu li.toplevel_page_pzarc .wp-menu-name:after {
-  content: "11.2";
+  content: "11.3";
   opacity: 0;
   font-size: 10px;
   padding-left: 5px; }
@@ -1043,7 +1021,7 @@ body .redux-container .redux-main .redux-section-field.redux-field.heading h3 {
 
 .redux-container-image_select .redux-image-select img,
 .redux-container-image_select .redux-image-select .tiles {
-  border-color: transparent;
+  border-color: rgba(0, 0, 0, 0);
   padding: 2px;
   border-radius: 2px;
   border-width: 2px; }
@@ -1229,15 +1207,15 @@ body.arc-panels * {
   background: #def; }
 
 /* Redux fixes */
-.redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].redux-dimensions-input,
-.redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].spinner-input {
+.redux-metabox .redux-no-sections.redux-box-side .redux-main input.redux-dimensions-input[type=text],
+.redux-metabox .redux-no-sections.redux-box-side .redux-main input.spinner-input[type=text] {
   float: none;
   display: inline-block; }
 
-.redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].redux-dimensions-input {
+.redux-metabox .redux-no-sections.redux-box-side .redux-main input.redux-dimensions-input[type=text] {
   width: 70px !important; }
 
-.redux-metabox .redux-no-sections.redux-box-side .redux-main input[type=text].spinner-input {
+.redux-metabox .redux-no-sections.redux-box-side .redux-main input.spinner-input[type=text] {
   width: 45px !important; }
 
 .redux-box-side .select_wrapper.dimensions-units {
@@ -1247,15 +1225,9 @@ body.arc-panels * {
 #_architect-_pzarc_pagebuilder_any ul,
 #_architect-_pzarc_pagebuilder_phones ul,
 #_architect-_pzarc_pagebuilder_tablets ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column;
-          flex-flow: column; }
+  flex-wrap: wrap;
+  flex-flow: column; }
 
 #_pzarc_pagebuilder_enabled,
 #_pzarc_pagebuilder_disabled {
@@ -1273,23 +1245,15 @@ body.arc-panels * {
     color: #fff; }
 
 ul#_pzarc_pagebuilder_disabled {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row; }
+  flex-wrap: wrap;
+  flex-direction: row; }
   ul#_pzarc_pagebuilder_disabled li {
     display: inline-block;
     color: #555;
     background: #bbb;
     margin: 0 2px;
-    -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1; }
+    flex-grow: 1; }
 
 ul#_pzarc_pagebuilder_enabled li {
   color: #fff;
@@ -1343,8 +1307,7 @@ body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {
 
 #redux-_architect-metabox-_blueprint_tabs_blueprints .redux-main {
   padding: 0 !important;
-  -webkit-box-shadow: none;
-          box-shadow: none; }
+  box-shadow: none; }
 
 .arc-important {
   color: tomato; }
@@ -1353,8 +1316,7 @@ body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {
     color: #fff;
     padding: 5px;
     border-radius: 3px;
-    -webkit-box-shadow: 0 0 1px #fff;
-            box-shadow: 0 0 1px #fff;
+    box-shadow: 0 0 1px #fff;
     display: inline-block; }
     .arc-important.extra strong {
       color: #97e7ff;
@@ -1590,8 +1552,7 @@ li.arc-message .arc-presets-link {
     width: 100%;
     color: #fff;
     background: #00a0d2;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     border-radius: 0;
     padding: 10px;
     font-size: 17px;
@@ -1608,8 +1569,7 @@ li.arc-message .arc-presets-link {
   .arc-presets-selector .tabs {
     display: block;
     width: 100%;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     padding: 0;
     border: none; }
     .arc-presets-selector .tabs button {
@@ -1644,8 +1604,7 @@ li.arc-message .arc-presets-link {
     background: #fff;
     width: 100%;
     padding: 20px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
@@ -1738,11 +1697,8 @@ li.arc-message .arc-presets-link {
 
 .arc-info-boxes {
   max-width: 1060px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap; }
+  flex-wrap: wrap; }
   .arc-info-boxes strong {
     color: tomato; }
   .arc-info-boxes em {
@@ -1750,8 +1706,7 @@ li.arc-message .arc-presets-link {
   .arc-info-boxes .arc-info {
     margin: 1%;
     padding: 1%;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     border-top: solid 1px #fff;
     border-left: solid 1px #fff;
     border-bottom: solid 1px #eee;
@@ -1760,8 +1715,7 @@ li.arc-message .arc-presets-link {
     display: inline-block;
     vertical-align: top;
     border-radius: 3px;
-    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
-            box-shadow: 0 0 1px rgba(0, 0, 0, 0.5); }
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5); }
     .arc-info-boxes .arc-info.col1 {
       width: 92%; }
     .arc-info-boxes .arc-info.col2 {
@@ -1808,8 +1762,7 @@ li.arc-message .arc-presets-link {
     font-size: 15px;
     display: inline-block;
     margin-top: -6px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box; }
+    box-sizing: border-box; }
 
 body.post-type-arc-blueprints input:required:invalid,
 body.post-type-arc-blueprints input:focus:invalid {
@@ -1932,9 +1885,7 @@ body.arc-beginner .redux-notice-field {
   .arc-in-editor-block-wrapper .arc-acf-gutenberg-block-in-editor {
     display: grid;
     grid-template-columns: auto auto 1fr;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
     grid-gap: 0.5em 1em; }
     .arc-in-editor-block-wrapper .arc-acf-gutenberg-block-in-editor p {
       line-height: 1.5;

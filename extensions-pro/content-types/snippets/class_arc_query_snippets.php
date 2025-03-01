@@ -9,7 +9,7 @@
    */
   class arc_query_snippets extends arc_query_generic {
 
-    protected function content_filters($source, $overrides) {
+     function content_filters($source, $overrides) {
       $this->query_options['post_type'] = 'pz_snippets';
       if (!empty($this->criteria['_content_snippets_specific-snippets'])) {
         $specific_snippets = NULL;

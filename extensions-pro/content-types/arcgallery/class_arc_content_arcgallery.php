@@ -12,7 +12,7 @@
 
   class arc_content_arcgallery extends arc_set_data {
 
-    protected function __construct() {
+     function __construct() {
 
       add_filter( 'arc-show-content-types', array( $this, 'add_show_arcgallery' ) );
       // This has to be post_type
@@ -42,8 +42,8 @@
     private function __clone() {
     }
 
-    private function __wakeup() {
-    }
+//    private function __wakeup() {
+//    }
 
 
     function add_show_arcgallery( $arc_array ) {
@@ -86,8 +86,8 @@
   } // EOC
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_arcgallery::getInstance( 'arc_content_arcgallery' );
-
+//  $content_posts = arc_content_arcgallery::getInstance( 'arc_content_arcgallery' );
+new arc_content_arcgallery();
 
   /**
    * This is explicit as it's used in a callback which doesn't allow parameters

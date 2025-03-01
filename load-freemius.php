@@ -21,7 +21,7 @@
         'public_key'          => 'pk_68de4ec8e507df992b179ccb796a9',
         'is_premium'          => true,
         'has_addons'          => false,
-        'has_paid_plans'      => true,
+        'has_paid_plans'      => false,
         'is_org_compliant'    => false,
 //        'has_affiliation'     => 'all',
         'menu'                => array(

@@ -196,7 +196,8 @@
            <div class="tabs-pane" id="tabular">' . $presets_html['table'] . '</div>
            <div class="tabs-pane" id="import">
                 If you have Presets to import, do so in the Architect > Tools page
-           </div>' . ( ! empty( $presets_html['error'] ) ? '<div class="tabs-pane" id="error">Please contact your server host and adivse them of the following error:<br>:' . $presets_html['error'] . '</div>' : '' ) . '
+           </div>' . ( ! empty( $presets_html['error'] ) ? '
+            <div class="tabs-pane" id="error">Unable to load Presets data file. Please contact your server host and advise them of the following error:<br>' . $presets_html['error'] . ' on path '.$presets_array['data']['path'].'<br>NOTE: This error does NOT affect any other functionality of Architect.</div>' : '' ) . '
            </div>
            <div class="footer">
            <p>• All Presets use Dummy Content by default. Please change to the content of your choice after loading the chosen Preset.</p>

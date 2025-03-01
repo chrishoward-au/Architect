@@ -49,7 +49,7 @@
           $render[ 'html' ][ 'error' ] = $error;
         }
       }
-
+      $render['data']['path']=$preset[ 'data' ];
       return $render;
     }
   }

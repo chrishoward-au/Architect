@@ -12,7 +12,7 @@
   {
 
 
-    protected function __construct()
+     function __construct()
     {
       $registry = arc_Registry::getInstance();
 
@@ -58,7 +58,7 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_defaults::getInstance('arc_content_defaults');
+  new arc_content_defaults('arc_content_defaults');
 
 
 

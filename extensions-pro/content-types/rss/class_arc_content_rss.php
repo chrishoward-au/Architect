@@ -9,7 +9,7 @@
 
 class arc_content_rss extends arc_set_data{
 
-  protected function __construct() {
+   function __construct() {
 
     $registry                        = arc_Registry::getInstance();
     $prefix                          = '_content_rss_';
@@ -75,10 +75,10 @@ class arc_content_rss extends arc_set_data{
   private function __clone() {
   }
 
-  private function __wakeup() {
-  }
+//  private function __wakeup() {
+//  }
 }
 
 //  //todo:set this up as a proper singleton?
 
-  $content_posts = arc_content_rss::getInstance( 'arc_content_rss' );
+  new arc_content_rss( 'arc_content_rss' );

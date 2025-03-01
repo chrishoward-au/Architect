@@ -1,10 +1,10 @@
 === Architect content block builder ===
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
-Requires at least: 4.0
-Tested up to: 5.3.2
+Requires at least: 4.7
+Tested up to: 6.0
 Requires PHP: 5.6
-Stable tag: 11.2
+Stable tag: 11.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -112,6 +112,10 @@ MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    hei
 ** TODO: Add a warning if in lite mode and Blueprint is using Pro features.
 TODO: Prepare for Redux 4.
 TODO: Check if Gallery source still works correctly
+TODO: Add spreadsheets as source to Tables
+* TODO: Add message when fonts turned off
+* TODO: Add Swiper sliders
+* TODO: Fix filler images not apparently working
 
 == Changelog ==
 
@@ -119,6 +123,15 @@ TODO: Check if Gallery source still works correctly
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 * If Blueprints editor fails to render, go to options and turn on option to prevent post lookup lists loading.
 
+= 11.5 = 26 June 2022
+* FIXED: WP 6.0 and Redux issue breaking WP Admin
+
+= 11.4 : 21 February 2021
+* FIXED: PHP 8.0 incompatibility and conflict with All-In-One Events calendar
+
+= 11.3 : 13 April 2021
+* FIXED: Date internationalization bug on where some post dates showing current date
+* UPDATED: Freemius SDK to 2.4.1 Now has functionality to remove your PizazzWP account info from client sites
 
 = 11.2 : 26 April 2020
 * CHANGED: Re-enabled WP custom fields metabox in post edit that is hidden by Advanced Custom Fields v5.6

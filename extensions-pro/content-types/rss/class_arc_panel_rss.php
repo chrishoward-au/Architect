@@ -81,7 +81,8 @@
       if ( strpos( $meta_string, '%date%' ) !== FALSE ) {
         $this->data['meta']['datetime'] = $post['date'];
 //        $this->data[ 'meta' ][ 'fdatetime' ] = date_i18n(strip_tags($this->section[ '_panels_design_meta-date-format' ]), str_replace(',', ' ', strtotime(get_the_date())));
-        $this->data['meta']['fdatetime'] = date_i18n( strip_tags( $this->section['_panels_design_meta-date-format'] ), strtotime( str_replace( ',', ' ', get_the_date() ) ) );
+//        $this->data['meta']['fdatetime'] = date_i18n( strip_tags( $this->section['_panels_design_meta-date-format'] ), strtotime( str_replace( ',', ' ', get_the_date() ) ) );
+        $this->data['meta']['fdatetime'] = wp_date( strip_tags( $this->section['_panels_design_meta-date-format'] ), get_post_timestamp() ); //v11.3
       }
 //      if (strpos($meta_string, '%categories%') !== FALSE) {
 ////      $this->data['meta']['categorieslinks'] = get_the_category_list(', ');

@@ -1001,7 +1001,7 @@
    * @param $atts
    * @param $rawemail
    * @param $tag
-   *
+   * usage [mailto true/null]email[/mailto]
    * @return string
    */
   function pzarc_mail_encode( $atts, $rawemail, $tag ) {

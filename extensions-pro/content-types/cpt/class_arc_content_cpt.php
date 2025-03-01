@@ -11,7 +11,7 @@
   class arc_content_cpt extends arc_set_data// Singleton
   {
 
-    protected function __construct()
+     function __construct()
     {
       $registry = arc_Registry::getInstance();
       $prefix   = '_content_cpt_';
@@ -50,6 +50,6 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_cpt = arc_content_cpt::getInstance('arc_content_cpt');
-
+ // $content_cpt = arc_content_cpt::getInstance('arc_content_cpt');
+new arc_content_cpt();
 

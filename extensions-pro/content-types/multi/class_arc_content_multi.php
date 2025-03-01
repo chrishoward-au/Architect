@@ -10,7 +10,7 @@
   // Add content info to the registry
   class arc_content_multi extends arc_set_data {
 
-    protected function __construct() {
+     function __construct() {
       $registry = arc_Registry::getInstance();
       $prefix   = '_content_multi_';
 
@@ -57,6 +57,6 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_multi = arc_content_multi::getInstance( 'arc_content_multi' );
+  new arc_content_multi( );
 
 

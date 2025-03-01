@@ -29,8 +29,8 @@ abstract class arc_set_data {
   {
   }
 
-  private function __wakeup()
-  {
-  }
+//  private function __wakeup()
+//  {
+//  }
 
-} 
+}

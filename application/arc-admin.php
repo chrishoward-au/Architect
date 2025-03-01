@@ -919,7 +919,7 @@
         ) ) ? sprintf( __( $singular . ' published. <a href="%s">View ' . strtolower( $singular ) . '</a>' ), esc_url( get_permalink( $post_ID ) ) ) : __( $singular . ' published', 'pzarchitect' ) ),
         7  => __( 'Page saved.' ),
         8  => sprintf( __( $singular . ' submitted. <a target="_blank" href="%s">Preview ' . strtolower( $singular ) . '</a>' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
-        9  => sprintf( __( $singular . ' scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview ' . strtolower( $singular ) . '</a>' ), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink( $post_ID ) ) ),
+        9  => sprintf( __( $singular . ' scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview ' . strtolower( $singular ) . '</a>' ), wp_date( __( 'M j, Y @ G:i' ), get_post_timestamp($post_ID) ), esc_url( get_permalink( $post_ID ) ) ),
         10 => ( ! in_array( $post_type, array(
             'arc-blueprints',
             'pz_testimonials',

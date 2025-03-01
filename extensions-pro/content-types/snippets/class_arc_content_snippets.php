@@ -56,8 +56,8 @@
     private function __clone() {
     }
 
-    private function __wakeup() {
-    }
+//    private function __wakeup() {
+//    }
   }
 
 //  //todo:set this up as a proper singleton?

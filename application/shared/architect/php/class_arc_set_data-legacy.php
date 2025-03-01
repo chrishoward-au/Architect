@@ -31,8 +31,8 @@
     {
     }
 
-    private function __wakeup()
-    {
-    }
+//    private function __wakeup()
+//    {
+//    }
 
   }

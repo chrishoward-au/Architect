@@ -1,7 +1,14 @@
 # Architect change history 
 
-## Notes:
-* If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
+## 11.5 : 26 June 2022
+* FIXED: WP 6.0 and Redux issue breaking WP Admin
+
+## 11.4 : 21 February 2021
+* FIXED: PHP 8.0 incompatibility and conflict with All-In-One Events calendar
+
+## 11.3 : 13 April 2021
+* FIXED: Date internationalization bug on where some post dates showing current date
+* UPDATED: Freemius SDK to 2.4.1 Now has functionality to remove your PizazzWP account info from client sites
 
 ## 11.2 : 26 April 2020
 * CHANGED: Re-enabled WP custom fields metabox in post edit that is hidden by Advanced Custom Fields v5.6

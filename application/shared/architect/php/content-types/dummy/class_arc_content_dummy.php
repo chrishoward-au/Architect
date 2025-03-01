@@ -10,7 +10,7 @@
   // Add content info to the registry
   class arc_content_dummy extends arc_set_data {
 
-    protected function __construct() {
+     function __construct() {
       $registry = arc_Registry::getInstance();
 
       $prefix = '_content_dummy_';
@@ -131,7 +131,7 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_dummy::getInstance('arc_content_dummy');
+  new arc_content_dummy('arc_content_dummy');
 
 
 

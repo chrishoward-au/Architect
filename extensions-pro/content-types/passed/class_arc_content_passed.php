@@ -12,7 +12,7 @@
   class arc_content_passed extends arc_set_data {
 
 
-    protected function __construct() {
+     function __construct() {
       $registry = arc_Registry::getInstance();
       $prefix   = '_content_galleries_';
       global $_architect_options;
@@ -123,6 +123,6 @@
 
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_galleries::getInstance( 'arc_content_galleries' );
+  new arc_content_galleries( 'arc_content_galleries' );
 
 

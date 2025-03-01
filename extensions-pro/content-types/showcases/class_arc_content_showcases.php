@@ -12,7 +12,7 @@
 
   class arc_content_showcases extends arc_set_data {
 
-    protected function __construct() {
+     function __construct() {
 
       $registry                      = arc_Registry::getInstance();
       $prefix                        = '_content_showcases_';
@@ -51,8 +51,8 @@
     private function __clone() {
     }
 
-    private function __wakeup() {
-    }
+//    private function __wakeup() {
+//    }
 
 
     function pzarc_add_showcases_metaboxes( $metaboxes ) {
@@ -95,7 +95,7 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_showcases::getInstance( 'arc_content_showcases' );
+  new arc_content_showcases( 'arc_content_showcases' );
 
 
 
