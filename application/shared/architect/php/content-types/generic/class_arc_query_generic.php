@@ -41,7 +41,7 @@
 
       }
 
-      // TODO: need to scrape this down to just a generic one for built in post types
+      // TODO: need to scrape this down to just a generic one for built in post field_types
       // Probably should make this extensible
       //build the new query
       $source = $this->build->blueprint['_blueprints_content-source'];
@@ -130,6 +130,7 @@
       /**
        * Specific content filters
        **********************************************************/
+      // $this is used instead self:: so it calls the correct content_filters (not the one in this file)
       $this->content_filters( $source, $overrides );
 
       if ( ! empty( $this->criteria['_content_posts_specific-posts'] ) ) {
@@ -355,11 +356,9 @@
 
       /** Specific IDs */
       if ( ! empty( $overrides['post__in'] ) ) {
-
-        $this->query_options['post__in']       = explode( ',', $overrides['post__in'] );
+        $this->query_options['post__in']       = ! is_array($overrides['post__in']) ? explode( ',', $overrides['post__in'] ):$overrides['post__in'];
         $this->query_options['posts_per_page'] = count( $this->query_options['post__in'] );
       }
-
       /** Include categories */
       if ( ! empty( $overrides['category__in'] ) ) {
         $this->query_options['category__in'] = ! is_array( $overrides['category__in'] ) ? explode( ',', $overrides['category__in'] ) : $overrides['category__in'];

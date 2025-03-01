@@ -12,10 +12,10 @@
     function __construct() {
       /*
        * Create the layouts custom post type
-       */
-      global $arc_presets_data;
+       */ global $arc_presets_data;
 //      add_action('plugins_loaded', array($this, 'init'));
       add_action( 'plugins_loaded', array( $this, 'init' ) );
+      add_action( 'wp_loaded', array( $this, 'late_load' ) );
 
       if ( ( function_exists( 'arc_fs' ) && ! arc_fs()->is__premium_only() ) || ! function_exists( 'arc_fs' ) ) {
         add_action( 'after_setup_theme', 'pzarc_initiate_updater' );
@@ -28,7 +28,7 @@
      *
      */
     function init() {
-      if ( ! is_admin()  ) { // 1.11.0 Block only not admin
+      if ( ! is_admin() ) { // 1.11.0 Block only not admin
         return;
       }
 
@@ -40,6 +40,15 @@
         require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/WordPress-SysInfo/sysinfo.php' );
       }
 
+      // v11.2
+      // Option to re-enable ACF blocking WP customfields in post editor
+      global $_architect_options;
+      //var_Dump(  ! empty( $_architect_options['architect_acf_wp_custom_fields'] ));
+      if ( ! empty( $_architect_options['architect_acf_wp_custom_fields'] ) ) {
+        add_filter( 'acf/settings/remove_wp_meta_box', '__return_true' );
+      } else {
+        add_filter( 'acf/settings/remove_wp_meta_box', '__return_false' );
+      }
       if ( ! ( class_exists( 'ReduxFramework' ) || class_exists( 'ReduxFrameworkPlugin' ) ) ) {
         add_action( 'admin_notices', array( $this, 'missing_redux_admin_notice' ) );
 
@@ -86,6 +95,10 @@
       }
     }
 
+    function late_load() {
+      update_option( 'arc_taxonomies', maybe_serialize( pzarc_get_taxonomies( FALSE, FALSE ) ) );
+    }
+
     /*********************************************
      *
      */
@@ -126,6 +139,12 @@
         $classes .= ' arc-advanced';
       } else {
         $classes .= ' arc-beginner';
+      }
+
+      if ( ( function_exists( 'arc_fs' ) && arc_fs()->is__premium_only() ) || defined( 'PZARC_PRO' ) ) {
+        $classes .= ' arc-premium';
+      } else {
+        $classes .= ' arc-lite';
       }
 
       return $classes;
@@ -246,9 +265,9 @@
       if ( ! $pzarc_menu ) {
         $pzarc_menu = add_menu_page( 'About Architect', 'Architect', 'edit_posts', 'pzarc', 'pzarc_about', PZARC_PLUGIN_APP_URL . 'wp-icon.png' );
         add_submenu_page( 'pzarc', 'Help & Support', '<span class="dashicons dashicons-editor-help size-small"></span>Help & Support', 'manage_options', 'pzarc_support', array(
-                $this,
-                'pzarc_support',
-            ) );
+            $this,
+            'pzarc_support',
+        ) );
 
         global $submenu;
         // Shift those last  to the top
@@ -307,9 +326,11 @@
         require_once( PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php' );
         global $pzarc_css_success;
         $pzarc_css_success = TRUE;
-        save_arc_layouts( 'all', NULL, TRUE );
+        ArcFun::clear_arc_cache(); // v1.16.0
+        //save_arc_layouts( 'all', NULL, TRUE );
+        ArcFun::resave_all_blueprints();
         pzarc_set_defaults();
-        update_option('arc_blueprints',pzarc_get_blueprints(false));
+        update_option( 'arc_blueprints', pzarc_get_blueprints( FALSE ) );
         bfi_flush_image_cache();
         delete_option( 'architect_custom_fields' );
         delete_option( 'architect_timers' );
@@ -386,6 +407,22 @@
           }
         }
       }
+      if ( ( isset( $_GET['debug'] ) && is_admin() ) ) {
+        echo '<h3>Debugging info</h3>';
+        if ( isset( $_POST['cleararcdebug'] ) && check_admin_referer( 'clear-arc-debug' ) ) {
+          update_option( 'arc_debug', '' );
+        }
+        echo '<form action="admin.php?page=pzarc_tools&debug" method="post">';
+        echo '<div class="arc-debugging-info">' . get_option( 'arc_debug' ) . '</div>';
+        wp_nonce_field( 'clear-arc-debug' );
+        echo '<button class="button-primary" style="min-width:100px;" type="submit" name="cleararcdebug" value="' . __( 'Clear Debug Info' ) . '">' . __( 'Clear debug info' ) . '</button>
+        </form>';
+      } else {
+//        echo '<p style="font-size:11px;font-style:italic;">Debugging disabled.</p>';
+      }
+      if ( isset( $_POST['cleararcdebug'] ) && check_admin_referer( 'clear-arc-debug' ) ) {
+        update_option( 'arc_debug', '' );
+      }
       echo '</div><!--end table-->
 			</div>
       ';
@@ -430,12 +467,6 @@
                         <a class="pzarc-button-help" href="mailto:support@pizazzwp.com?subject=Architect%20help" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
-                        <a class="pzarc-button-help" href="https://shop.pizazzwp.com/checkout/customer-dashboard/" target="_blank">
-                        <span class="dashicons dashicons-admin-users"></span>
-                        Customer dashboard</a>
-                        <a class="pzarc-button-help" href="https://shop.pizazzwp.com/affiliate-area/" target="_blank">
-                        <span class="dashicons" style="font-size:1.3em">$</span>
-                        Affiliates</a>
                         </div>
 
             ';
@@ -462,7 +493,7 @@
           <li>Custom fields</li>
           <li>Custom fields filtering</li>
           <li>Content animation</li>
-          <li>Access to all content types, including Galleries, Snippets, NextGen, Testimonials and custom post types</li>
+          <li>Access to all content field_types, including Galleries, Snippets, NextGen, Testimonials and custom post field_types</li>
           <li>Lite is also limited to 15 posts per page</li>
           </ul>
         <p style="font-weight:bold;">To get all the extra goodness of Architect, you can purchase it from the <a href="http://shop.pizazzwp.com/downloads/architect/" target="_blank">PizazzWP Shop</a> or just click the <a href="./admin.php?page=pzarc-pricing">Upgrade link</a> in the Architect menu</p>
@@ -472,16 +503,16 @@
       echo ' <div class="tabby tabs">
                 <button class="tabby-quick first active" data-tab="#quick">' . __( 'Getting started', 'pzarchitect' ) . '</button>
                 <button class="tabby-how" data-tab="#how">' . __( 'Usage', 'pzarchitect' ) . '</button>
-                <button class="tabby-latest" data-tab="#latest">' . __( 'Latest news', 'pzarchitect' ) . '</button>
+<!--                <button class="tabby-latest" data-tab="#latest">' . __( 'Latest news', 'pzarchitect' ) . '</button> -->
                 <button class="tabby-changes" data-tab="#changes">' . __( 'Changelog', 'pzarchitect' ) . '</button>
                 <button class="tabby-shout" data-tab="#shout">' . __( 'Shoutouts', 'pzarchitect' ) . '</button>
  <!--               <button class="tabby-features" data-tab="#features">' . __( 'Features', 'pzarchitect' ) . '</button> -->
                 <button class="tabby-help" data-tab="#help">' . __( 'Support', 'pzarchitect' ) . '</button>
             </div>';
-echo '	<div class="tabby tabs-content">';
+      echo '	<div class="tabby tabs-content">';
       include_once( 'admin/parts/admin-tabs-pane-about.php' );
       include_once( 'admin/parts/admin-tabs-pane-usage.php' );
-      include_once( 'admin/parts/admin-tabs-pane-news.php' );
+//      include_once( 'admin/parts/admin-tabs-pane-news.php' );
       include_once( 'admin/parts/admin-tabs-pane-changes.php' );
       include_once( 'admin/parts/admin-tabs-pane-shoutout.php' );
 //      include_once( 'admin/parts/admin-tabs-pane-features.php' );
@@ -760,14 +791,14 @@ echo '	<div class="tabby tabs-content">';
    */
   function pzarc_blueprints_order( $query ) {
     /*
-        Set post types.
-        _builtin => true returns WordPress default post types.
-        _builtin => false returns custom registered post types.
+        Set post field_types.
+        _builtin => true returns WordPress default post field_types.
+        _builtin => false returns custom registered post field_types.
     */
     $post_types = get_post_types( array(), 'names' );
     /* The current post type. */
     $post_type = $query->get( 'post_type' );
-    /* Check post types. */
+    /* Check post field_types. */
     if ( in_array( $post_type, $post_types ) && $post_type === 'arc-blueprints' ) {
       /* Post Column: e.g. title */
       if ( $query->get( 'orderby' ) == '' ) {
@@ -792,9 +823,16 @@ echo '	<div class="tabby tabs-content">';
    *
    */
   function pzarc_add_sc_select() {
-
-    $screen   = get_current_screen();
-    $user_can = current_user_can( 'edit_others_posts' );
+    global $_architect_options;
+    if ( empty( $_architect_options ) ) {
+      $_architect_options = get_option( '_architect_options' );
+    }
+    $screen = get_current_screen();
+    if ( empty( $_architect_options['architect_shortcodes-dropdown'] ) || $_architect_options['architect_shortcodes-dropdown'] == 'both' ) {
+      $user_can = current_user_can( 'edit_others_posts' );
+    } else {
+      $user_can = current_user_can( 'delete_plugins' );
+    }
     if ( $user_can && ( $screen->post_type === 'page' || $screen->post_type === 'post' ) ) {
       $blueprint_list = pzarc_get_posts_in_post_type( 'arc-blueprints', TRUE, FALSE, TRUE );
       echo '&nbsp;<select id="arc-select" class="arc-dropdown" style="font-size:small;"><option>Insert Architect Blueprint</option>';
@@ -881,7 +919,7 @@ echo '	<div class="tabby tabs-content">';
         ) ) ? sprintf( __( $singular . ' published. <a href="%s">View ' . strtolower( $singular ) . '</a>' ), esc_url( get_permalink( $post_ID ) ) ) : __( $singular . ' published', 'pzarchitect' ) ),
         7  => __( 'Page saved.' ),
         8  => sprintf( __( $singular . ' submitted. <a target="_blank" href="%s">Preview ' . strtolower( $singular ) . '</a>' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
-        9  => sprintf( __( $singular . ' scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview ' . strtolower( $singular ) . '</a>' ), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink( $post_ID ) ) ),
+        9  => sprintf( __( $singular . ' scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview ' . strtolower( $singular ) . '</a>' ), wp_date( __( 'M j, Y @ G:i' ), get_post_timestamp($post_ID) ), esc_url( get_permalink( $post_ID ) ) ),
         10 => ( ! in_array( $post_type, array(
             'arc-blueprints',
             'pz_testimonials',
@@ -921,7 +959,6 @@ echo '	<div class="tabby tabs-content">';
      */
     $pzarc_blueprints = array_merge( array( 'none' => 'Select Blueprint' ), pzarc_get_blueprints(), array( 'show-none' => 'DO NOT SHOW ANY BLUEPRINT' ) );
     shortcode_ui_register_for_shortcode( 'architectsc', array(
-
       // Display label. String. Required.
       'label'         => __( 'Architect Blueprint', 'pzarchitect' ),
       // Icon/attachment for shortcode. Optional. src or dashicons-$icon. Defaults to carrot.
@@ -931,7 +968,7 @@ echo '	<div class="tabby tabs-content">';
 
       // Available shortcode attributes and default values. Required. Array.
       // Attribute model expects 'attr', 'type' and 'label'
-      // Supported field types: text, checkbox, textarea, radio, select, email, url, number, and date.
+      // Supported field field_types: text, checkbox, textarea, radio, select, email, url, number, and date.
       'attrs'         => array(
 
           array(

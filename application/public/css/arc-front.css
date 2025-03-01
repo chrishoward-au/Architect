@@ -77,6 +77,17 @@
         flex-direction: row;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap; }
+  .pzarchitect .pzarc-section.featcomp-float-left .pzarc-panel, .pzarchitect .pzarc-section.featcomp-float-right .pzarc-panel {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between; }
 
 .pzarchitect h2.pzarc-page-title {
   font-size: 1.5em;
@@ -195,7 +206,9 @@
           box-sizing: border-box;
   vertical-align: top;
   position: relative;
-  overflow: hidden; }
+  overflow: hidden;
+  /* ADVANCED CUSTOM FIELDS DEFAULT CSS */
+  /* fixes potential theme css conflict */ }
   .pzarchitect .pzarc-panel.pzarc-wow {
     visibility: hidden; }
   .pzarchitect .pzarc-panel header.entry-header,
@@ -300,7 +313,7 @@
   .pzarchitect .pzarc-panel .entry-customfieldgroup {
     display: block;
     float: left; }
-  .pzarchitect .pzarc-panel .vertical-content {
+  .pzarchitect .pzarc-panel x.vertical-content {
     top: 0;
     bottom: 0;
     height: 100%; }
@@ -399,6 +412,15 @@
   .pzarchitect .pzarc-panel .pzarc-close-back {
     text-align: center;
     padding: 5px; }
+  .pzarchitect .pzarc-panel .arc-cfield {
+    display: inline; }
+  .pzarchitect .pzarc-panel .acf-map {
+    width: 100%;
+    height: 400px;
+    border: #ccc solid 1px;
+    margin: 20px 0; }
+  .pzarchitect .pzarc-panel .acf-map img {
+    max-width: inherit !important; }
 
 .pzarchitect tr.pzarc-panel {
   display: table-row; }
@@ -447,6 +469,88 @@
 
 .pzarchitect p.wpml-ls-statics-post_translations.wpml-ls {
   clear: none; }
+
+.pzarchitect .pzarc-inserted-shortcode {
+  display: block;
+  width: 100%; }
+
+.pzarchitect .arc-cfield-group.acf-layout-block .group-row,
+.pzarchitect .arc-cfield-group.acf-layout-block .repeater-row,
+.pzarchitect .arc-cfield-repeater.acf-layout-block .group-row,
+.pzarchitect .arc-cfield-repeater.acf-layout-block .repeater-row {
+  display: block; }
+  .pzarchitect .arc-cfield-group.acf-layout-block .group-row .subfield,
+  .pzarchitect .arc-cfield-group.acf-layout-block .repeater-row .subfield,
+  .pzarchitect .arc-cfield-repeater.acf-layout-block .group-row .subfield,
+  .pzarchitect .arc-cfield-repeater.acf-layout-block .repeater-row .subfield {
+    display: block; }
+
+.pzarchitect .arc-cfield-group.acf-layout-table,
+.pzarchitect .arc-cfield-repeater.acf-layout-table {
+  display: table;
+  width: 100%;
+  border: solid 1px #999; }
+  .pzarchitect .arc-cfield-group.acf-layout-table .group-header,
+  .pzarchitect .arc-cfield-group.acf-layout-table .repeater-header,
+  .pzarchitect .arc-cfield-repeater.acf-layout-table .group-header,
+  .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-header {
+    display: table-header-group;
+    font-weight: bold;
+    background: #ccc; }
+    .pzarchitect .arc-cfield-group.acf-layout-table .group-header .header-cell,
+    .pzarchitect .arc-cfield-group.acf-layout-table .repeater-header .header-cell,
+    .pzarchitect .arc-cfield-repeater.acf-layout-table .group-header .header-cell,
+    .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-header .header-cell {
+      display: table-cell;
+      padding: 1rem;
+      border-left: 1px solid #999; }
+      .pzarchitect .arc-cfield-group.acf-layout-table .group-header .header-cell:first-child,
+      .pzarchitect .arc-cfield-group.acf-layout-table .repeater-header .header-cell:first-child,
+      .pzarchitect .arc-cfield-repeater.acf-layout-table .group-header .header-cell:first-child,
+      .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-header .header-cell:first-child {
+        border-left: none; }
+  .pzarchitect .arc-cfield-group.acf-layout-table .group-row,
+  .pzarchitect .arc-cfield-group.acf-layout-table .repeater-row,
+  .pzarchitect .arc-cfield-repeater.acf-layout-table .group-row,
+  .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-row {
+    display: table-row;
+    overflow: auto;
+    border-top: 1px; }
+    .pzarchitect .arc-cfield-group.acf-layout-table .group-row.odd,
+    .pzarchitect .arc-cfield-group.acf-layout-table .repeater-row.odd,
+    .pzarchitect .arc-cfield-repeater.acf-layout-table .group-row.odd,
+    .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-row.odd {
+      background: #e9e9e9; }
+    .pzarchitect .arc-cfield-group.acf-layout-table .group-row.even,
+    .pzarchitect .arc-cfield-group.acf-layout-table .repeater-row.even,
+    .pzarchitect .arc-cfield-repeater.acf-layout-table .group-row.even,
+    .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-row.even {
+      background: #f9f9f9; }
+    .pzarchitect .arc-cfield-group.acf-layout-table .group-row .subfield,
+    .pzarchitect .arc-cfield-group.acf-layout-table .repeater-row .subfield,
+    .pzarchitect .arc-cfield-repeater.acf-layout-table .group-row .subfield,
+    .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-row .subfield {
+      display: table-cell;
+      border-left: solid 1px #999;
+      padding: 1rem; }
+      .pzarchitect .arc-cfield-group.acf-layout-table .group-row .subfield.first-cell,
+      .pzarchitect .arc-cfield-group.acf-layout-table .repeater-row .subfield.first-cell,
+      .pzarchitect .arc-cfield-repeater.acf-layout-table .group-row .subfield.first-cell,
+      .pzarchitect .arc-cfield-repeater.acf-layout-table .repeater-row .subfield.first-cell {
+        border-left: none; }
+
+.pzarchitect .arc-cfield-group.acf-layout-row .group-row,
+.pzarchitect .arc-cfield-group.acf-layout-row .repeater-row,
+.pzarchitect .arc-cfield-repeater.acf-layout-row .group-row,
+.pzarchitect .arc-cfield-repeater.acf-layout-row .repeater-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .pzarchitect .arc-cfield-group.acf-layout-row .group-row .subfield,
+  .pzarchitect .arc-cfield-group.acf-layout-row .repeater-row .subfield,
+  .pzarchitect .arc-cfield-repeater.acf-layout-row .group-row .subfield,
+  .pzarchitect .arc-cfield-repeater.acf-layout-row .repeater-row .subfield {
+    display: inline-block; }
 
 .pzarchitect {
   /* ===============================================================
@@ -536,11 +640,21 @@
       height: auto; }
   .pzarchitect .navpos-top .nav-align-left,
   .pzarchitect .navpos-bottom .nav-align-left {
-    text-align: left;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
     right: initial; }
   .pzarchitect .navpos-top .nav-align-right,
   .pzarchitect .navpos-bottom .nav-align-right {
-    text-align: right;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    left: initial; }
+  .pzarchitect .navpos-top .nav-align-right,
+  .pzarchitect .navpos-bottom .nav-align-right {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
     left: initial; }
   .pzarchitect .bullets .arc-slider-slide-nav-item {
     /* Stylize pagination button: */
@@ -707,3 +821,18 @@ SVG Icons - svgicons.sparkk.fr
 .svg-icon circle {
   stroke: #4691f6;
   stroke-width: 1; }
+
+.xdebug-error {
+  color: black;
+  font-size: 12px; }
+
+@media (max-width: 960px) {
+  .pzarc-section.featcomp-float-left .pzarc-panel.odd-panel, .pzarc-section.featcomp-float-left .pzarc-panel.even-panel, .pzarc-section.featcomp-float-right .pzarc-panel.odd-panel, .pzarc-section.featcomp-float-right .pzarc-panel.even-panel {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important; }
+  .pzarc-section.featcomp-float-left .pzarc-panel .entry-thumbnail,
+  .pzarc-section.featcomp-float-left .pzarc-panel .pzarc-components, .pzarc-section.featcomp-float-right .pzarc-panel .entry-thumbnail,
+  .pzarc-section.featcomp-float-right .pzarc-panel .pzarc-components {
+    width: 100% !important; } }

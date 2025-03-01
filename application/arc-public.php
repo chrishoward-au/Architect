@@ -7,9 +7,10 @@
    */
 
   // Front end includes, Register site styles and scripts
-  
-  add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ),(time()%10000) ); // v.1.11.1 Forcing late loading of Blueprint CSS
+
+  add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_styles' ), ( time() % 10000 ) ); // v.1.11.1 Forcing late loading of Blueprint CSS
   add_action( 'wp_enqueue_scripts', array( $this, 'register_plugin_scripts' ) );
+  add_action( 'wp_print_footer_scripts', 'pzarc_footer_css' );
 
   add_action( 'wp_head', 'pzarc_display_init' );
 
@@ -25,12 +26,12 @@
   add_action( 'arc_do_template_tag', 'pzarc', 10, 7 );
 
   add_theme_support( 'infinite-scroll', array(
-    'type'           => 'scroll',
-    'footer_widgets' => FALSE,
-    'container'      => 'pzarc-sections_blog-grid',
-    'wrapper'        => FALSE,
-    'render'         => 'pzarc',
-    'posts_per_page' => FALSE,
+      'type'           => 'scroll',
+      'footer_widgets' => FALSE,
+      'container'      => 'pzarc-sections_blog-grid',
+      'wrapper'        => FALSE,
+      'render'         => 'pzarc',
+      'posts_per_page' => FALSE,
   ) );
 
   // How do we do this only on pages needing it?
@@ -94,31 +95,32 @@
 
     // hints.css
     wp_register_style( 'css-hints', 'https://cdnjs.cloudflare.com/ajax/libs/hint.css/2.5.0/hint.base.min.css', FALSE, PZARC_VERSION );
-    if ( isset( $_GET['demo'] ) || (isset( $_GET['debug'] ) && is_user_logged_in()) ) {
+    if ( isset( $_GET['demo'] ) || ( isset( $_GET['debug'] ) && is_user_logged_in() ) ) {
       wp_enqueue_style( 'css-hints' );
     }
 
     $actions_options = get_option( '_architect_actions' );
-    $actions         = array();
-    $i               = 1;
-    foreach ( $actions_options as $k => $v ) {
-      if ( $k !== 'last_tab' && $k !== 'architect_actions_number-of' ) {
-        $actions[ $i ][ $k ] = $v;
+    if ( ! empty( $actions_options ) ) { // v.1.15.0
+      $actions = array();
+      $i       = 1;
+      foreach ( $actions_options as $k => $v ) {
+        if ( $k !== 'last_tab' && $k !== 'architect_actions_number-of' ) {
+          $actions[ $i ][ $k ] = $v;
+        }
+        if ( $k === 'architect_actions_' . $i . '_tax-slugs' ) { // TODO: Need a better way!
+          $i ++;
+        }
       }
-      if ( $k === 'architect_actions_' . $i . '_tax-slugs' ) { // TODO: Need a better way!
-        $i ++;
+      require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_showblueprint.php';
+      $bpactions = array();
+      foreach ( $actions as $k => $v ) {
+        if ( ! empty( $v[ 'architect_actions_' . $k . '_action-name' ] ) && ! empty( $v[ 'architect_actions_' . $k . '_blueprint' ] ) ) {
+          $bpactions[ $k ] = new showBlueprint( $k, $v ); // We could pass this in all at once...
+        }
       }
-    }
-    require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_showblueprint.php';
-    $bpactions = array();
-    foreach ( $actions as $k => $v ) {
-      if ( ! empty( $v[ 'architect_actions_' . $k . '_action-name' ] ) && ! empty( $v[ 'architect_actions_' . $k . '_blueprint' ] ) ) {
-        $bpactions[ $k ] = new showBlueprint( $k, $v ); // We could pass this in all at once...
-      }
-    }
 
-    unset( $bpactions );
-
+      unset( $bpactions );
+    }
     // Override WP Gallery shortcode if necessary
     //
     global $_architect_options;
@@ -172,7 +174,7 @@
 //    }
 
 
-    if (is_array($atts) && !empty($atts)) {
+    if ( is_array( $atts ) && ! empty( $atts ) ) {
       foreach ( $atts as $key => $value ) {
         $pzarc_overrides[ $key ] = $atts[ $key ];
       }
@@ -257,20 +259,19 @@
    */
   function pzarc( $blueprint = NULL, $overrides = NULL, $caller = NULL, $tag = NULL, $additional_overrides = NULL, $tablet_bp = NULL, $phone_bp = NULL ) {
     pzdb( 'start pzarc' );
-    $pzarc_start_time = microtime(true);
+    $pzarc_start_time = microtime( TRUE );
 
-//var_dump(get_the_ID(),get_the_title(),$blueprint);
 //global $wp_the_query, $wp_query;
 //var_dump($wp_the_query->queried_object_id,$wp_query->queried_object_id);
-global $arc_blueprint_stack;
+    global $arc_blueprint_stack;
 //    var_dump($arc_blueprint);
 
-  // v.1.11.1: Protect against blueprints calling themselves
-  if(is_array($arc_blueprint_stack)&&in_array($blueprint,$arc_blueprint_stack)) {
-    return;
-  }
+    // v.1.11.1: Protect against blueprints calling themselves
+    if ( is_array( $arc_blueprint_stack ) && in_array( $blueprint, $arc_blueprint_stack ) ) {
+      return;
+    }
 
-$arc_blueprint_stack[]=$blueprint;
+    $arc_blueprint_stack[] = $blueprint;
 
 
     //  var_dump(func_get_args());
@@ -309,23 +310,18 @@ $arc_blueprint_stack[]=$blueprint;
     $bp_uses       = maybe_unserialize( get_option( 'arc-blueprint-usage' ) );
     $pzarc_page_id = pzarc_get_page_id();
 
-    if ( $bp_uses && array_key_exists( $pzarc_page_id . $blueprint, $bp_uses ) ) {
-      // Probably don't need to do anything
-    } else {
+    if (!( $bp_uses && array_key_exists( $pzarc_page_id . $blueprint, $bp_uses ) )) {
       $bp_uses[ $pzarc_page_id . $blueprint ] = array(
-        'id' => $pzarc_page_id,
-        'bp' => $blueprint,
+          'id' => $pzarc_page_id,
+          'bp' => $blueprint,
       );
       update_option( 'arc-blueprint-usage', maybe_serialize( $bp_uses ) );
-      // Shortcodes will load these late. TODO Should search for shortcode in page
-      $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $blueprint . '.css';
-      $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $blueprint . '.css';
-      if ( file_exists( $filename_path ) ) {
-        wp_enqueue_style( 'pzarc_css_blueprint_' . $blueprint, $filename, FALSE, filemtime( $filename_path ) );
-      } else {
-        //how do we tell the developer without a horrid message on the front end?
-      }
     }
+
+    /* v1.17.0 Switched to using wp options for CSS to get away from filesystem API*/
+    global $arc_blueprint_css;
+    $arc_blueprint_css = $arc_blueprint_css . '/* '.$blueprint.' */' . get_option( '_arc-css_' . $blueprint );
+
     global $_architect_options;
     global $in_arc;
     $in_arc = 'yes';
@@ -359,11 +355,12 @@ $arc_blueprint_stack[]=$blueprint;
       }
 
       require_once PZARC_PLUGIN_APP_PATH . '/public/php/class_architect_public.php';
-      require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php' );
-      add_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
-      add_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6 );
-      add_filter( 'image_downsize', 'bfi_image_downsize', 1, 3 );
-
+     require_once( PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/BFI-thumb-forked/BFI_Thumb.php' );
+      if (function_exists('bfi_thumb')) {
+        add_filter( 'wp_image_editors', 'bfi_wp_image_editor' );
+        add_filter( 'image_resize_dimensions', 'bfi_image_resize_dimensions', 10, 6 );
+        add_filter( 'image_downsize', 'bfi_image_downsize', 1, 3 );
+      }
       $architect = new Architect_Public( $blueprint, $is_shortcode, $device );
 
       // If no errors, let's go!
@@ -414,11 +411,13 @@ $arc_blueprint_stack[]=$blueprint;
 
     $in_arc = 'no';
     // v.1.11.1: Remove the last blueprint in the stack else we can't use same Blueprint multiple times on a page.
-    array_pop($arc_blueprint_stack);
+    array_pop( $arc_blueprint_stack );
 
-    $pzarc_end_time = microtime(true);
-    $pzarc_this_time = ($pzarc_end_time-$pzarc_start_time);
-    if ($pzarc_this_time>0) {
+    $pzarc_end_time  = microtime( TRUE );
+    $pzarc_this_time = ( $pzarc_end_time - $pzarc_start_time );
+
+// TODO: We only want to run this when needed!!
+    if ( $pzarc_this_time > 0 ) {
       $pzarc_architect_timers               = get_option( 'architect_timers', array( 'runs' => 0, 'total_time' => '0', 'avg_time' => 0 ) );
       $pzarc_architect_timers['runs']       = $pzarc_architect_timers['runs'] + 1;
       $pzarc_architect_timers['total_time'] = $pzarc_architect_timers['total_time'] + $pzarc_this_time;
@@ -459,7 +458,7 @@ $arc_blueprint_stack[]=$blueprint;
     if ( ! in_array( 'pzarchitect', $classes ) ) {
       $classes[] = 'pzarchitect';
     }
-    if ( isset( $_GET['demo'] ) || (isset( $_GET['debug'] ) && is_user_logged_in()) ) {
+    if ( isset( $_GET['demo'] ) || ( isset( $_GET['debug'] ) && is_user_logged_in() ) ) {
       $classes[] = 'architect-demo-mode';
     }
     $classes[] = 'theme-' . get_stylesheet();
@@ -467,4 +466,17 @@ $arc_blueprint_stack[]=$blueprint;
     // return the $classes array
     return $classes;
   }
+
+  /**
+   * pzarc_footer_css
+   * Add Blueprints' CSS to the footer
+   */
+  function pzarc_footer_css(){
+    global $arc_blueprint_css;
+    echo '<!-- Architect Blueprints CSS -->';
+    echo '<style type="text/css">';
+    echo $arc_blueprint_css;
+    echo '</style>';
+  }
+
 

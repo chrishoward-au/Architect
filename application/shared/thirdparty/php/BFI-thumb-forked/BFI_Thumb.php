@@ -440,7 +440,7 @@
        * @return string|array
        */
       public static function thumb( $url, $params = array(), $single = TRUE ) {
-       // var_Dump($params);
+//        var_Dump($url,$params);
         extract( $params );
         //validate inputs
         if ( ! $url ) {
@@ -461,24 +461,16 @@
 
         // find the path of the image. Perform 2 checks:
         // #1 check if the image is in the uploads folder
-        if ( strpos( $url, $upload_url ) !== FALSE ) {
-          $rel_path = str_replace( $upload_url, '', $url );
-          $img_path = $upload_dir . $rel_path;
-
-          // #2 check if the image is in the current theme folder
-        } elseif ( strpos( $url, $theme_url ) !== FALSE ) {
-          $rel_path = str_replace( $theme_url, '', $url );
-          $img_path = $theme_dir . $rel_path;
-
-        } elseif ( strpos( $url, $nextgen_url ) !== FALSE ) {
-          $rel_path = str_replace( $nextgen_url, '', $url );
-          $img_path = $nextgen_dir . $rel_path;
-
-        }
+        $img_path = self::get_img_paths( $url, $upload_url, $upload_dir, $theme_url, $theme_dir, $nextgen_url, $nextgen_dir );
 
         // Fail if we can't find the image in our WP local directory
         if ( empty( $img_path ) ) {
-          return $url;
+          // Move image to local server and try again.
+          $dest = PZARC_CACHE_PATH. basename($url);
+          if (!file_exists($dest)) {
+            file_put_contents( $dest, file_get_contents( $url ) );
+          }
+          $img_path = $dest;
         }
 
         //check if img path exists, and is an image indeed
@@ -549,6 +541,7 @@
 
         if ( @file_exists( $destfilename ) && getimagesize( $destfilename ) ) {
           // if file exists, just return it
+          // We could add cache ageing in here
         } else {
           // perform resizing and other filters
           $editor = wp_get_image_editor( $img_path );
@@ -561,6 +554,7 @@
            * Perform image manipulations
            */
           if ( ( isset( $width ) && $width ) || ( isset( $height ) && $height ) ) {
+
             if ( is_wp_error( $editor->resize( isset( $width ) ? $width : NULL, isset( $height ) ? $height : NULL, ( isset( $crop ) ? $crop : FALSE ) ) ) ) {
               return FALSE;
             }
@@ -670,6 +664,38 @@
 
         return $result;
       }
+
+      /**
+       * @param $url
+       * @param $upload_url
+       * @param $upload_dir
+       * @param $theme_url
+       * @param $theme_dir
+       * @param $nextgen_url
+       * @param $nextgen_dir
+       *
+       * @return string
+       */
+      public static function get_img_paths( $url, $upload_url, $upload_dir, $theme_url, $theme_dir, $nextgen_url, $nextgen_dir ) {
+
+        $img_path = '';
+        if ( strpos( $url, $upload_url ) !== FALSE ) {
+          $rel_path = str_replace( $upload_url, '', $url );
+          $img_path = $upload_dir . $rel_path;
+
+          // #2 check if the image is in the current theme folder
+        } elseif ( strpos( $url, $theme_url ) !== FALSE ) {
+          $rel_path = str_replace( $theme_url, '', $url );
+          $img_path = $theme_dir . $rel_path;
+
+        } elseif ( strpos( $url, $nextgen_url ) !== FALSE ) {
+          $rel_path = str_replace( $nextgen_url, '', $url );
+          $img_path = $nextgen_dir . $rel_path;
+
+        }
+
+        return $img_path;
+      }
     }
   }
 
@@ -684,6 +710,8 @@
       // X = crop X position as a decimal between 0 and 1
       // Y = crop Y position
       // F = focal point
+
+//     var_Dump($payload, $orig_w, $orig_h, $dest_w, $dest_h, $crop);
       if ( is_string( $crop ) ) {
         $crop = explode( 'x', $crop );
         // Check if defaults needed
@@ -918,7 +946,8 @@
       endif;
       // the return array matches the parameters to imagecopyresampled()
       // int dst_x, int dst_y, int src_x, int src_y, int dst_w, int dst_h, int src_w, int src_h
-      return array( 0, 0, (int) $s_x, (int) $s_y, (int) $new_w, (int) $new_h, (int) $crop_w, (int) $crop_h );
+      $return_arr = array( 0, 0, (int) $s_x, (int) $s_y, (int) $new_w, (int) $new_h, (int) $crop_w, (int) $crop_h );
+      return $return_arr;
     }
   }
 
@@ -950,7 +979,9 @@
       $params['height'] = $size[1];
       $resized_img_url  = bfi_thumb( $img_url, $params );
 
-      return array( $resized_img_url, $size[0], $size[1], FALSE );
+      $return_arr = array( $resized_img_url, $size[0], $size[1], FALSE );
+
+      return $return_arr;
     }
   }
 

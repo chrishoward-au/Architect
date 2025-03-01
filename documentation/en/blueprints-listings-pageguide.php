@@ -41,7 +41,7 @@
          <li class="tlypageguide_bottom" data-tourtarget=".arc-presets-link">
     <div>'.__('
       <h3>Preset Selector</h3>
-      <p>Architect comes with more than a dozen pre-built Blueprints with preset layouts and stylings in the six layout types: Slider, Grid, Masonry, Tabular, Tabbed and Accordion.</p>
+      <p>Architect comes with more than a dozen pre-built Blueprints with preset layouts and stylings in the six layout field_types: Slider, Grid, Masonry, Tabular, Tabbed and Accordion.</p>
       <p>Open the Preset Selector to choose a one, which can be created with or without its preset stylings.</p>
     ','pzarchitect').'</div>
   </li>

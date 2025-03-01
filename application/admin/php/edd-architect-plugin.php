@@ -82,7 +82,7 @@
         echo ' <div class="arc-info-boxes">
                     <div class="arc-info col1">';
         echo '<h3 style="color:#0074A2">Architect Lite</h3>
-        <p class="arc-important" style="font-weight:bold;">You are running Architect without activating a licence, therefore it is in Lite mode. Cool features you are missing out on are: Animations and access to all content types, including Galleries, Snippets, NextGen, Testimonials and custom post types</p>
+        <p class="arc-important" style="font-weight:bold;">You are running Architect without activating a licence, therefore it is in Lite mode. Cool features you are missing out on are: Animations and access to all content field_types, including Galleries, Snippets, NextGen, Testimonials and custom post field_types</p>
         <p style="font-weight:bold;">If you need to purchase a licence, you can do so at the <a href="http://shop.pizazzwp.com/downloads/architect/" target="_blank">PizazzWP Shop</a>.</p>
         <p>Otherwise, enter and activate your licence from the Pizazz Shop licence below</p>
 </div></div>';

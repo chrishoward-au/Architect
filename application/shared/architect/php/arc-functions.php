@@ -16,7 +16,7 @@
     /**
      * [pzdebug description]
      *
-     * @param  string $value ='' [description]
+     * @param string $value ='' [description]
      *
      * @return [type]           [description]
      */
@@ -47,12 +47,14 @@
    * @return string
    */
   function pzarc_tax_string_list( $tax, $prefix, $suffix, $separator ) {
-    $list  = '';
-    $count = count( $tax );
-    $i     = 1;
-    if ( is_array( $tax ) ) {
-      foreach ( $tax as $key => $value ) {
-        $list .= $prefix . $value->slug . $suffix . ( $i ++ == $count ? '' : $separator );
+    $list = '';
+    if ( is_array( $tax ) ) {  // 1.17.0 Sometimes $tax is not an array causing warning. Need to find out when
+      $count = count( $tax );
+      $i     = 1;
+      if ( is_array( $tax ) ) {
+        foreach ( $tax as $key => $value ) {
+          $list .= $prefix . $value->slug . $suffix . ( $i ++ == $count ? '' : $separator );
+        }
       }
     }
 
@@ -242,6 +244,26 @@
 
   }
 
+  /**
+   * @param        $id
+   * @param null   $selectors
+   * @param array  $defaults
+   * @param string $subtitle
+   *
+   * @return array
+   */
+  function pzarc_redux_custom_css( $id, $selectors = NULL, $defaults = array(), $subtitle = '' ) {
+    return array(
+        'id'       => $id,
+        'type'     => 'ace_editor',
+        'title'    => __( 'Custom CSS', 'pzarchitect' ),
+        'mode'     => 'css',
+        'options'  => array( 'minLines' => 25 ),
+        'default'  => $defaults,
+        'subtitle' => __( $subtitle, 'pzarchitect' ),
+    );
+  }
+
 //  function pzarc_get_taxterms($pzarc_taxes = null) {
 //    global $pzarc_masonry_filter_taxes,$tax_slug;
 //    var_dump($pzarc_masonry_filter_taxes,$tax_slug);
@@ -321,7 +343,7 @@
   }
 
   /**
-   * pzarc_get_defaults
+   * pzarc_set_defaults
    *
    * This doesn't need to return anything because it is populating the global variable
    *
@@ -368,8 +390,8 @@
       $bpd['design']                                             = $blueprints->mb_blueprint_design( $_architect['defaults']['blueprints'], TRUE );
       $_architect['defaults']['blueprints']['_blueprint_design'] = $bpd['design'][0]['sections'];
 
-      $bpd['types']                                             = $blueprints->mb_layouts( $_architect['defaults']['blueprints'], TRUE );
-      $_architect['defaults']['blueprints']['_blueprint_types'] = $bpd['types'][0]['sections'];
+      $bpd['field_types']                                       = $blueprints->mb_layouts( $_architect['defaults']['blueprints'], TRUE );
+      $_architect['defaults']['blueprints']['_blueprint_types'] = $bpd['field_types'][0]['sections'];
 
       $bpd['source']                                             = $blueprints->mb_sources( $_architect['defaults']['blueprints'], TRUE );
       $_architect['defaults']['blueprints']['_contents_metabox'] = $bpd['source'][0]['sections'];
@@ -401,14 +423,17 @@
       $_architect['defaults']['panels'] = ( ! isset( $_architect['defaults']['panels'] ) ? array() : $_architect['defaults']['panels'] );
 //var_dump($_architect);
 //      $pzarc_panel_general_settings = $blueprints->pzarc_panel_general_settings($_architect[ 'defaults' ][ 'panels' ], true);
-      $pand                 = array();
-      $pand['panels']       = $blueprints->mb_panels( $_architect['defaults']['panels'], TRUE );
-      $pand['titles']       = $blueprints->mb_titles( $_architect['defaults']['panels'], TRUE );
-      $pand['meta']         = $blueprints->mb_meta( $_architect['defaults']['panels'], TRUE );
-      $pand['features']     = $blueprints->mb_features( $_architect['defaults']['panels'], TRUE );
-      $pand['body']         = $blueprints->mb_body_excerpt( $_architect['defaults']['panels'], TRUE );
-      $pand['customfields'] = $blueprints->mb_customfields__premium_only( $_architect['defaults']['panels'], TRUE );
-
+      $pand             = array();
+      $pand['panels']   = $blueprints->mb_panels( $_architect['defaults']['panels'], TRUE );
+      $pand['titles']   = $blueprints->mb_titles( $_architect['defaults']['panels'], TRUE );
+      $pand['meta']     = $blueprints->mb_meta( $_architect['defaults']['panels'], TRUE );
+      $pand['features'] = $blueprints->mb_features( $_architect['defaults']['panels'], TRUE );
+      $pand['body']     = $blueprints->mb_body_excerpt( $_architect['defaults']['panels'], TRUE );
+      if ( ( function_exists( 'arc_fs' ) && arc_fs()->is__premium_only() ) || defined( 'PZARC_PRO' ) ) {
+        $pand['customfields'] = $blueprints->mb_customfields__premium_only( $_architect['defaults']['panels'], TRUE );
+      } else {
+        $pand['customfields'][0]['sectons'] = array();
+      }
       //     $_architect[ 'defaults' ][ 'panels' ][ '_panel_general_settings' ] = $pzarc_panel_general_settings[ 0 ][ 'sections' ];
       $_architect['defaults']['panels']['_panels_design']       = $pand['panels'][0]['sections'];
       $_architect['defaults']['panels']['_panels_titles']       = $pand['titles'][0]['sections'];
@@ -436,6 +461,7 @@
 
       delete_option( '_architect_defaults' );
       add_option( '_architect_defaults', maybe_serialize( $_architect['defaults']['_blueprints'] ) );
+      //     var_dump(get_option('_architect_defaults'));
       //  Unset the temporary blueprints field
       // ???
       unset( $_architect['defaults']['blueprints'] );
@@ -566,7 +592,7 @@
         'post_type'   => 'gp_gallery',
         'numberposts' => - 1,
         'post_status' => NULL,
-        'post_parent' => NULL,
+        'parent_ID'   => NULL,
     );
     $albums  = get_posts( $args );
     $results = array();
@@ -595,7 +621,7 @@
         ),
         'numberposts' => - 1,
         'post_status' => 'publish',
-        'post_parent' => NULL,
+        'parent_ID'   => NULL,
     );
     $albums = get_posts( $args );
     if ( $albums ) {
@@ -744,7 +770,7 @@
         'posts_per_page' => '-1',
     );
     $blueprints_query = new WP_Query( $query_options );
-    $pzarc_blueprints     = array();
+    $pzarc_blueprints = array();
     while ( $blueprints_query->have_posts() ) {
       $blueprints_query->next_post();
       $the_panel_meta = get_post_meta( $blueprints_query->post->ID );
@@ -769,122 +795,6 @@
     }
   }
 
-  /**
-   * @return array
-   */
-  function pzarc_get_custom_fields( $pzarc_custom_fields = array(), $inc_custom_prefix = FALSE ) {
-    global $wpdb;
-    global $_architect_options;
-
-    // WARNING: This may cause problems with missing custom fields
-    // And it did!! FFS!!
-//    if ( false === ( $pzarc_cf_list = get_transient( 'pzarc_cf_list' ) ) ) {
-    // It wasn't there, so regenerate the data and save the transient
-
-    if ( ! empty( $_architect_options['architect_exclude_hidden_custom'] ) ) {
-      $pzarc_cf_list = $wpdb->get_results(//        "SELECT DISTINCT meta_key FROM $wpdb->postmeta HAVING meta_key NOT LIKE '\_%' ORDER BY meta_key"
-          "SELECT DISTINCT meta_key FROM $wpdb->postmeta  HAVING (
-          meta_key NOT LIKE '\_%' 
-          ) ORDER BY meta_key" );
-
-    } else {
-      //Get custom fields
-      // This is only able to get custom fields that have been used! ugh!
-//    if ( false === ( $pzep_cf_list = get_transient( 'pzarc_custom_fields' ) ) ) {
-      // It wasn't there, so regenerate the data and save the transient
-      $pzarc_cf_list = $wpdb->get_results(//        "SELECT DISTINCT meta_key FROM $wpdb->postmeta ORDER BY meta_key"
-          "SELECT DISTINCT meta_key FROM $wpdb->postmeta  HAVING (
-          meta_key NOT LIKE '\_blueprints_%' AND
-          meta_key NOT LIKE '\_panels_%' AND
-          meta_key NOT LIKE '\_content_%' AND
-          meta_key NOT LIKE '\_hw%'
-          ) ORDER BY meta_key" );
-    }
-    //  set_transient( 'pzarc_cf_list', $pzarc_cf_list );
-    //  }
-    //    set_transient( 'pzarc_custom_fields', $pzep_cf_list, 0*PZARC_TRANSIENTS_KEEP );
-    // }
-
-//    $pzep_cf_list = $wpdb->get_results(
-    ///// NEver select from wp_* as site might not use wp_ prefix
-//        "SELECT meta_key,post_id,wp_posts.post_type FROM wp_postmeta,wp_posts GROUP BY meta_key HAVING ((meta_key NOT LIKE '\_%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'enclosure%') AND (wp_posts.post_type NOT LIKE 'attachment' AND wp_posts.post_type NOT LIKE 'revision' AND wp_posts.post_type NOT LIKE 'acf' AND wp_posts.post_type NOT LIKE 'arc-%' AND wp_posts.post_type NOT LIKE 'nav_menu_item' AND wp_posts.post_type NOT LIKE 'wp-types%')) ORDER BY meta_key"
-//    );
-    $exclude_fields   = array(
-        'ID',
-        'post_id',
-        'post_author',
-        'post_date',
-        'post_date_gmt',
-        'post_content',
-        'post_title',
-        'post_excerpt',
-        'post_status',
-        'comment_status',
-        'ping_status',
-        'post_password',
-        'post_name',
-        'to_ping',
-        'pinged',
-        'post_modified',
-        'post_modified_gmt',
-        'post_content_filtered',
-        'post_parent',
-        'guid',
-        'menu_order',
-        'post_type',
-        'post_mime_type',
-        'comment_count',
-        'meta_id',
-        'meta_key',
-        'meta_value',
-        'enclosure',
-        'hide_on_screen',
-        'original_post_id',
-        'pre_import_post_id',
-        'pre_import_post_parent',
-        'panels_data',
-        'position',
-        'rule',
-        'layout',
-        'standard_link_url_field',
-        'standard_seo_post_level_layout',
-        'standard_seo_post_meta_description',
-        'sharing_disabled',
-    );
-    $exclude_prefixes = array(
-        '_blueprints',
-        '_panels',
-        'panels_',
-        '_animation',
-        '_pzarc_pagebuilder',
-        '_pz',
-        '_hw',
-        '_wp_',
-        '_format',
-        '_edit',
-        '_content',
-        '_attachment',
-        '_menu',
-        '_oembed',
-        '_publicize',
-        '_thumbnail',
-        '_slick',
-        'pzgp',
-        'pzsp',
-        'field_',
-
-
-    );
-
-    foreach ( $pzarc_cf_list as $pzarc_cf ) {
-      if ( in_array( $pzarc_cf->meta_key, $exclude_fields ) === FALSE && ! pzarc_starts_with( $exclude_prefixes, $pzarc_cf->meta_key ) ) {
-
-        $pzarc_custom_fields[ ( $inc_custom_prefix ? 'customfield/' : '' ) . $pzarc_cf->meta_key ] = ( $inc_custom_prefix ? 'customfield/' : '' ) . $pzarc_cf->meta_key;
-      }
-    }
-
-    return $pzarc_custom_fields;
-  }
 
   function pzarc_starts_with( $needles = array(), $haystack = '', $position = 0 ) {
     $success = FALSE;
@@ -919,7 +829,7 @@
     $array_out = array();
     if ( ! empty( $array_in ) ) {
       foreach ( $array_in as $key => $value ) {
-        if ( $key == '_edit_lock' || $key == '_edit_last' || strpos( $key, $strip ) !== FALSE ) {
+        if ( $key == '_edit_lock' || $key == '_edit_last' || ( $strip && strpos( $key, (string) $strip ) !== FALSE ) ) {  // v11.1 Fix for PHP 7.3 strpos changes
           continue;
         }
         if ( is_array( $value ) ) {
@@ -1091,7 +1001,7 @@
    * @param $atts
    * @param $rawemail
    * @param $tag
-   *
+   * usage [mailto true/null]email[/mailto]
    * @return string
    */
   function pzarc_mail_encode( $atts, $rawemail, $tag ) {
@@ -1348,11 +1258,11 @@
    * @param $source
    * @param $keys
    * @param $value
-   * @param $parentClass
+   * @param $parent_class
    *
    * @return mixed|string
    */
-  function pzarc_get_styling( $source, $keys, $value, $parentClass ) {
+  function pzarc_get_styling( $source, $keys, $value, $parent_class, $pkeys_classes = '' ) {
 
     // generate correct whosit
     $pzarc_func = 'pzarc_style_' . $keys['style'];
@@ -1360,7 +1270,7 @@
     foreach ( $keys['classes'] as $class_str ) {
       $class_arr = explode( ',', $class_str );
       foreach ( $class_arr as $class ) {
-        $pzarc_css .= ( function_exists( $pzarc_func ) ? call_user_func( $pzarc_func, $parentClass . ' ' . $class, $value ) : '' );
+        $pzarc_css .= ( function_exists( $pzarc_func ) ? call_user_func( $pzarc_func, $parent_class . ' ' . $class, $value ) : '' );
         if ( $pzarc_func == 'pzarc_style_padding' ) {
           //     var_dump($pzarc_css);
         }
@@ -1416,6 +1326,17 @@
     $value = trim( $value );
 
     return ( ! empty( $value ) ? $class . $value : NULL );
+  }
+
+  /**
+   * @param $arc_needle
+   * @param $arc_replace
+   * @param $arc_haystack
+   *
+   * @return mixed
+   */
+  function pzarc_style_custom_css( $arc_needle, $arc_replace, $arc_haystack ) {
+    return str_replace( $arc_needle, $arc_replace, $arc_haystack );
   }
 
   if ( ! function_exists( 'pzifempty' ) ) {
@@ -1526,7 +1447,7 @@
           'post_content'   => $preset['post']->post_content,
           'post_excerpt'   => $preset['post']->post_excerpt,
           'post_name'      => $alt_slug ? $alt_slug : $new_slug,
-          'post_parent'    => $preset['post']->post_parent,
+          'parent_ID'      => $preset['post']->post_parent,
           'post_password'  => $preset['post']->post_password,
           'post_status'    => $alt_slug ? 'publish' : 'draft',
           'post_title'     => $alt_title ? $alt_title : '(New) ' . $preset['post']->post_title,
@@ -1542,8 +1463,7 @@
 
       /*
          * get all current post terms ad set them to the new post draft
-         */
-//      $taxonomies = get_object_taxonomies($pre->post_type); // returns array of taxonomy names for post type, ex array("category", "post_tag");
+         */ //      $taxonomies = get_object_taxonomies($pre->post_type); // returns array of taxonomy names for post type, ex array("category", "post_tag");
 //      foreach ($taxonomies as $taxonomy) {
 //        $post_terms = wp_get_object_terms($preset_name, $taxonomy, array('fields' => 'slugs'));
 //        wp_set_object_terms($new_post_id, $post_terms, $taxonomy, false);
@@ -1641,7 +1561,7 @@
     update_option( 'pzarc-run-rebuild', FALSE );
     delete_option( 'architect_custom_fields' );
     delete_option( 'arc-blueprint-usage' );
-    update_option('arc_blueprints',pzarc_get_blueprints(false));
+    update_option( 'arc_blueprints', pzarc_get_blueprints( FALSE ) );
 
 
   }
@@ -1919,7 +1839,7 @@
    *
    * @return array|int|null|WP_Error
    */
-  function pzarc_get_terms( $taxonomy = '', $args = array(), $array = TRUE, $use_id=false ) {
+  function pzarc_get_terms( $taxonomy = '', $args = array(), $array = TRUE, $use_id = FALSE ) {
 
     $terms = get_terms( $taxonomy, $args );
     if ( isset( $terms->errors ) ) {
@@ -1928,7 +1848,7 @@
       if ( $array && ! empty( $terms ) ) {
         $term_list = array();
         foreach ( $terms as $k => $v ) {
-          $term_list[ ($use_id?$v->term_id:$v->slug) ] = $v->name;
+          $term_list[ ( $use_id ? $v->term_id : $v->slug ) ] = $v->name;
         }
         $terms = $term_list;
       }
@@ -2297,6 +2217,18 @@
   }
 
   /**
+   * Add fields to custom fields
+   *
+   * @param $arc_fields
+   * @param $arc_add
+   *
+   * @return array
+   */
+  function arc_add_to_custom_fields( $arc_fields, $arc_add ) {
+    return array_merge( $arc_fields, $arc_add );
+  }
+
+  /**
    * @param $arc_overrides
    * @param $arc_blueprint
    */
@@ -2399,14 +2331,37 @@
       return $post->post_title;
     }
 
+    static function get_blueprint_shortname( $post_id ) {
+      return get_post_meta( $post_id, '_blueprints_short-name', TRUE );
+    }
+
     static function get_tables( $limit = NULL ) {
       global $wpdb;
       // Get all tables for current site
-      $results  = $wpdb->get_results( "SHOW TABLES LIKE '{$wpdb->prefix}%'" );
-      $tableset = array();
+      $results    = $wpdb->get_results( "SHOW TABLES LIKE '{$wpdb->prefix}%'" );
+      $tableset   = array();
+      $exclusions = array(
+          $wpdb->prefix . 'hw_',
+          $wpdb->prefix . 'bt_',
+          $wpdb->prefix . 'cpk_',
+          $wpdb->prefix . 'wc_',
+          $wpdb->prefix . 'postmeta',
+          $wpdb->prefix . 'options',
+          $wpdb->prefix . 'term',
+      );
       foreach ( $results as $index => $value ) {
         foreach ( $value as $tablename ) {
-          $tableset[ $tablename ] = $tablename;
+          $toexc = FALSE;
+          foreach ( $exclusions as $exclusion ) {
+            $len   = strlen( $exclusion );
+            $toexc = ( substr( $tablename, 0, $len ) === $exclusion );
+            if ( $toexc ) {
+              break;
+            }
+          }
+          if ( ! $toexc ) {
+            $tableset[ $tablename ] = $tablename;
+          }
         }
       }
 
@@ -2421,7 +2376,8 @@
      */
     static function get_table_fields( $table, $inc_table_in_value = FALSE ) {
       global $wpdb;
-      $fields   = $wpdb->get_col( "DESC {$table}", 0 );
+      $fields = $wpdb->get_col( "DESC {$table}", 0 );
+//      trigger_error("TABLE FIELDS", E_USER_WARNING);
       $fieldskv = array();
       foreach ( $fields as $v ) {
         $fieldskv[ $table . '/' . $v ] = ( $inc_table_in_value ? $table . '/' : '' ) . $v;
@@ -2442,7 +2398,7 @@
       }
 
       if ( $in_customfields ) {
-        $tablesfields = array_merge( $tablesfields, pzarc_get_custom_fields( NULL, TRUE ) );
+        $tablesfields = array_merge( $tablesfields, ArcFun::get_custom_fields( NULL, TRUE ) );
       }
 
       return $tablesfields;
@@ -2603,6 +2559,17 @@
       return ( class_exists( 'FLBuilderModel' ) && ( FLBuilderModel::is_builder_active() || isset( $_GET['fl_builder'] ) ) );
     }
 
+    static function clear_arc_cache() {
+      // deletes any remaining files in the pzarc cache
+      $cache_files = scandir( PZARC_CACHE_PATH );
+      foreach ( $cache_files as $cache_file ) {
+        if ( ! is_dir( PZARC_CACHE_PATH . '/' . $cache_file ) ) {
+          @unlink( PZARC_CACHE_PATH . '/' . $cache_file );
+        }
+      }
+
+    }
+
     /**
      * @param        $string
      * @param string $tags
@@ -2613,8 +2580,42 @@
       return strip_tags( $string, $tags );
     }
 
-    static function enqueue_scripts($layout_type='basic',$blueprint='none') {
-      switch ($layout_type) {
+    /**
+     * @param $array
+     * @param $key
+     *
+     * @return bool
+     */
+    static function is_last( $array, $key ) {
+      return ( $array[ $key ] == end( $array ) );
+    }
+
+    /**
+     * @param $date
+     *
+     * @return mixed
+     *
+     *  Purpose: Fix problems with / and , in dates for strtotime
+     */
+    static function fix_date( $date, $format ) {
+      $checks = array( 'd/m/', 'dd/mm/', 'd/mm/', 'dd/m/' );
+      $found  = 0;
+      $return = $date;
+      foreach ( $checks as $check ) {
+        $found += (int) strpos( $check, str_replace( 'y', '', strtolower( $format ) ) );
+      }
+
+      if ( $found && strpos( $date, '/' ) ) {
+        $return = str_replace( '/', '-', str_replace( ',', ' ', $date ) );
+      } else {
+        $return = str_replace( ',', ' ', $date );
+      }
+
+      return $return;
+    }
+
+    static function enqueue_scripts( $layout_type = 'basic', $blueprint = 'none' ) {
+      switch ( $layout_type ) {
         case 'basic':
           break;
         case 'masonry':
@@ -2623,6 +2624,14 @@
           wp_enqueue_script( 'js-isotope-packery' );
           wp_enqueue_script( 'js-front-isotope' );
           break;
+        case 'accordion':
+          wp_enqueue_script( 'js-jquery-collapse' );
+          break;
+        case 'table':
+          wp_enqueue_script( 'js-datatables' );
+          wp_enqueue_style( 'css-datatables' );
+          break;
+
 
       }
     }
@@ -2632,7 +2641,7 @@
      *
      * @return array
      */
-    static function get_blueprint_query_args($blueprint_name){
+    static function get_blueprint_query_args( $blueprint_name ) {
       if ( is_numeric( $blueprint_name ) ) {
         return array(
             'post_type' => 'arc-blueprints',
@@ -2649,4 +2658,458 @@
 
     }
 
+    /**
+     * @param string $field
+     * @param array  $field_types
+     * @param array  $exclude
+     * @param string $comparison
+     *
+     * @return array
+     *
+     * For
+     *
+     */
+    static function redux_required( $compare_field = '', $all_values = array(), $exclude_values = array(), $comparison = '!=', $inc_empty = TRUE ) {
+      /*
+       * When $comparison is != this effectively works as an OR for the $exclude_values
+       */
+      if ( empty( $compare_field ) || empty( $all_values ) ) {
+        $return = array();
+      } else {
+        if ( $inc_empty ) {
+          $return = array( array( $compare_field, $comparison, '' ) );
+          $i      = 1;
+        } else {
+          $return = array();
+          $i      = 0;
+        }
+        foreach ( $all_values as $k => $v ) {
+          if ( ! in_array( $k, $exclude_values ) ) {
+            $return[ $i ++ ] = array( $compare_field, $comparison, $k );
+          }
+        }
+      }
+
+      return $return;
+    }
+
+    static function field_types( $return_path = FALSE ) {
+      //PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/'
+      $field_types = array(
+          'text'            => array( 'description' => __( 'Text', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'text-with-paras' => array( 'description' => __( 'Text with paragraph breaks', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'wysiwyg'         => array( 'description' => __( 'Formatted text', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'image'           => array( 'description' => __( 'Image', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'gallery'         => array( 'description' => __( 'Gallery', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'date'            => array( 'description' => __( 'Date', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'number'          => array( 'description' => __( 'Number', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'link'            => array( 'description' => __( 'Link (URL)', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'email'           => array( 'description' => __( 'Email', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'embed'           => array( 'description' => __( 'Embed URL', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          // 'array'           => __( 'Array', 'pzarchitect' ), // Gargh! This makes fields in fields we need to prompt to format them.
+          'file'            => array( 'description' => __( 'File', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'map'             => array( 'description' => __( 'Map', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'multi'           => array( 'description' => __( 'Multi value (Taxonomies, multiselect, checkboxes, radio)', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'boolean'         => array( 'description' => __( 'Boolean', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'repeater'        => array( 'description' => __( 'Repeater', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),
+          'group'           => array( 'description' => __( 'Group', 'pzarchitect' ), 'path' => PZARC_PLUGIN_APP_PATH . '/shared/architect/php/field_types/' ),// WTF is a group Is it the aCF group?'path
+      );
+      foreach ( $field_types as $ftk => $ftv ) {
+        $field_types[ $ftk ] = $return_path ? $ftv['path'] : $ftv['description'];
+      }
+
+      return apply_filters( 'arc_cfield_types', $field_types );
+    }
+
+    static function get_focal_point( $thumb_id ) {
+
+//      switch ($type) {
+//        case ( 'post' ):
+      global $post;
+      $focal_point = get_post_meta( $thumb_id, 'pzgp_focal_point', TRUE );
+      if ( $post->post_type === 'attachment' ) {
+        $thumb_id = $post->ID;
+      }
+      if ( empty( $focal_point ) ) {
+        $focal_point = get_post_meta( get_the_id(), 'pzgp_focal_point', TRUE );
+      }
+      $focal_point = ( empty( $focal_point ) ? explode( ',', pzarc_get_option( 'architect_focal_point_default', '50,10' ) ) : explode( ',', $focal_point ) );
+//          break;
+//        case 'image':
+//          break;
+//      }
+      return ( array( 'thumb_id' => $thumb_id, 'focal_point' => $focal_point ) );
+    }
+
+    /**
+     * @param $i
+     * @param $section
+     * @param $data
+     *
+     * @return string
+     */
+    static function get_number_field( &$i, &$section, $data ) {
+      // TODO: Process ACF settings e.g. prepend text
+      // Numeric settings
+      $meta['prefix'] = '';
+      $meta['suffix'] = '';
+      if ( $data['field-source'] == 'acf' ) {
+        $field_object   = get_field_object( $data['name'] );
+        $meta['prefix'] = $field_object['prepend'];
+        $meta['suffix'] = $field_object['append'];
+      }
+      $data ['decimals']      = $section[ '_panels_design_cfield-' . $i . '-number-decimals' ];
+      $data ['decimal-char']  = $section[ '_panels_design_cfield-' . $i . '-number-decimal-char' ];
+      $data ['thousands-sep'] = $section[ '_panels_design_cfield-' . $i . '-number-thousands-separator' ];
+
+      if ( $section[ '_panels_design_cfield-' . $i . '-field-type' ] === 'number' ) {
+        //    $cfnumeric           = @number_format( $data ['value'], $data ['decimals'], '', '' );
+        $cfnumeric     = @number_format( $data ['value'], $data ['decimals'], '', '' );
+        $cfnumeric     = empty( $cfnumeric ) ? '0000' : $cfnumeric;
+        $data ['data'] = "data-sort-numeric='{$cfnumeric}'";
+      }
+
+      $content = '';
+      if ( ! empty( $data['value'] ) ) {
+        $content = $meta['prefix'] . @number_format( $data['value'], $data['decimals'], $data['decimal-char'], $data['thousands-sep'] ) . $meta['suffix'];
+      }
+
+      return $content;
+    }
+
+    /**
+     * @param $type
+     *
+     * @return string
+     */
+    static function get_field_type( $type ) {
+      $return = $type;
+      switch ( $type ) {
+        case 'date_picker':
+          $return = 'date';
+      }
+
+      return $return;
+    }
+
+    /**
+     * Function: get_acf_fields
+     * Desc: This gets all ACF fields, whether populated or not. It returns both a field dictionary (by group) and a field list.
+     *
+     * @param string $list_dictionary
+     *
+     * @return array/string
+     */
+    static function get_acf_fields( $list_dictionary = 'both' ) {
+      // TODO: Add option to return jsut fields, not groups
+      /*
+       * Populate the field groups to the dictionary
+       */
+      $acf_fields_group_array = get_posts( array( 'post_type' => 'acf-field-group', 'numberposts' => - 1 ) );
+      $acf_dictionary         = array();
+      $acf_field_group_ids    = array();
+      foreach ( $acf_fields_group_array as $kg => $vg ) {
+        $acf_dictionary[ $vg->ID ]      = array(
+            'group_name'     => $vg->post_excerpt,
+            'group_key'      => $vg->post_name,
+            'group_ID'       => $vg->ID,
+            'group_title'    => $vg->post_title,
+            'group_settings' => maybe_unserialize( $vg->post_content ),
+        );
+        $acf_field_group_ids[ $vg->ID ] = $vg->post_name;
+      }
+
+
+      /*
+       * Populate the fields arrays
+       */
+      $acf_fields_array = get_posts( array( 'post_type' => 'acf-field', 'numberposts' => - 1 ) );
+      //  var_dump($acf_fields_array);
+      $acf_fields      = array();
+      $acf_fields_list = array();
+      foreach ( $acf_fields_array as $kf => $vf ) {
+        $fsettings = maybe_unserialize( $vf->post_content );
+        if ( isset( $acf_field_group_ids[ $vf->post_parent ] ) ) {
+          $acf_parent      = 'field_group';
+          $acf_parent_name = $acf_dictionary[ $vf->post_parent ]['group_name'];
+        } else {
+          $acf_parent_field          = get_post( $vf->post_parent );
+          $acf_parent_field_settings = maybe_unserialize( $acf_parent_field->post_content );
+          $acf_parent                = $acf_parent_field_settings['type'];
+          $acf_parent_name           = $acf_parent_field->post_excerpt;
+          $acf_parent_desc           = $acf_parent_field->post_title;
+        }
+
+        // TODO: Populate child fields here
+        $acf_fields[ $vf->ID ] = array(
+            'field_name'     => $vf->post_excerpt,
+            'field_key'      => $vf->post_name,
+            'field_type'     => $fsettings['type'],
+            'field_ID'       => $vf->ID,
+            'field_title'    => $vf->post_title,
+            'field_settings' => $fsettings,
+            'parent_ID'      => $vf->post_parent,
+            'parent_type'    => $acf_parent,
+            'parent_name'    => $acf_parent_name,
+        );
+
+        if ( $acf_parent != 'field_group' ) {
+          $acf_parent_type                                               = strtoupper( substr( $acf_parent, 0, 1 ) ) . ' sub: ';
+          $acf_fields_list[ $acf_parent_name . ':' . $vf->post_excerpt ] = $acf_parent_desc . ' : ' . $vf->post_title . ' (' . $acf_parent_type . str_replace( '_', ' ', $fsettings['type'] ) . ')';
+        } else {
+
+          $acf_fields_list[ $vf->post_excerpt ] = $vf->post_title . ' (' . str_replace( '_', ' ', $fsettings['type'] ) . ')';
+
+        }
+      }
+
+      /*
+       * Add fields to the  ACF dictionary
+       */
+
+      foreach ( $acf_dictionary as $k => $v ) {
+        $acf_dictionary[ $k ]['fields'] = array();
+      }
+      foreach ( $acf_fields as $kd => $vd ) {
+        $field_id  = $kd;
+        $parent_id = $vd['parent_ID'];
+        $level     = ( $vd['parent_type'] == 'field_group' ) ? 'toplevelfield' : 'childfield';
+        $group_id  = ( $level == 'toplevelfield' ) ? $parent_id : $acf_fields[ $parent_id ]['parent_ID'];
+        switch ( TRUE ) {
+          // Field is top level  and field has not been added to the dictionary
+          case $level == 'toplevelfield' && ! isset( $acf_dictionary[ $group_id ]['fields'][ $field_id ] ):
+            $acf_dictionary[ $group_id ]['fields'][ $field_id ] = $acf_fields[ $field_id ];
+
+            break;
+          // Field is top level and field has children
+          case $level == 'toplevelfield' && isset( $acf_dictionary[ $group_id ]['fields'][ $field_id ]['children'] ):
+            $children                                                       = $acf_dictionary[ $group_id ]['fields'][ $field_id ]['children'];
+            $acf_dictionary[ $group_id ]['fields'][ $field_id ]             = $acf_fields[ $field_id ];
+            $acf_dictionary[ $group_id ]['fields'][ $field_id ]['children'] = $children;
+            break;
+          // Field is a child field
+          case $level == 'childfield':
+            $acf_dictionary[ $group_id ]['fields'][ $parent_id ]['children'][ $field_id ] = $acf_fields[ $field_id ];
+            break;
+          default:
+            var_dump( 'Error missed: ' . $field_id );
+        }
+
+      }
+      switch ( $list_dictionary ) {
+        case 'list':
+          return $acf_fields_list;
+          break;
+        case 'dictionary':
+          return $acf_dictionary;
+          break;
+        case 'both':
+        default:
+          return array( 'dictionary' => $acf_dictionary, 'list' => $acf_fields_list );
+          break;
+      }
+
+      // TODO: This is all well and good for toplevel fields.... but ACF concatenates repeater fields like repeater_0_field, repeater_1_field. So if you were trying to access the child fields...
+      // TODO... hmmm?
+    }
+
+    /**
+     * @return array
+     */
+    static function get_custom_fields( $pzarc_custom_fields = array(), $inc_custom_prefix = FALSE ) {
+      global $wpdb;
+      global $_architect_options;
+      // WARNING: This may cause problems with missing custom fields
+      // And it did!! FFS!!
+//    if ( false === ( $pzarc_cf_list = get_transient( 'pzarc_cf_list' ) ) ) {
+      // It wasn't there, so regenerate the data and save the transient
+
+      // TODO: Need to replace ACF custom fields with all ACF custom fields and in a friendly structure
+      if ( ! empty( $_architect_options['architect_exclude_hidden_custom'] ) ) {
+        $pzarc_cf_list = $wpdb->get_results(//        "SELECT DISTINCT meta_key FROM $wpdb->postmeta HAVING meta_key NOT LIKE '\_%' ORDER BY meta_key"
+            "SELECT DISTINCT meta_key FROM $wpdb->postmeta  HAVING (
+          meta_key NOT LIKE '\_%' 
+          ) ORDER BY meta_key" );
+
+      } else {
+        //Get custom fields
+        // This is only able to get custom fields that have been used! ugh!
+//    if ( false === ( $pzep_cf_list = get_transient( 'pzarc_custom_fields' ) ) ) {
+        // It wasn't there, so regenerate the data and save the transient
+        $pzarc_cf_list = $wpdb->get_results(//        "SELECT DISTINCT meta_key FROM $wpdb->postmeta ORDER BY meta_key"
+            "SELECT DISTINCT meta_key FROM $wpdb->postmeta  HAVING (
+          meta_key NOT LIKE '\_blueprints_%' AND
+          meta_key NOT LIKE '\_panels_%' AND
+          meta_key NOT LIKE '\_content_%' AND
+          meta_key NOT LIKE '\_hw%'
+          ) ORDER BY meta_key" );
+      }
+      //  set_transient( 'pzarc_cf_list', $pzarc_cf_list );
+      //  }
+      //    set_transient( 'pzarc_custom_fields', $pzep_cf_list, 0*PZARC_TRANSIENTS_KEEP );
+      // }
+
+//    $pzep_cf_list = $wpdb->get_results(
+      ///// NEver select from wp_* as site might not use wp_ prefix
+//        "SELECT meta_key,post_id,wp_posts.post_type FROM wp_postmeta,wp_posts GROUP BY meta_key HAVING ((meta_key NOT LIKE '\_%' AND meta_key NOT LIKE 'pz%' AND meta_key NOT LIKE 'enclosure%') AND (wp_posts.post_type NOT LIKE 'attachment' AND wp_posts.post_type NOT LIKE 'revision' AND wp_posts.post_type NOT LIKE 'acf' AND wp_posts.post_type NOT LIKE 'arc-%' AND wp_posts.post_type NOT LIKE 'nav_menu_item' AND wp_posts.post_type NOT LIKE 'wp-field_types%')) ORDER BY meta_key"
+//    );
+//    var_dump($pzarc_cf_list);
+      $exclude_fields   = array(
+          'ID',
+          'post_id',
+          'post_author',
+          'post_date',
+          'post_date_gmt',
+          'post_content',
+          'post_title',
+          'post_excerpt',
+          'post_status',
+          'comment_status',
+          'ping_status',
+          'post_password',
+          'post_name',
+          'to_ping',
+          'pinged',
+          'post_modified',
+          'post_modified_gmt',
+          'post_content_filtered',
+          'parent_ID',
+          'guid',
+          'menu_order',
+          'post_type',
+          'post_mime_type',
+          'comment_count',
+          'meta_id',
+          'meta_key',
+          'meta_value',
+          'enclosure',
+          'hide_on_screen',
+          'original_post_id',
+          'pre_import_post_id',
+          'pre_import_post_parent',
+          'panels_data',
+          'position',
+          'rule',
+          'layout',
+          'standard_link_url_field',
+          'standard_seo_post_level_layout',
+          'standard_seo_post_meta_description',
+          'sharing_disabled',
+          'hide_on_screen',
+          'hidden_from_ui',
+      );
+      $exclude_prefixes = array(
+          '_blueprints',
+          '_panels',
+          'panels_',
+          '_animation',
+          '_pzarc_pagebuilder',
+          '_pz',
+          '_hw',
+          '_wp_',
+          '_format',
+          '_edit',
+          '_content',
+          '_attachment',
+          '_menu',
+          '_oembed',
+          '_publicize',
+          '_thumbnail',
+          '_slick',
+          'pzgp',
+          'pzsp',
+          'field_',
+          'metaboxhidden',
+          'ignore_redux_blast',
+          'closedpostboxes',
+
+
+      );
+      foreach ( $pzarc_cf_list as $pzarc_cf ) {
+        if ( in_array( $pzarc_cf->meta_key, $exclude_fields ) === FALSE && ! pzarc_starts_with( $exclude_prefixes, $pzarc_cf->meta_key ) ) {
+
+          $pzarc_custom_fields[ ( $inc_custom_prefix ? 'customfield/' : '' ) . $pzarc_cf->meta_key ] = ( $inc_custom_prefix ? 'customfield/' : '' ) . $pzarc_cf->meta_key;
+        }
+
+      }
+
+      ksort( $pzarc_custom_fields );
+
+      $acf_fields = ArcFun::get_acf_fields( 'list' );
+      ksort( $acf_fields );
+
+      if ( ! empty( $acf_fields ) ) {
+        foreach ( $acf_fields as $k => $v ) {
+          switch ( TRUE ) {
+            case array_key_exists( $k, $pzarc_custom_fields ):
+              unset( $pzarc_custom_fields[ $k ] );
+              break;
+            case strpos( $k, ':' ):
+              $field = explode( ':', $k );
+              foreach ( $pzarc_custom_fields as $kc => $vc ) {
+
+                if ( strpos( $kc, $field[0] ) === 0 && strpos( $kc, $field[1] ) > strlen( $field[0] ) + 2 ) {
+                  unset( $pzarc_custom_fields[ $kc ] );
+                }
+              }
+              break;
+          }
+        }
+
+        $custom_fields = array( 'Advanced Custom Fields' => $acf_fields, 'Other Custom Fields' => $pzarc_custom_fields, );
+      } else {
+        $custom_fields = array( 'Other Custom Fields' => $pzarc_custom_fields, );
+
+      }
+
+      return $custom_fields;
+    }
+
+    static function get_layout_images() {
+      $layout_imgs = array(
+          'basic'     => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-grid.svg' ),
+          'slider'    => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-slider.svg' ),
+          'tabbed'    => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabbed.svg' ),
+          'masonry'   => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-masonry.svg' ),
+          'table'     => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-tabular.svg' ),
+          'accordion' => array( 'img' => PZARC_PLUGIN_APP_URL . 'shared/assets/images/metaboxes/layouts-accordion.svg' ),
+      );
+
+      return $layout_imgs;
+    }
+
+    static function message( $msg ) {
+      switch ( $msg ) {
+        case 'none':
+          echo 'Please select a default Blueprint';
+          break;
+        default:
+
+      }
+    }
+
+    static function resave_all_blueprints() {
+      $my_posts = get_posts( array( 'post_type' => 'arc-blueprints', 'numberposts' => - 1 ) );
+
+      foreach ( $my_posts as $my_post ):
+
+        wp_update_post( $my_post );
+
+      endforeach;
+
+    }
+
+    static function save_debug( $name, $var, $file, $line, $clear = FALSE ) {
+      ob_start();
+      echo '<pre><b style="font-size:13px;margin:0;">' . $name . '</b></pre>';
+      echo '<pre>' . $file . ' : ' . $line . '</pre>';
+      var_dump( $var );
+      echo '<hr>';
+      $output = ob_get_contents();
+      ob_end_clean();
+      $output = str_replace( __FILE__ . ':3106:', '', $output );
+      $output = str_replace( PZARC_PLUGIN_PATH, 'Architect/', $output );
+      $debug  = $clear ? '' : get_option( 'arc_debug' ) . "\n";
+      update_option( 'arc_debug', $debug . $output );
+    }
   }

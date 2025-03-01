@@ -7,10 +7,128 @@
 
 <h1 id="architectchangehistory">Architect change history</h1>
 
-<h2 id="notes:">Notes:</h2>
+<h2 id="11.5:26june2022">11.5 : 26 June 2022</h2>
 
 <ul>
-<li>If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com</li>
+<li>FIXED: WP 6.0 and Redux issue breaking WP Admin</li>
+</ul>
+
+<h2 id="11.4:21february2021">11.4 : 21 February 2021</h2>
+
+<ul>
+<li>FIXED: PHP 8.0 incompatibility and conflict with All-In-One Events calendar</li>
+</ul>
+
+<h2 id="11.3:13april2021">11.3 : 13 April 2021</h2>
+
+<ul>
+<li>FIXED: Date internationalization bug on where some post dates showing current date</li>
+<li>UPDATED: Freemius SDK to 2.4.1 Now has functionality to remove your PizazzWP account info from client sites</li>
+</ul>
+
+<h2 id="11.2:26april2020">11.2 : 26 April 2020</h2>
+
+<ul>
+<li>CHANGED: Re-enabled WP custom fields metabox in post edit that is hidden by Advanced Custom Fields v5.6</li>
+<li>ADDED: Option to enable ACF hiding WP custom fields. See under Architect &gt; Options</li>
+<li>UPDATED: Built-in ACF to v5.8.9</li>
+<li>FIXED: &#8220;Optional&#8221; label missing from tablet and phone selector in GB block.</li>
+<li>FIXED: Documentation now clarifies GB block is premium version only</li>
+</ul>
+
+<h2 id="11.1:22dec2019">11.1 : 22 Dec 2019</h2>
+
+<ul>
+<li>ADDED: Architect Gutenberg block!</li>
+<li>ADDED: Architect block for Padma theme</li>
+<li>ADDED: Setting to vertically centre panel content when feature outside components.</li>
+<li>ADDED: Settings for maximum and minimum number of paragraphs when using Dummy as the the source</li>
+<li>ADDED: Two new modern grid Blueprint Presets.</li>
+<li>CHANGED: Presets selector to vertical scroll.</li>
+<li>FIXED: Using Filler Image and Dummy content now returns a different image for each post</li>
+<li>FIXED: Hack to prevent error triggered by older TGMPA used by MyThemeShop on its Install Plugins page</li>
+<li>FIXED: Various minor bugs</li>
+<li>FIXED: Finally made Tools &gt; Clear actually resave all Blueprints</li>
+<li>FIXED: CSS specificity issue affect fixed width panels justification</li>
+</ul>
+
+<h2 id="11.0:25oct2019">11.0 : 25 Oct 2019</h2>
+
+<ul>
+<li>UPDATED: Freemius SDK to 2.3.1. This is an important update due to a conflict with Freemius in WP5.2</li>
+</ul>
+
+<h2 id="10.9:27sept2019">10.9 : 27 Sept 2019</h2>
+
+<ul>
+<li>==========================================================================================</li>
+<li>ADDED: ***** HEAPS MORE SUPPORT FOR ADVANCED CUSTOM FIELDS *****</li>
+<li>UPDATED: Changed version numbering to match releases. This is the 109th update so v10.9</li>
+<li>==========================================================================================</li>
+<li>ADDED: New custom field type: Email</li>
+<li>ADDED: New custom field type: Link</li>
+<li>ADDED: New custom field type: File</li>
+<li>ADDED: New custom field type: Image</li>
+<li>ADDED: New custom field type: Map</li>
+<li>ADDED: New custom field type: Repeater</li>
+<li>ADDED: New custom field type: Group</li>
+<li>ADDED: New custom field type: Multi value (e.g. multi-select, checkbox, taxonomy)</li>
+<li>ADDED: New custom field type: Gallery</li>
+<li>ADDED: Money prefix/suffix to Number field</li>
+<li>ADDED: Option to choose from which tables to list other table fields</li>
+<li>ADDED: Showcase link option for images (of course only relevant if Showcase is source!)</li>
+<li>ADDED: Option in Blueprints settings to include/exclude hidden custom fields in dropdowns.</li>
+<li>ADDED: Admin option to show the &#8220;Insert Architect Blueprint&#8221; button in the post editor to admins only.</li>
+<li>ADDED: Option to select custom field source type. Currently support standard WP and Advanced Custom Fields</li>
+<li>ADDED: Custom CSS field to custom fields styling</li>
+<li>ADDED: &#8220;Not Used&#8221; option to custom fields</li>
+<li>ADDED: Override for Skip N Posts value in the Beaver module</li>
+<li>CHANGED: Architect Maps Extend module for Beaver Builder now requires your own Google API key because of Google&#8217;s changes.</li>
+<li>FIXED: Showcases and Testimonials not displaying extra fields metabox</li>
+<li>UPDATED: Freemius SDK to 2.2.4 - Security update</li>
+</ul>
+
+<h2 id="1.17.0:2feb2019">1.17.0 : 2 Feb 2019</h2>
+
+<ul>
+<li>FIXED: Beaver Builder Maps and Any Field modules loading field arrays unnecessarily on front end.</li>
+<li>FIXED: CSS caching problem in Blox since 1.16.0</li>
+<li>FIXED: Possible warning if php_uname is not available in sysinfo</li>
+<li>FIXED: Possible notice in Blueprint listing is &#8220;Used on&#8221; page no longer available.</li>
+<li>FIXED: Alignment not working in slider navigator.</li>
+<li>CHANGED: Default option for populating posts dropdown is now off.</li>
+<li>CHANGED: CSS is now cached in WP Options and loaded in page footer. This allows on the fly regeneration of CSS and reduces problems with file-based CSS not being available on some hosts.</li>
+</ul>
+
+<h2 id="1.16.0">1.16.0</h2>
+
+<ul>
+<li>FIXED: Beaver Builder module is not using number of posts to show</li>
+<li>FIXED: Sometimes CSS hasn&#8217;t regenerated making for broken layouts</li>
+<li>FIXED: Clearing cache now clears all files in the Architect cache.</li>
+</ul>
+
+<h2 id="1.15.1:12august2018">1.15.1 : 12 August 2018</h2>
+
+<ul>
+<li>FIXED: Error in Blox when no action options</li>
+<li>FIXED: Inaccessible features displaying in free version.</li>
+</ul>
+
+<h2 id="1.15.0:8august2018">1.15.0 : 8 August 2018</h2>
+
+<ul>
+<li>CHANGED: Switched to loremflickr.com as lorempixel went down</li>
+<li>FIXED: Read more link not showing when using More tag as Excerpts break.</li>
+<li>FIXED: Errors in free version calling premium functions when it shouldn&#8217;t</li>
+<li>FIXED: Various PHP notices</li>
+</ul>
+
+<h2 id="1.14.0:3july2018">1.14.0: 3 July 2018</h2>
+
+<ul>
+<li>CHANGED: When content source is RSS, source images are now cached</li>
+<li>FIXED: RSS source images not scaling and cropping</li>
 </ul>
 
 <h2 id="1.13.0-23june2018">1.13.0 - 23 June 2018</h2>

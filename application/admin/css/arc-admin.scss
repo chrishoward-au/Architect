@@ -1,7 +1,7 @@
 //  http://bourbon.io/docs/
 @import "bourbon";
 
-$version: "1.13.0";
+$version: "11.6";
 // THIS IS THE SCSS VERSION
 $highlight: #0074a2;
 $border-radius: 3px;
@@ -42,9 +42,11 @@ $darker: 10%;
 
 li.arc-message {
   width: 100%;
+
   .after-title-help {
     border: none;
     background: none;
+
     .inside {
       padding: 0;
     }
@@ -142,7 +144,7 @@ div.pzarc-dragsource {
   height: 300px;
   box-sizing: border-box;
   //background: $medium-grey url(bg-preview.jpg);
-  overflow: hidden;
+  overflow: auto;
   width: 452px;
   position: relative;
   background-position: 100%;
@@ -857,18 +859,21 @@ body.arc-bgimage {
     background: -webkit-linear-gradient(to bottom, #DCE35B, #45B649); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #DCE35B, #45B649); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
+
   &.arc-bg-ocean-blue #wpwrap {
     background-size: cover;
     background: #43C6AC; /* fallback for old browsers */
     background: -webkit-linear-gradient(to top, #191654, #43C6AC); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to top, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
+
   &.arc-bg-orange-green #wpwrap {
     background-size: cover;
     background: #c21500; /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #ffc500, #c21500); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
+
   &.arc-bg-pink #wpwrap {
     background-size: cover;
     background: #C6426E; /* fallback for old browsers */
@@ -880,10 +885,12 @@ body.arc-bgimage {
     background-size: cover;
     background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
   }
+
   &.arc-bg-morpheous-den #wpwrap {
     background-size: cover;
     background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
   }
+
   &.arc-bg-dusty-grass #wpwrap {
     background-size: cover;
     background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
@@ -893,26 +900,32 @@ body.arc-bgimage {
     background-size: cover;
     background-image: linear-gradient(to top, #c471f5 0%, #fa71cd 100%);
   }
+
   &.arc-bg- #wpwrap {
     background-size: cover;
 
   }
+
   &.arc-bg- #wpwrap {
     background-size: cover;
 
   }
+
   &.arc-bg- #wpwrap {
     background-size: cover;
 
   }
+
   &.arc-bg- #wpwrap {
     background-size: cover;
 
   }
+
   &.arc-bg- #wpwrap {
     background-size: cover;
 
   }
+
   &.arc-bg- #wpwrap {
     background-size: cover;
 
@@ -935,17 +948,20 @@ body.arc-bgimage {
       padding-right: 5px;
       color: #fff;
       margin-bottom: 5px;
+
       a {
         color: #def;
       }
     }
   }
+
   &.post-type-arc-panels,
   &.post-type-arc-blueprints {
     #wpwrap {
       background-size: cover;
       background-attachment: fixed;
     }
+
     .postbox,
     .submitbox,
     #major-publishing-actions,
@@ -964,6 +980,7 @@ body.arc-bgimage {
       background: rgba(255, 255, 255, 0.3);
       padding: 1%;
     }
+
     .redux-container,
     .redux_metabox_panel {
       background: rgba(255, 255, 255, 0.42);
@@ -971,6 +988,7 @@ body.arc-bgimage {
 
     .postbox {
       border: none;
+
       .redux-container {
         &.redux-has-sections .redux-main,
         .redux-group-menu .active a {
@@ -978,6 +996,7 @@ body.arc-bgimage {
         }
       }
     }
+
     #poststuff h3.redux-hndle, #poststuff h2.hndle,
     #poststuff h3.redux-hndle, #poststuff h2.hndle,
     .metabox-holder h3.redux-hndle, .metabox-holder h2.hndle {
@@ -1062,15 +1081,18 @@ body.post-type-arc-panels .redux-main .select_wrapper {
   .redux_field_th {
     padding: 10px 10px 10px 0;
   }
+
   .qtip-content {
     background: #ffe;
     font-size: 12px;
     line-height: 1.3;
   }
+
   .qtip-titlebar {
     background: #ee9;
     font-weight: bold;
   }
+
   .redux-main .redux-field-container {
     padding: 10px 0;
   }
@@ -1238,12 +1260,14 @@ body .redux-container {
   .wp-menu-image img {
     opacity: 1;
   }
+
   .wp-menu-name:after {
     content: $version;
     opacity: 0;
     font-size: 10px;
     padding-left: 5px;
   }
+
   .wp-menu-name:hover:after {
     opacity: 0.6;
   }
@@ -1388,18 +1412,22 @@ span.bold {
     .redux-sidebar .redux-group-menu li.activeChild a {
       width: auto;
     }
+
     .redux-sidebar ul.redux-group-menu {
       margin: 0;
     }
+
     .redux-sidebar .redux-group-menu li {
       display: inline-block;
     }
+
     .redux-main {
       position: relative;
       clear: both;
       margin-left: 0;
       border-top: solid 1px $medium-grey;
     }
+
     .postbox .redux-container .redux-sidebar .redux-group-menu .active a {
       background: #707070;
       color: #fff;
@@ -1410,6 +1438,7 @@ span.bold {
 .after-title-help {
   border: solid 1px #aaa;
   border-radius: 3px;
+
   h4 {
     color: $highlight;
   }
@@ -1443,9 +1472,11 @@ body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:af
 .shoutout {
   margin-left: 15px;
   list-style-type: disc;
+
   li {
     a {
       text-decoration: none;
+
       &:hover {
         text-decoration: underline;
       }
@@ -1458,6 +1489,7 @@ body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:af
     margin-top: 10px;
     border-bottom: 1px solid $medium-grey;
     outline: none;
+
     button {
       background: none;
       border: 1px solid $medium-grey;
@@ -1467,30 +1499,35 @@ body .redux-sidebar .redux-group-menu li.activeChild.hasSubSections .active a:af
       font-size: 15px;
       padding: 10px;
       color: #777;
+
       &:hover {
         background: tomato;
         color: #fff;
         cursor: pointer;
       }
+
       &.active {
         color: #fff;
         background: $highlight;
+
         &:hover {
           background: $light-grey;
           color: $highlight;
           cursor: default;
         }
       }
+
       &.first {
         margin-left: 10px;
       }
 
       &.tabby-error {
-        background:red;
+        background: red;
       }
 
     }
   }
+
   &.tabs-content {
 
   }
@@ -1565,12 +1602,14 @@ body.arc-panels * {
 #_pzarc_pagebuilder_disabled {
   width: 80%;
   margin-bottom: 10px;
+
   h3 {
     text-align: center;
     text-transform: capitalize;
     font-size: 15px;
     color: $highlight;
   }
+
   li.ui-sortable-helper {
     background: #888;
     color: #fff;
@@ -1581,6 +1620,7 @@ ul#_pzarc_pagebuilder_disabled {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+
   li {
     display: inline-block;
     color: #555;
@@ -1623,6 +1663,7 @@ body.arc-beginner .arc-field-advanced {
 #redux-_architect-metabox-_blueprint_tabs_blueprints {
   margin-bottom: 0;
   border-bottom: solid 2px #0074a2;
+
   .hndle, .handlediv {
     display: none;
   }
@@ -1643,6 +1684,7 @@ body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {
     color: #fff;
     text-shadow: none;
   }
+
   //.redux-container {
   //  background-color:$blue-50;
   //}
@@ -1667,6 +1709,7 @@ body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {
 
 .arc-important {
   color: tomato;
+
   &.extra {
     background: tomato;
     color: #fff;
@@ -1674,6 +1717,7 @@ body.admin-color-midnight #redux-_architect-metabox-_blueprint_tabs_blueprints {
     border-radius: 3px;
     box-shadow: 0 0 1px #fff;
     display: inline-block;
+
     strong {
       color: #97e7ff;
       border-bottom: double 3px currentColor;
@@ -1892,6 +1936,7 @@ a.arc-important-button {
   background: $red;
   padding: 10px;
   border-radius: 5px;
+
   &:hover {
     background: $red-900;
   }
@@ -1905,6 +1950,7 @@ li.arc-message {
     color: #fff;
     background: $highlight;
     border-radius: 3px;
+
     &:hover {
       color: #fff;
       background: darken($highlight, 10%);
@@ -1916,6 +1962,7 @@ li.arc-message {
   position: relative;
   background: $medium-grey;
   height: auto;
+
   h2.heading {
     width: 100%;
     color: #fff;
@@ -1926,23 +1973,27 @@ li.arc-message {
     font-size: 17px;
     cursor: pointer;
     margin: 0;
+
     &.closed:after {
       content: "◄";
       font-size: 12px;
       float: right;
     }
+
     &.open:after {
       content: "▼";
       font-size: 8px;
       float: right;
     }
   }
+
   .tabs {
     display: block;
     width: 100%;
     box-sizing: border-box;
     padding: 0;
     border: none;
+
     button {
       color: $light-grey;
       background: #00a0d2;
@@ -1950,26 +2001,31 @@ li.arc-message {
       padding: 10px;
       border: none;
       border-radius: 0;
+
       &:hover {
         cursor: pointer;
         background: #00b9eb;
         color: #fff;
       }
+
       &.active {
         background: #fff;
         color: $highlight;
       }
     }
   }
+
   .footer {
     padding: 5px 10px;
     color: #006799;
     width: 60%;
     white-space: normal;
     margin: 5px;
+
     p.arc-styling-on {
       display: none;
     }
+
     p.arc-styling-off {
       background: #ffebee;
       color: #c00;
@@ -1979,6 +2035,7 @@ li.arc-message {
     }
 
   }
+
   .container {
     background: #fff;
     width: 100%;
@@ -1987,8 +2044,22 @@ li.arc-message {
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
+    max-height:250px;
+
     .grids {
     }
+
+    .tabs-pane {
+      display: none;
+      grid-template-columns: repeat(5, 1fr);
+      max-height: 230px;
+      overflow: auto;
+      &.active {
+        display:grid;
+      }
+    }
+
+
     span {
       display: inline-block;
       text-align: center;
@@ -1998,34 +2069,42 @@ li.arc-message {
       background: #fff;
       white-space: normal;
       min-height: 280px;
+
       &:hover {
         background: #e7e7e7;
       }
+
       label {
         p {
           color: #555;
           padding: 0;
           margin: 3px 0;
+
           &.arc-preset-title {
             font-weight: bold;
             font-size: 12px;
             color: $highlight;
           }
+
           &.arc-preset-designer {
             font-size: 10px;
           }
+
           &.arc-preset-description {
             font-size: 11px;
           }
         }
+
         input {
           display: none;
+
           + img {
             border: solid 3px transparent;
             max-width: 100%;
             height: auto;
             margin-right: 10px;
           }
+
           &:checked + img {
             border: solid 3px lighten($highlight, 20%);
           }
@@ -2033,10 +2112,12 @@ li.arc-message {
       }
     }
   }
+
   .buttons {
     position: absolute;
     bottom: 7px;
     right: 0px;
+
     .arc-button-presets {
       padding: 8px;
       text-decoration: none;
@@ -2044,9 +2125,11 @@ li.arc-message {
       background: $highlight;
       margin-right: 5px;
       border-radius: 5px;
+
       &.disabled {
         visibility: hidden;
       }
+
       &:hover {
         color: #fff;
         background: darken($highlight, 5%);
@@ -2070,9 +2153,11 @@ li.arc-message {
   overflow-y: auto;
   overflow-x: hidden;
   white-space: normal;
+
   form {
     width: 100%;
   }
+
   textarea {
     resize: none;
     background: $light-grey;
@@ -2096,6 +2181,7 @@ li.arc-message {
     border: none;
     margin: 0;
   }
+
   button,
   input,
   select,
@@ -2110,12 +2196,15 @@ li.arc-message {
   max-width: 1060px;
   display: flex;
   flex-wrap: wrap;
+
   strong {
     color: tomato;
   }
+
   em {
     font-weight: bold;
   }
+
   .arc-info {
     //  max-width: 45%;
     //  min-width:45%;
@@ -2131,19 +2220,23 @@ li.arc-message {
     vertical-align: top;
     border-radius: 3px;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+
     &.col1 {
       width: 92%;
     }
+
     &.col2 {
       width: 45%;
     }
+
     &.arc-is-lite {
-      background:$blue-50;
+      background: $blue-50;
     }
 
     h3 {
       color: $highlight;
     }
+
     span {
       font-size: 48px;
       width: 52px;
@@ -2151,9 +2244,11 @@ li.arc-message {
       vertical-align: middle;
       color: tomato;
     }
+
     ul {
       margin-left: 20px;
     }
+
     li {
       list-style-type: disc;
     }
@@ -2169,15 +2264,18 @@ li.arc-message {
     text-decoration: none;
     width: auto;
     font-size: 0.9em;
+
     &:hover {
       background: tomato;
       color: #fff;
+
       span {
         color: tomato;
         background: #fff;
       }
     }
   }
+
   span {
     color: tomato;
     background: #fff;
@@ -2185,6 +2283,7 @@ li.arc-message {
     border-radius: 50px;
     border: 1px solid currentColor;
     vertical-align: middle;
+
     &:before {
       vertical-align: middle;
       font-size: 15px;
@@ -2204,6 +2303,7 @@ body.post-type-arc-blueprints {
     -moz-box-shadow: none;
     background-color: #fee;
   }
+
   input:required:valid {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAepJREFUeNrEk79PFEEUx9/uDDd7v/AAQQnEQokmJCRGwc7/QeM/YGVxsZJQYI/EhCChICYmUJigNBSGzobQaI5SaYRw6imne0d2D/bYmZ3dGd+YQKEHYiyc5GUyb3Y+77vfeWNpreFfhvXfAWAAJtbKi7dff1rWK9vPHx3mThP2Iaipk5EzTg8Qmru38H7izmkFHAF4WH1R52654PR0Oamzj2dKxYt/Bbg1OPZuY3d9aU82VGem/5LtnJscLxWzfzRxaWNqWJP0XUadIbSzu5DuvUJpzq7sfYBKsP1GJeLB+PWpt8cCXm4+2+zLXx4guKiLXWA2Nc5ChOuacMEPv20FkT+dIawyenVi5VcAbcigWzXLeNiDRCdwId0LFm5IUMBIBgrp8wOEsFlfeCGm23/zoBZWn9a4C314A1nCoM1OAVccuGyCkPs/P+pIdVIOkG9pIh6YlyqCrwhRKD3GygK9PUBImIQQxRi4b2O+JcCLg8+e8NZiLVEygwCrWpYF0jQJziYU/ho2TUuCPTn8hHcQNuZy1/94sAMOzQHDeqaij7Cd8Dt8CatGhX3iWxgtFW/m29pnUjR7TSQcRCIAVW1FSr6KAVYdi+5Pj8yunviYHq7f72po3Y9dbi7CxzDO1+duzCXH9cEPAQYAhJELY/AqBtwAAAAASUVORK5CYII=);
     background-position: right top;
@@ -2215,9 +2315,11 @@ body.arc-advanced,
 body.arc-beginner {
   .redux-notice-field {
     background: #f3f3f3;
+
     &.redux-critical {
       background: #ffebee;
     }
+
     &.redux-success {
       background: #f1f8e9;
     }
@@ -2228,6 +2330,7 @@ body.arc-beginner {
   background: $light-grey;
   padding: 1px 10px;
   border-radius: 3px;
+
   ul {
     list-style: disc;
     margin-left: 20px;
@@ -2257,6 +2360,7 @@ body.arc-beginner {
     background: #222;
     color: #fff;
   }
+
   .redux-container {
     //background: $blue-50;
   }
@@ -2291,6 +2395,7 @@ body.arc-beginner {
     background: #222;
     color: #fff;
   }
+
   .redux-container {
     //background: $red-50;
   }
@@ -2309,6 +2414,7 @@ body.arc-beginner {
     color: #fff;
     // background: $blue-900 !important;
   }
+
   .redux-container {
     //background: $orange-50;
   }
@@ -2318,9 +2424,11 @@ body.arc-beginner {
 .widefat {
   .column-layout-type {
     width: 54px;
+
     .pzarc-layout-type-column {
     }
   }
+
   .column-_blueprints_content-source {
     width: 8em;
   }
@@ -2331,9 +2439,10 @@ body.arc-beginner {
   padding: 20px;
   border: 1px solid $medium-grey;
   max-width: 960px;
-  margin-bottom:20px;
+  margin-bottom: 20px;
+
   &.alert {
-    border-left:solid 3px #dd2222;
+    border-left: solid 3px #dd2222;
   }
 }
 
@@ -2349,10 +2458,13 @@ body.arc-beginner {
   max-height: 100px;
   overflow: auto;
   white-space: nowrap;
+
   .rows {
     margin: 0 !important;
+
     &.odd {
     }
+
     &.even {
       background: #eee;
     }
@@ -2362,17 +2474,88 @@ body.arc-beginner {
 .fs-submenu-item.architect.affiliation::before,
 .fs-submenu-item.architect.account::before,
 .fs-submenu-item.architect.contact::before,
-.fs-submenu-item.architect.pricing::before ,
+.fs-submenu-item.architect.pricing::before,
 .fs-submenu-item.architect.upgrade::before {
   content: "• ";
-  padding-left:8px;
-  display:inline-block;
-  color:#63bdcf;
-  margin-right:10px;
+  padding-left: 8px;
+  display: inline-block;
+  color: #63bdcf;
+  margin-right: 10px;
 }
 
 .architect_page_pzarc_support {
   .tabs-content {
-//    font-size:14px;
+    //    font-size:14px;
+  }
+
+}
+
+.arc-lite .arc-pro-only {
+  display: none !important;
+}
+
+.arc-in-editor-block-wrapper {
+  font-family: Helvetica, Arial, sans-serif;
+  border: solid 1px #4da1b3;
+  padding: 1rem;
+  background-color: #dff2f3;
+  color: #555555;
+  font-size: 14px;
+  border-radius: 3px;
+
+  .arc-acf-gutenberg-block-in-editor {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    grid-gap: 0.5em 1em;
+
+    p {
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .dashicons,
+    .dashicons:before {
+      font-size: 50px;
+      min-height: 50px;
+      height: 50px;
+      width: 50px;
+      color: #4da1b3;
+    }
+
+  }
+
+  p.arc-acf-block-source {
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+
+    &.arc-source-mismatch {
+      color: #cc0000;
+    }
+
+  }
+
+  .arc-heading {
+    margin: 2px 0 5px;
+    line-height: 1.2;
+    font-size: 16px;
+    font-weight: bold;
+    color: #676767;
   }
 }
+
+.arc-debugging-info {
+  border: solid 1px #aaa;
+  border-radius: 3px;
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+
+  small {
+    white-space: pre-wrap;
+  }
+}
+

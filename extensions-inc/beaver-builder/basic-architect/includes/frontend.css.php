@@ -44,6 +44,7 @@
   }
 
 
+
   if((!empty($settings->blueprint_default) && $settings->blueprint_default !== 'none') || in_array($settings->custom_styles,array('defaults','all','defaults_medium','defaults_small'))) {
     pz_render_module_css($settings->blueprint_default,$pz_css,$id,'/* Architect Module - Default devices Blueprint:' . $settings->blueprint_default . '  */');
   }
@@ -52,12 +53,12 @@
     if ((empty($settings->blueprint_tablet) || $settings->blueprint_tablet === 'none')) {
       $settings->blueprint_tablet = $settings->blueprint_default;
     }
-    pz_render_module_css($settings->blueprint_tablet,$pz_css,$id,'/* Architect Module - Medium devices Blueprint:' . $settings->blueprint_medium . '  */');
+    pz_render_module_css($settings->blueprint_tablet,$pz_css,$id,'/* Architect Module - Medium devices Blueprint:' . $settings->blueprint_tablet . '  */');
   }
 
   if((!empty($settings->blueprint_phone) && $settings->blueprint_phone !== 'none') || in_array($settings->custom_styles,array('small','all','medium_small','defaults_small'))) {
     if ((empty($settings->blueprint_phone) || $settings->blueprint_phone === 'none') ) {
       $settings->blueprint_phone = $settings->blueprint_default;
     }
-    pz_render_module_css($settings->blueprint_phone,$pz_css,$id,'/* Architect Module - Small devices Blueprint:' . $settings->blueprint_small . '  */');
+    pz_render_module_css($settings->blueprint_phone,$pz_css,$id,'/* Architect Module - Small devices Blueprint:' . $settings->blueprint_phone . '  */');
   }

@@ -56,8 +56,9 @@
 <?php _e( 'DB name:', 'pzarchitect' ); ?>                <?php echo $wpdb->dbname . "\n"; ?>
 <?php _e( 'Table prefix:', 'pzarchitect' ); ?>           <?php echo $wpdb->prefix . "\n"; ?>
 <?php _e( 'Web Server:', 'pzarchitect' ); ?>             <?php echo $_SERVER[ 'SERVER_SOFTWARE' ] . "\n"; ?>
+<?php if (function_exists('php_uname')) {?>
 <?php _e( 'Server info:', 'pzarchitect' ); ?>            <?php echo php_uname() . "\n"; ?>
-
+<?php } ?>
 <?php _e( 'WordPress URL:', 'pzarchitect' ); ?>          <?php echo get_bloginfo( 'wpurl' ) . "\n"; ?>
 <?php _e( 'Home URL: ', 'pzarchitect' ); ?>              <?php echo get_bloginfo( 'url' ) . "\n"; ?>
 
@@ -103,11 +104,11 @@ WP_POST_REVISIONS:      <?php echo defined( 'WP_POST_REVISIONS' ) ? WP_POST_REVI
 <?php echo "\n=============\n\r"; ?>
 <?php _e( 'Number of Blueprints:', 'pzarchitect' ); ?>   <?php echo count($blueprints) . "\n"; ?>
 <?php _e( 'Styling enabled:', 'pzarchitect' ); ?>        <?php echo ( ! empty( $_architect_options[ 'architect_enable_styling' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
-<?php _e( 'All custom fields:', 'pzarchitect' ); ?>      <?php echo ( ! empty( $_architect_options[ 'architect_exclude_hidden_custom' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
+<?php _e( 'Exclude hidden custom fields:', 'pzarchitect' ); ?>      <?php echo ( ! empty( $_architect_options[ 'architect_exclude_hidden_custom' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
 <?php _e( 'Animation enabled:', 'pzarchitect' ); ?>      <?php echo ( ! empty( $_architect_options[ 'architect_animation-enable' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
 <?php _e( 'Beta enabled:', 'pzarchitect' ); ?>           <?php echo ( ! empty( $_architect_options[ 'architect_beta_features' ] ) ? 'Yes' : 'No' ) . "\n"; ?>
 <?php //_e( 'Total Blueprint displays:', 'pzarchitect' ); ?><?php //echo $architect_timers['runs'] . "\n"; ?>
-<?php _e( 'Average time to display Blueprints:', 'pzarchitect' ); ?>   <?php echo round($architect_timers['avg_time'],2) . "\n"; ?>
+<?php _e( 'Average time to display Blueprints:', 'pzarchitect' ); ?>   <?php echo round($architect_timers['avg_time'],2) . "s\n"; ?>
 
 <?php _e( 'ACTIVE THEME:', 'pzarchitect' ); ?>
 <?php echo "\n=============\n\r"; ?>

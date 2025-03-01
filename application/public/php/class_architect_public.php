@@ -145,7 +145,8 @@
       // Overrides
       $this->build->blueprint['additional_overrides']        = arc_process_overrides( $additional_overrides, $this->build->blueprint );
       $this->build->blueprint['_blueprints_blueprint-title'] = isset( $overrides['title'] ) ? $overrides['title'] : $this->build->blueprint['_blueprints_blueprint-title'];
-      $this->build->blueprint['_blueprints_section-0-panels-per-view'] = isset( $overrides['panels_per_view'] ) ? $overrides['panels_per_view'] : $this->build->blueprint['_blueprints_section-0-panels-per-view'];
+      $this->build->blueprint['_blueprints_section-0-panels-per-view'] = !empty( $overrides['panels_per_view'] ) ? $overrides['panels_per_view'] : $this->build->blueprint['_blueprints_section-0-panels-per-view'];
+      $this->build->blueprint['_content_general_skip'] = !empty( $overrides['_content_general_skip'] ) ? $overrides['_content_general_skip'] : $this->build->blueprint['_content_general_skip'];
 
 
       // Shorthand some vars
@@ -564,7 +565,7 @@
       $arc_query_source->build_custom_query_options( $overrides );
 
       $this->arc_query = $arc_query_source->get_custom_query( $overrides );
-      self::replace_wp_query(); // NOTE: This is only activated on pagination. So should only be used by legitimate post types
+      self::replace_wp_query(); // NOTE: This is only activated on pagination. So should only be used by legitimate post field_types
     }
 
     /**
@@ -632,7 +633,7 @@
 //
 //      // TODO Try to get thiks working.
 //      $this->arc_query = new WP_Query($this->arc_query->query_vars);
-//      self::replace_wp_query(); // NOTE: This is only activated on pagination. So should only be used by legitimate post types
+//      self::replace_wp_query(); // NOTE: This is only activated on pagination. So should only be used by legitimate post field_types
     }
 
     // My function to modify the main query object

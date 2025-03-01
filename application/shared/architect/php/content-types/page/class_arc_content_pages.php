@@ -11,7 +11,7 @@
   class arc_content_pages extends arc_set_data// Singleton
   {
 
-    protected function __construct()
+     function __construct()
     {
       $registry = arc_Registry::getInstance();
       $prefix   = '_content_pages_';
@@ -67,7 +67,7 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_pages::getInstance('arc_content_pages');
+  new arc_content_pages('arc_content_pages');
 
 
 

@@ -123,17 +123,17 @@
       }
     }
     .nav-align-left {
-      // left: 15px;
-      text-align: left;
+      justify-content: flex-start;
       right: initial;
-      //     width: 10%;
-
     }
     .nav-align-right {
-      // right: 15px;
-      text-align: right;
+      justify-content: center;
       left: initial;
-      //     width: 10%;
+    }
+
+    .nav-align-right {
+      justify-content: flex-end;
+      left: initial;
     }
 
   }

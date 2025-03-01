@@ -32,7 +32,7 @@
         define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
       }
 
-      // Ideally we want to use Faker, since it has so many more content types, but it needs PHP 5.3.3, so we'll use LoremIpsum class when less that 5.3.3
+      // Ideally we want to use Faker, since it has so many more content field_types, but it needs PHP 5.3.3, so we'll use LoremIpsum class when less that 5.3.3
       if (PHP_VERSION_ID < 50303) {
         $this->isfaker = FALSE;
         require_once(PZARC_PLUGIN_APP_PATH . '/shared/thirdparty/php/LoremIpsum.class/LoremIpsum.class.php');
@@ -51,21 +51,21 @@
      * @param $toshow
      * @param $section
      */
-//    public function set_data(&$post, &$toshow, &$section)
-//    {
-//      $this->section = $section;
-//      $this->toshow  = $toshow;
-//      $this->get_title($post);
-//      $this->get_meta($post);
-//      $this->get_content($post);
-//      $this->get_excerpt($post);
-//      //TODO: Really must make these one!
-//      $this->get_image($post);
-//      $this->get_bgimage($post);
-//      // TODO: Should I do custom fields in Dummy?
-////      $this->get_custom($post);
-//      $this->get_miscellanary($post);
-//    }
+    public function set_data(&$post, &$toshow, &$section, $panel_number)
+    {
+      $this->section = $section;
+      $this->toshow  = $toshow;
+      $this->get_title($post);
+      $this->get_meta($post);
+      $this->get_content($post);
+      $this->get_excerpt($post);
+      //TODO: Really must make these one!
+      $this->get_image($post);
+      $this->get_bgimage($post);
+      // TODO: Should I do custom fields in Dummy?
+//      $this->get_custom($post);
+      $this->get_miscellanary($post);
+    }
 
     public function get_miscellanary(&$post) {
       global $_architect_options;
@@ -77,7 +77,6 @@
       $this->data['permalink']   = '#';
       $post_format               = 'standard';
       $this->data ['postformat'] = (empty($post_format) ? 'standard' : $post_format);
-
     }
 
     public function get_title(&$post) {
@@ -148,13 +147,14 @@
             $this->data['image']['image'] = '<img src="' . $imageURL . '">';
             break;
           default:
-            $imageURL                     = 'http://lorempixel.com/' . $image_grey . $width . '/' . $height . '/' . $post['image']['original'];
-            $origimageURL                 = 'http://lorempixel.com/' . $image_grey . (3 * $width) . '/' . (3 * $height) . '/' . $post['image']['original'];
+            $imageURL                     = 'https://loremflickr.com/' . $image_grey . $width . '/' . $height . '/' . $post['image']['original'];
+            $origimageURL                 = 'https://loremflickr.com/' . $image_grey . (3 * $width) . '/' . (3 * $height) . '/' . $post['image']['original'];
             $this->data['image']['image'] = '<img src="' . $imageURL . '">';
         }
 
         $this->data['image']['original'][0] = $origimageURL;
         $this->data['image']['caption']     = $post['image']['caption'];
+
       }
     }
 
@@ -197,11 +197,11 @@
             $this->data['bgimage']['thumb'] = '<img src="' . $imageURL . '" width=' . $width . ' height=' . $height . ' style="width:' . $width . 'px;height:' . $height . 'px;">';
             break;
           case ('dummyimage' === $image_source) :
-            $imageURL                       = 'http://dummyimage.com/' . $width . 'x' . $height . '/' . $bg_colour . '/' . $text_colour;
+            $imageURL                       = 'https://dummyimage.com/' . $width . 'x' . $height . '/' . $bg_colour . '/' . $text_colour;
             $this->data['bgimage']['thumb'] = '<img src="' . $imageURL . '">';
             break;
           default:
-            $imageURL                       = 'http://lorempixel.com/' . $image_grey . $width . '/' . $height . '/' . $post['image']['original'];
+            $imageURL                       = 'https://loremflickr.com/' . $image_grey . $width . '/' . $height . '/' . $post['image']['original'];
             $this->data['bgimage']['thumb'] = '<img src="' . $imageURL . '">';
         }
         $this->data['bgimage']['original'] = $imageURL;
@@ -213,7 +213,8 @@
       /** META */
       if ($this->toshow['meta1']['show'] || $this->toshow['meta2']['show'] || $this->toshow['meta3']['show']) {
         $this->data['meta']['datetime']        = $post['meta']['datetime'];
-        $this->data['meta']['fdatetime']       = date_i18n(strip_tags($this->section['_panels_design_meta-date-format']), str_replace(',', ' ', strtotime($post['meta']['fdatetime'])));
+        // $this->data['meta']['fdatetime']       = date_i18n(strip_tags($this->section['_panels_design_meta-date-format']), str_replace(',', ' ', strtotime($post['meta']['fdatetime'])));
+        $this->data['meta']['fdatetime']       = wp_date(strip_tags($this->section['_panels_design_meta-date-format']), str_replace(',', ' ', strtotime($post['meta']['fdatetime']))); //v11.3
         $this->data['meta']['categorieslinks'] = $post['meta']['categorieslinks'];
         $this->data['meta']['categories']      = $post['meta']['categories'];
         $this->data['meta']['tagslinks']       = $post['meta']['tagslinks'];

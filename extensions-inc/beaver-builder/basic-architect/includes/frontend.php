@@ -29,6 +29,7 @@
     ) : NULL;
 
     $pzarc_overrides['panels_per_view']=  ( empty( $settings->panels_per_view ) ? FALSE : $settings->panels_per_view );
+    $pzarc_overrides['_content_general_skip'] =  ( empty( $settings->_content_general_skip ) ? FALSE : $settings->_content_general_skip );
 
     if ( $settings->custom_overrides ) {
       $custom_overrides = explode( "\n", str_replace( "\r", "", $settings->custom_overrides ) );
@@ -37,7 +38,7 @@
         $pzarc_overrides[ $exploded[0] ] = str_replace( '"', '', $exploded[1] );
       }
     }
-
+//var_dump($pzarc_overrides,$additional_overrides);
     // pzarchitect($pzarc_blueprint = null, $pzarc_overrides = null, $tablet_bp = null, $phone_bp = null)
     pzarc( $settings->blueprint_default, $pzarc_overrides, 'beaver_module_basic', null,$additional_overrides,$settings->blueprint_tablet, $settings->blueprint_phone );
   ?>

@@ -198,7 +198,7 @@
             <ul class="theme-info">
               <li><?php printf(__('By %s', 'pzarchitect'), $this->theme->display('Author')); ?></li>
               <li><?php printf(__('Version %s', 'pzarchitect'), $this->theme->display('Version')); ?></li>
-              <li><?php echo '<strong>' . __('Tags', 'pzarchitect') . ':</strong> '; ?><?php printf($this->theme->display('Tags')); ?></li>
+<!--              <li>--><?php //echo '<strong>' . __('Tags', 'pzarchitect') . ':</strong> '; ?><!----><?php //printf($this->theme->display('Tags')); ?><!--</li>-->
             </ul>
             <p class="theme-description"><?php echo $this->theme->display('Description'); ?></p>
             <?php if ($this->theme->parent()) {
@@ -281,7 +281,7 @@
                       'default' => '',
                   ),
                   array(
-                      'title'   => __('Page types', 'pzarc'),
+                      'title'   => __('Page field_types', 'pzarc'),
                       'id'      => $prefix . 'pageids',
                       'type'    => 'select',
                       'multi'   => true,

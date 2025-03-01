@@ -39,7 +39,7 @@ require_once FL_ARCHITECT_BB2_MODULE_DIR . 'classes/class-fl-architect-modules-l
 //
 //  function arc_any_cfield_connection_getter( $settings ) {
 //    $cfield_val=get_post_meta(get_the_ID(),$settings->arc_cfield,true);
-//    // Need to put all the display code somewhere and filtering types
+//    // Need to put all the display code somewhere and filtering field_types
 //    return $cfield_val;
 //  }
 //

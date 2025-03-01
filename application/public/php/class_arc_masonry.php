@@ -88,7 +88,8 @@
                 break;
             }
             $defaults = array();
-            if ( $this->blueprint[ '_blueprints_masonry-filtering-set-defaults-' . $tax ] === 'yes' && ! empty( $this->blueprint[ '_blueprints_masonry-filtering-default-terms-' . $tax ] ) ) {
+            if ((isset($this->blueprint[ '_blueprints_masonry-filtering-set-defaults-' . $tax ]) && $this->blueprint[ '_blueprints_masonry-filtering-set-defaults-' . $tax ] === 'yes')
+                 && ! empty( $this->blueprint[ '_blueprints_masonry-filtering-default-terms-' . $tax ] ) ) {
               $defaults              = pzarc_get_terms( $tax, array(
                 'hide_empty' => true,
                 'include'    => $this->blueprint[ '_blueprints_masonry-filtering-default-terms-' . $tax ]

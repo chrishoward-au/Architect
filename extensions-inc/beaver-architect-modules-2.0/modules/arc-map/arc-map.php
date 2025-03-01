@@ -21,6 +21,14 @@
 
   }
 
+  // 1.17.0 - Only run the option call when in the bb editor
+  if ( ArcFun::is_bb_active() ) {
+    $arc_fields_caller = ArcFun::get_all_table_fields_flat();
+  } else {
+    $arc_fields_caller = array();
+  }
+
+
   /**
    * Register the module and its form settings.
    */
@@ -36,7 +44,7 @@
               'type'          => 'textarea',
               'rows'			=> '3',
               'label'         => __( 'Address', 'fl-builder' ),
-              'placeholder'   => __( '1865 Winchester Blvd #202 Campbell, CA 95008', 'fl-builder' ),
+              'placeholder'   => __( '1 Collins St, Melbourne, Victoria, Australia', 'fl-builder' ),
               'preview'       => array(
                 'type'            => 'refresh',
               ),
@@ -50,7 +58,13 @@
               'preview'     => array(
                 'type' => 'refresh',
               ),
-              'options'=>'ArcFun::get_all_table_fields_flat'
+              'options'=>$arc_fields_caller
+            ),
+            'googleapikey'  => array(
+                'type'        => 'text',
+                'label'       => __( 'Google API Key', 'pzarchitect' ),
+                'default'     => '',
+                'description'=> __('Google Maps now requires your own API key. This can be generated at <a href="https://console.developers.google.com/flows/enableapi?apiid=maps_backend,geocoding_backend,directions_backend,distance_matrix_backend,elevation_backend&keyType=CLIENT_SIDE&reusekey=true" target=_blank>Google Developer Console</a>. Note: If it does\'nt work, <a href="https://console.developers.google.com/google/maps-apis/api-list" target="_blank">check required Map APIs are enabled.</a>','pzarchitect')
             ),
             'height'  => array(
               'type'        => 'text',

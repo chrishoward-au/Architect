@@ -13,9 +13,9 @@
       define( 'PZARC_PLUGIN_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
       define( 'PZARC_PLUGIN_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
       define( 'PZARC_PLUGIN_FILE', __FILE__ );
+      define( 'SITE_PLUGIN_PATH', str_replace( '/pizazzwp-architect', '', plugin_dir_path( __DIR__ ) ) );
 
       require_once PZARC_PLUGIN_PATH . '/application/shared/architect/php/arc-constants.php';
-
       pzdb( 'after dependency check' );
 
       if ( is_admin() ) {
@@ -35,7 +35,7 @@
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-functions.php';
 
       // Register admin styles and scripts
-      if (is_admin()) {
+      if ( is_admin() ) {
         $redux_opt_name = '_architect';
         function pzarc_removeReduxDemoModeLink() { // Be sure to rename this function to something  unique
           if ( class_exists( 'ReduxFrameworkPlugin' ) ) {
@@ -69,6 +69,7 @@
       add_action( 'init', array( $this, 'init' ) );
       add_action( 'after_setup_theme', array( $this, 'register_architect_headway_block' ) );
       add_action( 'after_setup_theme', array( $this, 'register_architect_blox_block' ) );
+//      add_action( 'after_setup_theme', array( $this, 'register_architect_padma_block' ) );
 
       add_action( "redux/options/_architect/saved", 'pzarc_set_defaults', 20, 2 );
 
@@ -83,18 +84,18 @@
       }
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/class_arc_blueprint_data.php';
 
-      // Load custom custom types
+      // Load custom custom field_types
       if ( is_admin() ) {
         /// Why is this still here? // 1.10.8
-  //      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-panels.php';
+        //      require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-panels.php';
 
         self::update();
 
       }
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/arc-cpt-blueprints.php';
 
-      // Load all the builtin post types
-      pzdb( 'Load builtin post types' );
+      // Load all the builtin post field_types
+      pzdb( 'Load builtin post field_types' );
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/defaults/class_arc_content_defaults.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/post/class_arc_content_posts.php';
       require_once PZARC_PLUGIN_APP_PATH . '/shared/architect/php/content-types/page/class_arc_content_pages.php';
@@ -102,14 +103,14 @@
 
 
       // Load generic shortcodes
-      require_once PZARC_PLUGIN_APP_PATH .'/public/php/arc-generic-shortcodes.php';
+      require_once PZARC_PLUGIN_APP_PATH . '/public/php/arc-generic-shortcodes.php';
 
       // Load Beaver modules
       require_once PZARC_PLUGIN_PATH . '/extensions-inc/beaver-builder/fl-custom-module-architect.php';
       require_once PZARC_PLUGIN_PATH . '/extensions-inc/beaver-architect-modules-2.0/fl-architect-modules-bb2.php';
 
-      // Load Gutenberg
-    //  require_once PZARC_PLUGIN_PATH . '/gutenberg/architect-generic/plugin.php';
+      // Load Padma (their way)
+      require_once PZARC_PLUGIN_PATH.'/extensions-inc/padma/padma-architect-support.php';
 
 
       // Pro
@@ -144,7 +145,7 @@
 
       // TODO: Is this still used??
       if ( defined( 'PZARC_PRO' ) && PZARC_PRO ) {
-        @include PZARC_PLUGIN_PATH . '/extensions/architect-pro-cpt.php';
+        @include PZARC_PLUGIN_PATH . '/extensions-pro/architect-pro-cpt.php';
       }
       if ( ! is_admin() && isset( $_GET['arcbp'] ) ) {
         // This needs to be an action/filter after header...
@@ -175,6 +176,16 @@
         return blox_register_block( 'BloxArchitectBlock', PZARC_PLUGIN_URL . '/extensions-inc/blox/admin' );
       }
     }
+
+//    public function register_architect_padma_block() {
+//
+//      if ( class_exists( 'PadmaDisplay' ) ) {
+//        require( 'extensions-inc/padma/public/arc-padma-block-display.php' );
+//        require( 'extensions-inc/padma/admin/arc-padma-block-options.php' );
+//
+//        return padma_register_block( 'PadmaArchitectBlock', PZARC_PLUGIN_URL . '/extensions-inc/padma/admin' );
+//      }
+//    }
 
     /**
      * Fired when the plugin is activated.
@@ -267,29 +278,57 @@
      */
     public function register_plugin_styles() {
 
-      /** Check Blueprint uses registry to see if we need to load css for blueprints on this page. */
-      $bp_uses = maybe_unserialize( get_option( 'arc-blueprint-usage' ) );
-      if ( is_array( $bp_uses ) ) {
-        $page_id = pzarc_get_page_id();
-        foreach ( $bp_uses as $k => $v ) {
-          if ( $v['id'] === $page_id ) {
-            $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $v['bp'] . '.css';
-            $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $v['bp'] . '.css';
-            if ( file_exists( $filename_path ) ) {
-              wp_enqueue_style( 'pzarc_css_blueprint_' . $v['bp'], $filename, FALSE, filemtime( $filename_path ) );
-            } else {
-              //how do we tell the developer without an horrid message on the front end?
-            }
-          }
-        }
-      }
+      /** Check Blueprint usage registry to see if we need to load css for blueprints on this page. */
+
+      /**
+       * v 1.17.0 Replacing with wp options which will hotload css when Blueprint is displayed and print the CSS to the footer. Only real drawback is some late rendering issues
+       */
+
+      // TODO NEED TO CHECK IF ANY BLUEPRINT CSS MISSING AND REGENERATE
+
+//      $bp_uses = maybe_unserialize( get_option( 'arc-blueprint-usage' ) );
+//      if ( is_array( $bp_uses ) ) {
+//        $page_id                = pzarc_get_page_id();
+//        $only_ever_do_this_once = 1; // v1.16.0
+//        $retry                  = 1; // v1.16.0
+//        for ( $i = 1; $i <= $retry; $i ++ ) { // v1.16.0
+//          foreach ( $bp_uses as $k => $v ) {
+//            if ( $v['id'] === $page_id ) {
+//              $filename      = PZARC_CACHE_URL . '/pzarc_blueprint_' . $v['bp'] . '.css';
+//              $filename_path = PZARC_CACHE_PATH . '/pzarc_blueprint_' . $v['bp'] . '.css';
+//              if ( file_exists( $filename_path ) ) {
+ //               wp_enqueue_style( 'pzarc_css_blueprint_' . $v['bp'], $filename, FALSE, filemtime( $filename_path ) );
+  //            } else {
+                // We should never get here!!
+    //            $retry ++; // v1.16.0
+      //        }
+////            }
+////          }
+//          // Added v1.16.0 to enable regen of CSS if on of them isn't found.
+//          // TODO: This may fail on archive pages in Blox. To test
+//          if ( $retry > 1 && $only_ever_do_this_once ) {
+//            // Added 1.17.0 to fix possible Blox problem
+//            // TODO: But you can't call request_filesystem_credentials outside admin... so have to remove...
+//
+////            require_once( PZARC_PLUGIN_APP_PATH . '/admin/php/arc-save-process.php' );
+////            save_arc_layouts( 'all', NULL, TRUE );
+//            $only_ever_do_this_once = 0;
+//            $retry                  = 2; // Just so it does another loop
+//          } else {
+//            $retry = 1; // So it doesn't do anymore loops
+//          }
+//
+//        }
+//      }
+//      echo get_option( '_arc-css_' . $blueprint );
+
       wp_enqueue_style( PZARC_NAME . '-styles', PZARC_PLUGIN_APP_URL . '/public/css/architect-styles.css', FALSE, PZARC_VERSION );
       wp_register_style( PZARC_NAME . '-plugin-styles', PZARC_PLUGIN_APP_URL . '/public/css/arc-front.css', FALSE, PZARC_VERSION );
-      wp_enqueue_style( PZARC_NAME . '-plugin-styles');
+      wp_enqueue_style( PZARC_NAME . '-plugin-styles' );
       // Need this for custom CSS in styling options
       if ( file_exists( PZARC_CACHE_PATH . 'arc-dynamic-styles.css' ) ) {
         wp_register_style( PZARC_NAME . '-dynamic-styles', PZARC_CACHE_URL . 'arc-dynamic-styles.css', FALSE, PZARC_VERSION );
-        wp_enqueue_style( PZARC_NAME . '-dynamic-styles');
+        wp_enqueue_style( PZARC_NAME . '-dynamic-styles' );
       }
     }
 
@@ -304,7 +343,7 @@
       wp_register_script( 'js-imagesloaded', PZARC_PLUGIN_APP_URL . '/public/js/imagesloaded.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
 
       wp_register_script( 'js-isotope', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
-     // wp_register_script( 'js-isotope', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
+      // wp_register_script( 'js-isotope', PZARC_PLUGIN_APP_URL . '/public/js/isotope.pkgd.min.js', array( 'jquery' ), PZARC_VERSION, TRUE );
       wp_register_script( 'js-isotope-packery', PZARC_PLUGIN_APP_URL . '/public/js/packery-mode.pkgd.js', array( 'jquery' ), PZARC_VERSION, TRUE );
 
       wp_register_script( 'js-front', PZARC_PLUGIN_APP_URL . '/public/js/arc-front.js', array( 'jquery' ), PZARC_VERSION, TRUE );
@@ -318,14 +357,14 @@
     private static function update() {
       $current_db_version = get_option( 'architect_db_version' );
       $db_updates         = array(
-        '1.1.0.0' => 'updates/architect-1100.php',
-        '1.2.0.0' => 'updates/architect-1200.php',
-        '1.3.0.0' => 'updates/architect-1300.php',
-        '1.4.0.0' => 'updates/architect-1400.php',
-        '1.5.0.0' => 'updates/architect-1500.php',
-        '1.6.0.0' => 'updates/architect-1600.php',
-        '1.8.0.0' => 'updates/architect-1800.php',
-        '1.11.0.0'=>'updates/architect-11100.php'
+          '1.1.0.0'  => 'updates/architect-1100.php',
+          '1.2.0.0'  => 'updates/architect-1200.php',
+          '1.3.0.0'  => 'updates/architect-1300.php',
+          '1.4.0.0'  => 'updates/architect-1400.php',
+          '1.5.0.0'  => 'updates/architect-1500.php',
+          '1.6.0.0'  => 'updates/architect-1600.php',
+          '1.8.0.0'  => 'updates/architect-1800.php',
+          '1.11.0.0' => 'updates/architect-11100.php',
       );
 
       foreach ( $db_updates as $version => $updater ) {
@@ -342,11 +381,11 @@
       // This is a shorthand way of doing an if. When pro isn't present, it's the lite version.
       $pzarc_current_theme = wp_get_theme();
 
-      $hw_opts      = NULL;
+      $hw_opts = NULL;
 
       $pzarc_status = pzarc_status();
 
-      // There is no Blox licencing so don't need to check for that
+      // There is no Blox or Padma licencing so don't need to check for that
       if ( ( $pzarc_current_theme->get( 'Name' ) === 'Headway Base' || $pzarc_current_theme->get( 'Template' ) == 'headway' ) && ( $pzarc_status == FALSE || $pzarc_status !== 'valid' ) ) {
         if ( is_multisite() ) {
           $hw_opts = get_blog_option( 1, 'headway_option_group_general' );
@@ -360,7 +399,7 @@
 
       if ( ( ! empty( $hw_opts['license-status-architect'] ) && $hw_opts['license-status-architect'] == 'valid' ) || ( $pzarc_status !== FALSE && $pzarc_status == 'valid' ) ) {
         define( 'PZARC_PRO', TRUE );
-        @include PZARC_PLUGIN_PATH . '/extensions/architect-pro-layout.php';
+        @include PZARC_PLUGIN_PATH . '/extensions-pro/architect-pro-load-extensions.php';
       }
 
       switch ( TRUE ) {

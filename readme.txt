@@ -1,10 +1,10 @@
 === Architect content block builder ===
 Contributors: chrishoward
 Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
-Requires at least: 4.0
-Tested up to: 5.0
+Requires at least: 4.7
+Tested up to: 6.0
 Requires PHP: 5.6
-Stable tag: 1.13.0
+Stable tag: 11.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Plugin URI: http://architect4wp.com
@@ -46,6 +46,7 @@ There are several ways to display Architect Blueprints.
 * Widget
 * Headway Block
 * Blox Block
+* Padma Block
 * Beaver module
 * Action hooks (Insert a hook in your theme page template, then hook Architect to it)
 * Actions editor (Built into Architect, all you have to know is the name of the hook you want to use)
@@ -80,17 +81,140 @@ No. We don't delete any of your data. In the future a method will be provided fo
 
 For support, please send an email to support@pizazzwp.com
 
+== todo ==
+TODO: Update shortcode help!
+TODO: ** Debug slideshows *nem
+TODO: Don't upscale images smaller than dimensions. *nem
+TODO: SrcSet *nem
+TODO: Fix content animation demo on demos
+TODO: Fill space when no images for sliders *nem
+TODO: Option to fill space when no images in grid.
+TODO: Dynamically load post lists instead of fully loading.
+TODO: Turnoff architect timers
+TODO: FIX Drop down content making components anchor to top of panel
+TODO: Add reading view option.
+TODO: Fix .pzarc-fakethumb showing when no feature
+TODO: Fix loading and rendering issue with sliders
+TODO: Add page categories option (taxonomy)
+TODO: Check if TGMPA message is breaking admin when Redux needs updating
+TODO: Add option for full size components with options to float content.
+MYPANELS .pzarc-components {    height:100%;    display: flex;  flex-direction: column;  justify-content: center;}
+TODO: Add font scaling to meta
+TODO: INCLUDE REDUX
+TODO: Inlcude Sudo - but fix nav centeringe
+TODO: Include Users post type
+TODO Add image trim to featured images
+TODO: Add method to remove all Blueprint data
+todo: implement object fit for images to fix scaling - see Wangclub
+MYPANELS {    display:flex!important;}
+MYPANELS figure.entry-thumbnail {    max-height:100%;}
+MYPANELS figure.entry-thumbnail img {    object-fit:cover;    width:100%;    height:100%;}
+** TODO: Add a warning if in lite mode and Blueprint is using Pro features.
+TODO: Prepare for Redux 4.
+TODO: Check if Gallery source still works correctly
+TODO: Add spreadsheets as source to Tables
+* TODO: Add message when fonts turned off
+* TODO: Add Swiper sliders
+* TODO: Fix filler images not apparently working
+
 == Changelog ==
 
 = Notes =
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
+* If Blueprints editor fails to render, go to options and turn on option to prevent post lookup lists loading.
 
-TODO: Update shortcode help!
-TODO: ** Debug slideshows *nem
-TODO: Don't upscale images smaller than dimensions.
-TODO: SrcSet
+= 11.5 = 26 June 2022
+* FIXED: WP 6.0 and Redux issue breaking WP Admin
 
-= 1.13.0
+= 11.4 : 21 February 2021
+* FIXED: PHP 8.0 incompatibility and conflict with All-In-One Events calendar
+
+= 11.3 : 13 April 2021
+* FIXED: Date internationalization bug on where some post dates showing current date
+* UPDATED: Freemius SDK to 2.4.1 Now has functionality to remove your PizazzWP account info from client sites
+
+= 11.2 : 26 April 2020
+* CHANGED: Re-enabled WP custom fields metabox in post edit that is hidden by Advanced Custom Fields v5.6
+* ADDED: Option to enable ACF hiding WP custom fields. See under Architect > Options
+* UPDATED: Built-in ACF to v5.8.9
+* FIXED: "Optional" label missing from tablet and phone selector in GB block.
+* FIXED: Documentation now clarifies GB block is premium version only
+
+= 11.1 : 22 Dec 2019
+* ADDED: Architect Gutenberg block!
+* ADDED: Architect block for Padma theme
+* ADDED: Setting to vertically centre panel content when feature outside components.
+* ADDED: Settings for maximum and minimum number of paragraphs when using Dummy as the the source
+* ADDED: Two new modern grid Blueprint Presets.
+* CHANGED: Presets selector to vertical scroll.
+* FIXED: Using Filler Image and Dummy content now returns a different image for each post
+* FIXED: Hack to prevent error triggered by older TGMPA used by MyThemeShop on its Install Plugins page
+* FIXED: Various minor bugs
+* FIXED: Finally made Tools > Clear actually resave all Blueprints
+* FIXED: CSS specificity issue affect fixed width panels justification
+
+= 11.0 : 25 Oct 2019
+* UPDATED: Freemius SDK to 2.3.1. This is an important update due to a conflict with Freemius in WP5.2
+
+= 10.9 : 26 Sept 2019 =
+* ==========================================================================================
+* ADDED: ***** HEAPS MORE SUPPORT FOR ADVANCED CUSTOM FIELDS *****
+* UPDATED: Changed version numbering to match releases. This is the 109th update so v10.9
+* ==========================================================================================
+* ADDED: New custom field type: Email
+* ADDED: New custom field type: Link
+* ADDED: New custom field type: File
+* ADDED: New custom field type: Image
+* ADDED: New custom field type: Map
+* ADDED: New custom field type: Repeater
+* ADDED: New custom field type: Group
+* ADDED: New custom field type: Multi value (e.g. multi-select, checkbox, taxonomy)
+* ADDED: New custom field type: Gallery
+* ADDED: Money prefix/suffix to Number field
+* ADDED: Option to choose from which tables to list other table fields
+* ADDED: Included ACF Field type next to ACF field names in dropdown
+* ADDED: Showcase link option for images (of course only relevant if Showcase is source!)
+* ADDED: Option in Blueprints settings to include/exclude hidden custom fields in dropdowns.
+* ADDED: Admin option to show the "Insert Architect Blueprint" button in the post editor to admins only.
+* ADDED: Option to select custom field source type. Currently support standard WP and Advanced Custom Fields
+* ADDED: Custom CSS field to custom fields styling
+* ADDED: "Not Used" option to custom fields
+* ADDED: Override for Skip N Posts value in the Beaver module
+* CHANGED: Architect Maps Extend module for Beaver Builder now requires your own Google API key because of Google's changes.
+* FIXED: Showcases and Testimonials not displaying extra fields metabox
+* UPDATED: Freemius SDK to 2.2.4 - Security update
+
+= 1.17.0 : 2 Feb 2019
+* FIXED: Beaver Builder Maps and Any Field modules loading field arrays unnecessarily on front end.
+* FIXED: CSS caching problem in Blox since 1.16.0
+* FIXED: Possible warning if php_uname is not available in sysinfo
+* FIXED: Possible notice in Blueprint listing is "Used on" page no longer available.
+* FIXED: Alignment not working in slider navigator.
+* CHANGED: Default option for populating posts dropdown is now off.
+* CHANGED: CSS is now cached in WP Options and loaded in page footer. This allows on the fly regeneration of CSS and reduces problems with file-based CSS not being available on some hosts.
+
+
+= 1.16.0 :
+FIXED: Beaver Builder module is not using number of posts to show
+FIXED: Sometimes CSS hasn't regenerated making for broken layouts
+FIXED: Clearing cache now clears all files in the Architect cache.
+
+= 1.15.1 : 12 August 2018
+* FIXED: Error in Blox when no action options
+* FIXED: Inaccessible features displaying in free version.
+
+= 1.15.0 : 8 August 2018
+
+* CHANGED: Switched to loremflickr.com as lorempixel went down
+* FIXED: Read more link not showing when using More tag as Excerpts break.
+* FIXED: Errors in free version calling premium functions when it shouldn't
+* FIXED: Various PHP notices
+
+= 1.14.0: 3 July 2018
+* CHANGED: When content source is RSS, source images are now cached
+* FIXED: RSS source images not scaling and cropping
+
+= 1.13.0 : 23 June 2018
 
 * ADDED: More filter options to Blox block
 * CHANGED: Rejigged Blox block menus
@@ -422,7 +546,7 @@ Miscellaneous enhancements:
 
 = 1.5.6 =
 * CHANGED: Excerpts will now process shortcodes. This includes any in image captions and descriptions.
-* ADDED: Option for fixed width tabs to add a margin for compensation 
+* ADDED: Option for fixed width tabs to add a margin for compensation
 
 = 1.5.5 =
 * FIXED: Sharing icons not showing for arcshare.
@@ -440,7 +564,7 @@ Miscellaneous enhancements:
 * UPGRADED: Isotope to v2.2.2
 * FIXED: Extra end div breaking layouts with masonry
 * FIXED: Titles bullet margins not working
-* FIXED: Horizontal tabs not equal heights 
+* FIXED: Horizontal tabs not equal heights
 * FIXED: Masonry sorting and filtering showing when not enabled
 * FIXED: "Missing image" thumbnail not sizing correctly.
 * FIXED: Specific filler image not showing when in background
@@ -454,7 +578,7 @@ Miscellaneous enhancements:
 = 1.5.1 =
 * ADDED: Rendering of shortcodes in custom fields
 * ADDED: Shortcode [arcpagetitle] to display the parent page's title. Use in meta fields.
-* CHANGED: Slides hidden before loading for tidiness. 
+* CHANGED: Slides hidden before loading for tidiness.
 * FIXED: CSS not loading when using a Blueprint to override WP Gallery.
 * FIXED: Slideshow jQuery loading wrong sometimes
 
@@ -481,7 +605,7 @@ Miscellaneous enhancements:
 = 1.4.9 : 16 Sept 2015 =
 * FIXED: Pages instead of posts showing on Blog index
 * CHANGED: Default posts per page for pagination to value set in WP Settings > Reading
- 
+
 = 1.4.8.2 =
 * ADDED: Option for specific filler image (thanks Cemil!)
 
@@ -529,7 +653,7 @@ Miscellaneous enhancements:
 * ADDED: Option to not use a dropdown for post lists. A text field is used instead where you then need to enter a specific ID(s). Required when lots of posts that kill the memory loading into the dropdown array. This affects the Posts and Galleries content sources only.
 * CHANGED: All actions and filters prefixes changed from 'pzarc' to 'arc'
 * CHANGED: Message on update now - finally! - says Blueprint updated
-* FIXED: Scaled cropping not working when using NextGen galleries 
+* FIXED: Scaled cropping not working when using NextGen galleries
 
 = 1.3.7 =
 * ADDED: Accordion title styling to Headway Design Mode
@@ -561,10 +685,10 @@ Miscellaneous enhancements:
 * CHANGED: Preset selector is now always visible
 * CHANGED: Small visual changes to Preset selector
 * FIXED: Thumbnails in navigator not using Focal Point
- 
+
 = 1.3.2 =
 * FIXED: Turned off debugging code accidentally left on in EDD which prevented Manage WP remote updates from working.
- 
+
 = 1.3.1 =
 * FIXED: Errors if custom fields set to display but not setup in Architect
 * FIXED: get_posts called too early in Slide content type causing error in Marketplace plugin
@@ -590,7 +714,7 @@ Miscellaneous enhancements:
 * CHANGED: Create blueprint function allows option to preserve shortname
 * CHANGED: Specific posts and pages can be manually ordered
 * CHANGED: Icons for the layout type selector
-* CHANGED: Licence owner name now displays on licence screen 
+* CHANGED: Licence owner name now displays on licence screen
 * FIXED: Slider navigation div showing when no nav and slick error
 * FIXED: Slick error when no nav
 * FIXED: Some custom fields not showing in dropdown (because of transients)
@@ -635,7 +759,7 @@ Miscellaneous enhancements:
 * ADDED: Option to exclude current post
 * ADDED: Option to exclude current page
 * FIXED: Post selector only showing 5 posts
-* FIXED: White screen error when saving in EDD 
+* FIXED: White screen error when saving in EDD
 * FIXED: Fatal error on activating 1.2.4
 
 = 1.2.4 =
@@ -730,7 +854,7 @@ Miscellaneous enhancements:
 * ADDED: Export Blueprint
 * ADDED: Architect shortcode selector for post and page editor.
 * ADDED: Option for posts with no image to use lorempixel.
-* ADDED: Styling for body and excerpt paragraphs 
+* ADDED: Styling for body and excerpt paragraphs
 * ADDED: Option to select different placeholder image source for Dummy content
 * ADDED: Greyscale option for dummy images
 * ADDED: Categories for dummy images
@@ -748,7 +872,7 @@ Miscellaneous enhancements:
 
 * FIXED: Various small bugs on new installs and others
 * FIXED: Excerpt trimming with dummy content
-* FIXED: Stupid bug in presets where it was multi-selecting. (Chris the Coder, coding all nigh'; found a bug that made him cry; Once the bug was coded away; Chris the Coder dropped a freakin' expletive!) 
+* FIXED: Stupid bug in presets where it was multi-selecting. (Chris the Coder, coding all nigh'; found a bug that made him cry; Once the bug was coded away; Chris the Coder dropped a freakin' expletive!)
 * FIXED: Broken image in dummy content when offline. Now uses a nice sky blue placeholder image.
 * FIXED: Issue with servers that have allow_url_fopen disabled
 
@@ -789,7 +913,7 @@ Miscellaneous enhancements:
 * FIXED: PHP messages when no Panel set
 * CHANGED: Added more help info
 * FIXED: Stupid git problem with filename changes when upper to lower.
- 
+
 = 1.0.7 =
 * ADDED: More help info
 * ADDED: Pageguide based step by step help and tutorial

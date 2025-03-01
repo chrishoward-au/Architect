@@ -45,7 +45,7 @@
       <h3>Blueprint Design</h3>This is where you choose what type of layout this Blueprint will be, i.e. grid, tabbed, slider, accordion, tabular or masonry, and set other aspects of its functionality and appearance.
     ','pzarchitect').'</div>
     <div>'.__('
-      <h3>Content Select</h3>This is where you select the specific posts, pages or other content types to display within this Blueprint.
+      <h3>Content Select</h3>This is where you select the specific posts, pages or other content field_types to display within this Blueprint.
     ','pzarchitect').'</div>
     <div>'.__('
       <h3>Blueprint Styling</h3>This is for refining the styling of the Blueprint to match your theme. Blueprints by default have limited styling to avoid visually clashing with your theme.
@@ -68,7 +68,7 @@ The options are: <em>Grid</em> (which is what you also use for single post layou
 <em>Sliders</em> (Needs no explanation - very popular!;
 <em>Tabbed</em> (very similar to sliders but with navigation that depends on clicking the tabs);
 <em>Masonry</em> (like Pinterest is famous for);
-<em>Tabular</em> (show your posts or pages in a columnular list. Great for some custom content types.);
+<em>Tabular</em> (show your posts or pages in a columnular list. Great for some custom content field_types.);
 <em>Accordion</em> (collapsible content areas);
 Note: Only Section 1 can contain Sliders and Tabbed. <strong>Your turn: Select one to get started. <em>Select the Slider. We will keep the default settings for Sliders & Tabbed.</em></strong>
     ','pzarchitect').'</div>

@@ -119,10 +119,8 @@
 
         case 'masonry':
 //          $isotope = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":50,"gutter":20}}\'';
-
           // Do we load up the MAsonry here?
-          ArcFun::enqueue_scripts('masonry');
-
+          ArcFun::enqueue_scripts($this->layout_mode);
 //          add_action('init',array($this,'init_scripts'));
 //          $isotope      = 'data-isotope-options=\'{ "layoutMode": "masonry","itemSelector": ".pzarc-panel","masonry":{"columnWidth":".grid-sizer","gutter":".gutter-sizer"}}\'';
           $isotope      = 'data-uid="' . $this->rsid . '"';
@@ -132,12 +130,11 @@
         case 'accordion':
           $layout_class = 'accordion';
           $accordion    = ' data-collapse="accordion"';
-          wp_enqueue_script( 'js-jquery-collapse' );
+          ArcFun::enqueue_scripts($this->layout_mode);
           break;
 
         case 'table':
-          wp_enqueue_script( 'js-datatables' );
-          wp_enqueue_style( 'css-datatables' );
+          ArcFun::enqueue_scripts($this->layout_mode);
           $layout_class = 'datatables';
           break;
 
@@ -155,8 +152,10 @@
         $slider = apply_filters( 'arc-set-slider-data', $slider, $this->blueprint );
 
       }
+      $feat_comp = ' featcomp-'.$this->section['section-panel-settings']['_panels_design_feature-location'].'-'.$this->section['section-panel-settings']['_panels_design_components-position'];
+
       echo '<' . ( 'table' !== $this->layout_mode ? 'div' : 'table' ) . ' id="' . $this->rsid . '"
-       class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-' . $this->panel_name . ' ' . $slider[ 'class' ] . '"' . $isotope . $accordion . ' ' . $slider[ 'data' ] . '>';
+       class="' . $layout_class . ' pzarc-section pzarc-section_' . $this->section_number . ' pzarc-section-using-' . $this->panel_name . ' ' . $slider[ 'class' ].$feat_comp . '"' . $isotope . $accordion . ' ' . $slider[ 'data' ] . '>';
 
       // Table heading stuff
       if ( 'table' === $this->layout_mode ) {
@@ -252,7 +251,7 @@
           break;
         default:
           // Then it is an array... maybe...
-          // This happens on non-post types, like dummy content type
+          // This happens on non-post field_types, like dummy content type
           // TODO: Make these something more useful!
           $post   = $arc_query[ $this->panel_number - 1 ];
           $postid = 'NoID';

@@ -10,7 +10,7 @@
   // Add content info to the registry
   class arc_content_dummy extends arc_set_data {
 
-    protected function __construct() {
+     function __construct() {
       $registry = arc_Registry::getInstance();
 
       $prefix = '_content_dummy_';
@@ -42,6 +42,25 @@
                       'min'      => 1,
                       'max'      => 99,
                       'subtitle' => __('Number of dummy records to simulate', 'pzarchitect'),
+                  ),
+                  array(
+                      'title'    => __('Maximum paragraphs', 'pzarchitect'),
+                      'id'       => $prefix . 'max-paragraphs',
+                      'type'     => 'spinner',
+                      'default'  => 6,
+                      'step'     => 1,
+                      'min'      => 1,
+                      'max'      => 99,
+                      'subtitle' => __('Maximum number of paragraphs in generated text','pzarchitect')
+                  ),
+                  array(
+                      'title'    => __('Minimum paragraphs', 'pzarchitect'),
+                      'id'       => $prefix . 'min-paragraphs',
+                      'type'     => 'spinner',
+                      'default'  => 1,
+                      'step'     => 1,
+                      'min'      => 1,
+                      'max'      => 99,
                   ),
                   array(
                       'title'   => __('Dummy image type', 'pzarchitect'),
@@ -112,7 +131,7 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_dummy::getInstance('arc_content_dummy');
+  new arc_content_dummy('arc_content_dummy');
 
 
 

@@ -49,7 +49,7 @@
           $render[ 'html' ][ 'error' ] = $error;
         }
       }
-
+      $render['data']['path']=$preset[ 'data' ];
       return $render;
     }
   }
@@ -66,6 +66,16 @@
     );
 
     // Grids
+    $presets[] = array(
+        'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-2019-style-alternating-feature.txt',
+        'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-2019-style-alternating-feature.jpg',
+        'designer' => 'Chris Howard'
+    );
+    $presets[] = array(
+        'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-magazine-alternating-feature.txt',
+        'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-magazine-alternating-feature.jpg',
+        'designer' => 'Chris Howard'
+    );
     $presets[] = array(
         'data'     => PZARC_PLUGIN_URL . 'presets/preset-grid-glossy-magazine.txt',
         'image'    => PZARC_PLUGIN_URL . 'presets/preset-grid-glossy-magazine.jpg',

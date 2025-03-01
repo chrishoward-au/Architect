@@ -12,7 +12,7 @@
   {
 
 
-    protected function __construct()
+     function __construct()
     {
       $registry = arc_Registry::getInstance();
 
@@ -43,7 +43,7 @@
                       'on'=>'Yes',
                       'off'=>'No',
                       'default'=>false,
-                      'desc' => __('Defaults uses all WordPress default selection conditions. Enable overrides if you want the options in Settings and Filters, and the pagination settings to be applied.','pzarchitect')
+                      'desc' => __('Defaults uses all WordPress default selection conditions. Enable overrides if you want the options in Settings (including Limit Posts) and Filters, and the pagination settings to be applied.','pzarchitect')
                   )
               )
           )
@@ -58,7 +58,7 @@
   }
 
 //  //todo:set this up as a proper singleton?
-  $content_posts = arc_content_defaults::getInstance('arc_content_defaults');
+  new arc_content_defaults('arc_content_defaults');
 
 
 
