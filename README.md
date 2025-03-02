@@ -2,15 +2,15 @@
 
 ## NOTE: This project is no longer under active development. 
 
-Contributors: chrishoward
-Tags: content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks
-Requires at least: 4.7
-Tested up to: 6.0
-Requires PHP: 5.6
-Stable tag: 11.5
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Plugin URI: http://architect4wp.com
+**Contributors:** chrishoward  
+**Tags:** content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,widget,hooks  
+**Requires at least:** 4.7  
+**Tested up to:** 6.0  
+**Requires PHP:** 5.6  
+**Stable tag:** 11.5  
+**License:** GPLv2 or later  
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
+**Plugin URI:** http://architect4wp.com  
 
 Themes, page builders, and now Gutenberg provide blocks or modules for displaying content. Architect lets your create custom content blocks that you can then display with any theme, page builder or Gutenberg.
 
@@ -83,7 +83,6 @@ No. We don't delete any of your data. In the future a method will be provided fo
 ## Changelog
 
  ### Notes 
-* If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 * If Blueprints editor fails to render, go to options and turn on option to prevent post lookup lists loading.
 
  ### 11.5  26 June 2022
