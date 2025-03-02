@@ -13,7 +13,7 @@
                     <div class="arc-info col1">
                     <h4>' . __('Currently installed version') . ': ' . PZARC_VERSION . '</h4>';
 	echo '<p>' . __('For more detailed help, visit', 'pzarchitect') . ' <a href="http://architect4wp.com/codex-listings" target="_blank" class="arc-codex">' . __('Architect documentation at architect4wp.com', 'pzarchitect') . '</a></p>
-                        <p>' . __('For <strong>technical support</strong>, email us at', 'pzarchitect') . ' <a href="mailto:support@pizazzwp.com" target="_blank" class="arc-codex">' . __('support@pizazzwp.com', 'pzarchitect') . '</a></p>
+                        <p>' . __('For <strong>technical support</strong>, email us at', 'pzarchitect') . ' <a href="mailto:chrish@341design.com.au" target="_blank" class="arc-codex">' . __('chrish@341design.com.au', 'pzarchitect') . '</a></p>
                     <h3>' . __('Things to try first', 'pzarchitect') . '</h3>
                     <ul>
                   	<li>If updates are not showing, try looking in Dashboard > Updates. If they still don\'t show, try deactivating and reactivating the Architect licence and trying again.</li>

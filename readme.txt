@@ -79,7 +79,7 @@ No. We don't delete any of your data. In the future a method will be provided fo
 
 == Support ==
 
-For support, please send an email to support@pizazzwp.com
+For support, please send an email to chrish@341design.com.au
 
 == todo ==
 TODO: Update shortcode help!
@@ -120,7 +120,7 @@ TODO: Add spreadsheets as source to Tables
 == Changelog ==
 
 = Notes =
-* If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
+* If you have trouble with the new licensing on Freemius, please contact chrish@341design.com.au
 * If Blueprints editor fails to render, go to options and turn on option to prevent post lookup lists loading.
 
 = 11.5 = 26 June 2022

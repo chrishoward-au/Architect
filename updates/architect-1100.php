@@ -36,7 +36,7 @@
         </ul>
         <strong class="arc-important">If you are updating Architect from v1.0.8.x or earlier, please got to the Architect Tools menu and rebuild CSS</strong>
         <p style="margin:20px 0;"><a class="arc-important-button" href="%1$s">Go to Tools</a></p>
-         <p><a href="mailto:support@pizazzwp.com">Email support</a> '), 'admin.php?page=pzarc_tools');
+         <p><a href="mailto:chrish@341design.com.au">Email support</a> '), 'admin.php?page=pzarc_tools');
 
         echo "</p>
         </div>";

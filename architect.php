@@ -8,7 +8,7 @@
 	  Author: Chris Howard
 	  Author URI: http://pizazzwp.com
 	  License: GNU GPL v2
-	  Support: support@pizazzwp.com
+	  Support: chrish@341design.com.au
 
 	 * @fs_premium_only /extensions/
 	 */

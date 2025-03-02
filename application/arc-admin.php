@@ -313,7 +313,7 @@
        */
       echo '
 						<h3>' . __( 'Clear Architect caches', 'pzarchitect' ) . '</h3>
-						<p>' . __( 'Sometimes the CSS cache file may not exist or may even become scrambled and layouts will not look right. If so, simply click the Rebuild button and it will be recreated. This also rebuilds the default settings cache. If the problem persists, contact Pizazz Support at <strong>support@pizazzwp.com</strong>.', 'pzarchitect' ) . '</p>
+						<p>' . __( 'Sometimes the CSS cache file may not exist or may even become scrambled and layouts will not look right. If so, simply click the Rebuild button and it will be recreated. This also rebuilds the default settings cache. If the problem persists, contact Pizazz Support at <strong>chrish@341design.com.au</strong>.', 'pzarchitect' ) . '</p>
     <p>' . __( 'If you update or change images in any posts,sometimes the image cache may get out-of-sync. In that case, you can refresh the thumbs image cache to ensure your site visitors are seeing the correct images.', 'pzarchitect' ) . '</p>
 
     <p>' . __( 'Please note: Refreshing the cache causes no problems other than the next person who visits your site may have to wait a little longer as the cache images get recreated.', 'pzarchitect' ) . ' <strong>' . __( 'No images in any post will be affected', 'pzarchitect' ) . '</strong>. </p>
@@ -450,7 +450,7 @@
       if ( class_exists( 'HeadwayLayoutOptions' ) ) {
         echo '<div class="pzarc-about-box alert">
       <h2>Crossgrade Headway licences</h2>
-      <p>Anyone who purchased Architect from the Headway Extend store, please contact <a href="mailto:support@pizazzwp.com">support@pizazzwp.com</a> to arrange a discounted crosgrade licence from the Pizazz store.</p>
+      <p>Anyone who purchased Architect from the Headway Extend store, please contact <a href="mailto:chrish@341design.com.au">chrish@341design.com.au</a> to arrange a discounted crosgrade licence from the Pizazz store.</p>
       </div>
 ';
       }
@@ -464,7 +464,7 @@
                         <!-- <a class="pzarc-button-help" href="https://pizazzwp.freshdesk.com/support/discussions" target="_blank">
                         <span class="dashicons dashicons-groups"></span>
                         Community support</a>&nbsp; -->
-                        <a class="pzarc-button-help" href="mailto:support@pizazzwp.com?subject=Architect%20help" target="_blank">
+                        <a class="pzarc-button-help" href="mailto:chrish@341design.com.au?subject=Architect%20help" target="_blank">
                         <span class="dashicons dashicons-admin-tools"></span>
                         Tech support</a>
                         </div>
