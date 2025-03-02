@@ -8,6 +8,9 @@
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 **Plugin URI:** http://architect4wp.com  
 
+## NOTE: This project is no longer under active development. 
+
+
 Go beyond the limitations of the layouts in the theme you use, to easily build any content layouts for it. E.g. grids, sliders, lists, galleries etc.
 
 ## Description ##
