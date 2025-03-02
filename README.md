@@ -1,14 +1,17 @@
 # Architect: A WP Content Layout Framework #
+
+## NOTE: This project is no longer under active development. 
+
+
 **Contributors:** chrishoward  
 **Tags:** content,display,posts,pages,gallery,slider,tabs,tabbed,tabular,page builder,widget,hooks  
 **Requires at least:** 3.5.0  
-**Tested up to:** 4.1.0  
-**Stable tag:** 0.9.3.1  
+**Tested up to:** 6.2 
+**Stable tag:** 11.7
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 **Plugin URI:** http://architect4wp.com  
 
-## NOTE: This project is no longer under active development. 
 
 
 Go beyond the limitations of the layouts in the theme you use, to easily build any content layouts for it. E.g. grids, sliders, lists, galleries etc.
