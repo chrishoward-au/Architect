@@ -14,7 +14,7 @@ Plugin URI: http://architect4wp.com
 
 Themes, page builders, and now Gutenberg provide blocks or modules for displaying content. Architect lets your create custom content blocks that you can then display with any theme, page builder or Gutenberg.
 
-== Description ==
+## Description
 Go beyond the limitations of the layouts in the theme or page builder you use to easily build any content layouts for it. E.g. grids, sliders, lists, galleries, tables etc.
 
 Most themes give you great looking layouts for your content, but are usually limited to what that theme provides. Frameworks give you control, but often require getting your hands dirty.
@@ -29,7 +29,7 @@ With Architect you can build the layouts your theme does not provide - and all f
 
 Also, to ease maintenance and improve performance, it's best to minimize the number of plugins on your site. Architect helps that by replacing several plugins with one.
 
-= Why use Architect? =
+### Why use Architect?
 Architect greatly reduces the complexity of designing and developing methods to display your content. For example, if you are using the Twenty Thirteen and decide you want a 3x3 grid of excerpts to display on the home page, you would have to code a page template for that purpose.
 
 With Architect, you code the shell of the page template, but build the rest in Architect and paste one very simple line of code into your page template that calls and displays the Architect Blueprint.
@@ -38,10 +38,10 @@ Blueprints can be displayed using widgets and shortcodes as well.
 
 You can even override the design of the WP Gallery shortcode with your own Blueprint.
 
-== Installation ==
+## Installation
 1. Install and activate the plugin through the Plugins menu in WordPress.
 
-== Usage ==
+## Usage
 There are several ways to display Architect Blueprints.
 
 * Shortcode: [architect blueprint="yourblueprint" ids="1,2,3,4,5"]
@@ -56,54 +56,54 @@ There are several ways to display Architect Blueprints.
 * WP Gallery shortcode override
 
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions
 
-= What themes is Architect compatible with =
+ ### What themes is Architect compatible with 
 Architect should work with any theme but some will take more effort than others, especially in terms of the look and layout. To that end, we provide the means to match CSS classes and create your own panel definitions.
 
-= Is Architect compatible with all plugins =
+### Is Architect compatible with all plugins
 The short answer is "Unlikely". No plugin can hope to be compatible with all other plugins (there are more than 36,000 of them!) but we do aim to be compatible with the more popular ones. We will endeavour to rectify any incompatibilities found; however, it's also not uncommon for the root cause to be the conflicting plugin. Always make sure you are running the latest version of your plugins.
 
-= Is Architect WPML compatible =
+### Is Architect WPML compatible 
 Yes. Architect has been successfully tested with WPML.
 
-= Do you provide refunds =
+### Do you provide refunds 
 Yes! We're pretty flexible on refunds, allowing 60 days. But we would like you to make sure you've done everything possible to get Architect to work to your requirements, especially seeking support on our help desk.
 
-= If I deactivate Architect, will I lose all my Blueprints =
+### If I deactivate Architect, will I lose all my Blueprints
 No. We don't delete any of your data. In the future a method will be provided for you to remove all Architect data if you really need to.
 
-== Known issues ==
+## Known issues
 * Importing Blueprints, you will have to redo filters. This is a limitation of Redux not Architect.
 * Videos don't autopause when changing slides
 * Retina images currently only generates 2x
 * Some fields may not save when offline. This is a Redux issue too.
 * Architect not compatible with JetPack Photon
 
-== Changelog ==
+## Changelog
 
-= Notes =
+ ### Notes 
 * If you have trouble with the new licensing on Freemius, please contact support@pizazzwp.com
 * If Blueprints editor fails to render, go to options and turn on option to prevent post lookup lists loading.
 
-= 11.5 = 26 June 2022
+ ### 11.5  26 June 2022
 * FIXED: WP 6.0 and Redux issue breaking WP Admin
 
-= 11.4 : 21 February 2021
+ ### 11.4 : 21 February 2021
 * FIXED: PHP 8.0 incompatibility and conflict with All-In-One Events calendar
 
-= 11.3 : 13 April 2021
+ ### 11.3 : 13 April 2021
 * FIXED: Date internationalization bug on where some post dates showing current date
 * UPDATED: Freemius SDK to 2.4.1 Now has functionality to remove your PizazzWP account info from client sites
 
-= 11.2 : 26 April 2020
+ ### 11.2 : 26 April 2020
 * CHANGED: Re-enabled WP custom fields metabox in post edit that is hidden by Advanced Custom Fields v5.6
 * ADDED: Option to enable ACF hiding WP custom fields. See under Architect > Options
 * UPDATED: Built-in ACF to v5.8.9
 * FIXED: "Optional" label missing from tablet and phone selector in GB block.
 * FIXED: Documentation now clarifies GB block is premium version only
 
-= 11.1 : 22 Dec 2019
+ ### 11.1 : 22 Dec 2019
 * ADDED: Architect Gutenberg block!
 * ADDED: Architect block for Padma theme
 * ADDED: Setting to vertically centre panel content when feature outside components.
@@ -116,14 +116,14 @@ No. We don't delete any of your data. In the future a method will be provided fo
 * FIXED: Finally made Tools > Clear actually resave all Blueprints
 * FIXED: CSS specificity issue affect fixed width panels justification
 
-= 11.0 : 25 Oct 2019
+ ### 11.0 : 25 Oct 2019
 * UPDATED: Freemius SDK to 2.3.1. This is an important update due to a conflict with Freemius in WP5.2
 
-= 10.9 : 26 Sept 2019 =
-* ==========================================================================================
+ ### 10.9 : 26 Sept 2019 
+* =========================================================================================
 * ADDED: ***** HEAPS MORE SUPPORT FOR ADVANCED CUSTOM FIELDS *****
 * UPDATED: Changed version numbering to match releases. This is the 109th update so v10.9
-* ==========================================================================================
+* =========================================================================================
 * ADDED: New custom field type: Email
 * ADDED: New custom field type: Link
 * ADDED: New custom field type: File
@@ -147,7 +147,7 @@ No. We don't delete any of your data. In the future a method will be provided fo
 * FIXED: Showcases and Testimonials not displaying extra fields metabox
 * UPDATED: Freemius SDK to 2.2.4 - Security update
 
-= 1.17.0 : 2 Feb 2019
+ ### 1.17.0 : 2 Feb 2019
 * FIXED: Beaver Builder Maps and Any Field modules loading field arrays unnecessarily on front end.
 * FIXED: CSS caching problem in Blox since 1.16.0
 * FIXED: Possible warning if php_uname is not available in sysinfo
@@ -157,33 +157,33 @@ No. We don't delete any of your data. In the future a method will be provided fo
 * CHANGED: CSS is now cached in WP Options and loaded in page footer. This allows on the fly regeneration of CSS and reduces problems with file-based CSS not being available on some hosts.
 
 
-= 1.16.0 :
+ ### 1.16.0 :
 FIXED: Beaver Builder module is not using number of posts to show
 FIXED: Sometimes CSS hasn't regenerated making for broken layouts
 FIXED: Clearing cache now clears all files in the Architect cache.
 
-= 1.15.1 : 12 August 2018
+ ### 1.15.1 : 12 August 2018
 * FIXED: Error in Blox when no action options
 * FIXED: Inaccessible features displaying in free version.
 
-= 1.15.0 : 8 August 2018
+ ### 1.15.0 : 8 August 2018
 
 * CHANGED: Switched to loremflickr.com as lorempixel went down
 * FIXED: Read more link not showing when using More tag as Excerpts break.
 * FIXED: Errors in free version calling premium functions when it shouldn't
 * FIXED: Various PHP notices
 
-= 1.14.0: 3 July 2018
+ ### 1.14.0: 3 July 2018
 * CHANGED: When content source is RSS, source images are now cached
 * FIXED: RSS source images not scaling and cropping
 
-= 1.13.0 : 23 June 2018
+ ### 1.13.0 : 23 June 2018
 
 * ADDED: More filter options to Blox block
 * CHANGED: Rejigged Blox block menus
 * REMOVED: Gutenberg block. Will be a separate plugin until Gutenberg is out of beta
 
-= 1.12.0
+ ### 1.12.0
 * CHANGED: SysInfo now shows WP_MEMORY_LIMIT
 * CHANGED: SysInfo now shows average Blueprint loading times (a hugh time is likely indicative of a slow site)
 * CHANGED: Removed affiliation
@@ -197,7 +197,7 @@ FIXED: Clearing cache now clears all files in the Architect cache.
 * UPGRADED: Freemius SDK to 2.1.1. Includes GDPR support and compliance
 
 
-= 1.11.1
+ ### 1.11.1
 * ADDED: Error msg if Presets selector can't read presets files.
 * FIXED: Removed Features tab as it's not populated
 * FIXED: Changed misleading message saying "This theme requires Redux" to "This plugin requires Redux"
@@ -209,7 +209,7 @@ FIXED: Clearing cache now clears all files in the Architect cache.
 * CHANGED: Blueprint CSS to load as late as possible in head.
 * CHANGED: Remove custom fields support from free version
 
-= 1.11.0 - 1 Feb 2018
+ ### 1.11.0 - 1 Feb 2018
 Beaver Builder specific enhancements
 * ADDED: Beaver module Any Fields to display any field from any table
 * ADDED: Custom version of Beaver Sidebar module can display different widget areas on different devices, or none at all
@@ -245,28 +245,28 @@ Other
 * FIXED: Focal point not working for non admin users
 * FIXED: Featured video metabox not showing for non admin users
 
-= 1.10.7  : 24 Nov 2017
+ ### 1.10.7  : 24 Nov 2017
 * ADDED: Image Alt tag will automatically use image title if no Alt tag set
 * FIXED: Error on plugins list page on wpms sites
 * FIXED: Presets selector stopped working.
 
-= 1.10.6 : 22 Nov 2017
+ ### 1.10.6 : 22 Nov 2017
 * ADDED: Changelog link to plugin listing since Freemius doesn't yet support displaying changelog
 
-= 1.10.5 :  18 Nov 2017
+ ### 1.10.5 :  18 Nov 2017
 * ADDED: Shortcode to use in custom field display to show any field from any table. Usage [arccf table="tablename" field="fieldname"]
 * CHANGED: Removed caching of custom field list as was making refreshing it difficult
 * FIXED: Read more link not working for pages
 * FIXED: Read more links showing when no content
 
-= 1.10.4 : 2 Nov 2017
+ ### 1.10.4 : 2 Nov 2017
 * ADDED: Option to exclude Snippets from search results
 
 * FIXED: Page navigation  not showing on search results page
 * FIXED: Bug in Freemius code that caused error on EDD shops with Freemius Migration plugin installed
 * FIXED: Couple of errors caused by using empty() on a function in PHP < 5.5
 
-= 1.10.3 : 23 Oct 2017
+ ### 1.10.3 : 23 Oct 2017
 
 * ADDED: RSS feed URL override to shortcode. Parameter: rssurl
 * ADDED: Blueprint Title override to shortcode. Parameter: title
@@ -277,7 +277,7 @@ Other
 
 * CHANGED: Removed pageguides until updated
 
-= 1.10.2 : 20 Oct 2017
+ ### 1.10.2 : 20 Oct 2017
 
 * ADDED: Date filtering. Finally!
 * ADDED: Option to hide empty Blueprints
@@ -292,11 +292,11 @@ Other
 
 * UPGRADED: Slick.js v1.8.0
 
-= 1.10.1 =
+ ### 1.10.1 
 * FIXED: Old Architect widgets could return an error
 * FIXED: WPML overriding CSS for paragraphs affecting layout
 
-= 1.10.0 =
+ ### 1.10.0 
 Beaver Builder related enhancements:
 * ADDED: More extensive filtering overrides in the Beaver Architect module
 * ADDED: Extensive styling options to Architect Beaver module
@@ -352,28 +352,28 @@ Miscellaneous enhancements:
 * REMOVED: Support contact form as no longer using Freshdesk for support
 * REMOVED: Support forum link as no longer using Freshdesk for support
 
-= 1.9.9 = : 4 Apr 2017
+ ### 1.9.9  : 4 Apr 2017
 * FIXED: Redux 3.6.4 broke parts of the Blueprint designer
 
-= 1.9.8 = 26 Mar 2017
+ ### 1.9.8  26 Mar 2017
 * ADDED: Shortcode processing option to custom fields
 * FIXED: Notices warning on custom field setting Field Type in admin
 * FIXED: Set defaults for responsive Title and Content fonts
 
-= 1.9.7 =
+ ### 1.9.7 
 * FIXED: Missing options when Blox is the active theme
 * FIXED: Architect menu was only meant to be available to Admins
 
-= 1.9.6 = 7 Dec 2016
+ ### 1.9.6  7 Dec 2016
 * FIXED: Incorrect version number causing upgrade info to not go away
 
-= 1.9.5 = 30 Nov 2016
+ ### 1.9.5  30 Nov 2016
 * ADDED: Option for custom fields that are saved as an array to be displayed in a table by selecting Group. This does not work for ACF repeater fields, as they are stored differently.
 
-= 1.9.4 = 15 Nov 2016
+ ### 1.9.4  15 Nov 2016
 * CHANGED: Added Blox compatibility
 
-= 1.9.3 = 30 Sep 2016
+ ### 1.9.3  30 Sep 2016
 
 * ADDED: Option to set default terms selection in Masonry filtering.
 * ADDED: Option in Sources for multiple content types. Using this has limitations, as any filtering or other criteria will apply to all content. For example, if you mix pages and posts, don't filter on categories since no pages will be found.
@@ -395,7 +395,7 @@ Miscellaneous enhancements:
 * UPDATED: Masonry library, Packery, to v2.
 * UPDATED: TGM to 2.6.1
 
-= 1.9.2 : 15 May 2016 =
+ ### 1.9.2 : 15 May 2016 
 * ADDED: Column in Blueprint list showing the pages Blueprints are used on. Requires pages to have been viewed since 1.9.2 update.
 * CHANGED: Blueprint list now indicates layout type with an icon
 * CHANGED: Finally found a way to get the Blueprint CSS to load in the header
@@ -406,23 +406,23 @@ Miscellaneous enhancements:
 * FIXED: Hide Revolution Slider metabox on Blueprint editor
 * FIXED: Bug in licence activation might fail with an error
 
-= 1.9.1 : 25 March 2016 =
+ ### 1.9.1 : 25 March 2016 
 * FIXED: Removed Whoops debugger
 
-= 1.9.0 : 24 March 2016 =
+ ### 1.9.0 : 24 March 2016 
 * ADDED: Custom field filtering
 * ADDED: Custom field sorting
 * FIXED: Testimonials specified order not working
 * FIXED: Masonry filter by message showing Pz when using a PizazzWP tax type.
 * ADDED: Message on Help and Blueprint listings suggesting upgrading PHP if less than 5.4
 
-= 1.8.2 =
+ ### 1.8.2 
 * ADDED: Message reminding to increase max input vars. This has become necessary as 1.8 added more styling fields - which use a lot of input vars.
 
-= 1.8.1
+ ### 1.8.1
 * FIXED: Small layout issues in editor screens
 
-= 1.8.0 : 25 Feb 2016 =
+ ### 1.8.0 : 25 Feb 2016 
 * CHANGED: Revamped the layout of the Blueprint editor for improved usability
 * CHANGED: Defaults are now saved in a WP option to speed things up a little.
 * CHANGED: Custom field types now include a text type that will add paragraphs
@@ -432,7 +432,7 @@ Miscellaneous enhancements:
 * FIXED: Missing Max Input Vars message.
 * FIXED: PHP Notices in Blueprint editor when styling turned off
 
-= 1.7.0 =
+ ### 1.7.0 
 * ADDED: Added options for Scaled font sizes for title and content for even better responsive design. Look in Titles > Responsive overrides, and Body/Excerpt > Responsive overrides
 * ADDED: Image Carousel preset the same as on the demos site.
 * ADDED: Excerpt trimming for Characters, Paragraphs, More tag
@@ -454,71 +454,71 @@ Miscellaneous enhancements:
 * FIXED: Some Blueprint styling defaults not showing correct in editor
 * FIXED: PHP Warning in date display
 
-= 1.6.1 =
+ ### 1.6.1 
 * FIXED: Minor security issue because of missing index.php
 * FIXED: Cache creation could cause a warning if a directory in the cache.
 * FIXED: Layouts issues with percentages and calcs in Firefox and Internet Explorer 11.
 
-= 1.6.0 =
+ ### 1.6.0 
 * ADDED: Beaver Builder module for selecting a Blueprint to display.
 
-= 1.5.19 =
+ ### 1.5.19 
 * ADDED: Option to Shrink to fit image limits in Image cropping.
 * ADDED: Packed Masonry option. Works best with image galleries using the above Shrink option.
 * CHANGED: Setting "Feature as thumbnail" width to zero will use image at actual size. This is only valid when feature is shown in the content.
 
-= 1.5.18 =
+ ### 1.5.18 
 * FIXED: Sometimes strtotime returns wrong timestamp if there is commas in the date string
 
-= 1.5.17 : 24-Dec-2015 =
+ ### 1.5.17 : 24-Dec-2015 
 * CHANGED: In Options, "Use Architect styling" is now always enabled by default. Previously was off for Headway users, but that meant Presets were unstyled.
 
-= 1.5.16 =
+ ### 1.5.16 
 * ADDED: Affiliates link
 * ADDED: Link to customer dashboard
 
-= 1.5.15 =
+ ### 1.5.15 
 * ADDED: Option to galleries to display all attached images in the primary post/page
 
-= 1.5.14 =
+ ### 1.5.14 
 * FIXED: Rogue space causing warning message
 
-= 1.5.13 =
+ ### 1.5.13 
 * FIXED: Name conflict in TGMPA
 
-= 1.5.12 =
+ ### 1.5.12 
 * FIXED: Fluid and fixed width tabs not working.
 
-= 1.5.11 =
+ ### 1.5.11 
 * FIXED: Preset Selector disabled when Page Guide turned off
 
-= 1.5.10 : 20 Nov 2015 =
+ ### 1.5.10 : 20 Nov 2015 
 * FIXED: Conflict with Yoast 3 caused by old Redux hack to counter a Yoast conflict in pre v3 Yoast!
 
-= 1.5.9 : 11 Nov 2015 =
+ ### 1.5.9 : 11 Nov 2015 
 * FIXED: Removed content filtering of dummy content as causing an infinite loop in Beaver
 
-= 1.5.8 : 9 Nov 2015 =
+ ### 1.5.8 : 9 Nov 2015 
 * ADDED: Option to set behaviour of custom field links
 
-= 1.5.7 =
+ ### 1.5.7 
 * CHANGED: Message in Presets Selector about styling is more obvious
 * CHANGED: Thumbs now have title in tooltip
 * CHANGED: Horizontal tabbed left/right margins now defaults to zero.
 * FIXED: Slider fade option stopped working
 
-= 1.5.6 =
+ ### 1.5.6 
 * CHANGED: Excerpts will now process shortcodes. This includes any in image captions and descriptions.
 * ADDED: Option for fixed width tabs to add a margin for compensation
 
-= 1.5.5 =
+ ### 1.5.5 
 * FIXED: Sharing icons not showing for arcshare.
 * UPDATED: Slickjs to 1.5.8
 
-= 1.5.4 =
+ ### 1.5.4 
 * FIXED: Added missing nav items styling to Headway Visual Editor design mode
 
-= 1.5.3 =
+ ### 1.5.3 
 * ADDED: Option to exclude current Snippet if a Blueprint displays Snippets on a Snippets page.
 * CHANGED: Horizontal tabs to wrap, minimum width 80px and use full width when smaller screens.
 * CHANGED: Slick Slider infinite now off by default
@@ -533,19 +533,19 @@ Miscellaneous enhancements:
 * FIXED: Specific filler image not showing when in background
 * FIXED: Layout issue with vertical tabbed preset
 
-= 1.5.2 =
+ ### 1.5.2 
 * CHANGED: Thumbs library to load only as required thus fixing conflict with WooCommerce
 * ADDED: More cropping options Crop to top, centre or bottom
 * FIXED: Various small tweaks and fixes
 
-= 1.5.1 =
+ ### 1.5.1 
 * ADDED: Rendering of shortcodes in custom fields
 * ADDED: Shortcode [arcpagetitle] to display the parent page's title. Use in meta fields.
 * CHANGED: Slides hidden before loading for tidiness.
 * FIXED: CSS not loading when using a Blueprint to override WP Gallery.
 * FIXED: Slideshow jQuery loading wrong sometimes
 
-= 1.5.0 : 3 Oct 2015=
+ ### 1.5.0 : 3 Oct 2015=
 * ADDED: Support for filtering and sorting in masonry layouts!! (Thanks, Jamie!)
 * ADDED: Option to use Headway alternative titles. On by default.
 * ADDED: Option to display author avatars (Thanks Courtney!)
@@ -565,51 +565,51 @@ Miscellaneous enhancements:
 * FIXED: Bug where responsive font sizes for content not working for medium breakpoint
 * FIXED: Errors in filters and sorting if chosen custom post type deactivated
 
-= 1.4.9 : 16 Sept 2015 =
+ ### 1.4.9 : 16 Sept 2015 
 * FIXED: Pages instead of posts showing on Blog index
 * CHANGED: Default posts per page for pagination to value set in WP Settings > Reading
 
-= 1.4.8.2 =
+ ### 1.4.8.2 
 * ADDED: Option for specific filler image (thanks Cemil!)
 
-= 1.4.8.1 =
+ ### 1.4.8.1 
 * FIXED: Error displaying in Headway Visual Editor Design Mode when Defaults was content source.
 
-= 1.4.8 : 9 Sept 2015 =
+ ### 1.4.8 : 9 Sept 2015 
 * FIXED: Change at v1.4.3 broke single post display when using Defaults as content source.
 
-= 1.4.7 : 4 Sept 2015 =
+ ### 1.4.7 : 4 Sept 2015 
 * ADDED: Support for Shortcake a user friendly shortcode tool. Install the Shortcake (Shortcode UI) plugin and then click Add Media in Posts etc, then Insert Post Element and select the Architect Blueprint. For compatibility, there is a specific Shortcake shortcode, [architectsc]
 * FIXED: Bug where if a WP gallery used in Blueprint content source no longer existed, an error would display
 
-= 1.4.6 : 30-August-2015 =
+ ### 1.4.6 : 30-August-2015 
 * FIXED: Make Header and Footers option doing nothing!
 * FIXED: Panels min width doing nothing!
 * ADDED: Option for fixed with panels. In conjunction with flexbox, this allows full width grids that nicely space
 * ADDED: Option for panels justification when using fixed width panels.
 
-= 1.4.5 =
+ ### 1.4.5 
 * CHANGED: Added a message to Presets selector to explain "Use styled" won't be styled if "Use Architect styling" is turned off.
 * FIXED: function name conflict in EDD module
 * ADDED: Showcase custom post type
 * ADDED: Options in custom fields to use the post title or no field (allowing the use of just the prefix and suffix. Useful with links where you want a generic link text)
 * ADDED: Category and tag columns to Snippets, Testimonials and Showcases listing screens.
 
-= 1.4.4 =
+ ### 1.4.4 
 * FIXED: Snippets selector not sortable
 
-= 1.4.3 =
+ ### 1.4.3 
 * FIXED: Wording of accordions option that controls if it's open or closed at startup
 * CHANGED: Installed Presets list on Tools page not shown if empty
 * FIXED: Problems with Defaults content source not displaying correct content when Overrides enabled
 
-= 1.4.2 : 5 August 2015 =
+ ### 1.4.2 : 5 August 2015 
 * CHANGED: BFI Thumbs options page removed (it is a duplicate of the Refresh Cache in Architect > Options)
 
-= 1.4.1 : 4 August 2015 =
+ ### 1.4.1 : 4 August 2015 
 * FIXED: Possible security risk with SysInfo library
 
-= 1.4.0 : 3 August 2015 =
+ ### 1.4.0 : 3 August 2015 
 * ADDED: Option to alternate feature left/right when outside components
 * ADDED: Option to float feature left/right when in components to close up space
 * ADDED: Option to make a custom field display as an embedded url. E.g. YouTube link displays as video
@@ -618,7 +618,7 @@ Miscellaneous enhancements:
 * CHANGED: Message on update now - finally! - says Blueprint updated
 * FIXED: Scaled cropping not working when using NextGen galleries
 
-= 1.3.7 =
+ ### 1.3.7 
 * ADDED: Accordion title styling to Headway Design Mode
 * CHANGED: Tweaks to Lite version and messages
 * CHANGED: Message on Headway Options page to only put HW purchased licences there.
@@ -628,7 +628,7 @@ Miscellaneous enhancements:
 * FIXED: Error with uploads url not being https sometimes
 * FIXED: Tabular column and table widths when content doesn't fill last cell in first row.
 
-= 1.3.6 =
+ ### 1.3.6 
 * ADDED: Blueprint Preset importing
 * ADDED: Check for custom Blueprint Presets in uploads folder /pizazzwp/architect/presets
 * CHANGED: Added messages when licence activation fails in the Architect licence activation screen
@@ -636,27 +636,27 @@ Miscellaneous enhancements:
 * FIXED: Sliders now respond to RTL
 * FIXED: Accordions will display open/close indicator on left on RTL sites.
 
-= 1.3.5 =
+ ### 1.3.5 
 * FIXED: Dummy images not working with lightbox
 * FIXED: NextGen images not working with lightbox
 
-= 1.3.4 =
+ ### 1.3.4 
 * FIXED: Nav align needed -webkit-justify-content rules for Safari
 
-= 1.3.3 =
+ ### 1.3.3 
 * ADDED: Option to set HTML tag for post titles
 * CHANGED: Preset selector is now always visible
 * CHANGED: Small visual changes to Preset selector
 * FIXED: Thumbnails in navigator not using Focal Point
 
-= 1.3.2 =
+ ### 1.3.2 
 * FIXED: Turned off debugging code accidentally left on in EDD which prevented Manage WP remote updates from working.
 
-= 1.3.1 =
+ ### 1.3.1 
 * FIXED: Errors if custom fields set to display but not setup in Architect
 * FIXED: get_posts called too early in Slide content type causing error in Marketplace plugin
 
-= 1.3.0 : 25 June 2015 =
+ ### 1.3.0 : 25 June 2015 
 * ADDED: Option to activate the Architect Builder on WP Pages editor. Off by default
 * ADDED: More links to documentation, forums and support
 * ADDED: Option to thumbs nav for continuous row of thumbs
@@ -694,29 +694,29 @@ Miscellaneous enhancements:
 * UPGRADED: Slider engine, Slick, to version 1.5. This fixes several problems, including: autoplay will loop to beginning after the last slide; Blueprints will no longer start at the largest height of slides in it; carousels now work (set columns to multiple).
 * UPGRADED: WOW.js to v1.1.2
 
-= 1.2.10 : 22 May 2015 =
+ ### 1.2.10 : 22 May 2015 
 * FIXED: Excerpts not going 100% wide when no thumb image
 * CHANGED: Refactored sliders so devs can use their own
 * ADDED: Option to hide archive prefix text when showing page title on an archive page
 * CHANGED: If Architect is installed on a Headway themed site, Architect's own styling will be turned off as the default.
 
-= 1.2.9 : 14 May 2015 =
+ ### 1.2.9 : 14 May 2015 
 * FIXED: Date formatting for dummy content
 
-= 1.2.8 =
+ ### 1.2.8 
 * FIXED: Licence check error stopping pro features loading
 * FIXED: Inbuilt lightbox still loading when alternate selected.
 
-= 1.2.7 =
+ ### 1.2.7 
 * CHANGED: Custom taxonomy terms selection is now a drop down populated with terms of the custom taxonomy.
 * ADDED: Option to use alternate lightbox
 * FIXED: whitescreen error when saving if PHP less than 5.3
 
-= 1.2.6 =
+ ### 1.2.6 
 * ADDED: Option to have accordions closed on startup
 * CHANGED: Licence check on WPMS using Headway to align with Headway validation system
 
-= 1.2.5 =
+ ### 1.2.5 
 * ADDED: Option to exclude specific posts
 * ADDED: Option to exclude specific pages
 * ADDED: Option to exclude current post
@@ -725,21 +725,21 @@ Miscellaneous enhancements:
 * FIXED: White screen error when saving in EDD
 * FIXED: Fatal error on activating 1.2.4
 
-= 1.2.4 =
+ ### 1.2.4 
 * FIXED: Animations stopped working at 1.2.2
 * FIXED: Background images not animating
 * ADDED: Cache automatically clears after installing Architect update
 
-= 1.2.3 =
+ ### 1.2.3 
 * ADDED: Option to exclude margins from outer grid panels
 
-= 1.2.2  =
+ ### 1.2.2  
 * FIXED: Animation errors if no animations set for content
 
-= 1.2.1  =
+ ### 1.2.1  
 * FIXED: Blueprints not found message when using block display with no blueprints set for phone and tablet and viewing on tablet or phone
 
-= 1.2.0 : 4 May 2015 =
+ ### 1.2.0 : 4 May 2015 
 * ADDED: Animation of components. Doesn't react to sliding yet.
 * ADDED: Block, shortcode, template tag, builder and widget now support different Blueprints per device type: Desktop/any, Tablet, Phone.
 * ADDED: Sysinfo to Tools menu
@@ -772,7 +772,7 @@ Miscellaneous enhancements:
 
 * REMOVED: Custom field group styling defaults since they're so variable and thus just clutter
 
-= 1.1.6 =
+ ### 1.1.6 
 * ADDED: Additional filters and hooks for developers
 * ADDED: News feed to Help & Support
 * ADDED: Wordpress custom fields settings to Snippets and Testimonials
@@ -784,24 +784,24 @@ Miscellaneous enhancements:
 * FIXED: Archive titles not displaying
 * FIXED: Google fonts not rendering
 
-= 1.1.5 =
+ ### 1.1.5 
 * FIXED: Nothing showing for Accordions except when content is Dummy
 
-= 1.1.4 =
+ ### 1.1.4 
 * CHANGED: Spaces are stripped from css file name - just in case the short name validator allowed them
 
 * FIXED: Titles not selectable for styling in the Headway Visual Editor Design Mode
 
-= 1.1.3 : 7 April 2015=
+ ### 1.1.3 : 7 April 2015=
 * CHANGED: Blueprints are hidden until rendered. This is because their CSS loads at the bottom of the page (since it enqueues mid page) and can cause an ugly unstyled moment otherwise.
 * FIXED: Wrong classes for featured image in Headway
 * FIXED: Specific selection of posts, pages, snippets, slides, testimonials wasn't working
 * FIXED: Usability issues in Content Layout drag & drop when Feature Location set to "Outside Components"
 
-= 1.1.2 =
+ ### 1.1.2 
 * FIXED: Rare install error about .sass-cache
 
-= 1.1.1 =
+ ### 1.1.1 
 * ADDED: Testimonials content type
 * ADDED: More presets. Spruced up some existing presets
 * ADDED: Option to turn off additional content types: Snippets, Testimonials and any future ones.
@@ -811,7 +811,7 @@ Miscellaneous enhancements:
 * FIXED: Custom field wrapper tag now applies to the actual field, not its contents
 * FIXED: Conflict with Redux 3.5
 
-= 1.1.0 =
+ ### 1.1.0 
 * ADDED: Presets Selector
 * ADDED: Architect builder
 * ADDED: Export Blueprint
@@ -839,45 +839,45 @@ Miscellaneous enhancements:
 * FIXED: Broken image in dummy content when offline. Now uses a nice sky blue placeholder image.
 * FIXED: Issue with servers that have allow_url_fopen disabled
 
-= 1.0.8.8 =
+ ### 1.0.8.8 
 * FIXED: Transients not working with terms override
 * DOING: Inbuilt stepped tutorials
 * ADDED: Option to show/hide more advanced settings in Panels.
 * ADDED: [mailto]you@email.com[/mailto] shortcode to obfuscate email addresses.
 
-= 1.0.8.7 =
+ ### 1.0.8.7 
 * CHANGED: In Galleries content, changed Specific IDs to Media Library and added message explaining how to use media categories plugins
 * ADDED: Option to shortcodes to include taxonomy and terms as overrides. eg [architect mygallery tax="media_category" terms="people"]
 * ADDED: Option to widget to override taxonomy and terms
 
-= 1.0.8.6 =
+ ### 1.0.8.6 
 * CHANGED: Debug constant
 * FIXED: Rare warning for undefined titles
 
-= 1.0.8.5 =
+ ### 1.0.8.5 
 * FIXED: Various PHP notices
 * FIXED: Sliders broken if no navigation chosen
 * CHANGED: Stylings added for accordions and tabular
 
 
-= 1.0.8.4 =
+ ### 1.0.8.4 
 * FIXED: Meta fields not being wrapped in class since added strip_tags.
 
-= 1.0.8.3 =
+ ### 1.0.8.3 
 * CHANGED: More work on Page guides
 
-= 1.0.8.2 =
+ ### 1.0.8.2 
 * CHANGED: Extensive work on Page guides including automatic opening the first time
 
-= 1.0.8.1 =
+ ### 1.0.8.1 
 * FIXED: PHP errors when creating first Panel.
 
-= 1.0.8 =
+ ### 1.0.8 
 * FIXED: PHP messages when no Panel set
 * CHANGED: Added more help info
 * FIXED: Stupid git problem with filename changes when upper to lower.
 
-= 1.0.7 =
+ ### 1.0.7 
 * ADDED: More help info
 * ADDED: Pageguide based step by step help and tutorial
 * ADDED: Setting for left and right margins in Titles when using bullets
@@ -886,15 +886,15 @@ Miscellaneous enhancements:
 * CHANGED: Layout options won't show until a Panel Layout is selected
 * CHANGED: Blueprint Layout is now the first screen when adding a new Blueprint.
 
-= 1.0.6 =
+ ### 1.0.6 
 * FIXED: Retina images weren't being shown. Now both settings must be on to show. Changed defaults to on for local, off for global.
 * CHANGED: Added info on Support tab for testing before contacting support.
 
-= 1.0.5 =
+ ### 1.0.5 
 * FIXED: Notices when adding new Panels and Blueprints on new intalls
 
 
-= 1.0.4 =
+ ### 1.0.4 
 * CHANGED: Added a class name arc-nav-thumb to navigation thumbs so Advanced Lazy Load can filter them
 * CHANGED: Updated to Redux Metaboxes 1.3
 
@@ -909,12 +909,12 @@ Miscellaneous enhancements:
 
 * REMOVED: Page builder! Ugh! Wasn't working when other loops on the page, like recent posts widgets. Will fix before global release.
 
-= 1.0.3 =
+ ### 1.0.3 
 * FIXED: Missing Featured Video metabox
 * FIXED: Another CSS cascade problem. This time with .hentry
 * FIXED: Lightbox not working on background images
 
-= 1.0.2 =
+ ### 1.0.2 
 * ADDED: %id% as an option in meta mainly for passing id into shortcodes - which is really cool! e.g. In Woo Commerce: [add_to_cart id="%id%"]
 
 * CHANGED: Trimmed some fat to get zip below 2MB
@@ -929,10 +929,10 @@ Miscellaneous enhancements:
 * FIXED: Masonry layout scrambled in Chrome, Safari and Opera when Panels have iamges
 * FIXED: Can now have multiple masonry Blueprints on a page.
 
-= 1.0.1 =
+ ### 1.0.1 
 * FIXED: Doofus error! i.e. I accidentally removed a path name that then threw a fatal error. :S
 
-= 1.0.0 =
+ ### 1.0.0 
 
 * FIXED: Finally dinky-di fixed the Panels Design not showing if Styling turned off
 * FIXED: More bug fixes and performance tweaks
@@ -941,11 +941,11 @@ Miscellaneous enhancements:
 * CHANGED: Updating system for v1 and Headway compatibility
 
 
-== Upgrade Notice ==
+= ### Upgrade Notice =
 Various fixes and enhancements. See changelog
 
 
-== todo ==
+= ### todo =
 TODO: Update shortcode help!
 TODO: ** Debug slideshows *nem
 TODO: Don't upscale images smaller than dimensions. *nem
@@ -981,7 +981,7 @@ TODO: Add spreadsheets as source to Tables
 * TODO: Add Swiper sliders
 * TODO: Fix filler images not apparently working
 
-== Possible Todos ==
+= ### Possible Todos =
 TODO: Add a default single post/page Blueprint;  Add codex links;
 TODO: Add option for custom content within Blueprints
 TODO: Replace curl with wp_remote_get
